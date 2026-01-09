@@ -1,0 +1,102 @@
+% =========================================================
+% preamble.tex — Configuración IVEC TESIS OS++ v9 (versión estable)
+% =========================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage{amsmath, amssymb}
+\usepackage{float}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{fontspec}
+
+% --- Fuentes portables y modernas (TeX Gyre) ---------------
+\setmainfont{TeX Gyre Termes}   % equivalente a Times New Roman
+\setsansfont{TeX Gyre Heros}    % equivalente a Arial
+\setmonofont{TeX Gyre Cursor}   % equivalente a Courier New
+
+% --- Márgenes y formato de página --------------------------
+\geometry{
+  a4paper,
+  top=2.5cm,
+  bottom=2.5cm,
+  left=3cm,
+  right=2.5cm
+}
+
+% --- Espaciado y párrafos ---------------------------------
+\setstretch{1.5}
+\setlength{\parindent}{15pt}
+\setlength{\parskip}{0.5em}
+
+% --- Color institucional ----------------------------------
+\definecolor{ivec}{HTML}{096B72}
+
+% --- Encabezados y pies de página --------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{Tesis IVEC TESIS OS++ v9}
+\fancyfoot[C]{\thepage}
+
+% --- Títulos de capítulos y secciones ----------------------
+\titleformat{\chapter}[block]
+  {\huge\bfseries\color{ivec}}{\thechapter.}{1em}{}
+\titleformat{\section}
+  {\Large\bfseries\color{ivec}}{\thesection}{1em}{}
+\titleformat{\subsection}
+  {\large\bfseries\color{gray}}{\thesubsection}{1em}{}
+
+% --- Hipervínculos y metadatos PDF -------------------------
+\hypersetup{
+  colorlinks  = true,
+  linkcolor   = ivec,
+  citecolor   = ivec,
+  urlcolor    = ivec,
+  pdfauthor   = {Juan Antonio Romero Crespo},
+  pdftitle    = {Tesis Doctoral - Modelo IVEC TESIS OS++ v9},
+  pdfsubject  = {Evaluación editorial y gobernanza ambiental},
+  pdfkeywords = {Vulnerabilidad, Gobernanza, Riesgo, IVEC, MOVE, GCT}
+}
+
+% --- Citas APA7 con natbib --------------------------------
+\bibliographystyle{apalike}
+\setlength{\bibsep}{1pt}
+
+% --- Figuras y tablas -------------------------------------
+\setlength{\abovecaptionskip}{10pt}
+\setlength{\belowcaptionskip}{5pt}
+\renewcommand{\figurename}{Figura}
+\renewcommand{\tablename}{Tabla}
+
+% --- Comandos personalizados -------------------------------
+\newcommand{\IVEC}{\textsc{IVEC}}
+\newcommand{\MOVE}{\textsc{MOVE}}
+\newcommand{\GCT}{\textsc{GCT}}
+
+% --- Portada personalizada --------------------------------
+\makeatletter
+\def\maketitle{
+\begin{titlepage}
+\centering
+{\Large \textbf{UNIVERSIDAD / INSTITUCIÓN}}\\[1cm]
+{\huge \textbf{\@title}}\\[1cm]
+{\Large \textit{Tesis Doctoral en Gobernanza Ambiental y Riesgo}}\\[2cm]
+{\large Autor: \textbf{\@author}}\\[0.5cm]
+{\large Director: \textbf{Nombre del Director}}\\[0.5cm]
+{\large Compilación: \today}\\[2cm]
+{\Large Modelo de Evaluación Editorial}\\
+{\Large \textbf{IVEC TESIS OS++ v9}}\\[3cm]
+\vfill
+\includegraphics[width=0.3\textwidth]{figures/logo-doctorado.png}\\[1cm]
+\end{titlepage}
+}
+\makeatother

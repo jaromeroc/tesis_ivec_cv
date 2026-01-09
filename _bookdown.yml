@@ -1,0 +1,33 @@
+# _bookdown.yml — Configuración IVEC TESIS OS++
+book_filename: "Tesis_IVEC"
+output_dir: "bs4_book"
+delete_merged_file: true
+new_session: yes
+before_chapter_script: "_common.R"
+
+rmd_files:
+  - index.Rmd
+  - 01-intro.Rmd
+  - 02-estado-cuestion.Rmd
+  - 03-marco-teorico.Rmd
+  - 04-marco-normativo.Rmd
+  - 05-metodologia.Rmd
+  - 06-resultados.Rmd
+  - 07-discusion.Rmd
+  - 08-conclusiones.Rmd
+
+language:
+  label:
+    fig: "Figura "
+    tab: "Tabla "
+    eq: "Ecuación "
+  ui:
+    chapter_name: "Capítulo "
+
+# Metadatos del modelo IVEC
+meta:
+  evaluador: "IVEC TESIS OS++ v9"
+  institucion: "Modelo de Gobernanza IVEC–GCT"
+  version: "9.0"
+  fecha_compilacion: "`r Sys.Date()`"
+

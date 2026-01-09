@@ -1,0 +1,15 @@
+base
+methods
+datasets
+utils
+grDevices
+graphics
+stats
+bookdown
+knitr
+RefManageR
+DiagrammeR
+dplyr
+readr
+stringr
+ggplot2

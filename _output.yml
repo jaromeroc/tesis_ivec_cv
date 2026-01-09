@@ -1,0 +1,12 @@
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+  latex_engine: xelatex
+  citation_package: natbib
+  keep_tex: yes
+bookdown::bs4_book:
+  theme:
+    primary: "#096B72"
+  repo: https://github.com/jaromeroc/tesis_ivec_cv
+  css: style.css
+bookdown::epub_book: default

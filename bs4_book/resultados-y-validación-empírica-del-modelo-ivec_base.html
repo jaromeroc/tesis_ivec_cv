@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Capítulo 7 6. Resultados y validación empírica del modelo IVEC_base | A Minimal Book Example</title>
+<meta name="author" content="John Doe">
+<meta name="description" content="7.1 6.1 Introducción Este capítulo presenta la aplicación del modelo IVEC_base a la Comunidad Valenciana. Se describen las fuentes de datos empleadas, la estructura de los módulos micro, meso y...">
+<meta name="generator" content="bookdown 0.45 with bs4_book()">
+<meta property="og:title" content="Capítulo 7 6. Resultados y validación empírica del modelo IVEC_base | A Minimal Book Example">
+<meta property="og:type" content="book">
+<meta property="og:description" content="7.1 6.1 Introducción Este capítulo presenta la aplicación del modelo IVEC_base a la Comunidad Valenciana. Se describen las fuentes de datos empleadas, la estructura de los módulos micro, meso y...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Capítulo 7 6. Resultados y validación empírica del modelo IVEC_base | A Minimal Book Example">
+<meta name="twitter:description" content="7.1 6.1 Introducción Este capítulo presenta la aplicación del modelo IVEC_base a la Comunidad Valenciana. Se describen las fuentes de datos empleadas, la estructura de los módulos micro, meso y...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.9.0/transition.js"></script><script src="libs/bs3compat-0.9.0/tabs.js"></script><script src="libs/bs3compat-0.9.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/kePrint-0.0.1/kePrint.js"></script><link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">A Minimal Book Example</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> About</a></li>
+<li><a class="" href="introducci%C3%B3n.html"><span class="header-section-number">2</span> Introducción</a></li>
+<li><a class="" href="cartograf%C3%ADa-conceptual-tensiones-y-evoluci%C3%B3n-del-campo.-estado-de-la-cuesti%C3%B3n.html"><span class="header-section-number">3</span> Cartografía conceptual, tensiones y evolución del campo. Estado de la cuestión</a></li>
+<li><a class="" href="marco-te%C3%B3rico-enfoques-y-herramientas-para-el-an%C3%A1lisis-de-la-vulnerabilidad-social.html"><span class="header-section-number">4</span> Marco teórico: enfoques y herramientas para el análisis de la vulnerabilidad social</a></li>
+<li><a class="" href="marco-normativo-e-institucional-gobernanza-del-riesgo-y-capacidades-para-la-resiliencia.html"><span class="header-section-number">5</span> Marco normativo e institucional: gobernanza del riesgo y capacidades para la resiliencia</a></li>
+<li><a class="" href="metodolog%C3%ADa.html"><span class="header-section-number">6</span> Metodología</a></li>
+<li><a class="active" href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html"><span class="header-section-number">7</span> 6. Resultados y validación empírica del modelo IVEC_base</a></li>
+<li><a class="" href="discusi%C3%B3n.html"><span class="header-section-number">8</span> Discusión</a></li>
+<li><a class="" href="conclusiones.html"><span class="header-section-number">9</span> Conclusiones</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/jaromeroc/tesis_ivec_cv">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="resultados-y-validación-empírica-del-modelo-ivec_base" class="section level1" number="7">
+<h1>
+<span class="header-section-number">Capítulo 7</span> 6. Resultados y validación empírica del modelo IVEC_base<a class="anchor" aria-label="anchor" href="#resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base"><i class="fas fa-link"></i></a>
+</h1>
+<div id="introducción-5" class="section level2" number="7.1">
+<h2>
+<span class="header-section-number">7.1</span> 6.1 Introducción<a class="anchor" aria-label="anchor" href="#introducci%C3%B3n-5"><i class="fas fa-link"></i></a>
+</h2>
+<p>Este capítulo presenta la aplicación del modelo <strong>IVEC_base</strong> a la Comunidad Valenciana. Se describen las fuentes de datos empleadas, la estructura de los módulos micro, meso y estructural, y los resultados espaciales derivados. Finalmente, se contrasta la hipótesis H2: <em>las zonas con mayor vulnerabilidad estructural (IVEC) registran mayores impactos ante amenazas observadas</em>, evaluando la validez empírica del índice.</p>
+<hr>
+</div>
+<div id="fuentes-de-información-y-unidades-de-análisis" class="section level2" number="7.2">
+<h2>
+<span class="header-section-number">7.2</span> 6.2 Fuentes de información y unidades de análisis<a class="anchor" aria-label="anchor" href="#fuentes-de-informaci%C3%B3n-y-unidades-de-an%C3%A1lisis"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li><p><strong>Unidad territorial:</strong> celdas regulares de 1 km² derivadas del APSIG/SIP.</p></li>
+<li>
+<p><strong>Base principal:</strong> APSIG/SIP (abril 2024).</p>
+<ul>
+<li>Nivel individual y del hogar: condiciones de salud, empleo, dependencia, tipo de vivienda, composición familiar.</li>
+<li>No incluye renta ni educación; se emplean variables proxy (tipo de cotización, régimen de tenencia, dependencia funcional).</li>
+</ul>
+</li>
+<li>
+<p><strong>Fuentes secundarias:</strong></p>
+<ul>
+<li>Seguridad Social y AEAT: tasas de afiliación y contribución.</li>
+<li>Padrón continuo (INE): estructura demográfica y envejecimiento.</li>
+<li>Catastro y Generalitat Valenciana: dotaciones sociales y equipamientos municipales.</li>
+</ul>
+</li>
+<li><p><strong>Escala analítica:</strong> integración de microdatos en celdas de 1 km² con anonimización espacial y procedimientos reproducibles en R.</p></li>
+</ul>
+<hr>
+</div>
+<div id="definición-de-módulos-e-indicadores-del-ivec_base" class="section level2" number="7.3">
+<h2>
+<span class="header-section-number">7.3</span> 6.3 Definición de módulos e indicadores del IVEC_base<a class="anchor" aria-label="anchor" href="#definici%C3%B3n-de-m%C3%B3dulos-e-indicadores-del-ivec_base"><i class="fas fa-link"></i></a>
+</h2>
+<p>El modelo se estructura en tres niveles analíticos, diseñados para capturar vulnerabilidad sin incluir variables de exposición:</p>
+<p>[
+]</p>
+<div id="indicadores-orientativos" class="section level3" number="7.3.1">
+<h3>
+<span class="header-section-number">7.3.1</span> Indicadores orientativos<a class="anchor" aria-label="anchor" href="#indicadores-orientativos"><i class="fas fa-link"></i></a>
+</h3>
+<div class="inline-table"><table class="table table-sm">
+<colgroup>
+<col width="8%">
+<col width="18%">
+<col width="35%">
+<col width="17%">
+<col width="19%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">Nivel</th>
+<th align="left">Dimensión</th>
+<th align="left">Indicador proxy</th>
+<th align="left">Fuente</th>
+<th align="left">Naturaleza</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Micro</td>
+<td align="left">Salud y dependencia</td>
+<td align="left">% hogares con personas dependientes</td>
+<td align="left">APSIG/SIP</td>
+<td align="left">Condición individual</td>
+</tr>
+<tr class="even">
+<td align="left">Micro</td>
+<td align="left">Empleo y cobertura</td>
+<td align="left">% sin protección contributiva</td>
+<td align="left">APSIG/SIP</td>
+<td align="left">Fragilidad socioeconómica</td>
+</tr>
+<tr class="odd">
+<td align="left">Meso</td>
+<td align="left">Capital social</td>
+<td align="left">Nº asociaciones o recursos comunitarios / hab.</td>
+<td align="left">GV / Registros locales</td>
+<td align="left">Capacidad social</td>
+</tr>
+<tr class="even">
+<td align="left">Meso</td>
+<td align="left">Servicios de proximidad</td>
+<td align="left">Accesibilidad a centros sociales / sanitarios</td>
+<td align="left">Catastro / SIG</td>
+<td align="left">Capacidad territorial</td>
+</tr>
+<tr class="odd">
+<td align="left">Estructural</td>
+<td align="left">Recursos administrativos</td>
+<td align="left">Gasto municipal en servicios / hab.</td>
+<td align="left">GV / IGAE</td>
+<td align="left">Capacidad institucional</td>
+</tr>
+<tr class="even">
+<td align="left">Estructural</td>
+<td align="left">Gobernanza territorial</td>
+<td align="left">% municipios con planes activos de emergencia</td>
+<td align="left">GV / Protección Civil</td>
+<td align="left">Capacidad estructural</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><em>Nota:</em> se excluyen variables de exposición (densidad poblacional, viviendas, superficie urbana), dado que estas pertenecen al término (E) de la ecuación de riesgo (R = H E IVEC).</p>
+</blockquote>
+<hr>
+</div>
+</div>
+<div id="resultados-descriptivos" class="section level2" number="7.4">
+<h2>
+<span class="header-section-number">7.4</span> 6.4 Resultados descriptivos<a class="anchor" aria-label="anchor" href="#resultados-descriptivos"><i class="fas fa-link"></i></a>
+</h2>
+<div id="distribución-general-del-ivec_base-t₀-abril-2024" class="section level3" number="7.4.1">
+<h3>
+<span class="header-section-number">7.4.1</span> 6.4.1 Distribución general del IVEC_base (t₀ = abril 2024)<a class="anchor" aria-label="anchor" href="#distribuci%C3%B3n-general-del-ivec_base-t%E2%82%80-abril-2024"><i class="fas fa-link"></i></a>
+</h3>
+<p>Incluir:</p>
+<ul>
+<li>Estadísticos descriptivos (media, desviación, percentiles).</li>
+<li>Mapa general de vulnerabilidad (escala 1 km²).</li>
+</ul>
+</div>
+<div id="patrones-espaciales" class="section level3" number="7.4.2">
+<h3>
+<span class="header-section-number">7.4.2</span> 6.4.2 Patrones espaciales<a class="anchor" aria-label="anchor" href="#patrones-espaciales"><i class="fas fa-link"></i></a>
+</h3>
+<p>Aplicar análisis de autocorrelación espacial para identificar concentración de vulnerabilidad:</p>
+<ul>
+<li>
+<strong>Moran’s I</strong> → tendencia global.</li>
+<li>
+<strong>LISA</strong> → clusters significativos (Alta–Alta, Baja–Baja).</li>
+</ul>
+<p>Interpretación tipo:</p>
+<blockquote>
+<p>Los clusters Alta–Alta se concentran en entornos urbanos con baja cobertura social y limitada capacidad administrativa, mientras que las áreas rurales tienden a mostrar vulnerabilidad estructural baja, asociada a redes comunitarias más cohesionadas.</p>
+</blockquote>
+<hr>
+</div>
+</div>
+<div id="validación-empírica-de-la-hipótesis-h2" class="section level2" number="7.5">
+<h2>
+<span class="header-section-number">7.5</span> 6.5 Validación empírica de la hipótesis H2<a class="anchor" aria-label="anchor" href="#validaci%C3%B3n-emp%C3%ADrica-de-la-hip%C3%B3tesis-h2"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>Hipótesis:</strong></p>
+<blockquote>
+<p>Las zonas con valores altos del IVEC presentan mayores impactos en escenarios de riesgo recientes.</p>
+</blockquote>
+<div id="procedimiento" class="section level3" number="7.5.1">
+<h3>
+<span class="header-section-number">7.5.1</span> Procedimiento<a class="anchor" aria-label="anchor" href="#procedimiento"><i class="fas fa-link"></i></a>
+</h3>
+<ol style="list-style-type: decimal">
+<li>Seleccionar un evento documentado (p.e. DANA 2019, incendios 2022, olas de calor 2023 o COVID-19).</li>
+<li>Derivar una variable de impacto (pérdidas económicas, población afectada o mortalidad).</li>
+<li>Asociar espacialmente con las celdas IVEC mediante <code><a href="https://r-spatial.github.io/sf/reference/st_join.html">sf::st_join()</a></code> u overlay raster.</li>
+<li>Calcular correlación no paramétrica (Spearman o Kendall τ).</li>
+<li>Representar resultados:</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Ejemplo básico</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/cor.test.html">cor.test</a></span><span class="op">(</span><span class="va">IVEC</span>, <span class="va">danos</span>, method <span class="op">=</span> <span class="st">"spearman"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div id="resultados-esperados" class="section level3" number="7.5.2">
+<h3>
+<span class="header-section-number">7.5.2</span> Resultados esperados<a class="anchor" aria-label="anchor" href="#resultados-esperados"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Correlación positiva y significativa (r &gt; 0.5; p &lt; 0.05).</li>
+<li>Gráfico comparativo: daños medios por decil IVEC.</li>
+</ul>
+<p>Interpretación:</p>
+<blockquote>
+<p>Los resultados confirman que las celdas con mayor vulnerabilidad estructural (IVEC alto) presentan impactos medios más elevados, validando parcialmente la hipótesis H2.</p>
+</blockquote>
+<hr>
+</div>
+</div>
+<div id="síntesis-interpretativa" class="section level2" number="7.6">
+<h2>
+<span class="header-section-number">7.6</span> 6.6 Síntesis interpretativa<a class="anchor" aria-label="anchor" href="#s%C3%ADntesis-interpretativa"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>El IVEC_base muestra coherencia espacial con las desigualdades estructurales identificadas en la literatura sobre vulnerabilidad social.</li>
+<li>La independencia de la exposición evita redundancias y mejora la comparabilidad interterritorial.</li>
+<li>El modelo permite detectar zonas críticas donde la fragilidad social y la debilidad institucional coexisten.</li>
+<li>Se confirma la utilidad del IVEC como componente reproducible del módulo de vulnerabilidad en el cálculo del riesgo total.</li>
+</ul>
+<hr>
+</div>
+<div id="conclusión-del-capítulo-1" class="section level2" number="7.7">
+<h2>
+<span class="header-section-number">7.7</span> 6.7 Conclusión del capítulo<a class="anchor" aria-label="anchor" href="#conclusi%C3%B3n-del-cap%C3%ADtulo-1"><i class="fas fa-link"></i></a>
+</h2>
+<blockquote>
+<p>El análisis empírico demuestra que la vulnerabilidad estructural y contextual, medida mediante el IVEC_base, es una propiedad mensurable y espacialmente coherente del sistema social valenciano. La validación frente a impactos reales confirma su pertinencia analítica dentro de la ecuación de riesgo (R = H E IVEC).</p>
+</blockquote>
+<hr>
+</div>
+<div id="referencias" class="section level2" number="7.8">
+<h2>
+<span class="header-section-number">7.8</span> Referencias<a class="anchor" aria-label="anchor" href="#referencias"><i class="fas fa-link"></i></a>
+</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb4-1"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-1" tabindex="-1"></a><span class="va">@book</span>{<span class="ot">Birkmann2013</span>,</span>
+<span id="cb4-2"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-2" tabindex="-1"></a>  <span class="dt">title</span> = {Measuring Vulnerability to Natural Hazards: Towards Disaster Resilient Societies},</span>
+<span id="cb4-3"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-3" tabindex="-1"></a>  <span class="dt">author</span> = {Birkmann, Joern},</span>
+<span id="cb4-4"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-4" tabindex="-1"></a>  <span class="dt">year</span> = {2013},</span>
+<span id="cb4-5"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-5" tabindex="-1"></a>  <span class="dt">publisher</span> = {United Nations University Press},</span>
+<span id="cb4-6"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-6" tabindex="-1"></a>  <span class="dt">address</span> = {Tokyo}</span>
+<span id="cb4-7"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-7" tabindex="-1"></a>}</span>
+<span id="cb4-8"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-8" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-9" tabindex="-1"></a><span class="va">@incollection</span>{<span class="ot">Cardona2012</span>,</span>
+<span id="cb4-10"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-10" tabindex="-1"></a>  <span class="dt">title</span> = {Determinants of Risk: Exposure and Vulnerability},</span>
+<span id="cb4-11"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-11" tabindex="-1"></a>  <span class="dt">author</span> = {Cardona, Omar D. and van Aalst, Maarten and Birkmann, Joern and Fordham, Maureen},</span>
+<span id="cb4-12"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-12" tabindex="-1"></a>  <span class="dt">booktitle</span> = {Managing the Risks of Extreme Events and Disasters to Advance Climate Change Adaptation},</span>
+<span id="cb4-13"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-13" tabindex="-1"></a>  <span class="dt">editor</span> = {Field, C. B. and Barros, V. and Stocker, T. F. and Qin, D.},</span>
+<span id="cb4-14"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-14" tabindex="-1"></a>  <span class="dt">year</span> = {2012},</span>
+<span id="cb4-15"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-15" tabindex="-1"></a>  <span class="dt">publisher</span> = {Cambridge University Press},</span>
+<span id="cb4-16"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-16" tabindex="-1"></a>  <span class="dt">pages</span> = {65--108}</span>
+<span id="cb4-17"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-17" tabindex="-1"></a>}</span>
+<span id="cb4-18"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-18" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-19" tabindex="-1"></a><span class="va">@book</span>{<span class="ot">Wisner2004</span>,</span>
+<span id="cb4-20"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-20" tabindex="-1"></a>  <span class="dt">title</span> = {At Risk: Natural Hazards, People's Vulnerability and Disasters},</span>
+<span id="cb4-21"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-21" tabindex="-1"></a>  <span class="dt">author</span> = {Wisner, Ben and Blaikie, Piers and Cannon, Terry and Davis, Ian},</span>
+<span id="cb4-22"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-22" tabindex="-1"></a>  <span class="dt">edition</span> = {2nd},</span>
+<span id="cb4-23"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-23" tabindex="-1"></a>  <span class="dt">year</span> = {2004},</span>
+<span id="cb4-24"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-24" tabindex="-1"></a>  <span class="dt">publisher</span> = {Routledge},</span>
+<span id="cb4-25"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-25" tabindex="-1"></a>  <span class="dt">address</span> = {London}</span>
+<span id="cb4-26"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-26" tabindex="-1"></a>}</span>
+<span id="cb4-27"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-27" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-28" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">IPCC2022</span>,</span>
+<span id="cb4-29"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-29" tabindex="-1"></a>  <span class="dt">title</span> = {Climate Change 2022: Impacts, Adaptation and Vulnerability},</span>
+<span id="cb4-30"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-30" tabindex="-1"></a>  <span class="dt">author</span> = {{IPCC}},</span>
+<span id="cb4-31"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-31" tabindex="-1"></a>  <span class="dt">year</span> = {2022},</span>
+<span id="cb4-32"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-32" tabindex="-1"></a>  <span class="dt">publisher</span> = {Cambridge University Press}</span>
+<span id="cb4-33"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-33" tabindex="-1"></a>}</span>
+<span id="cb4-34"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-34" tabindex="-1"></a></span>
+<span id="cb4-35"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-35" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">UNDRR2015</span>,</span>
+<span id="cb4-36"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-36" tabindex="-1"></a>  <span class="dt">title</span> = {Sendai Framework for Disaster Risk Reduction 2015--2030},</span>
+<span id="cb4-37"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-37" tabindex="-1"></a>  <span class="dt">author</span> = {{UNDRR}},</span>
+<span id="cb4-38"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-38" tabindex="-1"></a>  <span class="dt">year</span> = {2015},</span>
+<span id="cb4-39"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-39" tabindex="-1"></a>  <span class="dt">publisher</span> = {United Nations Office for Disaster Risk Reduction},</span>
+<span id="cb4-40"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-40" tabindex="-1"></a>  <span class="dt">address</span> = {Geneva}</span>
+<span id="cb4-41"><a href="resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base.html#cb4-41" tabindex="-1"></a>}</span></code></pre></div>
+<p>—RMD_OUTPUT_END—</p>
+<hr>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="metodolog%C3%ADa.html"><span class="header-section-number">6</span> Metodología</a></div>
+<div class="next"><a href="discusi%C3%B3n.html"><span class="header-section-number">8</span> Discusión</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#resultados-y-validaci%C3%B3n-emp%C3%ADrica-del-modelo-ivec_base"><span class="header-section-number">7</span> 6. Resultados y validación empírica del modelo IVEC_base</a></li>
+<li><a class="nav-link" href="#introducci%C3%B3n-5"><span class="header-section-number">7.1</span> 6.1 Introducción</a></li>
+<li><a class="nav-link" href="#fuentes-de-informaci%C3%B3n-y-unidades-de-an%C3%A1lisis"><span class="header-section-number">7.2</span> 6.2 Fuentes de información y unidades de análisis</a></li>
+<li>
+<a class="nav-link" href="#definici%C3%B3n-de-m%C3%B3dulos-e-indicadores-del-ivec_base"><span class="header-section-number">7.3</span> 6.3 Definición de módulos e indicadores del IVEC_base</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#indicadores-orientativos"><span class="header-section-number">7.3.1</span> Indicadores orientativos</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#resultados-descriptivos"><span class="header-section-number">7.4</span> 6.4 Resultados descriptivos</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#distribuci%C3%B3n-general-del-ivec_base-t%E2%82%80-abril-2024"><span class="header-section-number">7.4.1</span> 6.4.1 Distribución general del IVEC_base (t₀ = abril 2024)</a></li>
+<li><a class="nav-link" href="#patrones-espaciales"><span class="header-section-number">7.4.2</span> 6.4.2 Patrones espaciales</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#validaci%C3%B3n-emp%C3%ADrica-de-la-hip%C3%B3tesis-h2"><span class="header-section-number">7.5</span> 6.5 Validación empírica de la hipótesis H2</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#procedimiento"><span class="header-section-number">7.5.1</span> Procedimiento</a></li>
+<li><a class="nav-link" href="#resultados-esperados"><span class="header-section-number">7.5.2</span> Resultados esperados</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#s%C3%ADntesis-interpretativa"><span class="header-section-number">7.6</span> 6.6 Síntesis interpretativa</a></li>
+<li><a class="nav-link" href="#conclusi%C3%B3n-del-cap%C3%ADtulo-1"><span class="header-section-number">7.7</span> 6.7 Conclusión del capítulo</a></li>
+<li><a class="nav-link" href="#referencias"><span class="header-section-number">7.8</span> Referencias</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/jaromeroc/tesis_ivec_cv/blob/master/06-resultados.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/jaromeroc/tesis_ivec_cv/edit/master/06-resultados.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>A Minimal Book Example</strong>" was written by John Doe. It was last built on 2026-01-09.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
