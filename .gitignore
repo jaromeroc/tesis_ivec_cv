@@ -1,0 +1,64 @@
+# =============================================================================
+# .gitignore — Tesis IVEC
+# =============================================================================
+
+# ── R / RStudio ──────────────────────────────────────────────────────────────
+.Rproj.user
+.Rhistory
+.RData
+.RDataTmp
+.Ruserdata
+.Rapp.history
+.Renviron
+
+# ── LaTeX / XeLaTeX (auxiliares de compilación) ──────────────────────────────
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.idx
+*.ilg
+*.ind
+*.lof
+*.log
+*.lot
+*.nav
+*.out
+*.run.xml
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+
+# ── bookdown / knitr (artefactos y caches de compilación) ────────────────────
+_book/
+_bookdown_files/
+*_cache/
+*_files/
+
+# ── Datos pesados / artefactos generados ─────────────────────────────────────
+data/
+outputs/
+/*.rds
+
+# ── Configuración local de editores y entornos ───────────────────────────────
+.positai
+
+# ── Sistema operativo ────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# ── Backups y temporales de editores ─────────────────────────────────────────
+*~
+*.swp
+*.swo
+*.tmp
+*.bak
+.RDataTmp1
+R/apendices/__pycache__/
+
+# Documentos de trabajo internos
+Revision-cap*-comentarios-director.md

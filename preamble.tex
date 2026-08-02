@@ -1,0 +1,291 @@
+% ==================================================
+% 1. TIPOGRAFÍA Y FUENTES
+% ==================================================
+% Carga fuentes principales con detección automática:
+% Garamond (preferente) → Times → TeX Gyre Termes
+% Arial / Helvetica para sans-serif; Consolas / Courier para monoespaciado.
+
+\IfFontExistsTF{EB Garamond}{%
+  \setmainfont{EB Garamond}[
+    UprightFont    = * Regular,
+    BoldFont       = * Bold,
+    ItalicFont     = * Italic,
+    BoldItalicFont = * Bold Italic
+  ]
+}{%
+  \IfFontExistsTF{Times New Roman}{\setmainfont{Times New Roman}}{%
+    \setmainfont{TeX Gyre Termes}}}
+
+\IfFontExistsTF{Arial}{\setsansfont{Arial}}{%
+  \IfFontExistsTF{Helvetica}{\setsansfont{Helvetica}}{\setsansfont{TeX Gyre Heros}}}
+
+\IfFontExistsTF{Consolas}{\setmonofont{Consolas}}{%
+  \IfFontExistsTF{Courier New}{\setmonofont{Courier New}}{\setmonofont{TeX Gyre Cursor}}}
+
+% ==================================================
+% 2. IDIOMA Y TRADUCCIONES
+% ==================================================
+\usepackage[english,french,catalan,spanish]{babel}
+% \selectlanguage{spanish}  % redundante: español es el último en la lista babel
+\usepackage{csquotes}
+
+\addto\captionsspanish{%
+  \renewcommand{\contentsname}{Índice general}%
+  \renewcommand{\listfigurename}{Índice de figuras}%
+  \renewcommand{\listtablename}{Índice de tablas}%
+  \renewcommand{\figurename}{Figura}%
+  \renewcommand{\tablename}{Tabla}%
+}
+
+% ==================================================
+% 3. DISEÑO DE PÁGINA Y NUMERACIÓN
+% ==================================================
+\usepackage{geometry}
+\geometry{
+  inner=3.5cm, outer=2.5cm,
+  top=2.5cm, bottom=2.5cm
+}
+
+\setcounter{secnumdepth}{3} % hasta subsubsección
+\setcounter{tocdepth}{2}    % hasta subsección en ToC
+
+% ==================================================
+% 4. TÍTULOS DE CAPÍTULOS Y SECCIONES
+% ==================================================
+\usepackage{titlesec}
+\usepackage{setspace}
+
+\makeatletter
+% ----- Capítulos numerados -----
+\def\@makechapterhead#1{%
+ \vspace*{-20pt}
+ {\parindent \z@ \centering \normalfont
+ \Huge\bfseries \@chapapp\space \thechapter
+ \par\nobreak\vskip 10pt
+ {\singlespacing \LARGE \bfseries #1\par}\vskip 20pt}}
+
+% ----- Capítulos sin numerar -----
+\def\@makeschapterhead#1{%
+ \vspace*{-20pt}
+ {\parindent \z@ \centering \normalfont
+ {\singlespacing \Huge \bfseries #1\par}\vskip 20pt}}
+
+% ----- Redefinición general -----
+\renewcommand{\@chapapp}{Capítulo}
+\renewcommand{\thechapter}{\arabic{chapter}}
+\def\@chapter[#1]#2{%
+  \ifnum \c@secnumdepth >\m@ne
+    \if@mainmatter
+      \refstepcounter{chapter}%
+      \addcontentsline{toc}{chapter}{%
+        \protect\numberline{\thechapter.}#1}%
+    \else
+      \addcontentsline{toc}{chapter}{#1}%
+    \fi
+  \else
+    \addcontentsline{toc}{chapter}{#1}%
+  \fi
+  \chaptermark{#1}%
+  \addtocontents{lof}{\protect\addvspace{10\p@}}%
+  \addtocontents{lot}{\protect\addvspace{10\p@}}%
+  \if@twocolumn
+    \@topnewpage[\@makechapterhead{#2}]%
+  \else
+    \ifx\relax#1\relax
+      \@makeschapterhead{#2}%
+    \else
+      \@makechapterhead{#2}%
+    \fi
+    \@afterheading
+  \fi}
+\makeatother
+
+% ----- Secciones y subniveles -----
+\titleformat{\section}
+ {\normalfont\Large\bfseries\singlespacing}{\thesection}{1em}{}
+\titleformat{\subsection}
+ {\normalfont\large\bfseries\singlespacing}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+ {\normalfont\normalsize \bfseries\singlespacing}{\thesubsubsection}{1em}{}
+\titleformat{\paragraph}[block]
+ {\normalfont\normalsize\itshape\singlespacing}{}{0pt}{}
+% Espaciado antes/después de secciones y subniveles (reducción ~40% sobre
+% los valores por defecto de titlesec). No afecta al título de capítulo,
+% que se gobierna desde \@makechapterhead más arriba en este preámbulo.
+\titlespacing*{\section}{0pt}{2ex plus 0.5ex minus 0.2ex}{1ex plus 0.2ex}
+\titlespacing*{\subsection}{0pt}{1.6ex plus 0.4ex minus 0.2ex}{0.8ex plus 0.2ex}
+\titlespacing*{\subsubsection}{0pt}{1.4ex plus 0.3ex minus 0.2ex}{0.6ex plus 0.2ex}
+\titlespacing*{\paragraph}{0pt}{1ex plus .2ex minus .2ex}{0.5ex}
+
+% ==================================================
+% 5. ENCABEZADOS Y PIES DE PÁGINA
+% ==================================================
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[LE,RO]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+% Páginas de apertura de capítulo (estilo 'plain'): número en margen exterior
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \fancyfoot[LE,RO]{\thepage}%
+  \renewcommand{\headrulewidth}{0pt}%
+}
+\usepackage{emptypage}
+
+% ==================================================
+% 6. ÍNDICES Y LISTAS (ToC, Figuras, Tablas)
+% ==================================================
+\usepackage{tocloft}
+\renewcommand{\cfttoctitlefont}{\hspace*{\fill}\Huge\bfseries}
+\renewcommand{\cftloftitlefont}{\hspace*{\fill}\Huge\bfseries}
+\renewcommand{\cftlottitlefont}{\hspace*{\fill}\Huge\bfseries}
+\renewcommand{\cftaftertoctitle}{\hspace*{\fill}}
+\renewcommand{\cftafterloftitle}{\hspace*{\fill}}
+\renewcommand{\cftafterlottitle}{\hspace*{\fill}}
+
+\renewcommand{\cftchapfont}{\bfseries}
+\renewcommand{\cftchappagefont}{\bfseries}
+\renewcommand{\cftchapnumwidth}{2em}
+\renewcommand{\cftchapindent}{0pt}
+\renewcommand{\cftsecfont}{\normalsize}
+\renewcommand{\cftsubsecfont}{\normalsize}
+\setlength{\cftbeforesecskip}{4pt}
+
+% ==================================================
+% 7. FIGURAS, TABLAS Y CAPTIONS
+% ==================================================
+\usepackage{caption}
+% labelfont: normalsize (no large) para evitar etiquetas visualmente pesadas
+\captionsetup{labelfont={normalsize,bf},textfont=normalfont,labelsep=colon}
+
+\usepackage{rotating}
+\usepackage{eso-pic} % marca de agua centrada en página (declaración jurada)
+\usepackage{threeparttable,placeins,float,booktabs,longtable,tabularx,multirow,array,ragged2e}
+\usepackage[table]{xcolor}
+% Asegura que las notas de tabla (\tnote) usen \normalsize.
+\AtBeginEnvironment{threeparttable}{\normalsize}
+
+% ==================================================
+% 8. MACROS EDITORIALES (etoolbox ANTES de microtype)
+% ==================================================
+\usepackage{etoolbox}
+
+% ==================================================
+% 9. TIPOGRAFÍA Y JUSTIFICACIÓN
+% ==================================================
+\usepackage{microtype}
+\tolerance=1000
+\emergencystretch=3em
+% \sloppy % <- ELIMINADO: en conflicto con ajustes manuales
+
+% Interlineado 1.3 (aprox. 1.5 en Word)
+\setstretch{1.3}
+% Espaciado entre párrafos uniforme: parskip rígido (sin elasticidad) y
+% \raggedbottom para que LaTeX deje páginas ligeramente más cortas antes
+% que estirar el espacio inter-párrafo, evitando el efecto de huecos
+% desiguales entre párrafos en páginas con flotantes o tablas.
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6\baselineskip}
+\raggedbottom
+% Notas al pie a espacio simple
+\AtBeginEnvironment{footnote}{\singlespacing}
+% Tablas a espacio simple dentro de las celdas (convención académica): el
+% \setstretch{1.3} del cuerpo no se hereda en el contenido tabular, por lo
+% que las celdas con texto envuelto en varias líneas mantienen una
+% separación interna compacta. Cubre los entornos que kableExtra puede
+% generar según latex_options (tabular base, longtable para repeat_header,
+% tabu/longtabu para striped, tabularx para ancho total).
+% Se usa \setstretch{1} en lugar de \singlespacing porque éste último
+% incluye \vskip\baselineskip al final, lo que es ilegal dentro del
+% preámbulo de tabular (sobre todo cuando va envuelto en \resizebox por
+% scale_down de kableExtra).
+\AtBeginEnvironment{tabular}{\setstretch{1}}
+\AtBeginEnvironment{tabularx}{\setstretch{1}}
+\AtBeginEnvironment{longtable}{\setstretch{1}}
+\AtBeginEnvironment{tabu}{\setstretch{1}}
+\AtBeginEnvironment{longtabu}{\setstretch{1}}
+% Altura de fila: 20% por encima del default. Separa visualmente las filas
+% en tablas con celdas multilínea (donde el interlineado compacto interno
+% antes confundía las fronteras entre categorías consecutivas), sin afectar
+% el interlineado dentro de cada celda, que sigue siendo \setstretch{1}.
+\renewcommand{\arraystretch}{1.2}
+
+% ==================================================
+% 10. HIPERVÍNCULOS Y METADATOS PDF
+% ==================================================
+\usepackage{hyperref}
+\usepackage{bookmark}
+\hypersetup{
+  bookmarksnumbered = true,
+  colorlinks        = true,
+  linkcolor         = black,
+  citecolor         = black,
+  urlcolor          = darkgray,
+  breaklinks        = true,
+  pdfpagelabels     = true,
+  pdftitle          = {La vulnerabilidad social como fenómeno estructural y contextual},
+  pdfauthor         = {Juan Antonio Romero Crespo},
+  pdfsubject        = {Tesis doctoral},
+  pdfkeywords       = {vulnerabilidad, riesgo, IVEC, ciencias sociales}
+}
+
+% ==================================================
+% 11. MACROS — Glosario y abreviaturas
+% ==================================================
+% Conserva jerarquías, añade espaciado uniforme y mantiene etiquetas para hipervínculos internos.
+
+\newcommand{\referenceletter}[2]{%
+ \vspace{0.1em}%
+ \par\noindent{\Large\bfseries #1}\par
+ \vspace{0.1em}%
+ \noindent\rule{\textwidth}{0.4pt}\par
+ \vspace{0.3em}%
+ \pdfbookmark[1]{#1}{gloss-#2}%
+}
+
+\newcommand{\tesisglossary}[2]{%
+ \vspace{0.3em}%
+ \par\noindent{\textbf{#1}}\par
+ \vspace{0.2em}%
+ \phantomsection%
+ \label{gloss-#2}%
+ \pdfbookmark[2]{#1}{gloss-#2}%
+}
+
+% ==================================================
+% 12. BIBLIOGRAFÍA — EVITAR PARTICIÓN DE ENTRADAS
+% ==================================================
+% Pandoc-citeproc genera la bibliografía dentro del entorno CSLReferences.
+% Cada entrada es un párrafo independiente; \interlinepenalty=10000 impide
+% que LaTeX parta una entrada entre el final de una página y el inicio
+% de la siguiente. El valor 10000 es el máximo que puede asignarse sin
+% forzar un overfull \vbox.
+% etoolbox ya está cargado en la sección 8 de este preámbulo.
+\AtBeginEnvironment{CSLReferences}{\interlinepenalty=10000}
+
+% ==================================================
+% 13. APÉNDICES COMO CAPÍTULOS (bookdown: encabezados con #)
+% ==================================================
+\makeatletter
+\newcommand{\startappendiceschapter}{
+  \cleardoublepage
+  \appendix
+
+  % Etiqueta del capítulo (Capítulo -> Apéndice)
+  \renewcommand{\@chapapp}{Apéndice}
+
+  % Numeración alfabética de capítulos
+  \renewcommand{\thechapter}{\Alph{chapter}}
+  \renewcommand{\theHchapter}{\thechapter}
+
+  % Figuras y tablas por apéndice (A.1, A.2...)
+  \renewcommand{\thefigure}{\thechapter.\arabic{figure}}
+  \renewcommand{\thetable}{\thechapter.\arabic{table}}
+
+  % Reinicios (opcional, pero recomendable)
+  \setcounter{chapter}{0}
+  \setcounter{figure}{0}
+  \setcounter{table}{0}
+}
+\makeatother

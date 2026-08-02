@@ -1,0 +1,301 @@
+# Construcción, depuración y validación del corpus bibliográfico {#app-corpus}
+
+Este apéndice documenta la construcción del corpus bibliográfico utilizado para el estudio del campo de la vulnerabilidad: un proceso de ocho fases cuya finalidad no es interpretar contenidos ---tarea que corresponde al Capítulo 2 y al Apéndice \@ref(app-biblio)--- sino garantizar que el conjunto de registros sea internamente coherente, libre de duplicidades y operativamente estable para el análisis bibliométrico relacional.
+La lógica del tratamiento es acumulativa: las primeras fases integran y depuran el universo documental fijando sus condiciones de consistencia, mientras que las fases intermedias normalizan las entidades relacionales y descomponen el campo de referencias citadas, y la fase final verifica que el corpus resultante sea explotable sin necesidad de filtros adicionales.
+Como se resume en la Tabla \@ref(tab:fases-corpus), cada fase responde a una pregunta metodológica concreta que justifica las transformaciones aplicadas.
+
+Para preservar la legibilidad del documento, este apéndice presenta procedimientos y resultados de manera sintética, sin reproducir el código de cada fase.
+El flujo de procesamiento completo (*pipeline*) ---scripts, parametrización, *chunks* y artefactos intermedios--- está disponible en el repositorio público del proyecto: \url{https://github.com/jaromeroc/tesis\_ivec\_cv/blob/main/R/apendices/A1\_pipeline\_corpus.R}.
+
+```{r fases-corpus, echo=FALSE, message=FALSE, warning=FALSE}
+
+library(kableExtra)
+
+tabla_fases <- data.frame(
+  Fase = c(
+    "Fase 1. Delimitación y descarga del universo documental",
+    "Fase 2. Consolidación del corpus bibliográfico",
+    "Fase 3. Depuración estructural del corpus documental",
+    "Fase 4. Optimización y validación operativa de los campos",
+    "Fase 5. Normalización heurística mediante tesauros",
+    "Fase 6. Descomposición analítica de referencias citadas (CR)",
+    "Fase 7. Sanitización de entidades relacionales",
+    "Fase 8. Auditoría de validación del corpus final (RefWoS_full)"
+  ),
+  `Pregunta metodológica` = c(
+    "¿Qué conjunto de publicaciones constituye un universo empírico pertinente y académicamente acotado para estudiar el campo de la vulnerabilidad desde una perspectiva social?",
+    "¿Cómo integrar de forma trazable, completa y reproducible los registros descargados en un único objeto de trabajo?",
+    "¿Cómo garantizar la coherencia estructural del universo consolidado eliminando duplicidades documentales y registros fuera del rango temporal definido?",
+    "¿Qué campos bibliográficos son operativamente adecuados para los análisis previstos y qué limitaciones empíricas presenta su cobertura y consistencia?",
+    "¿Cómo reducir la fragmentación formal de autoría y vocabulario temático sin imponer categorías externas ni alterar los registros originales?",
+    "¿Cómo separar el campo CR en variables relacionales diferenciadas que permitan analizar cocitación intelectual y cocitación de obras sin normalización bibliográfica exhaustiva?",
+    "¿Qué tokens no informativos deben eliminarse de las variables relacionales para evitar nodos espurios y artefactos topológicos en redes bibliométricas?",
+    "¿El corpus resultante presenta niveles adecuados de completitud, coherencia y operabilidad relacional para sustentar los análisis bibliométricos del Apéndice B?"
+  ),
+  check.names = FALSE
+)
+
+if (knitr::is_latex_output()) {
+  kable(tabla_fases,
+        booktabs = TRUE, longtable = FALSE,
+        caption = "Fases del tratamiento del corpus bibliográfico y preguntas metodológicas asociadas.") %>%
+    kable_styling(latex_options = c("HOLD_position"), font_size = 9) %>%
+    column_spec(1, width = "5cm") %>%
+    column_spec(2, width = "9cm")
+} else {
+  tesis_tabla_word(tabla_fases,
+    caption = "Fases del tratamiento del corpus bibliográfico y preguntas metodológicas asociadas.")
+}
+```
+
+El resultado de este proceso es un corpus bibliográfico estabilizado (`RefWoS_full`), que opera como infraestructura empírica común del estudio.
+Los subconjuntos utilizados en el Apéndice \@ref(app-biblio) se derivan de este objeto mediante segmentaciones explícitas (por ejemplo, por periodos), sin introducir transformaciones no documentadas en este apéndice.
+
+El flujo de procesamiento opera sobre un conjunto de campos bibliográficos procedentes de la exportación de *Web of Science* y genera variables derivadas que actúan como insumo de los análisis del Apéndice \@ref(app-biblio). La Tabla \@ref(tab:variables-corpus) describe los elementos más relevantes.
+
+```{r variables-corpus, echo=FALSE, message=FALSE, warning=FALSE}
+
+tab_variables <- data.frame(
+  Nombre = c(
+    "AU", "TI", "SO", "PY", "TC", "CR", "DE", "ID",
+    "DT", "DI", "UT", "DB", "SR",
+    "M_raw", "RefWoS_slim", "RefWoS_full",
+    "AU_norm", "KW_raw", "KW_norm",
+    "CR_raw", "CR_norm_author_year", "CR_norm_obra"
+  ),
+  Descripcion = c(
+    "Autoría (lista de autores en formato Apellido, Iniciales)",
+    "Título del documento",
+    "Fuente (nombre de la revista)",
+    "Año de publicación",
+    "Citas recibidas al momento de la descarga",
+    "Referencias citadas por el documento",
+    "Palabras clave de autor (Author Keywords)",
+    "Palabras clave enriquecidas generadas automáticamente por WoS (KeyWords Plus)",
+    "Tipo documental (Article, Review, etc.)",
+    "Identificador de objeto digital (DOI)",
+    "Identificador único WoS",
+    "Identificador de la base de datos fuente; requerido por bibliometrix",
+    "Referencia corta autor-año-fuente; clave documental interna de bibliometrix",
+    "Corpus consolidado tras integrar todos los lotes de exportación (Fase 2)",
+    "Corpus optimizado con selección de campos operativos (Fase 4)",
+    "Corpus definitivo tras todas las fases de depuración y normalización (Fase 8)",
+    "Autoría normalizada mediante tesauro (Fase 5)",
+    "Campo auxiliar combinado DE + ID previo a la normalización léxica (Fase 5)",
+    "Vocabulario temático normalizado (DE + ID combinados y corregidos por tesauro, Fase 5)",
+    "Referencias citadas originales, conservadas para trazabilidad (Fase 6)",
+    "Referencias citadas descompuestas en componente autor-año (Fase 6)",
+    "Referencias citadas descompuestas en identificación de obra (Fase 6)"
+  ),
+  check.names = FALSE
+)
+
+if (knitr::is_latex_output()) {
+  kbl(tab_variables,
+      format = "latex", booktabs = TRUE, longtable = FALSE,
+      col.names = c("Campo / Variable", "Descripción"),
+      caption = "Campos bibliográficos de origen WoS y variables derivadas del flujo de procesamiento.") %>%
+    kable_styling(latex_options = c("HOLD_position"), font_size = 9) %>%
+    column_spec(1, width = "3.5cm") %>%
+    column_spec(2, width = "10.5cm") %>%
+    pack_rows("Campos bibliográficos WoS", 1, 13, bold = TRUE) %>%
+    pack_rows("Objetos y variables derivadas", 14, 22, bold = TRUE)
+} else {
+  tesis_tabla_word(tab_variables,
+    caption = "Campos bibliográficos de origen WoS y variables derivadas del flujo de procesamiento.",
+    col_names = c("Campo / Variable", "Descripción"))
+}
+```
+
+<!-- PIPELINE REPRODUCIBLE: R/apendices/A1_pipeline_corpus.R
+     Ejecutar ANTES de compilar este documento.
+     Fase 1  → sección "FASE 1. Delimitación y descarga"  (verifica ficheros en data/WoS/)
+     Fase 2  → sección "FASE 2. Consolidación del corpus"  (genera M_raw; escribe consolidacion_log.txt)
+     Fase 3  → sección "FASE 3. Depuración estructural"   (deduplicación + filtro temporal)
+     Fase 4  → sección "FASE 4. Optimización y validación" (RefWoS_slim; completitud de campos)
+     Fase 5  → sección "FASE 5. Normalización heurística"  (tesauros AU_norm, KW_norm)
+     Fase 6  → sección "FASE 6. Descomposición CR"         (CR_norm_author_year, CR_norm_obra)
+     Fase 7  → sección "FASE 7. Sanitización"              (eliminación de tokens no informativos)
+     Fase 8  → sección "FASE 8. Auditoría"                 (guarda RefWoS_full.RData + A8_overview_*.csv)
+-->
+
+## Fase 1. Delimitación y descarga del universo documental {#fase1-delimitacion}
+
+La Fase 1 fija el perímetro del universo documental mediante una consulta reproducible a *Web of Science*, con la fuente, la fecha y los criterios de búsqueda explicitados en esta sección. Los registros se exportaron sin preprocesamiento y constituyen el punto de partida trazable de todo el flujo de procesamiento.
+
+### Fecha y fuente de la descarga
+
+La descarga se realizó el 16 de julio de 2025 desde la *Web of Science Core Collection* mediante la opción `EndNote Desktop`, que genera ficheros en formato WoS tagged e incluye sistemáticamente el campo de referencias citadas (`CR`). Los ficheros se conservaron íntegros en `data/WoS/` sin ningún preprocesamiento previo, garantizando que el punto de partida del flujo de procesamiento sea directamente auditable.
+
+### Cadena de búsqueda
+
+La recuperación de registros se realizó mediante la siguiente cadena de búsqueda, aplicada a los campos temáticos de la base de datos:
+
+> Cadena de búsqueda:\
+> TS=(vulnerability OR "social vulnerability" OR "social exclusion" OR precarity OR "risk of exclusion" OR "structural poverty" OR "social disadvantage" OR "economic insecurity" OR "livelihood insecurity" OR "socioeconomic vulnerability" OR "urban marginality")\
+> AND DT=(Article)\
+> AND WC=("Sociology" OR "Urban Studies" OR "Environmental Studies" OR "Geography" OR "Development Studies" OR "Social Work" OR "Planning & Development")\
+> AND PY=(1950--2024)
+
+### Justificación de los criterios de delimitación
+
+La delimitación por tipo documental (`DT`) y categorías temáticas (`WC`) responde a un criterio operativo: capturar un núcleo social del campo con contribuciones revisadas por pares y ancladas en disciplinas donde la vulnerabilidad se aborda como fenómeno social, territorial y estructural.
+Esta selección no pretende agotar todas las aproximaciones posibles al término, sino fijar un universo empírico consistente y comparable para el análisis bibliométrico posterior.
+
+## Fase 2. Consolidación del corpus bibliográfico
+
+La consulta devolvió 22.492 registros, descargados en 45 archivos independientes en formato `EndNote Desktop` por las limitaciones del sistema de exportación de *Web of Science*. La Fase 2 integra esos lotes en un único objeto de trabajo (`M_raw`) sin alterar los registros originales.
+
+### Persistencia y trazabilidad del corpus consolidado {#fase2-trazabilidad}
+
+El corpus consolidado se almacena en formato `.RData` en `data/WoS/`, el mismo directorio que los archivos originales de descarga, estableciendo una correspondencia directa entre el universo documental recuperado y el objeto de trabajo analítico. Un archivo de registro (*log*) complementa esta estrategia documentando el número de ficheros procesados, el total de registros importados y cualquier incidencia de conversión, lo que permite reconstruir el proceso de integración de forma transparente y reproducible.
+
+### Verificación preliminar de integridad estructural
+
+Como cierre, un control de integridad verifica el recuento global de registros, la presencia de los campos críticos (identificadores, año, fuente, autoría, descriptores y `CR`) y el nivel de valores ausentes, confirmando que el corpus es estructuralmente coherente y apto para las fases de depuración y optimización siguientes.
+
+## Fase 3. Depuración estructural del corpus documental {#fase3-depuracion}
+
+La Fase 3 elimina las inconsistencias estructurales del corpus consolidado mediante dos operaciones: deduplicación jerarquizada y control del rango temporal (1950–2024), garantizando que el conjunto de registros sea no redundante y cronológicamente consistente con los criterios de la Fase 1.
+
+### Eliminación de duplicados documentales {#fase3-deduplicacion}
+
+Los duplicados pueden originarse en solapamientos entre lotes de exportación, reindexaciones de la base de datos o variaciones mínimas en los metadatos de un mismo documento; sin eliminarlos, la sobrerrepresentación de ciertas publicaciones distorsionaría los recuentos y las métricas relacionales posteriores.
+
+La deduplicación aplica una jerarquía de tres identificadores: primero el DOI (`DI`), como identificador prioritario y unívoco; después el identificador único WoS (`UT`), cuando el DOI no está disponible; y como último recurso una clave compuesta por título (`TI`), año (`PY`) y fuente (`SO`). Esta jerarquía maximiza la eliminación de redundancias sin excluir registros distintos que comparten metadatos parcialmente coincidentes.
+
+### Control del rango temporal del corpus {#fase3-rango-temporal}
+
+Aunque la consulta se formuló con el intervalo 1950–2024, la inspección del corpus consolidado reveló un residuo mínimo de registros con año de publicación posterior a 2024, correspondientes a publicaciones indexadas anticipadamente como *early access*. Su exclusión preserva la consistencia cronológica del corpus y evita efectos espurios en los análisis temporales.
+
+El corpus resultante de estas dos operaciones constituye la base directa para las fases de normalización heurística y descomposición relacional siguientes.
+
+## Fase 4. Optimización y validación operativa del corpus {#fase4-optimizacion}
+
+La Fase 4 reorganiza el corpus depurado en un objeto operativamente eficiente sin modificar registros ni aplicar normalizaciones conceptuales. La reestructuración tiene tres vertientes: reducción de columnas al conjunto mínimo necesario, verificación de compatibilidad con los paquetes analíticos empleados y evaluación de la completitud de los campos que actuarán como insumo de los análisis.
+
+### Reducción controlada de columnas y construcción del objeto operativo {#fase4-slim}
+
+El objeto resultante, `RefWoS_slim`, retiene todos los documentos del corpus depurado pero solo las variables necesarias para los análisis posteriores: identificadores documentales, variables temporales y de impacto, campos de autoría, vocabulario temático, referencias citadas y metadatos técnicos requeridos por `bibliometrix`. La reducción disminuye el coste computacional sin alterar ningún metadato.
+
+Entre las variables conservadas, se verifican explícitamente `DB` (identificador de la base de datos fuente) y `SR` (referencia corta autor–año–fuente), que `bibliometrix` requiere para la correcta lectura del objeto y que no siempre están presentes en las exportaciones directas de *Web of Science*.
+
+### Validación de la presencia y completitud de campos críticos {#fase4-validacion-campos}
+
+La validación confirma que los campos mínimos requeridos están presentes y con cobertura alta: `AU`, `SO`, `PY`, `DT`, `TC` y `TI` presentan cobertura completa, y `CR` registra solo un 0,99 % de valores vacíos, compatible con el análisis de cocitación sin imputación. El único campo con ausencia significativa es `DE` (15,76 %), patrón estructural de *Web of Science* frecuente en ciertos periodos y revistas que no se interpreta como deficiencia del corpus sino como condicionante de la operacionalización semántica posterior.
+
+### Implicaciones para la operacionalización semántica {#fase4-implicaciones}
+
+La ausencia parcial de `DE` determina que el vocabulario temático operativo se construya combinando `DE` e `ID` en el campo auxiliar `KW_raw`, maximizando la cobertura antes de la normalización léxica que se realiza en la Fase 5.
+
+## Fase 5. Normalización heurística mediante tesauros {#fase5-tesauros}
+
+La Fase 5 corrige la fragmentación formal de las entidades analíticas del corpus ---variaciones ortográficas, inconsistencias de formato, sinonimias léxicas recurrentes--- que, sin intervención, distorsionarían las métricas de centralidad y modularidad de las redes bibliométricas. La normalización no persigue imponer una taxonomía exógena ni resolver ambigüedades semánticas profundas; su alcance es heurístico y acotado. Todas las transformaciones preservan los valores originales del corpus y se aplican sobre campos derivados, lo que garantiza reversibilidad completa.
+
+### Alcance y criterios de la normalización {#fase5-alcance}
+
+Para la autoría, se genera `AU_norm` a partir de `AU` reduciendo variantes formales de nombre ---iniciales, diacríticos, separadores--- sin desambiguación intelectual de identidades. Para el vocabulario temático, el campo combinado `KW_raw` (`DE` + `ID`) generado en la Fase 4 se normaliza en `KW_norm` aplicando el tesauro de palabras clave, que unifica sinonimias y variantes léxicas de alta frecuencia.
+
+### Construcción de los tesauros de normalización {#fase5-construccion-tesauros}
+
+Los tesauros ---tablas de correspondencia que asocian variantes textuales de una entidad con una forma canónica de referencia, permitiendo unificar representaciones fragmentadas sin alterar los registros originales--- se construyeron inductivamente a partir del propio corpus, sin recurrir a vocabularios controlados externos.
+
+Su elaboración siguió un procedimiento iterativo: primero se extrajeron las variantes de `AU`, `DE` e `ID` ordenadas por frecuencia para identificar las entidades con mayor impacto potencial sobre los análisis relacionales; después se aplicaron reglas heurísticas básicas ---unificación de mayúsculas y minúsculas, eliminación de diacríticos, estandarización de separadores--- para detectar duplicaciones formales evidentes y se revisaron manualmente los casos más frecuentes; finalmente, las correspondencias se consolidaron en ficheros externos estructurados en dos columnas (`label` y `replace_by`) que permiten aplicar y auditar las sustituciones de forma controlada. Su alcance es acotado: corrigen inconsistencias de alta frecuencia o relevancia estructural, pero no constituyen un vocabulario controlado exhaustivo.
+
+### Evaluación del impacto de la normalización {#fase5-impacto}
+
+La aplicación de los tesauros reduce la cardinalidad de los autores únicos de 51.212 a 50.679 (−1,04 %), reflejando la consolidación de variantes formales sin alterar la diversidad del conjunto. En el vocabulario temático la reducción es algo mayor: de 48.521 a 46.974 términos únicos (−3,19 %), con una mejora sustancial de la coherencia del espacio semántico.
+El corpus normalizado resultante constituye la base de las fases siguientes de descomposición de referencias citadas y sanitización relacional.
+
+## Fase 6. Descomposición analítica de referencias citadas (CR) {#fase6-cr}
+
+A diferencia de los campos de autoría o vocabulario temático, `CR` combina en una misma cadena textual componentes heterogéneos ---autores, año, fuente e identificadores editoriales--- que corresponden a dimensiones intelectuales distintas. Esta heterogeneidad dificulta su uso directo en análisis relacionales: extraer patrones de cocitación requiere separar esas dimensiones antes de construir cualquier red.
+
+La Fase 6 descompone `CR` en representaciones diferenciadas para cocitación intelectual (autor–año) y cocitación a nivel de obra, preservando el campo original en `CR_raw` para trazabilidad. La estrategia renuncia deliberadamente a la normalización bibliográfica exhaustiva ---unificar manualmente variantes de obra o corregir referencias incompletas implica un coste elevado con riesgo de consolidar entradas distintas--- a cambio de una separación analítica que reduce las ambigüedades suficientes para estabilizar redes comparables.
+
+### Principios metodológicos {#fase6-principios}
+
+La intervención distingue los componentes de `CR` según su función relacional ---autoría frente a obra--- sin superponerlos en una única variable. La renuncia a la normalización bibliográfica exhaustiva no es una limitación del diseño sino una elección coherente con el objetivo analítico: las variables derivadas se construyen para uso directo en redes de cocitación, y el campo original permanece íntegro en `CR_raw` para trazabilidad.
+
+### Variables derivadas {#fase6-variables}
+
+`CR_norm_author_year` combina apellido y año de cada referencia, eliminando componentes editoriales secundarios. La inclusión del año es una decisión empírica: los apellidos solos generan ambigüedad nominal elevada ---apellidos como *Li*, *Smith* o *Wang* son especialmente frecuentes en el corpus--- que el año reduce de forma sustancial sin necesidad de normalización manual. `CR_norm_obra` conserva la estructura nominal mínima para identificar trabajos específicos y complementa `CR_norm_author_year` en el análisis de cocitación, permitiendo observar tanto tradiciones intelectuales agregadas como referencias canónicas individuales.
+
+## Fase 7. Sanitización de entidades relacionales {#fase7-sanitizacion}
+
+La sanitización se aplica de forma homogénea a los campos con función relacional directa (`AU_norm`, `KW_norm`, `CR_norm_author_year`, `CR_norm_obra`).
+Su objetivo es eliminar tokens no informativos (valores vacíos, `NA`, entradas genéricas como `ANONYMOUS` e identificadores puramente numéricos) que generan nodos espurios y artefactos topológicos.
+
+### Implementación y control del impacto {#fase7-implementacion}
+
+La sanitización se implementa mediante funciones explícitas, reproducibles y aplicadas de forma sistemática a todos los campos relacionales afectados.
+Los valores previos a la intervención se conservan en variables auxiliares (`*_raw`), lo que permite auditar el impacto de la operación y revertirla si fuera necesario.
+
+### Resultado de la fase {#fase7-resultado}
+
+Como resultado de esta fase se obtiene un corpus bibliográfico libre de entidades relacionales no informativas, con niveles mínimos de ruido estructural y condiciones óptimas para la estimación robusta de redes de coautoría, coocurrencias o cocitación.
+Este corpus sanitizado constituye la base empírica que se somete a la auditoría de validación desarrollada en la última fase.
+
+## Fase 8. Auditoría de validación del corpus final {#fase8-auditoria}
+
+La Fase 8 realiza una auditoría del objeto definitivo (`RefWoS_full`).
+No introduce transformaciones adicionales: verifica completitud, coherencia y operabilidad de los campos que alimentan los análisis bibliométricos y de redes del Apéndice \@ref(app-biblio).
+Su función es defensiva: asegurar que los resultados posteriores descansan sobre un corpus estable, con ruido relacional bajo y variables explotables.
+
+### Alcance y criterios de la auditoría {#fase8-alcance}
+
+La auditoría evalúa los campos que actúan como insumo directo de los análisis posteriores ---`AU_norm`, `KW_norm`, `CR_norm_author_year` y `CR_norm_obra`--- bajo tres criterios: cobertura (porcentaje de valores ausentes), consistencia (coherencia interna de los registros) y operabilidad técnica (formato explotable por los paquetes analíticos). Se verifican también las variables estructurales básicas ---número de documentos, rango temporal y citas recibidas--- como control de integridad del corpus completo.
+
+### Resultados de la auditoría {#fase8-resultados}
+
+Los resultados se organizan por dimensiones analíticas ---temporal, cobertura de variables, impacto/citación, vocabulario temático, referencias citadas y operabilidad técnica--- con un doble propósito: describir el estado estructural del corpus y derivar la justificación operativa de las medidas defensivas que el Apéndice \@ref(app-biblio) implementa en cada bloque de análisis.
+
+#### Identidad del corpus e integridad temporal
+
+El corpus bibliográfico completo (`RefWoS_full`) contiene 22.114 documentos y presenta un rango temporal 1957–2024 (según `PY`).
+El control temporal no detecta años fuera de rango (`n_out_of_range = 0`) ni valores ausentes en `PY` (`n_PY_missing = 0`), lo que confirma que la dimensión cronológica del corpus es continua y plenamente operativa para los análisis posteriores.
+El Apéndice \@ref(app-biblio) aplica sobre este objeto un filtro temporal que delimita la ventana analítica a 1980–2024, produciendo un corpus de análisis de 22.098 documentos; los 16 documentos con año de publicación anterior a 1980 permanecen en `RefWoS_full` como constancia del universo documental recuperado, pero quedan fuera del corpus analítico.
+Sin embargo, la amplitud del rango y la acumulación masiva de literatura en las últimas décadas pueden inducir lecturas sesgadas por volumen ---donde más producción se confunde con mayor centralidad del periodo---; por ello el Apéndice \@ref(app-biblio) estandariza las lecturas temporales mediante indicadores comparables entre periodos (tasas e índices normalizados por ventana temporal) y explicita la ventana analítica efectiva cuando interpreta tendencias o rupturas.
+
+#### Cobertura de variables clave y ausencia
+
+En cuanto a la cobertura de variables estructurales, los niveles de ausencia son bajos y compatibles con explotación relacional sin imputación: `AU_norm` presenta una ausencia residual (0,041 %); `KW_norm` muestra una ausencia moderada (4,11 %), coherente con prácticas editoriales heterogéneas en la asignación de palabras clave; y las referencias citadas normalizadas presentan ausencia cercana al 1 % tanto en `CR_norm_author_year` (1,008 %) como en `CR_norm_obra` (0,995 %), lo que preserva ampliamente la infraestructura mínima para cocitación y trazabilidad bibliográfica.
+La ausencia moderada en `KW_norm` implica que una parte no trivial del corpus contribuye poco o nada a la red semántica y puede sesgar comparaciones entre periodos, áreas o fuentes editoriales porque la visibilidad semántica no está igualmente distribuida; el Apéndice \@ref(app-biblio) incorpora controles de robustez reportando el $n$ efectivo de documentos con `KW_norm` no vacío en cada análisis semántico y aplicando, cuando procede, exclusión explícita de documentos sin `KW` en redes de coocurrencias.
+
+#### Impacto y concentración de citación
+
+Desde el punto de vista del impacto, la distribución de citas (`TC`) es marcadamente asimétrica: la mediana es 10 citas por documento y la media asciende a 28,8, patrón consistente con campos amplios donde coexisten muchos documentos con reconocimiento bajo o moderado y un subconjunto reducido con acumulación alta de citación.
+
+La diferencia media--mediana indica concentración: la media puede quedar arrastrada por una minoría muy citada, de modo que interpretar `TC_mean` como impacto típico distorsionaría el diagnóstico del campo.
+El Apéndice \@ref(app-biblio) acompaña sistemáticamente las lecturas agregadas de citación con métricas robustas ---mediana, percentiles y medidas de concentración equivalentes al índice de Gini--- priorizando distribuciones sobre promedios simples en los resultados comparativos.
+
+#### Auditoría del vocabulario temático (KW)
+
+El vocabulario temático normalizado (`KW_norm`) acumula 221.812 tokens y 46.967 términos únicos, con una media de 10,03 tokens por documento.
+Este balance indica que el corpus dispone de densidad semántica suficiente para construir redes de coocurrencias y, simultáneamente, muestra una diversidad léxica elevada.
+
+La combinación de alta diversidad y gran número de términos únicos implica colas largas donde siempre habrá multitud de términos raros; sin recortes, las redes de coocurrencias tienden a ser inestables, sobredimensionadas y difíciles de interpretar por efecto del ruido de baja frecuencia y la coocurrencia espuria.
+El Apéndice \@ref(app-biblio) aplica umbrales defensivos y recortes operativos ---filtros por frecuencia mínima, coocurrencia mínima y estrategias *top-N*---, reportando en cada caso el criterio utilizado y el tamaño final de la red para asegurar comparabilidad entre periodos y cortes analíticos.
+
+#### Auditoría de referencias citadas (CR) y “edad” de las referencias
+
+Las referencias citadas normalizadas presentan una escala muy alta: `CR_norm_author_year` acumula 1.237.976 *tokens* y 522.808 únicos, mientras que `CR_norm_obra` alcanza 1.275.241 *tokens* y 808.515 únicos.
+El año de la referencia pudo inferirse en 1.233.565 casos, con el 98,98 % de documentos con al menos una referencia con año parseable, lo que habilita métricas temporales sobre el pasado bibliográfico efectivamente movilizado por el corpus.
+La edad de las referencias ---diferencia entre el año del documento citante y el año de la referencia cuando es recuperable--- presenta una media de 9,83 años, una mediana de 7 años y un percentil 90 de 21 años.
+La escala extrema de `CR_norm_*` implica que, sin normalización y recortes, las redes de cocitación pueden quedar dominadas por referencias idiosincráticas ---variantes bibliográficas, errores, ediciones--- y por colas de baja frecuencia que inflan nodos y fragmentan módulos; la distribución de la edad de referencias muestra, además, que el campo moviliza bibliografía relativamente reciente en promedio pero con una cola larga que afecta a la interpretación de los clásicos, la dependencia del canon y los ritmos de renovación.
+El Apéndice \@ref(app-biblio) mantiene y documenta los criterios de consolidación ---autor--año frente a obra--- y aplica umbrales de inclusión para la cocitación para estabilizar la estructura intelectual, incorporando la edad de referencias como contexto interpretativo y evitando equiparar centralidad en cocitación con antigüedad o clasicidad sin evidencia empírica directa.
+
+#### Verificación de operabilidad analítica {#fase8-operabilidad}
+
+Los chequeos de compatibilidad muestran que los campos clave para la analítica relacional son operables como texto (`*_all_character = TRUE` en `AU_norm`, `KW_norm`, `CR_norm_author_year`, `CR_norm_obra`).
+En conjunto, la auditoría confirma que `RefWoS_full` es estructuralmente consistente, con ruido relacional bajo y cobertura suficiente para estimar redes estables.
+
+Que los campos sean técnicamente operables no garantiza su interpretabilidad: en redes grandes, la estabilidad depende más de la definición de umbrales, normalizaciones y criterios de recorte que del mero formato de los datos.
+El Apéndice \@ref(app-biblio) establece como estándar de reporte para cada bloque bibliométrico la declaración del criterio de inclusión utilizado y el tamaño final de la red resultante en nodos y enlaces.
+
+#### Implicaciones operativas para el flujo de procesamiento
+
+En síntesis, la auditoría confirma que el corpus es apto para análisis bibliométricos temporales, semánticos y de cocitación.
+Al mismo tiempo, identifica tres focos donde las medidas defensivas no son opcionales sino interpretativamente necesarias: la concentración de citación (`TC`), que exige acompañar los promedios con métricas robustas y de concentración; la diversidad léxica en `KW_norm`, que requiere recortes y umbrales explícitos para estabilizar redes; y la escala extrema en `CR_norm_*` combinada con las colas temporales en la edad de referencias, que demanda normalización y umbrales en cocitación contextualizando la lectura del canon y los ritmos de renovación bibliográfica.
+
+Estas medidas se implementan de forma sistemática en el Apéndice \@ref(app-biblio) para preservar trazabilidad, comparabilidad y estabilidad inferencial.

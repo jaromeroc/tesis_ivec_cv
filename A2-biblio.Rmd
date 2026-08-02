@@ -1,0 +1,1299 @@
+# Análisis bibliométrico del campo de la vulnerabilidad {#app-biblio}
+
+Este apéndice documenta, de forma trazable y reproducible, la explotación analítica del corpus bibliográfico definitivo sobre vulnerabilidad (*RefWoS_full*).
+Su propósito no es desarrollar una interpretación sustantiva del concepto —tarea reservada al Capítulo 2 (Estado de la cuestión)—, sino producir evidencia empírica sobre la configuración del campo cuando se lo observa como un sistema de producción, circulación y reconocimiento del conocimiento: su dinámica temporal, su organización semántica explícita y su arquitectura intelectual implícita.
+
+El enfoque mantiene deliberadamente sobriedad teórica.
+No se discuten escuelas ni se evalúa la validez conceptual del término *vulnerabilidad*; tampoco se propone una genealogía interpretativa de enfoques.
+En su lugar, se reconstruyen regularidades estructurales verificables —series, redes y métricas— que permitan sostener, con evidencia cuantitativa y relacional, una lectura empírica del estado del campo.
+
+Todos los análisis se ejecutan sobre el mismo corpus documental, sin introducir nuevas reglas de inclusión/exclusión ni transformaciones sustantivas del material empírico.
+Las operaciones aplicadas cumplen una función defensiva: tipificación y control de variables, verificación estructural y exportación de artefactos estables orientados a garantizar consistencia interna, comparabilidad entre fases y trazabilidad entre datos y resultados.
+En las fases relacionales, esa comparabilidad se refuerza mediante decisiones explícitas sobre el grafo —focalización en el núcleo estructural (Top-*N* entidades) y umbralización de entidades y enlaces— con el objetivo de estabilizar las redes y reducir sensibilidad a ruido o baja densidad documental.
+
+Además, el apéndice integra de manera explícita ambos planos relacionales.
+A nivel de documento, se acoplan los *clusters* temáticos derivados de coocurrencias ($KW$) con los *clusters* intelectuales derivados de cocitación ($CR$), lo que permite estimar una matriz $KW \times CR$ y un conjunto de métricas defensivas (cobertura, entropías e información mutua) para describir el grado de alineamiento entre áreas temáticas y repertorios de referencia.
+
+Como se sintetiza en la Tabla \@ref(tab:biblio-fases), el apéndice se organiza en fases encadenadas y se apoya en una periodificación operativa derivada de criterios empíricos.
+De forma transversal se incorporan indicadores de auditoría del corpus —madurez temporal, intensidad de las prácticas citacionales y concentración del reconocimiento— que actúan como contexto estructural de lectura para las series y las métricas de red.
+
+En este apéndice se reserva el término *Fase* para las etapas metodológicas (Fase 1–5), mientras que la segmentación temporal resultante se denomina *periodos*, definidos a partir de puntos de corte operativos identificados empíricamente.
+Cada fase explicita sus entradas, procedimientos y salidas (artefactos), y su función como base empírica para las subsecciones correspondientes del Capítulo 2.
+
+Con el fin de preservar la legibilidad del documento, este apéndice expone los procedimientos y resultados de forma sintética, sin reproducir el código de los *chunks* de R. El flujo de procesamiento (*pipeline*) reproducible completo ---incluyendo scripts, parametrización, *chunks* y artefactos generados--- está disponible en el repositorio público del proyecto: \url{https://github.com/jaromeroc/tesis\_ivec\_cv/blob/main/R/apendices/A2\_pipeline\_bibliometria.R}.
+
+<!-- PIPELINE REPRODUCIBLE: R/apendices/A2_pipeline_bibliometria.R
+     Ejecutar ANTES de compilar este documento (requiere RefWoS_full.RData en data/WoS/).
+     Los chunks de Fases 1 y 2 que permanecen en este Rmd generan artefactos en memoria
+     durante la compilación; el resto de fases deben pre-calcularse con el script.
+
+     Fase 1  → sección "FASE 1. Dinámica temporal"
+               Chunks Rmd: biblio-datos-series, biblio-cortes, biblio-temporal
+               Script   : guarda series_temporales_anual_1980_2024.csv
+                                  cuts_selected_1980_2024.{rds,csv}
+                                  subperiodos_con_produccion_y_CPPY_MA3_1980_2024.csv
+
+     Fase 2  → sección "FASE 2. Segmentación del corpus"
+               Chunk Rmd: biblio-subcorpus
+               Script   : guarda subcorpus_periodos.RData
+                                  subperiodos_cortes_operativos_1980_2024.csv
+
+     Fase 3  → sección "FASE 3. Estructura semántica (coocurrencias)"
+               Solo script: genera metrics_all_cooc_kw_norm.csv
+                                     outputs/vosviewer/coocurrencias/*/
+
+     Fase 4  → sección "FASE 4. Estructura intelectual (cocitación)"
+               Solo script: genera metrics_all_cocit_cr_norm.csv
+                                     outputs/vosviewer/cocitacion/*/
+
+     Fase 5A → sección "FASE 5A. Integración por periodos"
+               Solo script: genera A8_overview_RefWoS_full_periodificada.csv
+                                     tabla_integrada_4_fuentes_1980_2024_v2.csv
+
+     Fase 5B → sección "FASE 5B. Integración cruzada KW↔CR"
+               Solo script (requiere mapas VOSviewer exportados como vos_map_kw.csv
+               y vos_map_cr.csv): genera summary_5b_global.csv, W_matrix_5b_global.csv,
+               W_conditional_5b_global.csv, entropy_by_kw_5b_global.csv,
+               outputs_5b_global.RData
+-->
+
+```{r biblio-fases, echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+
+tabla_fases_biblio <- data.frame(
+  Fase = c(
+    "Fase 1. Dinámica temporal y periodificación operativa",
+    "Fase 2. Segmentación del corpus y definición de periodos",
+    "Fase 3. Estructura semántica (coocurrencias)",
+    "Fase 4. Estructura intelectual (cocitación)",
+    "Fase 5A. Integración por periodos (auditoría + producción/impacto + redes)",
+    "Fase 5B. Integración cruzada KW↔CR (alineamiento tema–tradición)"
+  ),
+  `Función metodológica` = c(
+    "Caracterización empírica de la evolución del campo y selección de puntos de corte operativos para la periodificación.",
+    "Definición de periodos a partir de los cortes y operacionalización en subcorpus mutuamente excluyentes para comparación sistemática.",
+    "Reconstrucción de la estructura semántica explícita mediante coocurrencias y delimitación de comunidades temáticas.",
+    "Reconstrucción de la arquitectura intelectual mediante cocitación (autor–año) y conservación del nivel obra como soporte de trazabilidad.",
+    "Consolidación comparada por periodos: auditoría del corpus, producción/impacto normalizado y métricas topológicas de redes (KW y CR).",
+    "Acoplamiento documental entre áreas temáticas (KW) y polos intelectuales (CR) mediante matriz KW×CR y métricas defensivas de alineamiento."
+  ),
+  `Artefactos y criterios de lectura` = c(
+    "N_publicaciones, MA3, CPPY; puntos de corte; periodificación analítica (instrumental).",
+    "Subcorpus por periodo; tamaños y composición; base temporal de comparabilidad.",
+    "Top-N y umbrales; métricas (nodos, aristas, densidad, grado medio, clustering, modularidad); mapas VOSviewer; áreas KW.",
+    "Top-N y umbrales; métricas equivalentes; mapas VOSviewer; polos CR; trazabilidad a nivel obra cuando aplique.",
+    "Tabla integrada: madurez/edad, densidad documental (KW/CR), concentración (Gini), producción, exposición, CPPY; métricas de red por periodo.",
+    "Cobertura de mapeo; matriz W_ij; p(CR|KW); entropías (H, H_norm, K_eff, cuota dominante); acoplamientos principales; MI/NMI."
+  ),
+  check.names = FALSE
+)
+
+if (knitr::is_latex_output()) {
+  kbl(tabla_fases_biblio,
+        booktabs = TRUE, longtable = TRUE,
+        caption = "Fases del análisis bibliométrico (Apéndice B): función metodológica, artefactos y criterios de lectura.",
+        caption.short = "Fases del análisis bibliométrico: función, artefactos y criterios.") %>%
+    kable_styling(latex_options = c("repeat_header"),
+                  repeat_header_text = "\\textit{(continuación)}",
+                  repeat_header_method = "replace",
+                  font_size = 9) %>%
+    column_spec(1, width = "3.2cm") %>%
+    column_spec(2, width = "5.6cm") %>%
+    column_spec(3, width = "5.6cm")
+} else {
+  tesis_tabla_word(tabla_fases_biblio,
+    caption = "Fases del análisis bibliométrico (Apéndice B): función metodológica, artefactos y criterios de lectura.")
+}
+```
+
+\FloatBarrier
+
+La tabla anterior establece, para cada fase, la función metodológica que cumple, los artefactos que produce y los criterios mínimos de lectura que la acompañan.
+Sobre esa base, la interpretación del apéndice descansa en tres principios que articulan toda la lectura posterior. El primero es que la evidencia debe tratarse como configuración del campo: las series, redes y métricas describen la organización empírica ---expansión, densificación, segmentación y acoplamiento entre planos--- sin validar conceptualmente el término *vulnerabilidad* ni sustituir la discusión teórica del estado de la cuestión. El segundo exige que la comparación entre periodos opere bajo condiciones heterogéneas explicitadas: dado que los periodos difieren en tamaño y madurez temporal, los indicadores brutos de producción y citas deben leerse siempre junto con indicadores ajustados por exposición como $CPPY$ y con los controles de auditoría, para no atribuir al campo lo que puede ser efecto de antigüedad, escala o concentración del reconocimiento. El tercero impone invariancia técnica en la lectura relacional: en coocurrencias y cocitación las métricas topológicas se calculan sobre redes construidas con las mismas reglas en todos los periodos (Top-*N* y umbrales), de modo que densidad, grado medio o modularidad describen integración o segmentación del núcleo observado; la convergencia entre planos solo se evalúa explícitamente en la Fase 5B, donde el acoplamiento $KW \leftrightarrow CR$ se estima a nivel de documento mediante cobertura, distribuciones condicionales, entropías e información mutua.
+
+Las fases configuran así un dispositivo acumulativo: la Fase 1 establece el marco temporal y los cortes operativos; las Fases 3 y 4 reconstruyen, bajo reglas invariantes, las estructuras semántica e intelectual del campo; y las Fases 5A y 5B integran ambos planos ---la primera por periodos, la segunda mediante su acoplamiento explícito a nivel documental---.
+Con esta regla de lectura, la Fase 1 abre la secuencia estableciendo el marco temporal mínimo y los puntos de corte que sustentan la comparabilidad del resto del apéndice.
+
+<!-- Script: A2_pipeline_bibliometria.R >> sección "FASE 1" -->
+## Fase 1. Dinámica temporal de la producción científica (1980–2024) {#app-biblio-temporal}
+
+Esta fase establece el marco temporal mínimo para la comparación posterior entre periodos.
+Persigue un objetivo doble: describir la evolución anual de la producción científica sobre vulnerabilidad (1980–2024) e identificar puntos de corte operativos suficientemente consistentes como para construir una periodificación instrumental que habilite comparaciones sistemáticas en las fases relacionales.
+
+El análisis se apoya en el año de publicación ($PY$).
+Debe precisarse que, aunque en la cocitación (Fase 4) aparecerán referencias a obras anteriores a 1980, dichas obras pertenecen a la bibliografía citada; no forman parte del conjunto de documentos cuya producción anual se cuantifica en esta fase.
+
+### Indicadores y estrategia analítica {#app-biblio-series}
+
+La dinámica temporal se explora mediante dos familias de indicadores que capturan registros complementarios. El primero es el volumen de producción: el número anual de publicaciones ($N_{publicaciones}$) mide la intensidad de actividad científica e informa sobre fases de expansión, estabilización o aceleración; para reducir la volatilidad interanual sin alterar la estructura de la serie, se incorpora un suavizado descriptivo mediante media móvil trienal ($MA3$). El segundo es el impacto normalizado por exposición: el rendimiento citacional se resume mediante $CPPY$ (citations per publication-year), calculado como el cociente entre citas acumuladas ($TC$) y exposición agregada, donde la exposición se define como $N_{docs} \times edad$ y $edad$ representa los años disponibles de citación hasta 2024 para cada cohorte anual.
+
+Con estos componentes se construye una tabla anual única ($datos_series$) que integra: $N_{publicaciones}$ y $MA3$, junto con $CPPY$ (por cohorte $PY$), además de variables auxiliares de control (variaciones interanuales, acumulados).
+Esta tabla constituye la base empírica para la selección de puntos de corte y, por extensión, para la definición de periodos comparables.
+
+```{r biblio-datos-series, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+
+library(dplyr)
+library(zoo)
+
+YEAR_MIN <- 1980L
+YEAR_MAX <- 2024L
+
+load("data/WoS/RefWoS_full.RData")
+
+M_final <- RefWoS_full %>%
+  mutate(
+    PY = suppressWarnings(as.integer(PY)),
+    TC = suppressWarnings(as.numeric(TC))
+  ) %>%
+  filter(!is.na(PY))
+
+M_temp <- M_final %>%
+  filter(PY >= YEAR_MIN, PY <= YEAR_MAX)
+
+pubs_anuales <- M_temp %>%
+  count(PY, name = "N_publicaciones") %>%
+  arrange(PY) %>%
+  mutate(
+    MA3 = rollmean(N_publicaciones, k = 3, fill = NA, align = "center"),
+    pubs_dy = N_publicaciones - lag(N_publicaciones),
+    pubs_dy_pct = if_else(
+      !is.na(lag(N_publicaciones)) & lag(N_publicaciones) > 0,
+      100 * (N_publicaciones - lag(N_publicaciones)) / lag(N_publicaciones),
+      NA_real_
+    )
+  )
+
+impacto_anual <- M_temp %>%
+  mutate(edad = YEAR_MAX - PY + 1L) %>%
+  group_by(PY) %>%
+  summarise(
+    N_docs = n(),
+    TC_sum = sum(TC, na.rm = TRUE),
+    edad   = first(edad),
+    expo   = N_docs * edad,
+    CPPY   = if_else(expo > 0, TC_sum / expo, NA_real_),
+    .groups = "drop"
+  )
+
+datos_series <- pubs_anuales %>%
+  left_join(impacto_anual, by = "PY") %>%
+  arrange(PY) %>%
+  mutate(
+    cum_pubs = cumsum(coalesce(as.integer(N_publicaciones), 0L)),
+    cum_TC   = cumsum(coalesce(as.numeric(TC_sum), 0))
+  )
+
+stopifnot(all(c(
+  "PY","N_publicaciones","MA3","pubs_dy","pubs_dy_pct",
+  "N_docs","TC_sum","edad","expo","CPPY","cum_pubs","cum_TC"
+) %in% names(datos_series)))
+```
+
+### Criterios y selección de puntos de corte operativos {#app-biblio-cortes}
+
+Los puntos de corte se derivan de la lectura conjunta de volumen e impacto bajo un criterio instrumental: no se interpretan como rupturas teóricas ni como transiciones paradigmáticas, sino como discontinuidades empíricas útiles para segmentar el corpus en subperiodos comparables.
+
+El procedimiento combina dos señales: el ritmo de crecimiento del volumen, aproximado mediante variaciones porcentuales interanuales de $N_{publicaciones}$, y los cambios locales en el comportamiento del impacto normalizado, aproximados mediante la dispersión móvil de $CPPY$ en ventanas centradas.
+
+Para evitar selecciones dominadas por baja escala o por efectos de borde temporal, se aplican dos restricciones operativas: un umbral mínimo de producción anual en los tramos iniciales ---para evitar que fluctuaciones de muy pocos documentos impongan cortes--- y la exclusión de los años más recientes potencialmente afectados por ventanas de citación truncadas y dinámicas de indexación (2021 en adelante) en la detección automática de candidatos.
+
+Bajo estos criterios se seleccionan los cortes 1992, 1998, 2008 y 2020, que definen cinco periodos analíticos.
+Su estatuto es instrumental: fijan una periodificación operativa que permite ordenar el crecimiento del campo en tramos temporalmente coherentes.
+
+```{r biblio-cortes, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+
+library(dplyr)
+library(zoo)
+library(readr)
+
+# -----------------------------
+# Parámetros (a priori)
+# -----------------------------
+MIN_PUBS       <- 20L
+ROLL_K_CPPY    <- 5L
+MAX_CUT_YEAR   <- 2021L
+N_CUTS         <- 4L
+MIN_GAP        <- 5L
+
+Q_PUBS <- 0.80
+Q_CPPY <- 0.80
+
+W_PUBS <- 0.60
+W_CPPY <- 0.40
+
+# -----------------------------
+# Requiere: datos_series (PY, N_publicaciones, CPPY)
+# -----------------------------
+stopifnot(exists("datos_series"))
+stopifnot(all(c("PY","N_publicaciones","CPPY") %in% names(datos_series)))
+
+tmp <- datos_series %>%
+  arrange(PY) %>%
+  mutate(
+    # robusto contra divisiones por 0/NA
+    pubs_dy_pct = if_else(
+      !is.na(lag(N_publicaciones)) & lag(N_publicaciones) > 0,
+      100 * (N_publicaciones - lag(N_publicaciones)) / lag(N_publicaciones),
+      NA_real_
+    ),
+    cppy_roll_sd = rollapply(
+      CPPY, width = ROLL_K_CPPY, FUN = sd,
+      fill = NA_real_, align = "center", na.rm = TRUE
+    )
+  ) %>%
+  filter(!is.na(PY), !is.na(N_publicaciones)) %>%
+  filter(N_publicaciones >= MIN_PUBS) %>%
+  filter(PY <= MAX_CUT_YEAR)
+
+thr_pubs <- quantile(abs(tmp$pubs_dy_pct), probs = Q_PUBS, na.rm = TRUE)
+thr_cppy <- quantile(tmp$cppy_roll_sd,     probs = Q_CPPY, na.rm = TRUE)
+
+if (!is.finite(thr_pubs) || thr_pubs <= 0) thr_pubs <- 1
+if (!is.finite(thr_cppy) || thr_cppy <= 0) thr_cppy <- 1
+
+tmp <- tmp %>%
+  mutate(
+    crit_pubs = abs(pubs_dy_pct) >= thr_pubs,
+    crit_cppy = if_else(is.na(cppy_roll_sd), FALSE, cppy_roll_sd >= thr_cppy),
+    z_pubs = abs(pubs_dy_pct) / thr_pubs,
+    z_cppy = if_else(is.na(cppy_roll_sd), 0, cppy_roll_sd / thr_cppy),
+    score = W_PUBS * z_pubs + W_CPPY * z_cppy
+  )
+
+candidatos_ranked <- tmp %>%
+  filter(crit_pubs | crit_cppy) %>%
+  transmute(
+    PY,
+    score = round(score, 3),
+    pubs = N_publicaciones,
+    pubs_dy_pct = round(pubs_dy_pct, 2),
+    cppy = round(CPPY, 3),
+    cppy_roll_sd = round(cppy_roll_sd, 3),
+    crit_pubs, crit_cppy
+  ) %>%
+  arrange(desc(score))
+
+cand_years <- candidatos_ranked$PY
+CUTS_selected <- integer(0)
+
+for (y in cand_years) {
+  if (length(CUTS_selected) == 0 || all(abs(y - CUTS_selected) >= MIN_GAP)) {
+    CUTS_selected <- c(CUTS_selected, y)
+  }
+  if (length(CUTS_selected) >= N_CUTS) break
+}
+CUTS_selected <- sort(as.integer(CUTS_selected))
+
+# Exponer en entorno (por si se usa en otros chunks)
+assign("CUTS_selected", CUTS_selected, envir = .GlobalEnv)
+assign("candidatos_ranked", candidatos_ranked, envir = .GlobalEnv)
+
+# -----------------------------
+# Exportaciones (UNA SOLA VEZ)
+# -----------------------------
+out_dir <- file.path("outputs", "bibliometria", "series_temporales")
+dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
+
+# (1) series completas
+write_csv(datos_series, file.path(out_dir, "series_temporales_anual_1980_2024.csv"))
+
+# (2) congelar cortes para reproducibilidad
+saveRDS(CUTS_selected, file.path(out_dir, "cuts_selected_1980_2024.rds"))
+write_csv(
+  tibble::tibble(cut_year = CUTS_selected),
+  file.path(out_dir, "cuts_selected_1980_2024.csv")
+)
+```
+
+### Representación con cortes operativos {#app-biblio-cortes-figura}
+
+La Figura \@ref(fig:biblio-temporal) cumple una función de trazabilidad: permite contrastar, en una misma representación, la evolución del volumen de publicaciones, su suavizado ($MA3$) y el impacto normalizado por exposición ($CPPY$) en correspondencia con los puntos de corte seleccionados.
+De este modo, la periodificación queda anclada en evidencia empírica explícita y se estabiliza como referencia temporal para la lectura del apéndice.
+
+```{r biblio-temporal,fig.cap = "Evolución temporal de la producción científica sobre vulnerabilidad (1980-2024). La figura integra el volumen anual de publicaciones, su media móvil trienal (MA3) y el impacto normalizado por exposición temporal (CPPY). Las líneas verticales señalan los puntos de corte operativos utilizados para la periodificación analítica.", fig.scap = "Evolución temporal de la producción científica por periodos (1980–2024).", fig.align = "center", out.width = "0.95\\linewidth", fig.height = 4, fig.pos = "htbp", echo = FALSE, message = FALSE, warning = FALSE}
+
+library(dplyr)
+library(ggplot2)
+library(tibble)
+library(readr)
+
+YEAR_MIN <- 1980L
+YEAR_MAX <- 2024L
+
+# -----------------------------
+# Recuperar cortes (sin hardcode)
+# -----------------------------
+out_dir <- file.path("outputs", "bibliometria", "series_temporales")
+cuts_rds <- file.path(out_dir, "cuts_selected_1980_2024.rds")
+
+if (!exists("CUTS_selected")) {
+  if (file.exists(cuts_rds)) {
+    CUTS_selected <- readRDS(cuts_rds)
+  } else {
+    stop("No existe CUTS_selected en memoria y no se encontró el archivo RDS con cortes.")
+  }
+}
+CUTS_selected <- sort(as.integer(CUTS_selected))
+
+# -----------------------------
+# Periodos derivados de cortes
+# -----------------------------
+periodos_df <- tibble(
+  inicio  = c(YEAR_MIN,
+              CUTS_selected[1] + 1L,
+              CUTS_selected[2] + 1L,
+              CUTS_selected[3] + 1L,
+              CUTS_selected[4] + 1L),
+  fin     = c(CUTS_selected[1],
+              CUTS_selected[2],
+              CUTS_selected[3],
+              CUTS_selected[4],
+              YEAR_MAX)
+) %>%
+  mutate(
+    label = paste0(inicio, "\n–\n", fin),
+    x_mid = inicio + (fin - inicio) / 2,
+    x_mid_adj = case_when(
+      label == "1993\n–\n1998" ~ x_mid - 0.1,
+      label == "2021\n–\n2024" ~ x_mid - 0.1,
+      TRUE ~ x_mid
+    )
+  )
+
+max_pubs <- max(datos_series$N_publicaciones, na.rm = TRUE)
+max_cppy <- max(datos_series$CPPY, na.rm = TRUE)
+
+scale_factor <- if (is.finite(max_pubs) && is.finite(max_cppy) && max_cppy > 0) {
+  max_pubs / max_cppy
+} else {
+  1
+}
+
+boundary_years <- c(YEAR_MIN, CUTS_selected, YEAR_MAX)
+
+cut_lines <- ifelse(boundary_years == YEAR_MIN,
+                    boundary_years - 0.5,
+                    boundary_years + 0.5)
+
+x_limits <- c(YEAR_MIN - 0.5, YEAR_MAX + 0.5)
+
+p_definitiva <- ggplot(datos_series, aes(x = PY)) +
+  geom_col(aes(y = N_publicaciones, fill = "Publicaciones"), alpha = 0.7) +
+  geom_vline(xintercept = cut_lines, linetype = "dashed", color = "grey50") +
+  geom_line(aes(y = MA3, color = "MA3 (publicaciones)"),
+            linewidth = 0.6, linetype = "dashed", na.rm = TRUE) +
+  geom_line(aes(y = CPPY * scale_factor, color = "CPPY"),
+            linewidth = 1, na.rm = TRUE) +
+  scale_y_continuous(
+    name = "Número de publicaciones",
+    sec.axis = sec_axis(~ . / scale_factor, name = "CPPY (citas por año y publicación)")
+  ) +
+  scale_x_continuous(
+    breaks = boundary_years,
+    minor_breaks = NULL,
+    limits = x_limits,
+    expand = expansion(mult = c(0.015, 0.045))
+  ) +
+  geom_text(
+    data = periodos_df,
+    aes(x = x_mid_adj, y = max_pubs * 1.05, label = label),
+    inherit.aes = FALSE,
+    hjust = 0.5, vjust = 0.7,
+    lineheight = 0.85,
+    size = 2.6,
+    color = "grey30"
+  ) +
+  expand_limits(y = max_pubs * 1.12) +
+  # Mantengo tus colores tal como estaban (si quieres “sin colores fijos”, lo cambiamos)
+  scale_fill_manual(values = c("Publicaciones" = "steelblue")) +
+  scale_color_manual(values = c("MA3 (publicaciones)" = "grey20", "CPPY" = "firebrick")) +
+  guides(fill = guide_legend(order = 1), color = guide_legend(order = 2)) +
+  theme_minimal(base_size = 11) +
+  labs(x = "Año de publicación", y = NULL, title = "") +
+  theme(
+    legend.title = element_blank(),
+    legend.position = "bottom",
+    axis.title.y.right = element_text(color = "firebrick"),
+    axis.text.y.right  = element_text(color = "firebrick"),
+    axis.ticks.y.right = element_line(color = "firebrick"),
+    axis.text.x = element_text(hjust = 0.75),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    plot.margin = margin(t = 5.5, r = 28, b = 5.5, l = 5.5)
+  ) +
+  coord_cartesian(clip = "off")
+
+dir.create("outputs/figures/app-b", showWarnings = FALSE, recursive = TRUE)
+ggsave("outputs/figures/app-b/temporal-evolucion-periodos.pdf", p_definitiva,
+       width = 18, height = 10, units = "cm")
+ggsave("outputs/figures/app-b/temporal-evolucion-periodos.png", p_definitiva,
+       width = 18, height = 10, units = "cm", dpi = 300)
+
+p_definitiva
+```
+
+<!-- Script: A2_pipeline_bibliometria.R >> sección "FASE 2" -->
+## Fase 2. Segmentación del corpus en subcorpus por periodos {#app-biblio-subcorpus}
+
+A partir de los puntos de corte operativos fijados en la Fase 1, el corpus se segmenta en una partición determinística por año de publicación ($PY$).
+El intervalo $1980$–$2024$ se organiza en cinco periodos mutuamente excluyentes ($1980$–$1992$, $1993$–$1998$, $1999$–$2008$, $2009$–$2020$ y $2021$–$2024$), de modo que cada documento queda asignado de forma unívoca a un subcorpus.
+
+Esta segmentación fija el dispositivo temporal para todas las comparaciones posteriores.
+Las diferencias de exposición entre periodos quedan explícitas y se controlan en la integración (Fase 5A) mediante indicadores de auditoría y el ajuste por exposición asociado a $CPPY$.
+
+```{r biblio-subcorpus, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+
+library(dplyr)
+library(knitr)
+library(kableExtra)
+library(readr)
+library(tibble)
+
+# --------------------------------------------------
+# Parámetros base (consistentes con Fase 1)
+# --------------------------------------------------
+YEAR_MIN <- 1980L
+YEAR_MAX <- 2024L
+
+# --------------------------------------------------
+# Recuperar cortes operativos (coherencia total)
+# --------------------------------------------------
+out_dir  <- file.path("outputs", "bibliometria", "series_temporales")
+cuts_rds <- file.path(out_dir, "cuts_selected_1980_2024.rds")
+
+if (!exists("CUTS_selected")) {
+  if (file.exists(cuts_rds)) {
+    CUTS_selected <- readRDS(cuts_rds)
+  } else {
+    stop("No existe CUTS_selected en memoria y no se encontró el archivo RDS con cortes.")
+  }
+}
+CUTS_selected <- sort(as.integer(CUTS_selected))
+stopifnot(length(CUTS_selected) == 4)
+
+# --------------------------------------------------
+# Cargar corpus definitivo (Apéndice A)
+# --------------------------------------------------
+load("data/WoS/RefWoS_full.RData")  # crea RefWoS_full
+
+M_final <- RefWoS_full %>%
+  mutate(PY = suppressWarnings(as.integer(PY))) %>%
+  filter(!is.na(PY), PY >= YEAR_MIN, PY <= YEAR_MAX)
+
+# --------------------------------------------------
+# Definir periodos derivados de los cortes (cerrados e inclusivos)
+# --------------------------------------------------
+starts <- c(
+  YEAR_MIN,
+  CUTS_selected[-length(CUTS_selected)] + 1L,
+  tail(CUTS_selected, 1) + 1L
+)
+ends <- c(CUTS_selected, YEAR_MAX)
+
+periodos_df <- tibble(inicio = starts, fin = ends) %>%
+  mutate(periodo = paste0("P", row_number(), "_", inicio, "_", fin))
+
+# --------------------------------------------------
+# Asignar periodo a cada documento (vía cut)
+# breaks coherentes con Fase 1/figura:
+# - límite inferior YEAR_MIN-1 para incluir YEAR_MIN
+# - right=TRUE => intervalos cerrados por la derecha
+# --------------------------------------------------
+breaks_cut <- c(YEAR_MIN - 1L, CUTS_selected, YEAR_MAX)
+
+M_final <- M_final %>%
+  mutate(
+    periodo = as.character(
+      cut(
+        PY,
+        breaks = breaks_cut,
+        include.lowest = TRUE,
+        right = TRUE,
+        labels = periodos_df$periodo
+      )
+    )
+  ) %>%
+  filter(!is.na(periodo))
+
+# --------------------------------------------------
+# Crear subcorpus por periodo
+# --------------------------------------------------
+subcorpus_periodos <- split(M_final, M_final$periodo)
+
+# --------------------------------------------------
+# Tabla mínima de control
+# --------------------------------------------------
+tabla_control <- periodos_df %>%
+  mutate(
+    n_docs = as.integer(sapply(periodo, function(p) nrow(subcorpus_periodos[[p]]))),
+    periodo = gsub("^P\\d+_", "", periodo)  # deja "1980_1992"...
+  )
+
+if (knitr::is_latex_output()) {
+  kable(tabla_control,
+        format = "latex", booktabs = TRUE,
+        caption = "Periodos derivados de los puntos de corte operativos y número de documentos por subcorpus.") %>%
+    kable_styling(latex_options = c("HOLD_position"), font_size = 9) %>%
+    column_spec(1, width = "2.2cm") %>%
+    column_spec(2, width = "2.2cm") %>%
+    column_spec(3, width = "2.4cm")
+} else {
+  tesis_tabla_word(tabla_control,
+    caption = "Periodos derivados de los puntos de corte operativos y número de documentos por subcorpus.")
+}
+
+# --------------------------------------------------
+# Verificación estructural
+# --------------------------------------------------
+stopifnot(all(sapply(subcorpus_periodos, function(x) "KW_norm" %in% names(x))))
+
+# --------------------------------------------------
+# Guardar subcorpus
+# --------------------------------------------------
+save(subcorpus_periodos, file = "data/WoS/subcorpus_periodos.RData")
+
+# --------------------------------------------------
+# Exportar tablas (mantengo tu lógica)
+# --------------------------------------------------
+dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
+
+# (1) Básica
+tabla_export_periodos <- tabla_control %>%
+  mutate(periodo_label = gsub("_", "–", periodo)) %>%
+  select(periodo, periodo_label, inicio, fin, n_docs)
+
+fila_total_docs <- tabla_export_periodos %>%
+  summarise(
+    periodo = "TOTAL",
+    periodo_label = "TOTAL",
+    inicio = YEAR_MIN,
+    fin = YEAR_MAX,
+    n_docs = sum(n_docs, na.rm = TRUE)
+  )
+
+tabla_export_periodos <- bind_rows(tabla_export_periodos, fila_total_docs)
+
+write_csv(
+  tabla_export_periodos,
+  file.path(out_dir, "subperiodos_cortes_operativos_1980_2024.csv")
+)
+
+# (2) Final con métricas temporales (requiere datos_series del chunk de Fase 1)
+stopifnot(exists("datos_series"))
+
+periodos_labels <- periodos_df$periodo
+
+datos_series_periodo <- datos_series %>%
+  mutate(
+    periodo = as.character(
+      cut(
+        PY,
+        breaks = breaks_cut,
+        include.lowest = TRUE,
+        right = TRUE,
+        labels = periodos_labels
+      )
+    ),
+    N_publicaciones = as.numeric(N_publicaciones),
+    MA3             = as.numeric(MA3),
+    TC_sum          = as.numeric(TC_sum),
+    expo            = as.numeric(expo),
+    CPPY            = as.numeric(CPPY)
+  ) %>%
+  filter(!is.na(periodo)) %>%
+  mutate(
+    # 🔧 normaliza para que coincida con tabla_export_periodos (sin prefijo Pk_)
+    periodo = gsub("^P\\d+_", "", periodo)
+  )
+
+tabla_temporal_periodos <- datos_series_periodo %>%
+  group_by(periodo) %>%
+  summarise(
+    pubs_periodo = sum(N_publicaciones, na.rm = TRUE),
+    MA3_media    = mean(MA3, na.rm = TRUE),
+    TC_periodo   = sum(TC_sum, na.rm = TRUE),
+    expo_periodo = sum(expo, na.rm = TRUE),
+    CPPY         = if_else(expo_periodo > 0, TC_periodo / expo_periodo, NA_real_),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    CPPY = round(CPPY, 4),
+    MA3_media = round(MA3_media, 3)
+  )
+
+fila_total_temporal <- tabla_temporal_periodos %>%
+  summarise(
+    periodo = "TOTAL",
+    pubs_periodo = sum(pubs_periodo, na.rm = TRUE),
+    MA3_media = mean(MA3_media, na.rm = TRUE),
+    TC_periodo = sum(TC_periodo, na.rm = TRUE),
+    expo_periodo = sum(expo_periodo, na.rm = TRUE),
+    CPPY = if_else(expo_periodo > 0, TC_periodo / expo_periodo, NA_real_)
+  ) %>%
+  mutate(
+    CPPY = round(CPPY, 4),
+    MA3_media = round(MA3_media, 3)
+  )
+
+tabla_temporal_periodos <- bind_rows(tabla_temporal_periodos, fila_total_temporal)
+
+tabla_final_periodos <- tabla_export_periodos %>%
+  left_join(tabla_temporal_periodos, by = "periodo") %>%
+  relocate(pubs_periodo, CPPY, MA3_media, TC_periodo, expo_periodo, .after = n_docs) %>%
+  mutate(
+    CPPY = round(as.numeric(CPPY), 4),
+    MA3_media = round(as.numeric(MA3_media), 3)
+  )
+
+readr::write_excel_csv2(
+  tabla_final_periodos,
+  file.path(out_dir, "subperiodos_con_produccion_y_CPPY_MA3_1980_2024.csv")
+)
+
+rm(M_final); gc()
+```
+
+## Marco común de análisis relacional (Fases 3–4) {#app-biblio-marco-relacional}
+
+Las Fases 3 y 4 comparten un mismo marco relacional cuyo objetivo es fijar condiciones de construcción comparables y trazables para las redes, antes de discutir su significado empírico.
+En ambos casos, el documento constituye la unidad mínima de observación: las relaciones se definen por coaparición en un mismo registro, ya sea entre términos (coocurrencias) o entre referencias (cocitación).
+Esta regla se operacionaliza mediante grafos no dirigidos y ponderados, donde el peso del enlace representa la frecuencia de co-presencia en el corpus.
+
+Para estabilizar la topología y evitar que la estructura quede determinada por periferias raras o apariciones idiosincráticas, las redes se focalizan en un núcleo estructural (Top-*N* entidades) y se aplican umbrales mínimos para entidades y enlaces.
+Esta umbralización no depura el campo en sentido estricto: acota el análisis a patrones reiterados, reduce sensibilidad al ruido documental y hace que las diferencias topológicas entre periodos respondan, con mayor probabilidad, a cambios en la organización del campo y no a variaciones instrumentales.
+
+Bajo estas condiciones comunes, ambas fases reportan un conjunto equivalente de métricas: el tamaño de la red (nodos y aristas), su conectividad (densidad y grado medio), la cohesión local (clustering) y la segmentación comunitaria (modularidad).
+La comparabilidad se refuerza manteniendo constantes tanto la parametrización como el entorno de cálculo y representación.
+
+La Tabla \@ref(tab:biblio-marco-relacional) sintetiza estos criterios y se utiliza como referencia transversal para la lectura de las redes de coocurrencias (Fase 3) y cocitación (Fase 4), así como para su comparación por periodos.
+
+```{r biblio-marco-relacional, echo=FALSE, message=FALSE, warning=FALSE}
+
+library(knitr)
+library(kableExtra)
+
+tabla_marco <- data.frame(
+  `Elemento` = c(
+    "Unidad de observación",
+    "Definición de relación",
+    "Tipo de grafo",
+    "Focalización del núcleo",
+    "Umbralización (entidades/enlaces)",
+    "Normalización de tokens",
+    "Métricas reportadas",
+    "Entorno de cálculo y representación"
+  ),
+  `Definición operativa` = c(
+    "Documento como unidad mínima de observación",
+    "Coaparición simétrica en un mismo documento (KW o CR)",
+    "Grafo no dirigido y ponderado; peso = frecuencia de co-presencia",
+    "Restricción al núcleo estructural del campo (Top-N entidades)",
+    "Criterios mínimos para evitar relaciones marginales",
+    "Tokenización consistente para asegurar comparabilidad",
+    "Descriptores de tamaño, conectividad, cohesión y segmentación",
+    "Cálculo reproducible y visualización cartográfica bajo herramientas estables"
+  ),
+  `Implementación` = c(
+    "Registros del corpus bibliográfico",
+    "KW: coocurrencias; CR: cocitación",
+    "Pesos enteros por frecuencia en el corpus/subcorpus",
+    "Top-1000 entidades más frecuentes por red",
+    "Entidad ≥ 2 apariciones; enlace ≥ 3 co-presencias",
+    "Separador normalizado ‘;’ en campos tokenizables",
+    "Nodos, aristas, densidad, grado medio, clustering, modularidad",
+    "Procesamiento en R; mapas en VOSviewer"
+  ),
+  `Función` = c(
+    "Homogeneidad del universo empírico",
+    "Consistencia en la noción de vínculo empírico",
+    "Comparabilidad entre redes y periodos",
+    "Estabilización topológica y reducción de periferias raras",
+    "Reducción de ruido documental y enlaces espurios",
+    "Consistencia semántica/identificatoria entre documentos",
+    "Lectura estructural comparable entre planos",
+    "Trazabilidad y replicabilidad de resultados"
+  ),
+  check.names = FALSE
+)
+
+if (knitr::is_latex_output()) {
+  kbl(tabla_marco,
+        format = "latex", booktabs = TRUE,
+        caption = "Marco común de construcción y lectura estructural para las redes relacionales (Fases 3–4).",
+        caption.short = "Marco de construcción y lectura de redes relacionales (Fases 3–4).") %>%
+    kable_styling(latex_options = c("HOLD_position", "scale_down"), full_width = FALSE, font_size = 9) %>%
+    column_spec(1, width = "3.2cm") %>%
+    column_spec(2, width = "4.6cm") %>%
+    column_spec(3, width = "4.6cm") %>%
+    column_spec(4, width = "3.6cm")
+} else {
+  tesis_tabla_word(tabla_marco,
+    caption = "Marco común de construcción y lectura estructural para las redes relacionales (Fases 3–4).")
+}
+```
+
+\FloatBarrier
+
+Con estas condiciones de construcción fijadas, se procede a estimar primero la organización semántica explícita del campo (Fase 3) y, a continuación, su arquitectura intelectual implícita (Fase 4), bajo reglas técnicas equivalentes.
+
+<!-- Script: A2_pipeline_bibliometria.R >> sección "FASE 3" (solo script, no hay chunk en el Rmd) -->
+## Fase 3. Análisis de coocurrencias de palabras clave {#app-biblio-coocurrencias}
+
+Esta fase describe la organización semántica explícita del campo a partir de *KW_norm*.
+El propósito es documentar la estructura de coapariciones del vocabulario: patrones de coocurrencia recurrentes, asociaciones estabilizadas y delimitación de comunidades temáticas.
+
+La construcción de las redes de coocurrencia se ciñe estrictamente a los parámetros de focalización y umbralización definidos en el Marco Común (Sección \@ref(app-biblio-marco-relacional)), garantizando la estabilidad del núcleo semántico observado
+
+El procedimiento se ejecuta en dos escalas: una red global (1980–2024) y redes por periodos (Fase 2).
+La primera ofrece una lectura agregada del vocabulario dominante; las segundas permiten evaluar estabilidad, reordenamientos o fragmentación temática bajo ventanas temporales comparables.
+
+### Estimación de redes y métricas estructurales {#app-biblio-cooc-estimacion}
+
+La estimación se ejecuta íntegramente en *RStudio* sobre el corpus depurado.
+Para cada red (global y por periodos) se aplica un flujo de procesamiento estable de tres etapas: (i) extracción y normalización operativa de términos a partir de *KW_norm*, (ii) restricción al núcleo estructural del vocabulario bajo el criterio Top-*N*, y (iii) aplicación de umbrales mínimos de presencia y co-presencia.
+Los valores concretos de estas reglas se fijan en el marco común (Sección \@ref(app-biblio-marco-relacional)) para garantizar comparabilidad entre redes.
+
+Sobre cada grafo resultante se calculan métricas topológicas de tamaño, conectividad, cohesión local y segmentación (nodos, aristas, densidad, grado medio, clustering y modularidad).
+Estas métricas sostienen la comparación temporal y alimentan la integración posterior (Fase 5A), evitando atribuir a transformaciones del campo variaciones que podrían responder a parametrizaciones no equivalentes.
+
+### Cartografía en VOSviewer: layout y comunidades temáticas {#app-biblio-cooc-mapas}
+
+La representación cartográfica se realiza en *VOSviewer* como entorno especializado de visualización.
+Las redes estimadas en RStudio (`cooc_kw_network.txt`) se importan para obtener una disposición espacial del núcleo y una partición comunitaria operativa.
+
+La distribución se genera con el *layout* "LinLog/Modularity".
+La delimitación de áreas temáticas se obtiene mediante clustering y se parametriza de forma explícita (*resolución = 1,50; tamaño mínimo de clúster = 20 términos*), con el objetivo de fijar una granularidad comparable y legible.
+Con esta configuración, la red global 1980–2024 produce 12 comunidades temáticas.
+Estos parámetros no alteran los enlaces estimados; controlan la resolución con la que se agrupan y representan.
+
+La partición y las coordenadas se exportan como `cooc_kw_map.txt` para trazabilidad, verificación y reutilización, en particular en la integración cruzada KW↔CR (Fase 5B) y como soporte gráfico del Capítulo 2.
+
+<!-- Script: A2_pipeline_bibliometria.R >> sección "FASE 4" (solo script, no hay chunk en el Rmd) -->
+## Fase 4. Análisis de cocitación de referencias y autores {#app-biblio-cocitacion}
+
+La Fase 4 reconstruye el plano intelectual del campo mediante redes de cocitación.
+Mientras la coocurrencia (Fase 3) describe el vocabulario con el que la literatura se presenta, la cocitación permite observar el repertorio de apoyos: qué referencias se movilizan conjuntamente como marco de lectura y cómo se organiza ese repertorio en núcleos más integrados o más segmentados.
+
+Esta fase se apoya en el marco común de análisis relacional (Sección \@ref(app-biblio-marco-relacional)) y replica el mismo dispositivo técnico aplicado a coocurrencias, sustituyendo únicamente el objeto relacional: aquí los nodos no son términos, sino referencias normalizadas ($CR$).
+
+El análisis se implementa sobre dos representaciones complementarias de las referencias citadas: `CR_norm_author_year` (autor–año), utilizada como nivel principal por su mayor comparabilidad y estabilidad editorial, y `CR_norm_obra` (obra/título normalizado), conservada como apoyo interno de trazabilidad para descender desde núcleos de cocitación hacia contribuciones específicas cuando sea necesario.
+
+### Estimación de redes y métricas estructurales {#app-biblio-cocit-estimacion}
+
+La cocitación se calcula a nivel de documento: dos referencias quedan conectadas si coaparecen en el campo $CR$ de un mismo artículo, generando una arista ponderada por frecuencia de co-presencia.
+Bajo las mismas reglas defensivas del marco común (Top-*N* y umbralización de entidades/enlaces), se estiman una red global (1980–2024) y redes por periodos, usando exactamente el mismo dispositivo temporal fijado en la Fase 2.
+
+Para cada red se calculan las métricas estructurales comunes (tamaño, conectividad, cohesión local y segmentación: nodos, aristas, densidad, grado medio, clustering y modularidad).
+El resultado es un conjunto homogéneo de métricas que se integra en la Fase 5A junto con las métricas de coocurrencias y los indicadores temporales, preservando comparabilidad entre planos y entre periodos.
+
+### Cartografía en VOSviewer: layout y polos intelectuales {#app-biblio-cocit-mapas}
+
+La cartografía del plano intelectual se realiza en *VOSviewer* importando los ficheros de red exportados desde R (`cocit_cr_author_year_network.txt` y `cocit_cr_obra_network.txt`).
+El procedimiento de representación replica el de la Fase 3: para cada red (global y por periodos) se genera el grafo, se fija la geometría con el *layout* "LinLog/Modularity" y se obtiene una partición comunitaria mediante clustering modular.
+
+La granularidad de la partición se controla con parámetros explícitos (p. ej., *resolución* y *tamaño mínimo de clúster*), que no alteran la red estimada (ya definida por focalización y umbralización), sino que regulan el nivel de agregación operativa del mapa.
+La partición resultante (10 clusters) se interpreta como un conjunto de polos intelectuales (tradiciones operativas) y se reutiliza posteriormente en la integración cruzada $KW \leftrightarrow CR$ (Fase 5B).
+
+<!-- Script: A2_pipeline_bibliometria.R >> sección "FASE 5A" (solo script, no hay chunk en el Rmd) -->
+## Fase 5A. Integración comparada por periodos (auditoría + producción/impacto + métricas de red) {#app-biblio-integracion-5a}
+
+La Fase 5A consolida en un único marco comparativo la evidencia producida en las Fases 1–4 y la reexpresa por subperiodos y para el total 1980–2024.
+Su función es descriptiva y condicional: fijar, para cada periodo, las condiciones empíricas (tamaño, madurez y desigualdad de reconocimiento) bajo las cuales deben leerse las series y las métricas relacionales que sustentan el Capítulo 2 (Estado de la cuestión).
+
+En términos analíticos, la integración reúne cuatro planos complementarios: la auditoría del corpus (propiedades del material empírico que modulan cualquier comparación posterior), la dinámica temporal de producción e impacto normalizado (expansión del campo y rendimiento citacional ajustado por exposición), la estructura semántica derivada de las coocurrencias de `KW_norm` (configuración explícita del vocabulario del campo) y la estructura intelectual derivada de la cocitación de `CR_norm_author_year` (arquitectura implícita del repertorio de referencias movilizadas).
+
+El producto central es la Tabla integrada por periodos (Tabla \@ref(tab:biblio-tabla-integrada)), que funciona como marco de lectura transversal para el Estado de la cuestión: sitúa las lecturas semánticas e intelectuales en su contexto temporal, documental y relacional, y evita que diferencias entre periodos se interpreten sin controlar escala, madurez y concentración citacional.
+
+### Alcance y regla metodológica de integración {#app-biblio-5a-regla}
+
+La integración no introduce supuestos nuevos: reutiliza artefactos ya fijados en las fases previas y los alinea con la misma periodificación definida en la Fase 2.
+La regla operativa articula tres operaciones: para la auditoría, los indicadores se recalculan por periodos con las mismas definiciones pero distinta agregación; para el plano temporal, se incorporan los agregados de producción e impacto ya construidos, incluida la exposición que subyace a `CPPY`; para el plano relacional, se importan directamente las métricas topológicas exportadas en la Fase 3 (coocurrencias) y la Fase 4 (cocitación), sin reestimar redes.
+
+Con ello, las diferencias observadas entre periodos y entre planos se interpretan bajo un estándar estable, minimizando sensibilidad a decisiones técnicas heterogéneas.
+
+### Auditoría periodificada como condición de lectura {#app-biblio-auditoria-5a}
+
+La auditoría periodificada resume, para cada subcorpus, tres condiciones que afectan directamente a la lectura comparada: la madurez temporal (ventana efectiva de citación de los documentos del periodo), la capacidad relacional potencial (densidad documental declarada en `KW_norm` y volumen de referencias en `CR_norm_*`) y la concentración del reconocimiento (desigualdad de citas).
+
+Estas propiedades no describen el contenido del campo, pero acotan la interpretación de series y redes: condicionan la acumulación de citas, la conectividad potencial de los grafos y la estabilidad de comunidades.
+Por ello, se reexpresan por periodos con definiciones invariantes y se integran en la tabla como contexto estructural de lectura.
+
+### Métricas integradas: definición, función y lectura cruzada {#app-biblio-integrado-metricas}
+
+Esta sección fija la lectura operativa de la Tabla \@ref(tab:biblio-tabla-integrada).
+Para cada métrica se explicita qué condición describe, qué dimensión estabiliza al comparar periodos y sobre qué plano del análisis ---temporal, semántico o intelectual--- opera.
+
+Las propiedades internas del corpus ---agrupadas bajo el nombre de auditoría--- describen condiciones estructurales del material empírico que, aunque no hablan del contenido del campo, modulan la interpretación del resto al afectar a la acumulación de citas, a la densidad observada en redes y a la estabilidad de comunidades. Este plano incluye cinco indicadores. La madurez temporal del subcorpus (`edad_media_doc`) se define como antigüedad media de los documentos observados desde 2024 (`2024 − PY + 1`): valores altos indican mayor acumulación histórica, mientras que valores bajos reflejan predominio de literatura reciente con ventanas de citación más cortas. La intensidad citacional por artículo (`refs_por_doc_media`) es el número medio de referencias por documento (tokens en `CR_norm_author_year`) y contextualiza la capacidad relacional del plano intelectual, dado que con más referencias por artículo aumentan las oportunidades de cocitación. La densidad semántica declarada (`kw_tokens_por_doc_media`) es la media de tokens en `KW_norm` e informa sobre la granularidad del autoetiquetado temático, condicionando la conectividad potencial del plano semántico. La desigualdad del reconocimiento (`gini_citas`) es el coeficiente de Gini sobre `TC`: valores altos indican concentración de citas en pocos documentos y evitan confundir impacto agregado con impacto distribuido. Por último, la profundidad temporal de la literatura activada se resume mediante tres estadísticos de la antigüedad de la bibliografía citada ---`edad_media_referencias` (sensible a colas largas), `ref_age_mediana` (patrón típico) y `ref_age_p90` (horizonte largo, 10% más antiguo).
+
+La dinámica temporal de producción e impacto normalizado sitúa el crecimiento del campo bajo condiciones temporales heterogéneas, pues los periodos no comparten la misma ventana de citación. Integra la producción (`pubs_periodo`, tamaño efectivo del subcorpus), el nivel suavizado de producción (`MA3_media`, indicador descriptivo para evitar lecturas dominadas por picos), las citas brutas (`TC_periodo`, lectura contextual dependiente de tamaño y antigüedad), la exposición temporal agregada (`expo_periodo`, oportunidad total de acumular citas) y el impacto normalizado (`CPPY` = `TC_periodo / expo_periodo`), aproximación del ritmo de citación ajustado por exposición.
+
+La estructura semántica se describe mediante métricas topológicas sobre redes de coocurrencia estimadas con el mismo diseño relacional (`Top-N` y umbrales), que mapean el vocabulario operativo estabilizado del campo. Las métricas articulan tres dimensiones: el tamaño relacional (`nodos_cooc`, `aristas_cooc`), que mide la amplitud del núcleo y el volumen de asociaciones; la interconexión global (`densidad_cooc`, `grado_medio_cooc`), que indica compactación relativa y conectividad media contextualizada siempre por tamaño; y la cohesión y segmentación (`clustering_cooc`, `modularidad_cooc`), que describen el cierre local y la fuerza de comunidades temáticas.
+
+La estructura intelectual se describe mediante métricas topológicas equivalentes sobre redes de cocitación de autores (autor–año). La simetría deliberada con el plano semántico permite comparar cómo se segmenta el campo por temas y por tradiciones a través de las mismas tres dimensiones: diversidad y volumen (`nodos_cocit_autores`, `aristas_cocit_autores`), integración global (`densidad_cocit_autores`, `grado_medio_cocit_autores`) y pluralidad de tradiciones (`clustering_cocit_autores`, `modularidad_cocit_autores`).
+
+## Resultados y lectura de la tabla integrada (Fase 5A) {#app-biblio-tabla-integrada}
+
+La Tabla \@ref(tab:biblio-tabla-integrada) consolida, por periodos y para el total 1980–2024, cuatro familias de evidencia: las condiciones internas del corpus (auditoría), la dinámica temporal de producción e impacto normalizado, la estructura semántica (coocurrencias en `KW_norm`) y la estructura intelectual (cocitación en `CR_norm_author_year`).
+Su finalidad es fijar condiciones de lectura comparables: qué parte de las diferencias entre periodos puede atribuirse a *madurez*, *densidad documental* o *concentración del reconocimiento*, y qué parte corresponde a cambios en la organización relacional observada.
+
+En cuanto a las condiciones internas del corpus, se observan cambios sistemáticos en el “medio” que sostiene las métricas relacionales. La madurez temporal de los documentos desciende de forma marcada (edad media de 36,4 en 1980–1992 frente a 2,45 en 2021–2024), lo que implica ventanas de citación crecientemente cortas en los periodos recientes y obliga a leer `TC_periodo` con cautela, privilegiando `CPPY` como indicador ajustado por exposición. La intensidad citacional por artículo aumenta sostenidamente (de 32,8 a 63,7 referencias por documento), lo que incrementa la capacidad relacional potencial del plano intelectual y ayuda a explicar por qué las redes de cocitación pueden densificarse en periodos recientes incluso sin cambios sustantivos en la organización de escuelas. Los tokens de `KW_norm` por documento crecen asimismo (de 2,31 a 10,56), incrementando el número potencial de coocurrencias y favoreciendo redes semánticas más conectadas en periodos tardíos. La desigualdad del reconocimiento ---medida mediante `gini_citas`--- permanece alta en todos los periodos (≈0,63–0,72), lo que fija una regla defensiva: el impacto del campo está estructuralmente concentrado y cualquier lectura por promedios debe asumirse como afectada por colas largas. La profundidad temporal de las referencias activadas se mantiene relativamente estable, con una edad media alrededor de 9–10 años, mediana de 6–7 y un `p90` de 19–21 años; este patrón persistente de retrospectiva bibliográfica con horizonte largo es preciso tener presente al leer la construcción del canon en cocitación.
+
+En lo que atañe a la dinámica temporal, el campo muestra un salto de escala inequívoco: `pubs_periodo` crece desde 119 documentos en 1980–1992 hasta 10.930 en 2009–2020 y 9.100 en 2021–2024. Con todo, el indicador `CPPY` se mueve en un rango relativamente acotado (≈1,67–4,30), con máximos en 1999–2008 (4,30) y 2009–2020 (4,03). Esto fija una lectura defensiva: el crecimiento del campo es inequívoco, pero el rendimiento citacional ajustado por exposición no aumenta monótonamente y debe interpretarse bajo ventanas temporales diferentes.
+
+La estructura semántica revela un proceso de densificación del núcleo y reducción de la segmentación. El salto principal ocurre cuando el núcleo alcanza el límite `Top-N=1000` desde 1999–2008. En el periodo inicial (1980–1992) la red es pequeña (37 nodos, 7 aristas) y sus métricas deben leerse como de baja estabilidad; desde 1999–2008, las comparaciones ganan solidez, con aristas que aumentan con fuerza (704 → 18.404 → 14.583) y conectividad media que se dispara (`grado_medio_cooc` ≈ 1,4 → 36,8 → 29,2). La `modularidad_cooc` desciende en periodos tardíos (0,308 en 1999–2008 → 0,167 en 2009–2020 → 0,188 en 2021–2024), lo que es coherente con una estructura temática más integrada en el núcleo observado, sin que eso implique integración conceptual sustantiva.
+
+En la estructura intelectual (cocitación de autores) se alcanza también `Top-N=1000` desde 1999–2008, con un crecimiento de aristas aún más intenso: `aristas_cocit_autores` pasa de 461 en 1980–1992 a 3.604 en 1999–2008, 41.945 en 2009–2020 y 22.944 en 2021–2024. La densidad sube con fuerza (de 0,0072 a 0,0840 en 2009–2020) y desciende algo en 2021–2024 (0,0459), lo que sugiere que el periodo más reciente combina alto volumen con una estructura menos compacta en términos relativos. En cuanto a la segmentación, la `modularidad_cocit_autores` es muy alta en 1993–1998 (0,590), pero en ese periodo la red es extremadamente dispersa (densidad 0,00064), de modo que esa modularidad debe leerse como comunidad en red rala y no como evidencia de escuelas consolidadas. En 2009–2020 la modularidad cae a 0,242 con densidad muy alta, apuntando a una mayor integración del plano intelectual en el núcleo observado; en 2021–2024 vuelve a subir (0,458) con densidad menor, patrón compatible con una re-segmentación relativa del repertorio de referencias que requiere confirmación mediante los mapas y polos.
+
+```{r biblio-tabla-integrada, echo=FALSE, message=FALSE, warning=FALSE}
+library(dplyr)
+library(readr)
+library(knitr)
+library(kableExtra)
+
+f_tabla <- file.path("outputs","bibliometria","integrado","tabla_integrada_4_fuentes_1980_2024_v2.csv")
+
+tabla_integrada <- read_csv2(f_tabla, show_col_types = FALSE) %>%
+  mutate(periodo = factor(periodo, levels = c("1980_1992","1993_1998","1999_2008","2009_2020","2021_2024","TOTAL"))) %>%
+  arrange(periodo)
+
+tabla_integrada <- tabla_integrada %>%
+  select(-any_of("n_docs")) %>%
+  mutate(across(-periodo, ~ suppressWarnings(as.numeric(.x))))
+
+stopifnot(all(sapply(tabla_integrada %>% select(-periodo), is.numeric)))
+
+# Matriz numérica: filas = periodos, columnas = métricas
+mat <- tabla_integrada %>% select(-periodo) %>% as.matrix()
+rownames(mat) <- as.character(tabla_integrada$periodo)
+
+# Transpuesta: filas = métricas, columnas = periodos
+tabla_T_num <- t(mat)
+
+# Etiquetas bonitas de periodo (solo para columnas)
+pretty_periodo <- c(
+  "1980_1992" = "1980–1992",
+  "1993_1998" = "1993–1998",
+  "1999_2008" = "1999–2008",
+  "2009_2020" = "2009–2020",
+  "2021_2024" = "2021–2024",
+  "TOTAL"      = "Total"
+)
+colnames(tabla_T_num) <- pretty_periodo[colnames(tabla_T_num)]
+
+# -----------------------------
+# ORDEN EXPLÍCITO POR FAMILIAS
+# -----------------------------
+orden_filas <- c(
+  # Auditoría (corpus)
+  "edad_media_doc",
+  "refs_por_doc_media",
+  "kw_tokens_por_doc_media",
+  "gini_citas",
+  # Auditoría (referencias citadas) -> subfamilia
+  "edad_media_referencias",
+  "ref_age_mediana",
+  "ref_age_p90",
+  # Temporal
+  "pubs_periodo",
+  "MA3_media",
+  "TC_periodo",
+  "expo_periodo",
+  "CPPY",
+  # Semántica (cooc)
+  "nodos_cooc",
+  "aristas_cooc",
+  "densidad_cooc",
+  "grado_medio_cooc",
+  "clustering_cooc",
+  "modularidad_cooc",
+  # Cocitación (autores)
+  "nodos_cocit_autores",
+  "aristas_cocit_autores",
+  "densidad_cocit_autores",
+  "grado_medio_cocit_autores",
+  "clustering_cocit_autores",
+  "modularidad_cocit_autores"
+)
+
+# Comprobar que están todas (y no hay typos)
+faltan <- setdiff(orden_filas, rownames(tabla_T_num))
+sobran <- setdiff(rownames(tabla_T_num), orden_filas)
+
+if (length(faltan) > 0) {
+  stop("Faltan filas esperadas: ", paste(faltan, collapse = ", "))
+}
+
+if (length(sobran) > 0) {
+  stop("Métricas inesperadas en tabla integrada: ", paste(sobran, collapse = ", "))
+}
+
+tabla_T_num <- tabla_T_num[orden_filas, , drop = FALSE]
+
+# -----------------------------
+# Formato ES
+# -----------------------------
+fmt_es <- function(x){
+  ifelse(
+    is.na(x), "",
+    ifelse(abs(x - round(x)) < 1e-9,
+      formatC(x, format = "f", digits = 0, big.mark = ".", decimal.mark = ","),
+      formatC(x, format = "f", digits = 2, big.mark = ".", decimal.mark = ",")
+    )
+  )
+}
+tabla_T_fmt <- apply(tabla_T_num, c(1,2), fmt_es)
+
+# -----------------------------
+# Tabla + agrupación por familias
+# -----------------------------
+if (knitr::is_latex_output()) {
+  
+  # 1. Escapar guiones bajos en las filas para evitar conflictos en LaTeX (dado que escape = FALSE)
+  rownames(tabla_T_fmt) <- gsub("_", "\\\\_", rownames(tabla_T_fmt))
+  
+  # 2. Convertir los guiones en saltos de línea (\n) y usar el linebreak nativo de kableExtra
+  columnas_limpias <- gsub("[-–]", "--\n", colnames(tabla_T_fmt))
+  col_names_b3 <- c("Indicador", kableExtra::linebreak(columnas_limpias, align = "c", double_escape = FALSE))
+  
+  kbl(tabla_T_fmt,
+      format = "latex", booktabs = TRUE,
+      caption = "Evolución de indicadores bibliométricos por periodo (1980–2024).",
+      col.names = col_names_b3,
+      escape = FALSE, align = c("l", rep("r", ncol(tabla_T_fmt)))) %>%
+    kable_styling(latex_options = c("HOLD_position"), font_size = 8) %>%
+    column_spec(1, width = "5.0cm") %>%
+    column_spec(2:(ncol(tabla_T_fmt) + 1), width = "1.2cm") %>%
+    pack_rows("Auditoría (corpus)", 1, 4) %>%
+    pack_rows("Auditoría (referencias)", 5, 7) %>%
+    pack_rows("Dinámica temporal", 8, 12) %>%
+    pack_rows("Redes: coocurrencias", 13, 18) %>%
+    pack_rows("Redes: cocitación", 19, 24)
+} else {
+  tesis_tabla_word(tabla_T_fmt,
+    caption = "Evolución de indicadores bibliométricos por periodo (1980–2024).")
+}
+```
+
+\FloatBarrier
+
+La evidencia integrada de la Fase 5A permite afirmar, de manera defensiva, que el campo crece, aumenta su conectividad relacional bajo reglas comparables y mantiene una concentración elevada del reconocimiento.
+Sin embargo, no permite decidir una cuestión operativa para el Estado de la cuestión: si la integración temática observada se apoya en un repertorio intelectual ampliamente compartido o si, por el contrario, distintas comunidades temáticas movilizan tradiciones de referencia diferenciadas.
+
+Esta es la función de la Fase 5B (integración cruzada `KW↔CR`): pasar de describir por separado la organización semántica (KW) y la arquitectura intelectual (CR) a estimar su acoplamiento empírico a nivel de documento, mediante la matriz $KW \times CR$ y métricas defensivas (cobertura, entropías e información mutua).
+Con este cruce puede evaluarse si los temas del campo convergen sobre tradiciones comunes (acoplamiento alto) o si la diferenciación temática se acompaña de repertorios intelectuales parcialmente segregados (acoplamiento bajo o asimétrico).
+
+<!-- Script: A2_pipeline_bibliometria.R >> sección "FASE 5B" (requiere mapas VOSviewer exportados) -->
+## Fase 5B. Integración cruzada KW↔CR (alineamiento tema–tradición) {#integracion-cruzada}
+
+Esta fase estima el acoplamiento empírico entre el plano semántico (áreas $KW$ derivadas de coocurrencias) y el plano intelectual (polos $CR$ derivados de cocitación), sin reestimar redes.
+La integración se apoya en las particiones ya fijadas en *VOSviewer* a partir de los mapas exportados: (i) `cooc_kw_map.txt` (12 áreas temáticas $KW$) y (ii) `cocit_cr_map.txt` (10 polos intelectuales $CR$).
+
+Como paso previo al análisis, se procede al etiquetado de los clústeres de ambos planos, identificando las etiquetas más representativas para $KW$ y $CR$ en función de su peso y relevancia en la red.
+
+### Leyenda canónica de la figura (coocurrencias KW, 1980–2024) {#fig:kw-legend}
+
+En la Figura \@ref(fig:fig-coocurrencias-1980-2024), el análisis de coocurrencias de palabras clave se organiza en **áreas temáticas (KW)** representadas por **clústeres de color**. Cada clúster agrupa términos que coaparecen de forma recurrente en el corpus y, por tanto, delimitan **conjuntos temáticos**. El término **VULNERABILITY** se representa como **nodo transversal** (hub) conectado con múltiples áreas, por lo que se interpreta como articulador del mapa y **no se contabiliza como un área temática adicional**. Para facilitar la trazabilidad entre figura y texto, a continuación se fija la correspondencia **color → área (KW)** junto con sus **anclas** (keywords visibles y estructurantes del clúster).
+
+### Diccionario KW: color → área temática + anclas {#sec:diccionario-kw}
+
+```{r tab-diccionario-kw, echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+library(dplyr)
+
+# ── Datos KW ─────────────────────────────────────────────────────────────────
+kw_data <- tibble::tribble(
+  ~Área,  ~`Etiqueta temática`,
+  "KW1",  "Desigualdades en salud y exclusión social",
+  "KW2",  "Territorio, política y migraciones (geografías de la precariedad)",
+  "KW3",  "Adaptación, resiliencia y capacidades (marcos y gobernanza)",
+  "KW4",  "Nodo transversal VULNERABILITY (hub)",
+  "KW5",  "Gestión ambiental y sostenibilidad (planificación/recursos/servicios ecosistémicos)",
+  "KW6",  "Modelización, SIG y análisis espacial (índices/cartografía)",
+  "KW7",  "Riesgo de desastre y vulnerabilidad social (desastres/inundación/multiamenaza)",
+  "KW8",  "Vulnerabilidad urbana y ciudades (sistemas urbanos/urbano-resiliencia)",
+  "KW9",  "Medios de vida y seguridad alimentaria (planificación/estrategias/shocks)",
+  "KW10", "Cambio climático: impactos y extremos (calor/impactos urbanos)",
+  "KW11", "Percepción del riesgo, conocimiento y gobernanza participativa",
+  "KW12", "Justicia y pobreza energética (equidad/consumo)"
+)
+
+colores_kw <- c(
+  "#A6CEE3", "#1F78B4", "#B2DF8A", "#33A02C",
+  "#FB9A99", "#E31A1C", "#FDBF6F", "#FF7F00",
+  "#CAB2D6", "#6A3D9A", "#FFFF99", "#B15928"
+)
+
+if (knitr::is_latex_output()) {
+  kw_data %>%
+    kbl(booktabs = TRUE, longtable = FALSE, linesep = "",
+        caption = "Áreas temáticas del análisis de coocurrencias de palabras clave (KW). El color identifica cada área en la Figura \\ref{fig:fig-coocurrencias-1980-2024}.",
+        caption.short = "Áreas temáticas del análisis de coocurrencias de palabras clave (KW).",
+        label = "tab-diccionario-kw") %>%
+    kable_styling(latex_options = c("HOLD_position", "scale_down"), font_size = 9) %>%
+    column_spec(1, bold = TRUE, width = "1.2cm", background = colores_kw) %>%
+    column_spec(2, width = "12cm")
+} else {
+  tesis_tabla_word(kw_data,
+    caption = "Áreas temáticas del análisis de coocurrencias de palabras clave (KW).")
+}
+```
+ \FloatBarrier
+ 
+### Diccionario CR: color → polo intelectual + anclas {#sec:diccionario-cr}
+
+```{r tab-diccionario-cr, echo=FALSE, message=FALSE, warning=FALSE}
+# ── Datos CR ─────────────────────────────────────────────────────────────────
+cr_data <- tibble::tribble(
+  ~Polo,  ~`Etiqueta intelectual`,
+  "CR1",  "Polo aplicado reciente (Asia/China)",
+  "CR2",  "Vulnerabilidad social territorial y DRR (SoVI)",
+  "CR3",  "IPCC y evaluación de riesgo",
+  "CR4",  "Resiliencia y sistemas socioecológicos (SES)",
+  "CR5",  "Teoría social (riesgo, desigualdad, capital social, precariedad)",
+  "CR6",  "Conceptos y métricas de vulnerabilidad climática",
+  "CR7",  "Gobernanza y transformación adaptativa",
+  "CR8",  "Capacidades, medios de vida y economía política",
+  "CR9",  "Conocimiento local y adaptación climática (Sur Global)",
+  "CR10", "Pobreza energética y justicia"
+)
+
+colores_cr <- c(
+  "#A6CEE3", "#1F78B4", "#B2DF8A", "#33A02C",
+  "#FB9A99", "#E31A1C", "#FDBF6F", "#FF7F00",
+  "#CAB2D6", "#6A3D9A"
+)
+
+if (knitr::is_latex_output()) {
+  cr_data %>%
+    kbl(booktabs = TRUE, longtable = FALSE, linesep = "",
+        caption = "Polos intelectuales del análisis de cocitación de referencias (CR). El color identifica cada polo en la Figura \\ref{fig:fig-cocitacion-1980-2024}.",
+        caption.short = "Polos intelectuales del análisis de cocitación de referencias (CR).",
+        label = "tab-diccionario-cr") %>%
+    kable_styling(latex_options = c("HOLD_position", "scale_down"), font_size = 9) %>%
+    column_spec(1, bold = TRUE, width = "1.2cm", background = colores_cr) %>%
+    column_spec(2, width = "12cm")
+} else {
+  tesis_tabla_word(cr_data,
+    caption = "Polos intelectuales del análisis de cocitación de referencias (CR).")
+}
+```
+
+La unidad de acoplamiento es el documento.
+Para garantizar la representatividad estadística ante la magnitud del corpus (22.098 documentos), se aplica una técnica de normalización fraccional por documento.
+Bajo este enfoque, cada artículo aporta simultáneamente términos $KW$ y referencias $CR$, contribuyendo con un peso total unitario ($1$) al sistema, repartido proporcionalmente entre sus tokens.
+La relación entre un área temática $KW_i$ y un polo intelectual $CR_j$ se cuantifica mediante la intensidad de co-presencia documental agregada:
+
+$$w_{ij} = \sum_{d} \left( \frac{c_{di}}{\sum_i c_{di}} \right) \cdot \left( \frac{r_{dj}}{\sum_j r_{dj}} \right)$$
+
+donde $c_{di}$ es el número de tokens $KW$ del documento $d$ asignados al clúster $i$, y $r_{dj}$ es el número de referencias $CR$ del mismo documento asignadas al polo $j$.
+La matriz $W=(w_{ij})$ recoge, por tanto, el peso de los acoplamientos tema–tradición observados bajo una lógica de contribución equilibrada.
+
+Como condición previa de lectura, se calcula la cobertura de mapeo: la proporción de documentos que cuentan con términos (KW) mapeados, con referencias (CR) mapeadas y con la intersección de ambos planos.
+Esta cobertura funciona como control de interpretabilidad: los indicadores de acoplamiento solo pueden leerse como propiedades estructurales del campo si el cruce (KW)–(CR) se apoya en una base documental amplia y no en una submuestra residual.
+
+Sobre la matriz de acoplamiento ($W$), construida con normalización fraccional por documento, se derivan tres familias de indicadores. La primera son las distribuciones condicionales por filas $p(CR\mid KW)$, que describen el repertorio intelectual relativo que soporta cada área temática. La segunda comprende las entropías por clúster (y su versión normalizada en $[0,1]$), junto con la conectividad efectiva $(K_{\mathit{eff}})$ y la cuota dominante, para medir el gradiente entre especialización (alineamiento local) e hibridación (dispersión del soporte). La tercera es la Información Mutua global ($MI$) y sus normalizaciones, como indicador resumen del grado de dependencia estadística entre la partición temática ($KW$) y la partición intelectual ($CR$).
+
+El análisis principal se reporta para el total del periodo 1980–2024.
+La ejecución por subperiodos se conserva como extensión del "script" para análisis comparado cuando resulte necesario.
+
+Operativamente, la fase consta de tres pasos: (1) lectura de mapas y asignación de clúster por token/referencia, (2) construcción de (W) y estimación de coberturas, y (3) derivación de distribuciones condicionales, entropías e información mutua.
+
+### Cobertura del acoplamiento KW–CR
+
+La cobertura resume hasta qué punto el acoplamiento tema–tradición se apoya en una base documental suficiente para sostener inferencias estructurales.
+Bajo el modelo de normalización fraccional, cada documento contribuye con un peso total unitario ((1)) al sistema, repartido proporcionalmente entre sus tokens (KW) y sus referencias (CR).
+En el global 1980–2024, el cruce descansa sobre una base amplia: de 22.098 documentos, 20.695 (93,651%) presentan (KW) mapeadas, 18.377 (83,161%) presentan (CR) mapeadas, y 17.789 (80,500%) cuentan con mapeo dual ((KW) y (CR) simultáneamente).
+Esta penetración documental alta indica que los indicadores derivados de (W) describen propiedades del sistema y no artefactos de una intersección marginal.
+
+A nivel de ítems, se observa una asimetría esperable entre planos: la tasa global de coincidencia de tokens (KW) es 0,598, mientras que la de tokens (CR) es 0,091.
+Esta diferencia no debe interpretarse como un “fallo” del mapeo, sino como una propiedad del soporte bibliográfico: la citación presenta una larga cola de referencias esporádicas y altamente específicas que quedan fuera de los mapas de clústeres, mientras que el vocabulario temático tiende a una mayor recurrencia y consolidación.
+En consecuencia, el análisis de acoplamiento se apoya en el subconjunto de referencias (CR) efectivamente mapeadas —las que participan en la estructura relacional—, lo que permite calcular entropías e información mutua sobre una base intelectual suficientemente estable y comparable.
+
+En suma, la Fase 5B opera sobre 17.789 documentos que actúan como puentes efectivos entre el lenguaje temático del campo y su soporte bibliográfico, proporcionando resolución estadística adecuada para estimar la dispersión ($p(CR\mid KW)$) y el alineamiento global.
+
+```{r tab-5b-coverage, echo=FALSE, message=FALSE, warning=FALSE}
+library(readr)
+library(dplyr)
+library(tidyr)
+library(knitr)
+library(kableExtra)
+
+out_dir <- file.path("outputs","integracion","global_1980_2024")
+cov   <- read_csv(file.path(out_dir, "coverage_mapping.csv"),          show_col_types = FALSE)
+tmr   <- read_csv(file.path(out_dir, "token_match_rates.csv"),         show_col_types = FALSE)
+mi_df <- read_csv(file.path(out_dir, "mutual_information_global.csv"), show_col_types = FALSE)
+sum5b <- tibble(
+  n_docs_total        = cov$n_docs_total[1],
+  share_both          = cov$share_both[1],
+  kw_token_match_rate = tmr$kw_token_match_rate[1],
+  cr_token_match_rate = tmr$cr_token_match_rate[1],
+  MI_bits             = mi_df$MI_bits[1],
+  NMI_min             = mi_df$NMI_min[1]
+)
+
+# Transponemos y formateamos valores individualmente
+tab_cov_long <- sum5b %>%
+  select(n_docs_total, share_both, kw_token_match_rate, cr_token_match_rate, MI_bits, NMI_min) %>%
+  pivot_longer(cols = everything(), names_to = "Métrica", values_to = "Valor") %>%
+  mutate(
+    # Formateo condicional: entero para el total, 3 decimales para el resto
+    Valor_f = case_when(
+      Métrica == "n_docs_total" ~ format(as.integer(Valor), big.mark = "."),
+      TRUE ~ format(round(Valor, 3), nsmall = 3)
+    ),
+    Métrica = case_when(
+      Métrica == "n_docs_total" ~ "Total de documentos en el corpus",
+      Métrica == "share_both" ~ "Proporción de docs con match dual (KW y CR)",
+      Métrica == "kw_token_match_rate" ~ "Tasa de coincidencia de tokens KW",
+      Métrica == "cr_token_match_rate" ~ "Tasa de coincidencia de tokens CR (Canon)",
+      Métrica == "MI_bits" ~ "Información Mutua (MI) en bits",
+      Métrica == "NMI_min" ~ "Información Mutua Normalizada (NMI min)",
+      TRUE ~ Métrica
+    )
+  ) %>%
+  select(Métrica, Valor_f)
+
+if (knitr::is_latex_output()) {
+  kbl(tab_cov_long,
+      caption = "Resumen técnico y cobertura del acoplamiento (1980–2024).",
+      booktabs = TRUE, align = "lr", col.names = c("Indicador", "Valor")) %>%
+    kable_styling(latex_options = "HOLD_position", full_width = FALSE) %>%
+    column_spec(1, width = "10cm") %>%
+    column_spec(2, width = "3cm")
+} else {
+  tesis_tabla_word(tab_cov_long,
+    col_names = c("Indicador", "Valor"),
+    caption = "Resumen técnico y cobertura del acoplamiento (1980–2024).")
+}
+```
+
+\FloatBarrier
+
+### Entropía de $p(CR \mid KW)$ y alineamiento por área
+
+La entropía por área (KW) caracteriza el grado de concentración o dispersión del repertorio intelectual asociado a cada comunidad temática. Operativamente, la distribución ($p(CR\mid KW)$) permite distinguir si un área temática se apoya preferentemente en uno o pocos polos intelectuales (alineamiento local) o si distribuye sus apoyos entre múltiples polos (hibridación).
+
+En este análisis, el "Bubble Plot" funciona como diagnóstico visual del patrón de acoplamiento entre áreas y polos bajo dos escalas distintas: el tamaño de la burbuja representa la masa documental agregada ($(w\_{ij})$), mientras que el color representa la preferencia relativa dentro de cada área ($p(CR\mid KW)$).
+
+Esta doble escala permite separar dos fenómenos que no deben confundirse: un vínculo puede concentrar mucha masa documental (gran $(w\_{ij})$) sin ser altamente selectivo dentro del área (bajo (p)), y viceversa.
+
+La entropía, en cambio, no se lee directamente en el gráfico: se deriva de la distribución completa ($p(CR\mid KW)$) por fila.
+En el global 1980–2024, la dominancia media del polo principal dentro de cada área es 0,244, mientras que la entropía normalizada media alcanza 0,916; el número efectivo medio de polos activos por área es $(K\_{eff}=8{,}266)$.
+
+Este patrón indica que, aun existiendo preferencias, la estructura típica es la de áreas temáticas con soporte intelectual amplio, es decir, con hibridación elevada y alineamientos locales moderados.
+
+```{r app2-load-acoplamiento, echo=FALSE, message=FALSE, warning=FALSE}
+library(readr)
+out_dir_5b <- file.path("outputs", "integracion", "global_1980_2024")
+
+# Fallback: si W_long.csv no existe o tiene menos de 10 filas (fichero vacío/truncado),
+# se lee W_5b_labeled.rds que es la fuente canónica producida por el pipeline
+w_long_path <- file.path(out_dir_5b, "W_long.csv")
+if (file.exists(w_long_path) && nrow(read_csv(w_long_path, show_col_types = FALSE, n_max = 11)) >= 10) {
+  W_labeled <- read_csv(w_long_path, show_col_types = FALSE)
+} else {
+  W_labeled <- readRDS(file.path(out_dir_5b, "W_5b_labeled.rds"))
+}
+W_5b   <- W_labeled
+p_cond <- read_csv(file.path(out_dir_5b, "p_cr_given_kw_long.csv"), show_col_types = FALSE)
+```
+
+```{r app2-bubble-map, echo=FALSE, fig.env='sidewaysfigure', out.width='0.90\\textheight', fig.align='center', fig.cap="Relación detallada entre las áreas temáticas (KW) y los polos intelectuales (CR) basada en el volumen de publicaciones y el alineamiento (p) para el periodo 1980-2024.", fig.scap="Mapa de burbujas KW-CR (1980-2024)"}
+if (knitr::is_latex_output()) {
+  knitr::include_graphics("outputs/figures/app-b/bubble_kw_cr_1980_2024.pdf")
+} else {
+  knitr::include_graphics("outputs/figures/app-b/bubble_kw_cr_1980_2024.png")
+}
+```
+
+\FloatBarrier
+
+### Top acoplamientos y flujo área temática-polo intelectual
+
+Una vez caracterizada la dispersión por área, la identificación de los top acoplamientos permite anclar la lectura en los vínculos específicos de mayor peso.
+En lugar de inspeccionar la matriz completa, se aíslan los pares $(KW)–(CR)$ con mayor intensidad ($w\_{ij}$), que concentran una fracción relevante de la masa del sistema y estructuran los corredores dominantes del acoplamiento.
+
+Para una lectura correcta, es preciso mantener la distinción entre la masa documental ($(w_{ij})$), que mide volumen agregado de co-presencia bajo contribución fraccional por documento e identifica los acoplamientos dominantes del núcleo del cruce, y la preferencia relativa ($p(CR\mid KW)$), que mide focalización dentro de cada área y permite detectar vínculos selectivos (alineamiento local) incluso cuando el volumen absoluto no es máximo.
+
+Esta distinción evita interpretar como especialización lo que puede ser simplemente "mainstream" voluminoso con baja selectividad, y permite, a la inversa, reconocer nichos con selectividad alta aunque su masa agregada sea moderada.
+
+Como complemento, el diagrama *alluvial* proyecta la masa de acoplamiento en términos de flujo: muestra cómo cada área $(KW)$ distribuye su peso hacia varios polos $(CR)$.
+Visualmente, el interés de esta representación no es identificar causalidad ni genealogías, sino documentar si la contribución de un tema se concentra en una corriente principal (alineamiento) o se ramifica en varias corrientes (hibridación).
+
+```{r alluvial-integracion, echo=FALSE, fig.env='sidewaysfigure', out.width='0.85\\textheight', fig.align='center', fig.cap="Diagrama de flujo (Alluvial) que muestra la integración y acoplamiento entre las áreas temáticas (KW) y los polos intelectuales (CR) según el peso de sus vínculos.", fig.scap="Diagrama alluvial de integración KW-CR"}
+if (knitr::is_latex_output()) {
+  knitr::include_graphics("outputs/figures/app-b/alluvial_kw_cr_1980_2024.pdf")
+} else {
+  knitr::include_graphics("outputs/figures/app-b/alluvial_kw_cr_1980_2024.png")
+}
+```
+
+\FloatBarrier
+
+### Alineamiento global y capacidad de hibridación
+
+La información mutua (MI) resume el grado de dependencia estadística entre la partición temática ($KW$) y la partición intelectual ($CR$). Si temas y tradiciones estuvieran fuertemente acoplados, conocer el área temática (KW) reduciría de forma apreciable la incertidumbre sobre el polo intelectual (CR) (y viceversa), elevando la MI y sus normalizaciones.
+
+En el global 1980–2024, tras aplicar la normalización fraccional por documento, la información mutua es ($MI=0{,}117$) bits, con normalizaciones bajas ($(NMI\_{min}=0{,}037)$; $(NMI\_{sqrt}=0{,}036)$). Esto indica que existe alineamiento medible (superior al azar), pero que el acoplamiento global es estructuralmente débil: los temas no determinan de forma unívoca una tradición única y, recíprocamente, las tradiciones no se expresan en un único repertorio temático.
+
+En términos del campo, el resultado es coherente con una arquitectura relacional donde la integración temática convive con pluralidad de apoyos intelectuales y recombinación entre tradiciones.
+
+```{r tab-5b-hybrid-summary, echo=FALSE, message=FALSE, warning=FALSE}
+library(readr)
+library(dplyr)
+library(tidyr)
+library(knitr)
+library(kableExtra)
+
+out_dir <- file.path("outputs", "integracion", "global_1980_2024")
+mi_df  <- read_csv(file.path(out_dir, "mutual_information_global.csv"), show_col_types = FALSE)
+ent_df <- read_csv(file.path(out_dir, "kw_entropy_metrics.csv"),        show_col_types = FALSE)
+
+# Tabla consolidada con limpieza de formato
+tab_global <- tibble(
+    `Información Mutua (MI bits)`   = mi_df$MI_bits[1],
+    `NMI (Normalizada min)`         = mi_df$NMI_min[1],
+    `Dominancia media (Share)`      = mean(ent_df$dominant_share, na.rm = TRUE),
+    `Entropía normalizada (H_norm)` = mean(ent_df$H_norm,         na.rm = TRUE),
+    `Nº efectivo de polos (K_eff)`  = mean(ent_df$K_eff,          na.rm = TRUE),
+    `Masa total del sistema (W)`    = mi_df$total_w[1]
+  ) %>%
+  pivot_longer(cols = everything(), names_to = "Indicador", values_to = "Valor") %>%
+  mutate(
+    # Formateo: Entero para la masa total, 3 decimales para el resto
+    Valor_f = case_when(
+      Indicador == "Masa total del sistema (W)" ~ format(as.integer(Valor), big.mark = "."),
+      TRUE ~ format(round(Valor, 3), nsmall = 3)
+    )
+  ) %>%
+  select(Indicador, Valor_f)
+
+if (knitr::is_latex_output()) {
+  kbl(tab_global,
+      caption = "Métricas globales de alineamiento e hibridación (1980–2024).",
+      booktabs = TRUE, align = "lr", col.names = c("Indicador", "Valor")) %>%
+    kable_styling(latex_options = "HOLD_position", full_width = FALSE) %>%
+    column_spec(1, width = "8cm") %>%
+    column_spec(2, width = "3cm")
+} else {
+  tesis_tabla_word(tab_global,
+    col_names = c("Indicador", "Valor"),
+    caption = "Métricas globales de alineamiento e hibridación (1980–2024).")
+}
+```
+
+\FloatBarrier
+
+## Conclusión del Apéndice B: estructura empírica del campo y puente hacia el Estado de la cuestión {#app-biblio-conclusion}
+
+Este apéndice ha reconstruido la configuración del campo científico de la vulnerabilidad a partir del corpus bibliográfico validado en el Apéndice A, aplicando un conjunto de técnicas bibliométricas orientadas a describir regularidades temporales, semánticas y relacionales. El resultado no es una definición sustantiva del concepto, sino un mapa de evidencia estructural: cómo crece el campo, cómo se autoetiqueta, qué repertorios bibliográficos moviliza y, especialmente, cómo se acoplan —o no— sus particiones temáticas e intelectuales.
+
+Los indicadores de la Fase 5B permiten formular ese mapa con precisión. La dominancia media del polo principal dentro de cada área temática es moderada (0,244), la entropía normalizada media es alta (0,916) y el número efectivo medio de polos activos por área alcanza $K_{\text{eff}} = 8{,}266$ sobre un máximo de diez. La información mutua global es baja (MI = 0,117 bits; NMI = 0,037), lo que implica que conocer el área temática de un artículo reduce en menos de un 4% la incertidumbre sobre el polo intelectual que lo fundamenta. Estos valores son robustos: la cobertura del cruce KW–CR alcanza el 80,5% del corpus, lo que garantiza que los indicadores describen propiedades del sistema y no artefactos de una intersección marginal. La asimetría de matching entre tokens KW (0,598) y tokens CR (0,091) no invalida el análisis sino que documenta una propiedad estructural esperable: la citación incorpora una larga cola de referencias esporádicas que no participan en las estructuras de clúster, de modo que el acoplamiento se calcula sobre el componente efectivamente estructurado del soporte bibliográfico.
+
+El patrón que emerge de estos indicadores es el de una estructura débilmente acoplada: hay dependencia estadística medible entre particiones temáticas e intelectuales, pero esa dependencia es insuficiente para generar correspondencias estables tema–tradición. Los temas tienden a apoyarse simultáneamente en múltiples polos intelectuales, y los repertorios de referencia circulan de forma transversal entre áreas sin pertenecer de forma estable a ninguna. El campo no funciona, por tanto, como un mosaico de subcampos autocontenidos, sino como un espacio de recombinación en el que etiquetas temáticas compartidas coexisten con soportes bibliográficos diversos.
+
+Este hallazgo tiene una implicación inmediata para el diagnóstico institucional: si los instrumentos de medición de la vulnerabilidad —índices, indicadores, cartografías— se construyen movilizando los mismos vocabularios temáticos pero desde tradiciones bibliográficas distintas, su apariencia de equivalencia semántica puede ocultar incompatibilidades de fondo en los supuestos que los sostienen. Dos índices que declaran medir vulnerabilidad pueden solaparse en el vocabulario y divergir en la ontología, en el régimen de evidencia o en la escala de análisis, con consecuencias directas sobre la comparabilidad de sus diagnósticos y sobre la orientación de las intervenciones que de ellos se derivan.
+
+El puente hacia el Capítulo 2 se formula, por tanto, en torno a una distinción que la bibliometría permite enunciar pero no resolver por sí sola: hibridación no equivale a interoperabilidad. La Fase 5B documenta la forma empírica de la mezcla —cómo se acoplan particiones, qué corredores dominantes estructuran el campo, qué áreas funcionan como zonas de tránsito entre tradiciones—, pero no sustituye la discusión sobre qué supuestos se mezclan, qué escalas se confunden y qué condiciones mínimas permitirían que instrumentos construidos desde tradiciones distintas produjeran diagnósticos comparables. Esa discusión es la tarea del Capítulo 2: partir de la evidencia estructural aquí establecida para identificar las tensiones internas del campo y derivar de ellas los requisitos de diseño de un instrumento de diagnóstico territorial que gestione con transparencia la complejidad que la bibliometría ha hecho visible.

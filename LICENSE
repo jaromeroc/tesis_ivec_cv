@@ -1,0 +1,36 @@
+# Licencia del repositorio
+
+Este repositorio combina dos tipos de contenido con licencias diferenciadas.
+
+## 1. Texto de la tesis, figuras y tablas — CC BY-NC-ND 4.0
+
+El texto del manuscrito (todos los ficheros `.Rmd`), el PDF resultante, y las
+figuras y tablas de la tesis (incluidas las de `outputs/figures/`) se distribuyen
+bajo la licencia **Creative Commons Reconocimiento-NoComercial-SinObraDerivada 4.0
+Internacional (CC BY-NC-ND 4.0)**.
+
+Se permite descargar, compartir y citar la obra reconociendo la autoría. No se
+autoriza el uso comercial ni la distribución de versiones modificadas.
+
+- Texto legal completo: [`LICENSE-CC-BY-NC-ND-4.0.txt`](LICENSE-CC-BY-NC-ND-4.0.txt)
+- Resumen: https://creativecommons.org/licenses/by-nc-nd/4.0/deed.es
+
+## 2. Código — MIT
+
+Los scripts de R (`R/`), los *chunks* de cómputo y los ficheros de configuración
+de la compilación se distribuyen bajo la licencia **MIT**, que permite su
+verificación, reejecución y reutilización. La atribución se mantiene mediante la
+cita de la tesis.
+
+- Texto legal completo: [`LICENSE-MIT.txt`](LICENSE-MIT.txt)
+
+## Fuentes de datos de terceros
+
+Ninguna de las licencias anteriores se extiende a las fuentes de datos de terceros
+empleadas en la investigación (microdatos SIP, corpus Web of Science, cartografía
+oficial e indicadores administrativos), que se rigen por sus propias condiciones de
+uso. Véanse la sección «Datos y acceso» del `README.md` y el Apéndice F.
+
+---
+
+Copyright (c) 2026 Juan Antonio Romero Crespo — Universitat de València

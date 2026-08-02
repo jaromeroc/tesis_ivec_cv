@@ -1,0 +1,53 @@
+# Configuración del proyecto bookdown para compilar la tesis en PDF
+book_filename: "Tesis_Vulnerabilidad"   # Nombre del archivo final (ej. Tesis_Vulnerabilidad.pdf)
+
+new_session: true                       # Cada capítulo se ejecuta en una sesión R limpia → reproducibilidad
+before_chapter_script: _common.R        # Script que se carga antes de cada capítulo (paquetes, opciones, funciones)
+delete_merged_file: true                # Elimina el archivo .md intermedio después de compilar → directorio más limpio
+
+# ── Configuración de idioma ───────────────────────────
+language:
+  label:
+    fig: "Figura "                      # Prefijo para figuras (Figura 1, Figura 2…)
+    tab: "Tabla "                       # Prefijo para tablas (Tabla 1, Tabla 2…)
+  ui:
+    chapter_name: "Capítulo "            # Los capítulos se listan como "Capítulo 1", "Capítulo 2"
+
+# ── Archivos que componen la tesis ────────────────────
+rmd_files:
+  # Preliminares
+  - "index.Rmd"
+  - "00b-certificado.Rmd"
+  - "00c-financiacion.Rmd"
+  # "00c1-declaracion-jurada.Rmd"
+  - "00d-resumenes.Rmd"
+  - "00e-justificacion.Rmd"
+  - "00f-ods.Rmd"
+  - "00g-agradecimientos.Rmd"
+  - "00h-indice.Rmd"
+  - "00i-glosario.Rmd"
+  - "00j-abreviaturas.Rmd"
+  - "00k-resume-frances.Rmd"
+  - "00m-conclusiones-frances.Rmd"
+
+  # Cuerpo principal
+  - "01-intro.Rmd"
+  - "02-estado-cuestion.Rmd"
+  - "03-marco-teorico.Rmd"
+  - "04-marco-normativo.Rmd"
+  - "05-metodologia.Rmd"
+  - "06-resultados.Rmd"
+  - "07-discusion.Rmd"
+  - "08-conclusiones.Rmd"
+
+  # Bibliografía
+  - "09-bibliografia.Rmd"
+
+  # Apéndices
+  - "A0-portada-apendices.Rmd"
+  - "A1-corpus.Rmd"                      # Apéndice A — Corpus bibliográfico
+  - "A2-biblio.Rmd"                      # Apéndice B — Análisis bibliométrico
+  - "A3-sip.Rmd"                         # Apéndice C — Tratamiento de la base SIP
+  - "A4-decisiones-metodologicas.Rmd"   # Apéndice D — Decisiones metodológicas (normalización, depuración, correlaciones, distancias)
+  - "A5-decisiones-operativas.Rmd"      # Apéndice E — Decisiones operativas (código grid, escala territorial, datos faltantes)
+  - "A6-fuentes.Rmd"                     # Apéndice F — Cuadro definitivo de fuentes e indicadores

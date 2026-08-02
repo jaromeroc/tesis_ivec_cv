@@ -1,0 +1,27 @@
+{
+  "title": "La vulnerabilidad social como fenómeno estructural y contextual. Diseño del instrumento IVEC para la Comunitat Valenciana",
+  "upload_type": "publication",
+  "publication_type": "thesis",
+  "description": "Repositorio reproducible de la tesis doctoral que diseña el IVEC (Instrumento de Valoración de la Vulnerabilidad Estructural y Contextual), un instrumento tridimensional de medición de la vulnerabilidad social en la Comunitat Valenciana. Incluye el manuscrito (bookdown) y el pipeline de cómputo en R. Depósito original: 25 de mayo de 2026. Defensa: 31 de julio de 2026. Texto bajo CC BY-NC-ND 4.0; código bajo licencia MIT.",
+  "creators": [
+    {
+      "name": "Romero Crespo, Juan Antonio",
+      "affiliation": "Universitat de València",
+      "orcid": "0000-0001-5882-203X"
+    }
+  ],
+  "keywords": [
+    "vulnerabilidad social",
+    "IVEC",
+    "Comunitat Valenciana",
+    "protección civil",
+    "protección social",
+    "análisis espacial",
+    "reducción del riesgo de desastres",
+    "índices compuestos"
+  ],
+  "license": "cc-by-nc-nd-4.0",
+  "language": "spa",
+  "access_right": "open",
+  "publication_date": "2026-07-31"
+}

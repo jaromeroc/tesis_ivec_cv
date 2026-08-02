@@ -1,0 +1,1142 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+```{=latex}
+\cleardoublepage
+```
+
+# La vulnerabilidad como campo en expansión: genealogía, polisemia y vacíos {#cap-estado-cuestion}
+
+## Introducción {.unnumbered}
+
+La vulnerabilidad social se ha consolidado en las últimas décadas como una categoría de referencia para describir y explicar cómo se distribuyen el daño, el riesgo y la inseguridad en sociedades atravesadas por desigualdades territoriales persistentes. Su expansión ha servido para articular dominios que históricamente dialogaban poco ---estudios de desastres, geografía del riesgo, salud pública, pobreza y exclusión, adaptación climática, planificación urbana, justicia ambiental--- y ha cristalizado en un repertorio amplio de definiciones, métricas e instrumentos de intervención.
+En ese sentido, el concepto ha sido capaz de alojarse en agendas altamente especializadas y, al mismo tiempo, operar como lenguaje de coordinación entre comunidades epistémicas diversas [@cutter2003; @adger2006; @wisner2004].
+
+Esa expansión, sin embargo, no puede leerse como crecimiento acumulativo hacia un núcleo compartido. El campo crece por acumulación científica, pero también por su conexión recurrente con problemas públicos que exigen priorización y decisión: ciclos de desastres de gran impacto, marcos internacionales de reducción del riesgo, agendas globales de desarrollo y demandas de medición comparable han impulsado sucesivamente la operacionalización del concepto en clave diagnóstica. Cada ola de demanda institucional ha incorporado nuevas tradiciones y dominios sin resolver las tensiones entre los ya existentes.
+El resultado es que vulnerabilidad designa objetos analíticos distintos según el contexto: estructuras históricas de desigualdad, susceptibilidades frente a impactos, atributos individuales o grupales, exposiciones territoriales diferenciadas, configuraciones relacionales emergentes.
+Esta pluralidad ha sido productiva ---en la medida en que desplaza el foco desde la amenaza hacia los mecanismos sociales del daño---, pero cuando el concepto se utiliza para comparar territorios o apoyar la planificación, la heterogeneidad se traduce en problemas de equivalencia entre métricas construidas sobre supuestos distintos y diagnósticos que no siempre son comparables [@gaillard2010; @kelman2015].
+
+El problema, en consecuencia, no es la pluralidad en sí, sino la integración parcial entre subáreas. El campo incorpora líneas altamente desarrolladas ---índices frente a amenazas naturales, vulnerabilidad climática, determinantes sociales de la salud---, pero los mecanismos de articulación entre ellas siguen siendo incompletos, y de ahí derivan dificultades recurrentes de interoperabilidad: instrumentos que se aplican en contextos institucionales sin un marco de referencia estable, con decisiones de escala no justificadas y usos del término que varían según la agenda política que los moviliza [@tate2012; @mah2023; @painter2024; @li2023]. Este diagnóstico adquiere una relevancia específica en territorios como la Comunitat Valenciana, donde la exposición recurrente a episodios de inundación, la heterogeneidad entre un litoral densamente urbanizado y un interior con dinámicas de despoblamiento, y las limitaciones de los instrumentos de planificación vigentes para incorporar dimensiones sociales del riesgo hacen del problema de interoperabilidad no una cuestión académica sino una exigencia de gobernanza. El objetivo de este capítulo no es reducir la complejidad del concepto ni clausurar su pluralidad, sino clarificar qué tipo de integración produce el campo y qué condiciones mínimas permitirían traducir esa pluralidad en diagnósticos territoriales defendibles.
+
+Para sostener ese argumento sin forzar una convergencia que ni la coocurrencia de palabras clave ni la cocitación de referencias permiten constatar empíricamente, el capítulo combina evidencia empírica y lectura crítica mediante tres marcos complementarios, elegidos porque cada uno ilumina una dimensión distinta del mismo problema. El primero, la diferenciación funcional del conocimiento científico permite entender la proliferación de enfoques como resultado estructural del aumento de complejidad: la especialización no implica fragmentación caótica sino multiplicación de perspectivas dentro del sistema científico [@luhmann1984; @luhmann1990]. El segundo, la perspectiva del campo científico permite observar cómo esa especialización se organiza en un espacio de posiciones diferenciadas, donde centralidad y trayectorias disciplinarias estructuran jerarquías de reconocimiento sin que la visibilidad implique superioridad ontológica [@bourdieu1994]. El tercero, la noción de objeto frontera, finalmente, permite explicar por qué vulnerabilidad funciona simultáneamente como término compartido y como contenedor de objetos no equivalentes: su robustez conceptual mínima facilita la coordinación entre comunidades epistémicas diversas, pero también genera traducciones parciales cuando se exige comparabilidad operativa [@stargriesemer1989; @star2010]. La convergencia de estos tres marcos en torno a la noción de objeto frontera anticipa la paradoja que organiza el capítulo ---un concepto de alta centralidad y baja integración interna--- y cuya evidencia empírica el Apéndice \@ref(app-biblio), §\@ref(integracion-cruzada) ha establecido con precisión. El análisis de acoplamiento entre las palabras clave que articulan el vocabulario del campo y las referencias citadas que estructuran sus tradiciones intelectuales arroja un valor de información mutua normalizada próximo a cero: los temas que investiga el campo y las tradiciones bibliográficas que lo leen no coinciden en sus agrupamientos. Conocer a qué área temática pertenece un documento apenas reduce la incertidumbre sobre qué tradición intelectual lo fundamenta. Esa medida cuantitativa ---cuyo valor concreto se documenta y discute en §\@ref(sec-acoplamiento-cap2)--- confirma que el campo habla con vocabularios compartidos pero se lee desde tradiciones bibliográficas que permanecen diferenciadas.
+
+El capítulo se organiza como un recorrido desde la cartografía empírica del campo científico hacia la identificación de sus mecanismos —y límites— de articulación. La sección \@ref(sec-cartografia-cap2) y las secciones siguientes que la desarrollan, fijan el marco empírico a partir del corpus 1980–2024, examinando cómo crece y se organiza temáticamente el campo y qué repertorios de referencia estabilizan sus tradiciones intelectuales, para determinar en qué medida el vocabulario del campo y sus citas comparten estructura o divergen. Sobre esa base, §\@ref(sec-tradiciones-cap2) interpreta la estructura observada como coexistencia de tradiciones científicas con familias de problema y regímenes de evidencia^[Por *régimen de evidencia* se entiende el conjunto de prácticas, criterios de validación y formas de prueba que una comunidad disciplinaria considera legítimas para producir conocimiento sobre su objeto. No designa una jerarquía de calidad de la evidencia, sino la configuración históricamente situada de qué cuenta como dato, qué procedimiento de análisis es aceptable y qué resultado puede considerarse válido dentro de una tradición de investigación dada. En §\@ref(sec-tradiciones-cap2) se documenta el régimen de evidencia específico de cada una de las cinco tradiciones examinadas.] diferenciados; §\@ref(sec-ontologias-cap2) examina las arquitecturas ontológicas y epistemológicas que subyacen a esas tradiciones y explica por qué ciertos enfoques se acoplan con relativa fluidez mientras otros generan fricciones persistentes; y §\@ref(sec-tensiones-cap2) sintetiza las tensiones detectadas. El capítulo cierra con §\@ref(sec-sintesis-cap2), que traduce esos hallazgos en requisitos mínimos para una arquitectura diagnóstica interoperable y establece el puente hacia el marco teórico del capítulo siguiente.
+
+## Cartografía empírica del campo (1980–2024) {#sec-cartografia-cap2}
+
+Antes de examinar las tradiciones intelectuales, los enfoques y las tensiones epistémicas que organizan la literatura sobre vulnerabilidad social, es necesario fijar el marco estructural desde el cual esa interpretación se sostiene. Esa es la función de esta sección: no documentar procedimientos técnicos ---tarea que corresponde a los Apéndices \@ref(app-corpus) y \@ref(app-biblio)--- sino construir una base empírica verificable que permita responder a tres preguntas analíticas: cómo crece y se reconfigura el campo a lo largo del periodo 1980–2024; cómo se organiza temáticamente a través de su vocabulario recurrente; y qué repertorios de referencia estabilizan sus principales tradiciones intelectuales.
+
+Para responder a estas preguntas, el análisis se despliega en cuatro planos complementarios: la morfología del corpus, la evolución temporal de la producción, las áreas temáticas derivadas de coocurrencias de palabras clave y los polos intelectuales estructurados por redes de cocitación autor–año. Ninguno de estos planos es autosuficiente por separado; su valor analítico reside en la posibilidad de integrarlos.
+El cierre de la cartografía prepara precisamente esa integración mediante el análisis de acoplamiento KW–CR ---esto es, la correspondencia entre las palabras clave que definen las áreas temáticas y las referencias citadas que estructuran las tradiciones intelectuales (Apéndice \@ref(app-biblio), §\@ref(integracion-cruzada))---, que permite observar qué áreas temáticas se apoyan en tradiciones específicas, cuáles combinan repertorios heterogéneos y dónde se concentran las fricciones que dificultan la interoperabilidad cuando se pretende un diagnóstico territorial comparable.
+
+### Construcción y validación del corpus bibliográfico {#sec-corpus-cap2}
+
+El corpus que sustenta esta cartografía cubre el periodo 1980–2024 y ha sido construido bajo criterios de trazabilidad y replicabilidad cuya descripción técnica completa se presenta en el Apéndice \@ref(app-corpus). Lo que importa establecer aquí no son los procedimientos sino el alcance empírico del material y las condiciones bajo las cuales pueden interpretarse los resultados.
+
+La normalización de autores^[Por *normalización de autores* se entiende, en bibliometría, el procedimiento de unificación de las variantes ortográficas, abreviadas o transliteradas de un mismo nombre (por ejemplo "García-Pérez, J.", "García Pérez, Juan" o "Garcia Perez, Juan A.") en un único identificador estable, basado en la triangulación de información de afiliación, identificador ORCID, coautoría y correspondencia inter-bases. Sin este procedimiento, los análisis de cocitación y coautoría confundirían un mismo autor con varias entidades distintas, produciendo regularidades aparentes que serían artefactos tipográficos en lugar de patrones reales de circulación bibliográfica.], referencias citadas y palabras clave garantiza que los patrones relacionales detectados ---coocurrencias y cocitación--- respondan a regularidades estructurales y no a artefactos tipográficos o duplicidades. La estabilidad de los metadatos críticos es alta y compatible con explotación relacional ---esto es, los campos imprescindibles para el análisis (autor, año, palabras clave y referencias citadas) están completos en una proporción suficiente del corpus como para que las regularidades detectadas sean atribuibles a patrones del campo y no a ruido o ausencia de información---: las palabras clave normalizadas acumulan más de 221.000 tókenes o términos, con una media de diez por documento, lo que garantiza densidad semántica suficiente para construir redes de coocurrencias, con una ausencia moderada (4,1%) cuya auditoría completa se presenta en el Apéndice \@ref(app-corpus), §\@ref(fase8-auditoria), y cuyos umbrales defensivos para estabilizar las redes se documentan en el Apéndice \@ref(app-biblio).
+
+Las referencias citadas presentan una cobertura aún mayor ---cerca de 1,24 millones de tókenes en formato autor-año, con menos del 1% de ausencia---, y el año de referencia está presente en el 99 por ciento de los documentos, lo que habilita análisis sobre el pasado bibliográfico efectivamente movilizado por el campo. La edad media de las referencias es de aproximadamente diez años, con una mediana de siete y un percentil 90 de veintiuno, lo que indica que el campo combina una renovación bibliográfica relativamente activa con una cola de referencias canónicas de largo alcance. La auditoría completa de ambas dimensiones ---cobertura de referencias, concentración y estructura temporal--- se presenta en el Apéndice \@ref(app-corpus), §\@ref(fase8-auditoria) y §\@ref(fase8-operabilidad).
+
+La validación debe entenderse, en consecuencia, como verificación de que los procedimientos aplicados sobre el corpus son consistentes con su composición y que las regularidades detectadas no son artefactos de las decisiones de filtrado; no como certificación de que el corpus capture el conjunto exhaustivo de la producción mundial sobre vulnerabilidad social. La cartografía resultante representa la literatura indexada y privilegia circuitos de alta visibilidad académica frente a literatura gris o producciones no indexadas; los análisis semánticos dependen del vocabulario disponible en los campos de palabras clave, lo que puede introducir sesgos disciplinares o editoriales; y la cocitación autor–año identifica repertorios de referencia compartidos, pero no equivale a consenso conceptual ni a convergencia metodológica.
+Estos límites no restan validez a la cartografía: la delimitan. Fijan el marco defendible desde el cual se interpretan los cuatro planos de análisis, cuyo objeto no son técnicas sino patrones: cómo se estructura el campo, qué regularidades emergen y qué configuraciones semánticas e intelectuales se estabilizan en el periodo observado.
+
+Dos dimensiones adicionales merecen declaración explícita porque tienen consecuencias directas para la interpretación de los resultados. La primera es el sesgo lingüístico: WoS privilegia de manera estructural la producción en inglés, de modo que la cartografía resultante describe principalmente cómo circula la vulnerabilidad en los circuitos académicos anglosajones, americanos y centroeuropeos. La producción iberoamericana y la tradición española de geografía urbana y planificación territorial ---que incluye instrumentos de diagnóstico como el *Atlas de Vulnerabilidad Urbana de España* [@aja2015] o el *Visor de Espacios Urbanos Sensibles de la Comunitat Valenciana* (VEUS-CV) [@temes2019-veus; @temes2020-veus], referentes directos del IVEC--- está sistemáticamente subrepresentada en el corpus. Eso no invalida el diagnóstico de los cinco vacíos que la síntesis del capítulo formula ---ausencia de objeto declarado, escasa atención al problema de la unidad espacial modificable, generalización de la compensabilidad total como supuesto de agregación, débil trazabilidad metodológica y ausencia de una arquitectura analítica que distinga las dimensiones individual, contextual y estructural---, pero precisa su alcance: esos vacíos describen los límites del campo tal como se organiza en los circuitos de alta visibilidad internacional, no necesariamente los de la producción institucional española, que constituye el contexto de aplicación más inmediato del instrumento. La segunda dimensión es el sesgo disciplinar: WoS cubre las ciencias naturales y la ingeniería con mayor densidad que las ciencias sociales y las humanidades, lo que puede producir una sobrerrepresentación relativa de las tradiciones de vulnerabilidad climática y socioecológica respecto a las de economía política y geografía crítica ---precisamente las tradiciones que el análisis identifica como menos representadas en los instrumentos de diagnóstico dominantes. Ambos sesgos son estructurales y no pueden eliminarse desde el corpus; pueden declararse, como aquí se hace, para que la interpretación de los patrones bibliométricos no se extienda más allá de lo que la fuente autoriza.
+
+### Plano estructural: volumen, composición y morfología del corpus {#sec-plano-estructural-cap2}
+
+El corpus analítico 1980–2024 reúne 22.098 documentos con presencia de publicaciones en cada año del periodo, sin lagunas temporales. Las propiedades sincrónicas del corpus ---las que lo describen con independencia de cómo ha crecido--- quedan establecidas por la auditoría de cobertura, consistencia y estabilidad de metadatos del Apéndice \@ref(app-corpus), §\@ref(fase8-auditoria), y se resumen aquí en sus implicaciones interpretativas: un vocabulario temático de 221.812 tokens con una media de 10 términos por documento que garantiza densidad semántica suficiente para la construcción de redes, una cobertura de referencias citadas superior al 99 por ciento que habilita el análisis del pasado bibliográfico del campo, y una distribución de citas marcadamente asimétrica ---mediana de 10 por documento, media de 28,8--- que indica la coexistencia de una base amplia de producción con reconocimiento moderado y un subconjunto reducido de trabajos con alta acumulación citacional.
+El predominio de artículos científicos indexados sobre otros formatos señala que la estabilización del concepto ocurre principalmente en circuitos de publicación revisada por pares: el corpus refleja ante todo la forma en que la vulnerabilidad circula y se legitima académicamente, no el conjunto más amplio de sus usos institucionales o técnicos, sesgo que debe tenerse presente cuando los resultados se trasladen a la interpretación de los instrumentos de diagnóstico. En conjunto, la morfología apunta a un campo internamente diferenciado: no una comunidad convergente sino un espacio en el que múltiples dominios disciplinarios consolidan su producción bajo una misma etiqueta. Esa diferenciación es una propiedad estructural, no una consecuencia del ritmo de crecimiento; por eso requiere un plano de análisis propio, que el plano temporal no puede resolver porque responde a una pregunta distinta.
+
+### Plano temporal: fases, inflexiones y anclajes (1980–2024) {#sec-dinamica-temporal-cap2}
+
+El plano estructural ha descrito qué es el corpus: su volumen, su distribución citacional y su cobertura semántica ---entendida aquí como el conjunto de palabras clave normalizadas y su densidad por documento, cuya organización en áreas temáticas se desarrollará en §\@ref(sec-coocurrencias-cap2)---, propiedades que no dependen del orden en que los documentos fueron publicados. El plano temporal pregunta algo distinto: cuándo se producen las aceleraciones, qué las desencadena y qué tipo de reorientación introduce cada fase. El desplazamiento es de lo sincrónico a lo diacrónico, y la pregunta no puede responderse con los mismos datos del Apéndice \@ref(app-corpus): requiere las series anuales de producción e impacto que el Apéndice \@ref(app-biblio), §\@ref(app-biblio-temporal) construye y cuya periodificación opera sobre criterios empíricos documentados en §\@ref(app-biblio-cortes). Un aumento sostenido de publicaciones puede responder a dinámicas muy distintas: consolidación en torno a un núcleo compartido, diferenciación en subcampos con lógicas propias, o respuesta adaptativa a demandas institucionales. El plano temporal es el que permite distinguirlas.
+
+El análisis por periodos proporciona el marco cronológico desde el cual esa distinción puede argumentarse. La periodificación en cinco tramos (1980--1992; 1993--1998; 1999--2008; 2009--2020; 2021--2024) ---derivada de los criterios empíricos^[Los criterios empíricos para la identificación de los cinco tramos son: la detección automática de puntos de inflexión en las series anuales de publicaciones y citas mediante análisis de cambio estructural, validada después por correspondencia con eventos institucionales de referencia (Marco de Yokohama 1994, Marco de Hyogo 2005, Marco de Sendai 2015, Acuerdo de París 2015 y publicación del informe especial IPCC SR1.5 de 2018). El procedimiento técnico completo se desarrolla en el Apéndice \@ref(app-biblio), §\@ref(app-biblio-cortes).] documentados en el Apéndice \@ref(app-biblio), §\@ref(app-biblio-cortes)--- no pretende establecer rupturas paradigmáticas sino identificar regímenes de producción con dinámicas internas suficientemente distintas como para ser comparados. En cada fase, las publicaciones anuales, la media móvil de tres años (MA3) ---que suaviza fluctuaciones puntuales para revelar tendencias estructurales— y las citas por año de publicación (CPPY) —que pondera el impacto relativo de cada documento con independencia de su antigüedad--- se integran con anclajes institucionales y eventos críticos que permiten hacer plausible por qué el campo aceleró, se reorientó o densificó en un momento determinado. Esta lectura cronológica se complementa con los patrones semánticos e intelectuales que los planos siguientes precisarán: el cuándo del análisis temporal y el qué de los clústeres de los campos semánticos y los repertorios de cocitación se articulan para construir una interpretación integrada del campo.
+
+La figura \@ref(fig:fig-temporal-evolucion-periodos) muestra con claridad que el crecimiento del corpus no es uniforme sino que responde a lógicas distintas en cada periodo. Entre 1980 y 1992 el volumen de publicaciones es reducido y estable, pero el CPPY alcanza sus valores más altos del conjunto del periodo, lo que indica que los trabajos fundacionales acumularon un reconocimiento desproporcionado respecto a su número: son pocos documentos pero de alta densidad citacional, rasgo perfectamente comprensible en el contexto de la formación de un campo científico, donde unos pocos textos fundacionales estructuran el vocabulario y los problemas de toda la producción posterior. La aceleración se inicia con claridad en el tramo 1999--2008 y se intensifica en el periodo 2009-–2020, donde la media móvil confirma una tendencia de crecimiento sostenido que no responde a fluctuaciones puntuales sino a una expansión estructural del campo. El tramo 2021–-2024, aunque incompleto, sugiere una estabilización en niveles altos. El descenso progresivo del CPPY en los periodos más recientes no debe interpretarse como pérdida de impacto sino como un artefacto bibliométrico esperado: los documentos más recientes han tenido menos tiempo para acumular citas, de modo que la comparación entre periodos en ese indicador es informativa solo cuando se lee junto al volumen y la media móvil. La lectura integrada de los tres indicadores apunta a un campo que ha pasado de una fase seminal de baja producción y alta densidad referencial a una fase de expansión masiva con creciente diversificación interna, cuyas implicaciones para la estructura intelectual del campo se analizan en los planos siguientes.
+
+```{r fig-temporal-evolucion-periodos, echo=FALSE, fig.cap="Número de publicaciones y citas medias año a año (1980–2024).\\\\ \\textit{Fuente: Elaboración propia a partir del corpus científico seleccionado en WoS.}", fig.scap="Publicaciones y citación media sobre vulnerabilidad social (1980–2024)",out.width="90%"}
+
+knitr::include_graphics(fig_ext("outputs/figures/app-b/temporal-evolucion-periodos"))
+```
+
+\FloatBarrier
+
+#### Periodo 1 (1980–1992): sedimentación conceptual y tensión estructural de origen {.unnumbered .unlisted}
+
+Lejos de ser un periodo débil en sentido sustantivo, esta etapa es de sedimentación conceptual: en ella confluyen tres tradiciones que darán forma al campo posterior. Lo que define la fase no es la aceleración productiva sino el ensamblaje de una tensión estructural que estará presente desde el origen: tres marcos responden a tipos de problemas distintos, se desarrollan con relativa independencia y comienzan a compartir el término vulnerabilidad sin acordar su definición. Esa coexistencia sin integración no es un déficit transitorio: es la forma en que un campo en expansión gestiona simultáneamente demandas cognitivas heterogéneas, y su persistencia a lo largo del periodo 1980–2024 es precisamente lo que el análisis bibliométrico ha documentado. Las disputas conceptuales de los periodos siguientes no surgirán de la nada: heredarán esta tensión de origen.
+
+La primera tradición es la ecología de sistemas y la teoría de la resiliencia, con @holling1973 como referencia fundacional, que introduce la idea de sistemas socioecológicos dinámicos, no lineales y sensibles a perturbaciones y umbrales. Aunque el término vulnerabilidad no siempre es central en estos trabajos, el marco sistémico que proponen será decisivo para su futura articulación con riesgo y adaptación: pensar el daño como propiedad emergente de un sistema y no como efecto directo de una causa externa reorienta toda la lógica diagnóstica. La segunda tradición es la economía política del hambre y la pobreza, articulada en torno a @sen1981, que desplaza la explicación desde la escasez física hacia las capacidades, derechos y acceso diferencial a recursos. La vulnerabilidad comienza así a leerse como resultado de estructuras sociales —de distribución, de acceso, de reconocimiento— y no solo como exposición física a una amenaza. La tercera tradición es la geografía crítica y los estudios sociales de los desastres [@hewitt1983; @watts1983; @blaikie1987; @chambers1989], que cuestionan los enfoques naturalistas y sitúan el foco en procesos históricos de marginalización, desigualdad y dependencia estructural.
+
+A estas tres tradiciones se articula la teoría del capital social y la estructura relacional [@coleman1988; @granovetter1973], que constituye el primer intento del campo de tender puentes entre ellas. No es una cuarta tradición independiente sino el dispositivo conceptual mediante el cual las estructuras macro identificadas por la economía política y la geografía crítica se traducen en capacidad diferencial de afrontamiento a escala local: las redes, los recursos relacionales y la cohesión comunitaria son los mecanismos a través de los cuales la vulnerabilidad estructural se expresa o se amortigua en contextos concretos. Su incorporación al campo introduce ya en esta fase una distinción que las tradiciones posteriores desarrollarán con mayor formalización: la diferencia entre las condiciones de fondo que producen susceptibilidad y las capacidades situadas que modulan cómo esa susceptibilidad se traduce en daño. Que ese puente no resuelva la tensión entre las tres tradiciones fundacionales —sino que la hace más visible al intentar articularlas— es uno de los rasgos más persistentes del campo.
+
+#### Periodo 2 (1993–1998): articulación entre desarrollo, territorio y sistemas socioecológicos {.unnumbered .unlisted}
+
+El crecimiento de este periodo no es homogéneo: refleja la convergencia de varias líneas que avanzan en paralelo y que comienzan a articularse sin resolver todavía las tensiones heredadas del periodo anterior. La tradición crítica inaugura en este periodo su instrumento conceptual más influyente.
+*At Risk* [@blaikie1994] y los trabajos contemporáneos de @bohle1994, @cannon1994 y @ribot1996 consolidan un marco interpretativo donde vulnerabilidad significa desigual acceso a recursos, poder y capacidad de respuesta. El modelo PAR (*Pressure and Release*) formaliza el daño como resultado de una progresión desde causas raíz —estructuras económicas, sistemas políticos, ideologías— a través de presiones dinámicas hacia condiciones de inseguridad que preceden al evento físico. El PAR no solo desplaza la causalidad desde el fenómeno natural hacia las condiciones sociales previas, sino que ofrece una arquitectura analítica explícita para identificar dónde y por qué ciertos grupos son sistemáticamente más expuestos, una herramienta que décadas después seguirá siendo invocada cada vez que un desastre evidencie que el daño no se distribuyó al azar. Su relevancia para el diseño de instrumentos de diagnóstico territorial —entre ellos el IVEC— reside precisamente en esa capacidad de conectar estructuras de largo plazo con manifestaciones locales del riesgo.
+
+El Marco de Yokohama (1994) fijó un primer intento de institucionalización internacional de la reducción del riesgo, pero fue el terremoto de Kobe (enero de 1995) el que sometió ese marco a una prueba inmediata y severa: la devastación de una ciudad moderna e industrializada evidenció formas de vulnerabilidad social que los indicadores técnicos no capturaban y reforzó el argumento que *At Risk* acababa de formalizar. La respuesta institucional fue limitada —Yokohama carecía de mecanismos de seguimiento vinculantes y de indicadores de vulnerabilidad social— pero aceleró la agenda que culminaría una década después en el Marco de Hyogo [@unisdr2005].
+
+En paralelo, la literatura sobre cambio climático y adaptación integra el lenguaje de vulnerabilidad de forma más sistemática.
+Contribuciones como las de @kelly1999, @adger1999 y @smit1999 desplazan el foco hacia la relación entre exposición climática, sensibilidad y capacidad adaptativa, mientras que la tradición socioecológica gana densidad analítica con los trabajos sobre sistemas acoplados sociedad–naturaleza y resiliencia adaptativa [@holling1978; @berkes2000; @gunderson2001], que refuerzan una lectura relacional de la vulnerabilidad entendida como propiedad emergente de sistemas complejos sometidos a perturbaciones. Estas dos líneas convergen en este periodo sin fusionarse: la primera trabaja con poblaciones y territorios expuestos al cambio climático; la segunda trabaja con sistemas funcionales cuya escala no está determinada por divisiones administrativas.
+Su coexistencia amplía el campo pero también multiplica las unidades de análisis y los criterios de validación, añadiendo una nueva capa a la tensión estructural heredada del periodo anterior.
+
+La geografía del riesgo contribuye a este proceso con la territorialización del concepto. @cutter1996 formaliza la vulnerabilidad del lugar (*vulnerability of place*) como marco que integra exposición biofísica y condiciones sociales en una unidad espacial analizable, mientras que @dow1992 y @liverman1990 incorporan escalas comparativas que preparan el desarrollo posterior de indicadores compuestos. Esa apuesta por la comparabilidad territorial es el antecedente directo de los índices sintéticos que dominarán la fase siguiente. Este proceso intelectual coincide con la emergencia de marcos institucionales donde desarrollo humano, pobreza multidimensional y sostenibilidad ambiental adquieren centralidad internacional —Programa de Desarrollo Humano del PNUD, CMNUCC de 1992, Protocolo de Kioto de 1997—. La vulnerabilidad comienza a funcionar como lenguaje puente entre agendas de desarrollo, riesgo ambiental y política climática, y esa función de mediación léxica es lo que explica la presión hacia su formalización en el periodo siguiente: cuando un término sirve de bisagra entre dominios con demandas propias, la exigencia de operacionalización se vuelve inevitable.
+
+#### Periodo 3 (1999–2008): expansión, formalización de marcos y giro hacia la comparabilidad {.unnumbered .unlisted}
+
+Este tramo no representa únicamente mayor producción sino una reorganización interna del campo: la vulnerabilidad comienza a estabilizarse como categoría analítica central, lo que exige definición operativa, delimitación de componentes y criterios explícitos de comparación. Esa exigencia no emerge del debate conceptual interno sino de la confluencia de una demanda institucional creciente con dos eventos de impacto global que actuaron como catalizadores directos del efecto de agenda que el corpus registra en los años 2005–2008.
+
+En el plano conceptual, el periodo está marcado por la consolidación de la vulnerabilidad en la intersección entre desarrollo, sostenibilidad y cambio climático. Los trabajos de @adger2006 formalizan una definición que articula exposición, sensibilidad y capacidad adaptativa, situando la vulnerabilidad en el cruce entre estructuras socioeconómicas y procesos ambientales. Este proceso de clarificación se refuerza con aportaciones orientadas a distinguir vulnerabilidad contextual y resultado, así como a construir marcos comparables entre escalas y regiones [@fussel2007; @gallopin2006; @brooks2005].
+La formalización climática converge con la institucionalización científica del concepto en el cuarto informe de evaluación del IPCC [@ipcc2007], donde vulnerabilidad y adaptación adquieren centralidad explícita en la arquitectura de evaluación global. A partir de este momento la categoría deja de ser periférica en estudios de impacto y se integra sistemáticamente en marcos internacionales de evaluación, ampliando su circulación entre dominios disciplinarios.
+
+De forma simultánea, la tradición socioecológica consolida una lectura relacional de la vulnerabilidad como propiedad emergente de sistemas complejos sometidos a perturbaciones múltiples. El marco de vulnerabilidad (*vulnerability framework*) en ciencias de la sostenibilidad [@turner2003] articula dimensiones sociales y biofísicas en esquemas multiescalares, mientras que los desarrollos sobre resiliencia adaptativa [@folke2006] y sistemas acoplados humano–ambientales [@berkes2002] traducen esa lectura en marcos operativos para el análisis de medios de vida y adaptación local. Lo que estas contribuciones añaden a la tradición crítica del periodo anterior no es solo mayor sofisticación metodológica sino una reorientación del objeto: la vulnerabilidad deja de ser exclusivamente una condición social previa y se convierte en una propiedad dinámica del sistema que puede aumentar o reducirse en función de cómo se gestionen sus interdependencias internas.
+
+El giro hacia la comparabilidad territorial intensifica en este periodo la producción de instrumentos de medición. El *Social Vulnerability Index* (SoVI) [@cutter2003] se convierte en referente metodológico para la construcción de índices compuestos a escala subnacional, estableciendo un procedimiento replicable que facilita la cartografía comparada pero que opera sin declarar explícitamente qué posición ontológica adopta sobre la naturaleza de la vulnerabilidad que mide —una limitación que la literatura metodológica posterior señalará de forma recurrente y que el diseño del IVEC aborda directamente.
+El proyecto europeo *Methods for the Improvement of Vulnerability Assessment in Europe* (MOVE) [@birkmann2006; @birkmann2007] avanza en una dirección distinta: en lugar de un índice único, propone un marco heurístico multidimensional que distingue exposición, susceptibilidad y falta de resiliencia, y que despliega seis dimensiones analíticas —social, económica, física, institucional, cultural y ambiental— con vocación explícita de adaptabilidad a distintos contextos. Su carácter modular lo convierte en un referente para instrumentos que, como el IVEC, necesitan operar en territorios con perfiles de vulnerabilidad heterogéneos.
+
+El tsunami del océano Índico (diciembre de 2004), con cerca de 230.000 víctimas en catorce países, expuso con una nitidez sin precedentes las asimetrías en capacidad de alerta temprana, respuesta y recuperación: lo que las imágenes globalizaron como catástrofe natural, la literatura académica llevaba dos décadas leyendo como expresión de desigualdad estructural. El Marco de Acción de Hyogo (2005–2015) fue en gran medida la respuesta institucional a esa disonancia, aunque sin resolver el problema central que el campo venía señalando: la ausencia de indicadores de vulnerabilidad social vinculantes en los sistemas nacionales de gestión del riesgo. Apenas ocho meses después, el huracán Katrina (agosto de 2005) añadió una dimensión que el tsunami no había subrayado con igual nitidez: la vulnerabilidad diferencial dentro de una sociedad desarrollada. La inundación de Nueva Orleans expuso la superposición entre raza, clase y abandono institucional, dando visibilidad empírica y política a los marcos interseccionales que la geografía crítica venía elaborando.
+El corpus confirma ese efecto de agenda: el repunte de publicaciones sobre vulnerabilidad social urbana en los años 2006–2008 es estadísticamente verificable en la MA3 y en el CPPY del periodo, y no es separable de la combinación entre impacto mediático global y demanda institucional de herramientas de diagnóstico.
+
+En síntesis, 1999–2008 es el momento en que el crecimiento cuantitativo se transforma en reordenación estructural del campo: se formalizan marcos conceptuales, se consolidan arquitecturas socioecológicas y climáticas y se expanden instrumentos territoriales de medición con una dimensión normativa explícita. Lo que no se produce es convergencia. Las tradiciones estructurales-críticas, socioecológicas y territorial-indicativas avanzan con lógicas parcialmente distintas, sedimentando una pluralidad ontológica que el propio crecimiento tiende a ocultar: cuando todos los instrumentos se llaman índices de vulnerabilidad y todos citan los mismos referentes canónicos, la heterogeneidad de supuestos que los sostiene queda invisible hasta que se intenta comparar sus resultados o combinarlos en un diagnóstico integrado.
+
+#### Periodo 4 (2009–2020): institucionalización, gobernanza y consolidación multiescalar {.unnumbered .unlisted}
+
+A diferencia del ciclo 1999–2008, donde la formalización conceptual era el rasgo distintivo, en este tramo la vulnerabilidad se consolida como categoría institucionalmente central y la demanda de instrumentos comparables alcanza una intensidad que el campo no había experimentado antes.
+
+El quinto informe de evaluación del IPCC [@field2014] refuerza la integración explícita de vulnerabilidad, riesgo y adaptación como componentes interdependientes en marcos de evaluación global, consolidando una arquitectura que ya no puede ignorarse en la planificación institucional. Autores como @adger2013 amplían la discusión hacia gobernanza, valores y justicia en la adaptación, desplazando el foco desde la definición conceptual hacia las condiciones políticas y normativas de la acción. Ese desplazamiento normativo no es cosmético: implica que la vulnerabilidad ya no puede evaluarse sin considerar quién toma las decisiones sobre la adaptación, qué intereses representan y qué distribución de cargas producen.
+
+La tradición socioecológica acompaña ese movimiento reformulando la resiliencia como propiedad dinámica de sistemas acoplados humano–ambientales [@folke2010] y avanzando hacia operacionalizaciones de la capacidad adaptativa con mayor coherencia comparativa [@engle2011]. Ese avance operativo no está, sin embargo, exento de consecuencias: el desplazamiento del énfasis desde la exposición estructural hacia la gobernanza abre la puerta a que el lenguaje de la resiliencia se despolitice y naturalice redistribuciones de riesgo que son, en realidad, decisiones políticas sobre quién soporta los costes de la adaptación. La resiliencia puede describir la capacidad de un sistema para absorber perturbaciones, pero cuando esa capacidad se mide sin preguntar quién la produce, quién la sostiene y a qué coste, el instrumento acaba ocultando bajo una métrica de capacidad las estructuras de desigualdad que determinan su distribución ---una tensión que reaparece en cualquier índice que aspire a ser normativamente neutro sin declarar sus supuestos.
+
+Varios desastres del periodo funcionaron como pruebas de estrés de los marcos que el campo había formalizado en la etapa anterior, y cada uno añadió una dimensión que los instrumentos existentes no capturaban. El terremoto de Haití (2010), con más de 200.000 víctimas, condensó en un solo evento la superposición entre pobreza estructural, fragilidad institucional y dependencia de ayuda externa, cuestionando la capacidad de los índices compuestos para incorporar la dimensión de gobernanza que @barnett2010 y @agrawal2010 estaban situando en el centro del debate académico. El terremoto y tsunami de Tōhoku (2011), seguido del accidente de Fukushima, introdujo la noción de riesgo compuesto y evidenció los límites de los modelos que tratan los peligros de forma aislada, reforzando empíricamente las arquitecturas multiamenaza que la literatura estaba desarrollando. Los huracanes Harvey, Irma y María (2017) retomaron la pregunta que Katrina había dejado abierta —en qué medida la recuperación posdesastre reproduce o transforma las estructuras de vulnerabilidad preexistentes— y la intensificaron en un contexto de cambio climático acelerado, alimentando directamente la producción sobre gobernanza adaptativa y justicia distributiva que caracteriza la segunda mitad del periodo.
+
+La elaboración de indicadores de medida se vuelve más sofisticada y multiescalar, pero esa sofisticación no resuelve el problema que venía acumulándose desde el periodo anterior.
+@birkmann2013 profundiza en arquitecturas conceptuales que buscan sistematizar dimensiones físicas, sociales e institucionales bajo el marco MOVE ---cuyo desarrollo conceptual en relación con el IVEC se examina en el capítulo tercero---, @cutter2014 amplía la dimensión comparativa y territorial de los diagnósticos, y en el contexto español el *Atlas de Vulnerabilidad Urbana* [@aja2015] operacionaliza la vulnerabilidad a escala de sección censal mediante indicadores socioeconómicos, residenciales y subjetivos en un sistema de diagnóstico comparativo para el conjunto del territorio nacional. En el ámbito valenciano, VEUS-CV [@temes2019-veus; @temes2020-veus] avanza en esa misma dirección aplicando indicadores de vulnerabilidad urbana a escala de sección censal en la Comunitat Valenciana, y constituye el antecedente directo del IVEC: comparte con él el ámbito territorial, la atención a la escala inframunicipal y buena parte de las fuentes, y es la referencia sobre la que el instrumento que esta tesis construye se apoya y a la que da continuidad. La limitación que la sección de síntesis de este capítulo abordará no es una deficiencia de un instrumento concreto sino una propiedad compartida por esta generación de índices de diagnóstico territorial: la mayoría no declara explícitamente qué posición ontológica adopta sobre la naturaleza de la vulnerabilidad que mide, de modo que su apariencia de precisión técnica descansa sobre decisiones conceptuales implícitas que determinan qué territorios aparecen como vulnerables y cuáles no [@tate2012]. Cuando índices construidos sobre supuestos distintos se aplican al mismo territorio producen diagnósticos incompatibles, y la proliferación de herramientas desplaza la heterogeneidad desde el plano conceptual al metodológico sin eliminarla: es precisamente en este punto donde el campo comienza a enfrentarse al problema de interoperabilidad que este capítulo tiene por objeto explicar. El IVEC recoge esa trayectoria y la prolonga con tres rasgos que articula de manera simultánea: la resolución de cuadrícula de 1 km² en el módulo base, la cobertura poblacional universal sin muestreo y la declaración explícita de la posición ontológica desde la que operacionaliza la vulnerabilidad antes de seleccionar cualquier indicador.
+
+La transición del Marco de Acción de Hyogo al Marco de Sendai [@undrr2015] y la adopción de la Agenda 2030 [@un2015] consolidan la exigencia institucional de indicadores, metas y sistemas de seguimiento comparables. Esa exigencia hace más visible, no menos, el problema de interoperabilidad: cuando la demanda institucional de comparabilidad se intensifica, las incompatibilidades entre instrumentos construidos sobre supuestos distintos dejan de ser un problema académico y se convierten en un obstáculo para la planificación. El efecto observable en el corpus es una intensificación de trabajos que buscan traducir pluralidad conceptual en variables observables y comparables, sin que esa búsqueda produzca convergencia metodológica.
+
+Hacia el final del periodo, la pandemia de COVID-19 reorienta parcialmente la producción hacia desigualdad estructural, fragilidad institucional y exposición diferencial en contextos urbanos y sanitarios [@who2020], anticipando una reconfiguración temática que el campo venía preparando desde los debates sobre vulnerabilidad interseccional y que el periodo siguiente consolidará. Sin desplazar el eje climático, el campo amplía su radio hacia salud pública y protección social, incorporando dimensiones que los instrumentos de diagnóstico territorial existentes no estaban diseñados para capturar.
+
+#### Periodo 5 (2021–2024): densificación empírica, justicia climática y proliferación sin convergencia {.unnumbered .unlisted}
+
+El periodo 2021–2024 no representa un simple aumento adicional del volumen sino una fase de densificación temática acelerada. El CPPY de estos documentos sigue el patrón artefactual propio de cualquier tramo reciente ---escaso tiempo para acumular citación, como ya se señaló para el conjunto del periodo en la lectura del gráfico--- y no es un indicador fiable de impacto relativo; la densificación que caracteriza este periodo es de otra naturaleza: es la convergencia de múltiples agendas sectoriales bajo una misma presión empírica. Ese crecimiento se produce en un contexto de acumulación de evidencia empírica global que presiona sobre el campo para producir diagnósticos integrados: la secuencia de eventos extremos de los años previos —las inundaciones de Europa central y el valle del Indo (2021–2022), las olas de calor en el hemisferio norte (2021–2023), las sequías prolongadas en el Cuerno de África, la intensificación de los ciclones tropicales— había convertido la vulnerabilidad diferencial en un problema de primera línea política y científica.
+
+El ciclo AR6 del IPCC [@ipcc2022] reordena el lenguaje científico-político en torno a riesgo compuesto, pérdidas y daños, adaptación transformativa y límites a la adaptación, incorporando esa evidencia bajo el concepto de riesgo climático compuesto y situando la vulnerabilidad diferencial —geográfica, socioeconómica, institucional— en el centro del análisis de impactos [@berrangford2021]. Con ello se cierra un ciclo que el tsunami del Índico y el huracán Katrina habían abierto dos décadas antes: lo que entonces era argumento académico es ahora el núcleo de la evaluación científica global.
+
+La consolidación del eje de justicia y desigualdad acompaña ese proceso: trabajos recientes sobre justicia climática [@eriksen2021], pobreza energética [@bouzarovski2017] y vulnerabilidad interseccional [@anguelovski2016] refuerzan la lectura de la vulnerabilidad como fenómeno distributivo atravesado por género, clase, etnia y acceso diferencial a infraestructuras, desarrollando críticamente la línea que Katrina había hecho políticamente ineludible y que la pandemia de COVID-19 confirmó con una escala sin precedentes. Lo que el COVID evidenció —que las mismas estructuras que amplifican el daño en desastres naturales determinan quién enferma, quién muere y quién se recupera— no contradijo los marcos existentes sino que los confirmó, consolidando la desigualdad estructural como eje transversal que conecta adaptación climática, salud pública y protección social bajo una misma arquitectura analítica, aunque sin resolver las fricciones metodológicas entre sus tradiciones de medición.
+
+La expansión de técnicas espaciales, modelos multivariantes y fuentes de datos administrativos aplicados a escalas subestatales y urbanas consolida una línea de producción altamente indexada, con fuerte presencia de estudios procedentes de Asia oriental, América Latina y África subsahariana, que traduce la vulnerabilidad en métricas territoriales comparables y amplía la base empírica del campo. Esa ampliación, sin embargo, intensifica la tensión ya detectada en periodos anteriores: cada nuevo dominio de aplicación incorpora supuestos propios sobre qué es la vulnerabilidad, qué variables la representan y qué escala es la apropiada para medirla, produciendo una proliferación de diagnósticos que no necesariamente pueden compararse entre sí ni acumularse en síntesis coherentes [@tate2012; @mah2023]. La multiplicación de métricas bajo un mismo rótulo no es un problema de cantidad sino de arquitectura: el campo crece por adición de instrumentos sin que los supuestos que los sostienen sean declarados ni contrastados. Es ese patrón el que la sección de síntesis de este capítulo traduce en cinco vacíos persistentes y siete requisitos de diseño verificables ---R1 a R7---, y el que justifica que el IVEC declare explícitamente, antes de seleccionar cualquier indicador, la posición ontológica desde la que opera, el régimen de evidencia al que se adscribe y las incompatibilidades que su arquitectura modular no resuelve sino que gestiona con transparencia.
+
+Ningún evento reciente ilustra con mayor crudeza la vigencia de ese argumento en el contexto europeo que la dana de octubre de 2024 en la Comunitat Valenciana. La magnitud del daño del 29 de octubre no respondió a una anomalía climática sin precedentes, sino a la superposición entre un fenómeno meteorológico de alta intensidad, una exposición físico-ambiental históricamente conocida ---la urbanización de llanos de inundación--- y la ausencia de mecanismos que tradujeran el conocimiento disponible en acción anticipatoria. Lo que hace especialmente significativo este caso para los propósitos de este capítulo es que el territorio no carecía de instrumentos de diagnóstico: VEUS-CV [@temes2019-veus; @temes2020-veus] había cartografiado a escala autonómica los espacios urbanos sensibles de la Comunitat y el PATRICOVA tenía delimitada la peligrosidad de inundación del área afectada. Sin embargo, la coexistencia de esos diagnósticos ---construidos desde lógicas distintas y no articulados entre sí--- no impidió el desastre ni activó protocolos de actuación diferenciados según el riesgo de cada territorio.
+
+Las causas raíz que el modelo PAR había formalizado treinta años antes se verificaron sobre un territorio que disponía de diagnóstico, pero carecía de los mecanismos de traducción entre ese diagnóstico y la acción institucional: la urbanización en zonas de riesgo históricamente conocidas, la fragmentación de la gobernanza del riesgo entre administraciones con competencias solapadas y sin mecanismos de coordinación efectiva, los déficits en los sistemas de alerta temprana y la existencia de poblaciones con escasa capacidad de respuesta autónoma. Por consiguiente, la dana no es, en este sentido, una excepción al argumento del capítulo sino su demostración más inmediata: sitúa el problema de interoperabilidad diagnóstica —qué sirve para comparar, anticipar y actuar, y bajo qué condiciones un instrumento de diagnóstico puede articularse con decisiones de gobernanza— en el centro de una agenda que difícilmente puede seguir siendo solo académica.
+
+El crecimiento del campo en este periodo es, en síntesis, indisociable de su diferenciación interna. Cada nuevo dominio de aplicación, cada nuevo contexto geográfico y cada nueva demanda institucional incorpora supuestos propios que la adopción de una misma etiqueta —vulnerabilidad— no elimina, sino que enmascara bajo un vocabulario superficialmente unificado. El campo habla con un vocabulario crecientemente compartido —como confirma la modularidad decreciente de la red de coocurrencias, esto es, la pérdida progresiva de fronteras nítidas entre comunidades temáticas que antes operaban como subcampos diferenciados— pero se sostiene en tradiciones bibliográficas que permanecen diferenciadas, como establecerá el análisis de acoplamiento en la sección siguiente. Esa estructura es precisamente lo que las secciones siguientes tienen por objeto explicar: no como déficit que deba corregirse sino como condición del campo que cualquier instrumento de diagnóstico territorial debe gestionar con transparencia.
+
+### Cierre interpretativo del plano temporal: crecimiento no implica convergencia
+
+La reconstrucción temporal permite identificar tres transformaciones estructurales en la trayectoria del campo: de categoría crítica a categoría operativa, de concepto teórico-crítico a magnitud cuantificable, y de concepto disciplinar a eje transversal en marcos internacionales. Lo decisivo no es que esas transformaciones se hayan producido en secuencia, sino que son acumulativas: cada estrato coexiste con los anteriores sin sustituirlos, de modo que el campo que emerge no es el resultado de una evolución lineal hacia una mayor precisión, sino la superposición de marcos con lógicas parcialmente incompatibles. Un instrumento que mide la vulnerabilidad como exposición al riesgo no ha reemplazado a uno que la mide como condición estructural históricamente producida: ambos coexisten bajo el mismo rótulo, se citan mutuamente y compiten por la misma demanda institucional. Esa coexistencia sin integración es la que hace del campo un espacio de alta productividad y baja conmensurabilidad.
+
+Lo que sostiene esa lógica acumulativa no es solo la dinámica interna de la academia. A lo largo de las cuatro décadas analizadas, una sucesión de desastres de gran impacto actuó como una secuencia de ventanas de problema público que ampliaron la demanda de conceptos operativos, reorientaron las agendas de investigación y otorgaron visibilidad política a dimensiones de la vulnerabilidad que la literatura venía elaborando con menor urgencia. Si bien cada evento no creó el conocimiento desde cero, sí aceleró su circulación, legitimó sus marcos y presionó a las instituciones para traducirlo en herramientas de medición y gobernanza. Lo que el terremoto de México evidenciaba como marginalización estructural, el huracán Katrina lo reencuadraba como desigualdad étnica e institucional, y el tsunami del Índico, como asimetría global en la capacidad de respuesta: un mismo tipo de evento, leído desde marcos distintos, reforzaba tradiciones distintas sin forzar su integración. Cada ciclo de expansión incorporó nuevas tradiciones y dominios de aplicación que ampliaron el perímetro del campo sin homogeneizar sus fundamentos; así, las instituciones que demandaban herramientas comparables —desde el IPCC hasta los gobiernos autonómicos— recibieron instrumentos construidos sobre supuestos heterogéneos sin disponer de criterios para evaluar en qué medida eran compatibles entre sí.
+
+El resultado es un concepto de alta centralidad y baja integración interna. Cuanto más se usa, más significados coexisten bajo el mismo rótulo, y esa condición no es un déficit transitorio, sino una propiedad estructural del campo: el término funciona precisamente porque no exige equivalencia conceptual entre quienes lo utilizan, permitiendo que la ecología sistémica, la economía política, la geografía crítica y la gestión del riesgo lo movilicen simultáneamente sin necesidad de acordar su definición. Esa capacidad de coordinación sin integración es lo que convierte a la interoperabilidad en un problema estructural del campo y no en un déficit técnico resoluble con mejores métricas. Los datos bibliométricos lo confirman desde dos ángulos: en el primero, el corpus muestra un crecimiento sostenido que no se traduce en una modularidad creciente de la red de coocurrencias; y en el segundo, el análisis de acoplamiento evidencia que conocer el área temática de un artículo reduce en menos de un 4% la incertidumbre sobre la tradición bibliográfica que lo fundamenta. El campo habla con vocabularios que tienden a la integración, pero se lee desde tradiciones que permanecen diferenciadas.
+
+Esta doble condición tiene una implicación directa para la interpretación de la dinámica temporal: el volumen de publicaciones no informa por sí solo sobre la integración del campo, porque un aumento de producción puede corresponder tanto a una convergencia en torno a un núcleo compartido como a una diferenciación en subcampos paralelos que comparten vocabulario sin compartir supuestos. Por ello, la dinámica temporal requiere ser complementada con el plano semántico —§\@ref(sec-coocurrencias-cap2)— y el plano intelectual —§\@ref(sec-cocitacion-cap2)—, y solo resulta plenamente interpretable cuando se analiza el acoplamiento KW–CR, que permite observar en qué medida las áreas temáticas y las tradiciones de referencia efectivamente se articulan o discurren en paralelo en el corpus.
+
+## Estructura semántica, intelectual y temática del campo {#sec-estructura-semantica-cap2}
+
+El plano temporal ha mostrado cómo creció el campo y en qué condiciones lo hizo: cinco fases sucesivas, cada una activada por la confluencia de una acumulación interna con ventanas de problema público, con el resultado de un corpus de 22.098 documentos que combina volumen creciente con impacto normalizado estable y, como tendencia sostenida a lo largo de todo el recorrido, integración conceptual débil.
+
+Lo que el plano temporal no puede responder es *cómo se organiza internamente* ese corpus: qué vocabulario emplea el campo para describirse a sí mismo, qué repertorios de referencia moviliza como fundamento intelectual, y en qué medida ambas dimensiones se corresponden o divergen.
+Para responder a esas preguntas, el análisis se desplaza desde la dinámica hacia la estructura, con tres técnicas relacionales encadenadas que operan sobre el mismo corpus pero observan objetos distintos.
+
+El análisis de coocurrencias de palabras clave reconstruye la organización semántica *explícita* del campo: el vocabulario con el que la literatura se etiqueta a sí misma en cada artículo, sus patrones de coaparición recurrentes y las áreas temáticas que emergen de esas regularidades.
+El análisis de cocitación aborda la arquitectura intelectual *implícita*: qué obras se citan juntamente como marco de lectura, cómo se organizan esas copresencias en polos de referencia y con qué grado de cohesión o fragmentación.
+El análisis de acoplamiento^[En bibliometría, dos documentos están *acoplados* cuando comparten una o más referencias citadas: cuanto mayor es el solapamiento de su repertorio bibliográfico, más fuerte es el acoplamiento. Aplicado a nivel agregado entre dos clasificaciones distintas del mismo corpus ---en este capítulo, las áreas temáticas derivadas de las palabras clave (*Keywords*, KW) y los polos intelectuales derivados de las referencias citadas (*Cited References*, CR)---, el análisis de acoplamiento KW↔CR estima en qué medida cada área temática se apoya en un repertorio bibliográfico específico (acoplamiento fuerte, correspondencia tema-tradición) o utiliza un repertorio compartido con otras áreas (acoplamiento débil, repertorio transversal). El procedimiento técnico completo se documenta en el Apéndice \@ref(app-biblio), §\@ref(integracion-cruzada).] KW↔CR cruza ambas dimensiones a nivel documental —cada artículo que dispone de palabras clave y referencias citadas es una unidad de observación— para estimar en qué medida las etiquetas temáticas del campo se apoyan en tradiciones intelectuales diferenciadas o se sostienen, por el contrario, sobre un repertorio compartido y disperso.
+Los tres análisis reportan métricas estructurales equivalentes y comparables por periodos, de modo que la lectura que sigue es acumulativa: cada técnica añade una capa de evidencia sobre la misma pregunta, y es la confluencia de las tres la que permite formular una respuesta con base empírica.
+Los procedimientos completos se documentan en el Apéndice \@ref(app-biblio): las coocurrencias en §\@ref(app-biblio-coocurrencias), la cocitación en §\@ref(app-biblio-cocitacion) y el acoplamiento KW↔CR en §\@ref(integracion-cruzada); a esas secciones se remite la justificación técnica de parámetros, umbrales y criterios de representación.
+Este bloque se centra en la interpretación sustantiva de los resultados.
+
+### Plano semántico: estructura de coocurrencias del vocabulario {#sec-coocurrencias-cap2}
+
+El análisis de coocurrencias de palabras clave pregunta por el vocabulario operativo del campo: no qué se *afirma* en los artículos, sino con qué términos coexisten las etiquetas en los mismos registros, formando asociaciones suficientemente recurrentes para que sea posible hablar de un léxico estabilizado.
+La unidad relacional es el par de términos que coaparece en un mismo documento con una frecuencia mínima; la red resultante codifica la densidad de esas asociaciones y, mediante detección de áreas temáticas, produce una partición operativa del espacio semántico.
+Esta partición no reproduce necesariamente los límites disciplinares reconocibles desde fuera del campo: refleja cómo el campo se autoetiqueta, una propiedad empírica distinta de cómo podría organizarse si la taxonomía se construyera desde criterios teóricos externos, y es precisamente esa distancia entre autoetiquetado y organización teórica la que hace del análisis semántico un instrumento para observar el campo tal como funciona, no tal como debería funcionar.
+
+La red global 1980–2024 produce 999 nodos efectivos distribuidos entre un hub central y once áreas temáticas diferenciadas.
+La trayectoria de la modularidad —medida de cuán nítidas son las fronteras entre áreas— describe una caída sostenida desde los periodos más recientes: no indica ausencia de estructura sino que los límites entre áreas se hacen más permeables en el núcleo observado.
+El vocabulario del campo se densifica —las aristas del núcleo crecen de forma muy pronunciada entre el periodo 1999–2008 y el siguiente— pero lo hace integrando términos de áreas distintas, produciendo mayor conectividad con menor segmentación interna.
+La densificación semántica es una propiedad de la red; la convergencia teórica sería una propiedad del contenido.
+Que el campo use más palabras en cada artículo y que esas palabras coexistan más a menudo entre sí no implica que las áreas temáticas estén convergiendo en un marco conceptual unificado: implica que el vocabulario circula con mayor fluidez entre tradiciones que permanecen conceptualmente diferenciadas.
+Para los instrumentos de diagnóstico territorial, esa fluidez tiene una consecuencia directa: dos índices pueden compartir las mismas etiquetas —*vulnerability*, *exposure*, *resilience*— y estar midiendo objetos analíticamente distintos.
+
+Los procedimientos técnicos de construcción de la red —parámetros, umbrales, distribución gráfica (*layout*) y criterios de detección de áreas— se documentan en el Apéndice \@ref(app-biblio-cooc-mapas).
+Lo que sigue es la lectura interpretativa de las once áreas temáticas de la red global, donde la centralidad de un nodo —la intensidad con que coexiste con el resto del vocabulario— y el tamaño de un área —el volumen de vocabulario consistentemente etiquetado bajo ese paraguas— se usan como indicadores de posición en el campo, no como medidas de importancia teórica.
+
+```{r fig-coocurrencias-1980-2024, echo=FALSE, fig.env='sidewaysfigure', fig.cap="Red de coocurrencias de términos temáticos en el campo de la vulnerabilidad social (1980–2024). El tamaño del nodo representa la prominencia del término en el corpus y los enlaces indican coaparición en los mismos documentos. Los colores corresponden a áreas temáticas detectadas por clústering sobre la red.", fig.scap="Red de coocurrencias (1980–2024).", fig.align="center", out.width="0.90\\textheight"}
+knitr::include_graphics(fig_ext("outputs/figures/app-b/cooc_kw_map_1980_2024"))
+```
+
+\FloatBarrier
+
+#### El hub central y las once áreas temáticas {.unnumbered}
+
+La figura más saliente del mapa semántico es estructural antes de ser temática.
+El término *vulnerability* ocupa la posición de hub dominante de la red, sin par en el corpus en su intensidad de conexión: su fuerza de enlace supera en un factor de 1,47 al segundo nodo más conectado y en más del doble al término más fuerte de cualquiera de las once áreas.
+El nodo se sitúa en el centro geométrico del mapa con acceso directo a todas las áreas, y el clúster que lo rodea opera como zona de tránsito entre agendas antes que como área temática con vocabulario propio, precisamente porque ningún otro término alcanza en ese espacio una densidad de coocurrencia equivalente a la del término-eje (*hub*) del mapa.
+
+Esa centralidad es, en sí misma, evidencia de la tesis central del capítulo.
+Un hub de esta magnitud indica que el término aparece juntamente con casi todo el vocabulario del campo, lo que significa que actúa como calificador genérico más que como delimitador temático: se aplica indistintamente a situaciones de riesgo de desastre, a exclusión social, a medios de vida rurales, a poblaciones urbanas y a sistemas socioecológicos.
+Su omnipresencia no le confiere especificidad semántica; al contrario, revela que el término funciona como punto de contacto que permite la coordinación entre comunidades epistémicas diversas sin exigirles equivalencia conceptual.
+La alta centralidad es la medida cuantitativa de esa capacidad de coordinación sin integración que el análisis temporal fue construyendo progresivamente.
+
+Las once áreas temáticas que rodean ese hub se organizan en tres grupos según su posición en el mapa y la coherencia de su vocabulario, más dos áreas de posición periférica con funciones específicas en la arquitectura del campo.
+
+El arco occidental agrupa las tradiciones con raíces más antiguas en la literatura de desastres y sistemas socioecológicos.
+El área de *adaptación, resiliencia y capacidades* es la más densa en enlaces internos y concentra el vocabulario de la gestión del riesgo climático construido durante las fases de expansión institucional —*adaptation*, *resilience*, *adaptive-capacity*, *governance*—; como se argumentó en el plano temporal, incorporó la agenda de los marcos internacionales sin disolver las tensiones entre enfoques, y la caída de modularidad de la red semántica en los periodos tardíos —coherente con fronteras entre áreas más permeables en el núcleo observado— es especialmente visible en el vocabulario que esta área concentra, lo que sugiere su función como espacio de tránsito antes que como tradición consolidada.
+El área de *riesgo de desastre y vulnerabilidad social* conecta la tradición de los desastres con la agenda de adaptación costera, con *climate change* y vocabulario de exposición litoral como términos dominantes.
+El área de *gestión ambiental y sostenibilidad* recoge la agenda de los sistemas socioecológicos, articulada en torno a *management*, *sustainability* y *ecosystem-services*.
+Los tres clústeres de este arco comparten vocabulario de puente —*systems*, *communities*, *governance*—, lo que indica que sus fronteras semánticas son más permeables entre sí que respecto al cuadrante derecho del mapa, una permeabilidad que la caída de modularidad en los periodos tardíos refleja con claridad.
+
+El cuadrante derecho agrupa las agendas que llegaron al campo durante la expansión más reciente, portando vocabulario de las ciencias sociales, la geografía crítica y los estudios de desigualdad.
+El área de *desigualdades en salud y exclusión social* es el clúster más extenso del mapa: su núcleo léxico combina vocabulario sociosanitario con términos de exclusión y género, y la pandemia amplificó una trayectoria de absorción de ese vocabulario que ya era observable antes de 2020.
+El área de *territorio, política y migraciones* está anclada en el vocabulario de la geografía de la precariedad —*place*, *politics*, *migration*, *precarity*, *power*— y representa la entrada más reciente de la sociología urbana crítica al campo.
+El área de *justicia y pobreza energética*, posicionada estratégicamente entre los dos cuadrantes, organiza vocabulario de justicia distributiva y conecta la agenda climática con la de desigualdad social.
+Que estas tres áreas ocupen el cuadrante derecho del mapa y que su vocabulario sea el que más ha crecido en el último periodo es coherente con el desplazamiento normativo que el plano temporal identificaba en la fase 2009–2020: la vulnerabilidad como fenómeno distributivo atravesado por clase, género y acceso diferencial a infraestructuras.
+
+La franja inferior concentra el vocabulario operativo y metodológico.
+El área de *vulnerabilidad urbana y ciudades* reúne la terminología de la medición y el riesgo aplicado —*social vulnerability*, *disaster-risk*, *flood*, *exposure*— y es la que articula más directamente el problema de interoperabilidad diagnóstica: agrupa bajo un mismo paraguas semántico vocabulario procedente de índices y métricas de tradiciones distintas, de modo que la coocurrencia de términos no implica compatibilidad de supuestos.
+El área de *modelización, SIG y análisis espacial* consolida el vocabulario técnico-instrumental —*indicator-system*, *gis*, *spatial-analysis*— y es la tradición léxica en la que se inscriben los instrumentos de diagnóstico territorial como el *Atlas de Vulnerabilidad Urbana de España* [@aja2015] y VEUS-CV [@temes2019-veus; @temes2020-veus]: producen diagnósticos comparables en términos de vocabulario operativo, pero la compatibilidad semántica no garantiza interoperabilidad en condiciones de uso.
+El área de *cambio climático, impactos y extremos*, la de menor extensión del grupo, organiza vocabulario de impactos observados y constituye el punto de entrada más reciente de la literatura de atribución climática al campo.
+
+Dos áreas completan la arquitectura desde posiciones que el mapa representa como periféricas pero que el argumento no puede tratar como tales.
+El área de *medios de vida y seguridad alimentaria* sostiene la tradición del modelo PAR en su vocabulario más aplicado —*livelihoods*, *food-security*— con fuerte presencia de contextos del sur global, y su distancia geométrica respecto al arco occidental es coherente con una tradición que ha mantenido presencia estable sin integrarse plenamente en el vocabulario de la adaptación climática.
+Que uno de los pilares teóricos del IVEC aparezca como área periférica en la red semántica global no indica marginalidad del enfoque sino especificidad léxica: esta área usa un vocabulario suficientemente propio para no quedar absorbida por el hub.
+El área de *percepción del riesgo y gobernanza participativa* recoge el vocabulario de la comunicación del riesgo y los enfoques participativos, y actúa como espacio de contacto transversal entre áreas que de otro modo permanecen segregadas; su posición central en el mapa, rodeando al hub, es coherente con esa función mediadora.
+
+### Plano intelectual: redes de cocitación de referencias {#sec-cocitacion-cap2}
+
+Si el análisis de coocurrencias revela cómo el campo se etiqueta a sí mismo, el análisis de cocitación revela a qué se remite.
+Dos referencias cocitadas son aquellas que aparecen juntamente en la lista bibliográfica de un mismo artículo; la frecuencia con que esa coaparición ocurre a lo largo del corpus mide la intensidad con que ambas obras se movilizan como marco de lectura compartido.
+La red que resulta de agregar todas esas coapariciones no describe el vocabulario del campo sino su memoria bibliográfica: qué obras actúan como fundamento reconocible, con qué otras obras se vinculan y con qué fuerza.
+Los polos que emergen de la detección de áreas en esa red son grupos de referencias que se citan juntamente con mayor frecuencia de la que cabría esperar por azar, y representan las tradiciones sobre las que el campo apoya su argumentación, no necesariamente las que nombra en sus palabras clave.
+
+La distinción entre lo que el campo dice y lo que el campo cita es precisamente la que hace útil el paso de coocurrencias a cocitación.
+Un área temática puede hablar profusamente de *resiliencia* y *adaptación* apoyándose en obras procedentes de la ecología de sistemas, de la ciencia política o de la antropología: el vocabulario es el mismo, el repertorio de referencia es divergente.
+Esa posibilidad —un mismo vocabulario sostenido en tradiciones distintas— es la que convierte la comparación entre la partición semántica y la partición intelectual en el instrumento más preciso para diagnosticar el grado de integración real del campo, comparación que el análisis de acoplamiento abordará en la sección siguiente y que requiere que ambas particiones se hayan descrito por separado.
+
+La red global 1980–2024 se construye bajo los mismos parámetros de focalización que la red de coocurrencias —Top-1000 y umbrales equivalentes— para garantizar que las diferencias entre planos sean atribuibles a propiedades estructurales de cada tipo de red y no a decisiones asimétricas de construcción.
+El resultado son 1.000 nodos distribuidos en diez polos intelectuales diferenciados.
+A diferencia de lo que ocurría en el plano semántico, no existe aquí ningún nodo con propiedades de hub universal: la cocitación produce una estructura más distribuida, en la que varios polos compiten en fuerza sin que ninguna referencia individual monopolice el campo relacional.
+Esa descentralización es en sí misma un dato: la arquitectura intelectual del campo es más distribuida que su arquitectura semántica, lo que anticipa que la integración —o su ausencia— opera de manera diferente en cada plano y que la aparente convergencia del vocabulario no tiene un correlato equivalente en la estructura de las tradiciones de referencia.
+Los procedimientos y métricas por periodos se documentan en el Apéndice \@ref(app-biblio-cocitacion).
+
+```{r fig-cocitacion-1980-2024, echo=FALSE, fig.env='sidewaysfigure', fig.cap="Red de cocitación de autores y entidades en las referencias de las publicaciones del campo de la vulnerabilidad social (1980–2024). El tamaño del nodo representa la prominencia del autor/entidad en el corpus y los enlaces indican coaparición en los mismos documentos. Los colores corresponden a comunidades detectadas por clústering sobre la red.", fig.scap="Red de cocitación (1980–2024).", fig.align="center", out.width="0.90\\textheight"}
+
+knitr::include_graphics(fig_ext("outputs/figures/app-b/cocit_cr_map_1980_2024"))
+```
+
+\FloatBarrier
+
+#### Los diez polos intelectuales {.unnumbered}
+
+El mapa de cocitación no tiene hub.
+Esa ausencia es el primer dato relevante y marca la diferencia fundamental con el plano semántico. Donde la red de coocurrencias producía un término central que monopolizaba el espacio relacional, la red de cocitación distribuye la fuerza entre varios polos sin que ninguna referencia individual concentre el campo.
+Lo que el mapa muestra en su lugar es una asimetría de otro tipo: el polo de mayor densidad relacional no es el más extenso en número de nodos, y el polo más extenso no es el más citado.
+
+El polo de *capacidades, medios de vida y economía política*, con apenas 54 nodos, acumula la mayor fuerza de enlace del mapa en su referencia dominante —@adger2006—, concentrando en torno a ella a @turner2003, @watts1993, @sen1981, @ellis2000, @bohle1994 y @chambers1989: el canon fundacional de la vulnerabilidad como proceso social, que articula la tradición de los medios de vida con la economía política del riesgo y la teoría de los derechos de acceso de Sen. Este polo es el más antiguo en términos de la media de publicación de sus referencias, el más internamente cohesionado y el que menos nodos necesita para estructurar una tradición reconocible.
+Su reducido tamaño no indica marginalidad: indica que la tradición ya estaba estabilizada cuando la mayor parte del corpus fue producida.
+
+En el extremo opuesto, el polo *aplicado reciente* es el más extenso con 187 nodos.
+No está organizado en torno a obras canónicas individuales sino a grupos de producción dominados por familias de artículos de la literatura asiática reciente, prácticamente todos publicados después de 2010 y orientados a la construcción de índices, modelos de simulación y evaluaciones empíricas de vulnerabilidad a escala local y regional.
+Que ninguna referencia individual de este polo alcance la prominencia de las obras fundacionales de los polos más consolidados no refleja menor impacto sino una estructura distinta de acumulación: la cocitación aquí se produce entre trabajos próximos en el tiempo y el tema, no entre obras que actúan como marcos fundacionales compartidos.
+Es un polo de volumen y de contemporaneidad, no de densidad canónica, y su tamaño indica la dirección en que se mueve el campo desde 2015: una expansión cuantitativa intensa con alta producción empírica concentrada geográficamente, que genera vínculos de cocitación densos pero de menor alcance genealógico que los polos más consolidados.
+
+Entre esos dos extremos, los polos intermedios articulan las tradiciones que estructuran el núcleo del campo.
+El polo de *vulnerabilidad social territorial y reducción del riesgo de desastres* (*Disaster Risk Reduction*, DRR), con 129 nodos, está organizado alrededor de @cutter2003, @wisner2004, @blaikie1994 y @cutter2008: agrupa bajo un mismo repertorio de cocitación tanto el Social Vulnerability Index como el modelo PAR, dos instrumentos con lógicas distintas —uno orientado a la medición estadística comparada, otro a la crítica de las causas estructurales del daño— cuya proximidad citacional refleja más una genealogía compartida de problemas que una convergencia metodológica.
+Su posición en el mapa lo sitúa como punto de paso obligado entre el polo teórico-fundacional de capacidades y los polos de métricas climáticas y de resiliencia.
+El polo de *resiliencia y sistemas socioecológicos* está anclado en @folke2006, @holling1973, @gallopin2006 y @walker2004: la tradición de la ecología de sistemas que introdujo el concepto de resiliencia como propiedad emergente de sistemas adaptativos complejos.
+Su proximidad con el polo de capacidades y medios de vida no es casual: ambos comparten referencias de frontera —en particular @adger2000 sobre capital social y resiliencia costera— y son característicos de tradiciones que conversan sin fusionarse.
+
+El polo de *conceptos y métricas de vulnerabilidad climática* está organizado en torno a @fussel2007, @brooks2005, @kelly2000 y @adger2003: la tradición que formalizó los marcos analíticos de la vulnerabilidad climática —exposición, sensibilidad, capacidad adaptativa— y los convirtió en el vocabulario estándar de los informes IPCC.
+Su proximidad con el polo de *conocimiento local y adaptación climática en el Sur Global* —donde dominan @smit2006 y @adger2005— refleja la continuidad intelectual entre la conceptualización de capacidad adaptativa y sus aplicaciones en contextos de conocimiento ecológico local.
+El polo de *evaluación institucional del riesgo* agrupa los informes de síntesis del IPCC [@ipcc2022; @field2014; @pachauri2014] y funciona como polo de legitimación institucional: los artículos que lo citan no provienen de una sola tradición sino que lo invocan como autoridad compartida desde perspectivas muy diversas, lo que lo convierte en un indicador de circulación más que de pertenencia teórica, y explica también sus limitaciones para capturar la vulnerabilidad social en sentido estricto, dado que los informes institucionales tienden a privilegiar marcos de impacto físico sobre marcos de desigualdad estructural.
+El polo de *gobernanza y transformación adaptativa* agrupa referencias sobre los límites políticos y sociales de la adaptación [@adger2009; @pelling2011; @barnett2010]: una tradición que pregunta no solo cómo adaptarse sino a qué adaptarse y con qué consecuencias distributivas, desplazando el foco desde la capacidad técnica hacia la dimensión transformativa.
+Su distancia respecto al polo de vulnerabilidad social territorial es coherente con la diferencia de objeto: aunque ambos tratan vulnerabilidad y desastres, sus repertorios de referencia pertenecen a genealogías suficientemente distintas para que el algoritmo los separe.
+
+Los dos polos más pequeños completan el cuadro con argumentos que el análisis semántico no habría podido aislar con igual precisión.
+El polo de *teoría social*, con 111 nodos, está organizado en torno a @beck1992, @standing2011, @coleman1988, @bourdieu1984 y @butler2004: el espacio donde la sociología y la filosofía política se citan juntamente como fundamento de lecturas críticas de la vulnerabilidad.
+La presencia de autores como Beck o Bourdieu en este polo como referencias citadas por los artículos del corpus es distinta de su función como marcos de lectura del campo en este capítulo: aquí su coaparición bibliográfica refleja más la promiscuidad citacional de los trabajos de ciencias sociales críticas que una convergencia teórica real, y es precisamente esa promiscuidad la que hace de este polo un indicador del grado en que el campo ha absorbido vocabulario crítico sin necesariamente articularlo en un marco coherente.
+El polo de *pobreza energética y justicia*, el más reducido con 34 nodos, agrupa las referencias fundacionales de esa agenda [@walker2012; @bouzarovski2014; @boardman1991]: su pequeño tamaño confirma que es una agenda de entrada reciente al campo, aún en proceso de acumulación de su propio repertorio canónico, coherente con lo que el análisis semántico ya sugería para el área temática correspondiente.
+
+### Lo que el mapa de cocitación revela y dónde diverge del semántico
+
+La comparación entre la partición intelectual en diez polos y la partición semántica en once áreas temáticas produce el hallazgo más relevante de este bloque de análisis: las dos particiones no se corresponden. El número de divisiones es distinto, los tamaños relativos de las unidades son asimétricos y, sobre todo, la geografía de las relaciones entre polos no replica la geografía de las relaciones entre áreas.
+
+El polo de *capacidades, medios de vida y economía política*, el más cohesionado del mapa intelectual, no tiene un equivalente de igual tamaño en las áreas temáticas: su vocabulario se distribuye entre el área de adaptación y resiliencia, el área de riesgo de desastre y el área de medios de vida y seguridad alimentaria, que son áreas distintas entre sí.
+
+El polo *aplicado reciente*, el más extenso, tampoco tiene un correlato directo: su producción empírica aparece repartida entre el área de gestión ambiental, el área de vulnerabilidad urbana y el área de justicia y pobreza energética según los temas concretos tratados. Esta no-correspondencia no es un artefacto metodológico ni un problema de parametrización: es evidencia directa de que el campo funciona con vocabularios temáticos relativamente integrados pero con repertorios de referencia más segregados.
+
+El campo habla con un vocabulario que tiende a la integración —como mostraba la modularidad decreciente de la red de coocurrencias— pero se lee desde tradiciones que permanecen diferenciadas. La aparente convergencia semántica convive con una diversidad intelectual que el mapa de palabras clave no alcanzaba a mostrar, y esa divergencia tiene consecuencias directas para los instrumentos de diagnóstico territorial: dos índices pueden compartir vocabulario y citar los mismos referentes canónicos mientras operan desde supuestos ontológicos incompatibles.
+
+La sección siguiente cuantifica ese desajuste mediante el análisis de acoplamiento y permite precisar en qué medida la hibridación semántica observada se traduce —o no— en interoperabilidad entre las tradiciones que sostienen los instrumentos de medición.
+
+## Plano relacional: acoplamiento entre vocabulario temático y repertorio intelectual {#sec-acoplamiento-cap2}
+
+Las dos secciones anteriores han descrito por separado cómo se organiza el campo cuando se lo observa desde sus palabras clave y cuando se lo observa desde sus referencias.
+El análisis de acoplamiento cruza ambas dimensiones a nivel documental: cada uno de los 17.789 artículos que dispone simultáneamente de palabras clave mapeables y referencias citadas —el 80,5% del corpus total— actúa como unidad de observación, y la pregunta que el análisis responde es en qué medida las once áreas temáticas del plano semántico se corresponden con los diez polos intelectuales del plano de cocitación.
+Si la correspondencia fuera alta, cada área temática se apoyaría de manera preferente en uno o pocos polos; si fuera baja, las áreas distribuirían sus documentos de manera más o menos uniforme sobre todos los polos disponibles.
+La métrica central es la información mutua normalizada (NMI), que cuantifica la correspondencia entre dos clasificaciones del mismo conjunto: en términos intuitivos, mide en qué grado conocer a qué clúster de un mapa pertenece un documento permite predecir a qué clúster del otro mapa pertenece. Formalmente, el NMI cuantifica cuánto reduce el conocimiento de la partición semántica la incertidumbre sobre la partición intelectual: valores próximos a 1 indicarían correspondencia casi perfecta; valores próximos a 0 indicarían independencia casi completa.
+
+El valor de NMI obtenido para el corpus global 1980–2024 es de 0,037.
+Ese valor es estadísticamente distinguible de cero —la dependencia entre particiones es real y no atribuible a asignación aleatoria— pero su magnitud no admite interpretación ambigua: las once áreas temáticas y los diez polos intelectuales son prácticamente independientes entre sí.
+Saber a qué área temática pertenece un artículo reduce en menos de un 4% la incertidumbre sobre qué polo intelectual lo fundamenta.
+El campo habla con vocabularios temáticos diferenciados pero se lee desde tradiciones bibliográficas que son, en lo esencial, compartidas e intercambiables entre áreas.
+La Figura \@ref(fig:bubble-map-cap2) visualiza la distribución subyacente.
+
+```{r bubble-map-cap2, echo=FALSE, fig.env='sidewaysfigure', fig.cap="Mapa de acoplamiento entre áreas temáticas y polos intelectuales, 1980–2024. El tamaño del círculo indica el volumen de acoplamiento y el color la probabilidad condicional de cada par área-polo (escala magma: amarillo claro = mayor alineamiento). La ausencia de celdas dominantes confirma el NMI global de 0,037.\\\\ \\textit{Fuente: elaboración propia a partir del corpus WoS 1980–2024.}", fig.scap="Mapa de acoplamiento entre áreas temáticas y polos intelectuales, 1980–2024.", out.width="0.90\\textheight"}
+
+knitr::include_graphics(fig_ext("outputs/figures/app-b/bubble_kw_cr_1980_2024"))
+```
+
+\FloatBarrier
+
+### La dispersión como estructura, no como ruido
+
+La entropía normalizada media de la distribución de cada área temática sobre los diez polos es de 0,916 sobre un máximo teórico de 1,000, con una mediana de 0,923.
+Estos valores indican que la distribución de documentos de cada área sobre los polos intelectuales está próxima a la distribución uniforme: cada área temática se apoya, con intensidades similares, en casi todos los polos disponibles.
+El número efectivo de polos por área —el equivalente a una distribución uniforme que produjera la misma entropía— es de 8,27 de media sobre un máximo de 10.
+Una área temática típica del campo no tiene un repertorio de referencia propio; tiene acceso simultáneo a prácticamente todos los repertorios.
+
+Este patrón no es ruido estadístico ni un artefacto del tamaño del corpus: es una estructura.
+La dispersión es sistemática, reproducible y consistente entre áreas.
+Las áreas con mayor número efectivo de polos —adaptación y resiliencia, con 9,04; percepción del riesgo y gobernanza participativa, con 8,96— son precisamente las que el análisis de coocurrencias identificó como áreas de tránsito o vocabulario puente.
+Su dispersión intelectual confirma lo que su posición semántica ya sugería: no tienen una tradición bibliográfica propia porque su función es precisamente la de conectar tradiciones distintas.
+Que esa función de conexión sea visible en ambos planos —semántico e intelectual— refuerza la interpretación de que se trata de una propiedad estructural del campo y no de un artefacto de la metodología.
+
+### Los cinco acoplamientos interpretables
+
+Sobre ese fondo de dispersión casi uniforme, cinco pares de área temática y polo intelectual presentan probabilidades condicionales suficientemente elevadas —entre 0,265 y 0,347— para ser interpretados como acoplamientos con contenido sustantivo.
+Su lectura es más informativa cuando se distingue la función argumental de cada uno: algunos confirman la coherencia interna de tradiciones consolidadas; otros revelan desacoplamientos que indican transformaciones en curso.
+
+Los dos primeros son simétricamente coherentes y confirman la lógica esperada.
+El área de *desigualdades en salud y exclusión social* y el área de *territorio, política y migraciones* se acoplan preferentemente al polo de *teoría social*, con probabilidades de 0,300 y 0,331 respectivamente.
+Las dos áreas que incorporaron al campo el vocabulario de las ciencias sociales críticas durante las fases más recientes leen efectivamente desde la tradición teórica que les corresponde —@beck1992, @bourdieu1984, @standing2011, @butler2004—.
+Este es el único par de acoplamientos donde vocabulario y repertorio convergen de manera reconocible, y no es casual que sean las áreas más recientes del campo, donde la tradición fundacional todavía no ha sido absorbida por el repertorio generalista.
+
+El tercero es el más sorprendente y el más revelador para el argumento del capítulo.
+El área de *gestión ambiental y sostenibilidad* se acopla preferentemente al polo *aplicado reciente*, con una probabilidad condicional de 0,347, mientras que el polo de *resiliencia y sistemas socioecológicos* —la tradición fundacional de ese vocabulario— queda en segunda posición con apenas 0,143.
+El área que concentra el vocabulario de los sistemas socioecológicos no se apoya de manera preferente en los textos canónicos de @holling1973 o @folke2006, sino en la producción empírica reciente de origen asiático.
+Ese desacoplamiento sugiere que el vocabulario de la sostenibilidad ecológica ha migrado hacia un uso aplicado e instrumental que ya no se ancla en sus marcos fundacionales: el término circula, pero la tradición que lo fundamentaba ha quedado en segundo plano.
+Es la ilustración más nítida de lo que el NMI mide globalmente: hibridación semántica sin continuidad intelectual.
+
+El cuarto es el más esperado y confirma la coherencia interna de una tradición consolidada.
+El área de *vulnerabilidad urbana y ciudades* se acopla al polo de *vulnerabilidad social territorial y reducción del riesgo de desastres*, con una probabilidad de 0,312.
+El vocabulario de la medición del riesgo urbano encuentra su repertorio de referencia en los textos canónicos de @cutter2003, @wisner2004 y @blaikie1994.
+Este es el acoplamiento más limpio del análisis: área y polo comparten objeto, método y genealogía, y su coherencia contrasta con la dispersión que domina el resto del mapa.
+
+El quinto involucra una incoherencia que confirma el argumento sobre las agendas de entrada reciente.
+El área de *justicia y pobreza energética* se acopla preferentemente al polo *aplicado reciente*, con una probabilidad de 0,265, dejando al polo específicamente dedicado a esa agenda —el de *pobreza energética y justicia*— en segunda posición con 0,181.
+Que el área temática especializada no se apoye de manera dominante en el polo intelectual que le correspondería indica que es todavía una agenda de entrada reciente al campo, cuya producción se codifica con vocabulario especializado pero se lee desde el mismo repertorio generalista que domina el resto del corpus.
+La especialización semántica ha precedido a la consolidación intelectual.
+
+### Lo que el acoplamiento demuestra
+
+El resultado global del análisis permite formular con precisión empírica la tesis que el capítulo ha construido progresivamente.
+La vulnerabilidad social es un campo débilmente acoplado ---en el sentido de @weick1976--- antes que fragmentado: el NMI bajo no indica que sus distintas agendas se ignoren mutuamente, sino que ninguna área temática se apoya de manera preferente en una tradición bibliográfica específica.
+Las áreas temáticas no tienen repertorios de referencia propios porque el campo ha desarrollado un repertorio compartido —dominado por el polo aplicado reciente como fondo omnipresente de contemporaneidad y por el polo de vulnerabilidad social territorial como punto de paso obligado de la tradición canónica— que actúa como sustrato común sobre el que todas las agendas se apoyan por igual.
+
+Esta estructura tiene un nombre preciso en la literatura sobre integración científica: *estructura débilmente acoplada* [@weick1976].
+Los indicadores lo confirman desde ángulos distintos: hay dependencia estadística medible entre particiones, pero esa dependencia es tan baja que no genera correspondencias tema–tradición estables.
+Las áreas no tienen repertorios propios; tienen acceso simultáneo a casi todos los repertorios.
+Y los repertorios no se expresan en temas específicos; se distribuyen transversalmente.
+
+Es en este punto donde los marcos teóricos que este capítulo ha movilizado como herramientas de lectura del campo encuentran su articulación más precisa.
+Desde la perspectiva de @luhmann1984, la estructura débilmente acoplada no es un déficit sino la forma en que un sistema científico diferenciado funcionalmente gestiona demandas cognitivas heterogéneas: cada tradición responde a un tipo de problema y el campo se reproduce precisamente porque no necesita integración para funcionar.
+Desde la perspectiva de @bourdieu1994, el repertorio compartido que todas las áreas movilizan —los textos canónicos que ninguna puede ignorar sin perder posición en el campo— es el capital simbólico que estructura las luchas de definición sin resolverlas: la citación de @cutter2003 o @wisner2004 es simultáneamente un acto de legitimación y una toma de posición en una disputa que permanece abierta.
+Y desde la perspectiva de @stargriesemer1989, el término *vulnerabilidad* funciona exactamente como un objeto frontera: lo suficientemente flexible para ser movilizado por ecología sistémica, economía política y gestión del riesgo sin exigir equivalencia conceptual, y lo suficientemente robusto para sostener una identidad reconocible que permite la coordinación entre comunidades epistémicas que no comparten ni objeto ni método.
+El NMI de 0,037 es la medida cuantitativa de esa condición de objeto frontera: alta centralidad, baja integración interna.
+
+El resultado tiene una implicación directa para los instrumentos de diagnóstico territorial.
+Cuando el mismo vocabulario temático se sostiene en tradiciones diversas y las mismas tradiciones irradian hacia múltiples temas, la hibridación no equivale a interoperabilidad.
+Los índices, indicadores y cartografías pueden ser semánticamente compatibles —compartir términos, citar los mismos referentes canónicos, organizarse bajo las mismas etiquetas institucionales— sin ser conceptualmente conmensurables, porque cada uno moviliza, bajo el mismo término, un repertorio de supuestos parcialmente distinto.
+Para los instrumentos de gestión del riesgo que operan en territorios como la Comunitat Valenciana —donde la fragmentación de la gobernanza entre administraciones con marcos de referencia distintos es parte del problema que el diagnóstico debe resolver— esa inconmensurabilidad no es un asunto académico: determina si los diagnósticos producidos por distintas instituciones pueden combinarse en una evaluación integrada o si producen, como ocurrió en la dana de octubre de 2024, un conjunto de evidencias disponibles pero no articulables en acción coordinada.
+
+## Tradiciones científicas en el estudio de la vulnerabilidad social {#sec-tradiciones-cap2}
+
+El análisis de acoplamiento ha establecido con precisión empírica el tipo de integración que el campo produce: vocabularios temáticos relativamente compartidos sobre repertorios de referencia que permanecen diferenciados.
+Ese resultado no es un fallo del campo ni un artefacto estadístico: es la consecuencia de que el término *vulnerabilidad* ha sido adoptado, a lo largo de cuatro décadas, por tradiciones científicas que lo definen desde objetos distintos, lo miden con regímenes de evidencia incompatibles y lo movilizan con fines institucionales diferentes.
+
+El NMI mide la distancia entre lo que el campo dice y lo que cita; lo que no puede responder es por qué esa distancia persiste y qué la organiza. Esa es la pregunta que esta sección responde.
+
+Las cinco tradiciones que se describen a continuación no son categorías impuestas desde fuera del corpus: emergen de la lectura conjunta de los polos intelectuales detectados en el análisis de cocitación y de las áreas temáticas del análisis de coocurrencias, cuya correspondencia se recoge en la Tabla \@ref(tab:tab-tradiciones-anclas).
+La descripción por separado es una convención analítica, no una afirmación de que los límites sean nítidos en la práctica: el NMI bajo demuestra precisamente que los documentos del corpus circulan entre tradiciones y que varios polos son compartidos por más de una.
+
+Cada tradición se describe a partir de tres dimensiones que son las que producen incompatibilidad cuando se intenta combinar sus instrumentos: el problema que organiza su agenda, la unidad y escala de análisis que ese problema exige, y el régimen de evidencia que determina qué cuenta como conocimiento válido dentro de ella.
+Son estas tres dimensiones —no las diferencias de vocabulario— las que explican por qué la hibridación semántica documentada en el análisis de acoplamiento no se traduce en interoperabilidad entre instrumentos: dos índices pueden compartir términos y citar los mismos referentes canónicos mientras responden a preguntas distintas, operan a escalas incompatibles y validan sus resultados con criterios que las otras tradiciones no reconocen.
+La sección de arquitecturas ontológicas y epistemológicas desarrollará las incompatibilidades entre estas dimensiones con mayor precisión; las tradiciones las ilustran con su lógica concreta.
+
+Las cuatro primeras tradiciones —vulnerabilidad social territorial y evaluación del riesgo, economía política y teoría social del riesgo, desigualdades en salud y exclusión social, y resiliencia y sistemas socioecológicos— generan ontologías propias: cada una responde, desde su problema dominante, a la pregunta de qué tipo de entidad es aquello que mide.
+
+La tradición de diagnóstico territorial y gobernanza adaptativa tiene un estatuto diferente: no genera una ontología propia sino que toma los instrumentos de las otras cuatro y los reencuadra en lógicas de decisión institucional y planificación territorial.
+Su especificidad no está en lo que piensa sobre la vulnerabilidad sino en para qué la mide y quién usa esa medición.
+Es precisamente por eso que el problema de interoperabilidad se hace más visible en esta tradición que en ninguna otra.
+La gobernanza territorial de la vulnerabilidad exige traducir entre las otras cuatro en contextos donde las decisiones tienen consecuencias presupuestarias y redistributivas.
+Cuando esa traducción se realiza sin declarar los supuestos que se están combinando, la apariencia de integración es real pero superficial: las incompatibilidades permanecen latentes y solo emergen cuando los resultados se cuestionan o cuando el instrumento se confronta con otro construido desde una lógica distinta.
+
+```{r tab-tradiciones-anclas, echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+library(dplyr)
+library(tibble)
+
+tab <- tibble::tribble(
+  ~`Tradición`,
+  ~`Polos intelectuales principales`,
+  ~`Áreas temáticas asociadas`,
+  ~`Acoplamiento más intenso`,
+
+  "Vulnerabilidad social territorial y evaluación del riesgo",
+  "Vulnerabilidad social territorial y DRR; evaluación institucional del riesgo (IPCC)",
+  "Vulnerabilidad urbana y ciudades; riesgo de desastre; modelización y SIG",
+  "Vulnerabilidad urbana $\\rightarrow$ Vuln. social territorial (p = 0,312)",
+
+  "Economía política y teoría social del riesgo",
+  "Teoría social: riesgo, desigualdad, precariedad; capacidades, medios de vida y economía política",
+  "Territorio, política y migraciones; desigualdades en salud; medios de vida y seguridad alimentaria",
+  "Territorio y política $\\rightarrow$ Teoría social (p = 0,331)",
+
+  "Desigualdades en salud y exclusión social",
+  "Teoría social (sin polo intelectual autónomo)",
+  "Desigualdades en salud y exclusión social",
+  "Salud y exclusión $\\rightarrow$ Teoría social (p = 0,300)",
+
+  "Resiliencia y sistemas socioecológicos",
+  "Resiliencia y SES; métricas de vulnerabilidad climática; conocimiento local y adaptación, Sur Global",
+  "Adaptación, resiliencia y capacidades; gestión ambiental y sostenibilidad; cambio climático e impactos",
+  "Gestión ambiental $\\rightarrow$ Polo aplicado reciente (p = 0,347; desacoplamiento de tradición fundacional)",
+
+  "Diagnóstico territorial y gobernanza adaptativa",
+  "Vulnerabilidad social territorial (compartido); gobernanza y transformación adaptativa (compartido)",
+  "Modelización y SIG; vulnerabilidad urbana; percepción del riesgo y gobernanza participativa",
+  "Sin polo intelectual exclusivo; dependencia compartida con vulnerabilidad territorial"
+)
+
+if (knitr::is_latex_output()) {
+  kbl(tab,
+      caption       = "Correspondencia entre tradiciones científicas, polos intelectuales y áreas temáticas del corpus 1980–2024.",
+      caption.short = "Tradiciones, polos intelectuales y áreas temáticas del corpus.",
+      booktabs = TRUE, align = "llll", escape = FALSE) %>%
+    kable_styling(latex_options = c("HOLD_position", "scale_down")) %>%
+    column_spec(1, width = "3.8cm") %>%
+    column_spec(2, width = "4.2cm") %>%
+    column_spec(3, width = "3.8cm") %>%
+    column_spec(4, width = "3.8cm")
+} else {
+  tesis_tabla_word(tab,
+    caption = "Correspondencia entre tradiciones científicas, polos intelectuales y áreas temáticas del corpus 1980–2024.")
+}
+```
+
+\FloatBarrier
+
+### Vulnerabilidad social territorial y evaluación del riesgo {#sec-tradicion-riesgo}
+
+La contribución fundacional de esta tradición no es una teoría sino un instrumento.
+El *Social Vulnerability Index* de @cutter2003 convirtió una pregunta difusa —¿quién está en riesgo y dónde?— en un mapa reproducible y comparable entre territorios: integra mediante análisis de componentes principales un conjunto de variables socioeconómicas y demográficas para identificar patrones espaciales de vulnerabilidad diferencial ante desastres.
+El SoVI se apoya en el modelo *hazards-of-place* de @cutter1996, pero su aportación más influyente no fue ese modelo conceptual sino un procedimiento para determinar dónde se concentra la vulnerabilidad y con qué intensidad relativa.
+Su contribución es, en ese sentido, sobre todo operacional, y esa prioridad lo hace excepcionalmente útil para la planificación y, al mismo tiempo, expuesto a una crítica metodológica precisa: el modelo conceptual del que parte no gobierna la selección de los indicadores, que la fija un procedimiento inductivo de análisis de componentes principales.
+
+El problema que organiza la agenda de esta tradición es cartográfico y distributivo: la desigualdad en el daño ante una amenaza no se explica solo por la intensidad de esa amenaza sino por las características previas de los territorios expuestos.
+La vulnerabilidad es, en la definición que esta tradición maneja, un atributo del territorio cuantificable antes de que ocurra el evento adverso.
+El marco del IPCC formaliza el mismo supuesto de manera paralela: el trinomio exposición–sensibilidad–capacidad adaptativa (E-S-CA) articula la vulnerabilidad como función de tres componentes que pueden medirse por separado y combinarse en un indicador sintético [@adger2006; @kelly2000; @fussel2007].
+Que las dos formalizaciones más influyentes de la tradición —el SoVI y el marco E-S-CA— hayan convergido en estructuras de índice compuesto no es una coincidencia: es la consecuencia de que ambas responden al mismo problema institucional, que es la necesidad de comparar territorios bajo un sistema de referencia estandarizado.
+
+La unidad de análisis privilegiada es el territorio administrativo —municipio, sección censal, comarca— determinada por la disponibilidad de datos censales y registros administrativos más que por criterios teóricos sobre cuál es la unidad natural del fenómeno.
+Esto tiene una consecuencia metodológica que la tradición reconoce pero no siempre resuelve: produce resultados comparables entre territorios que usan las mismas fuentes, pero encuentra dificultades cuando los datos administrativos no capturan la variabilidad interna de las unidades o cuando la escala de análisis no coincide con la escala del proceso que genera la vulnerabilidad.
+El conocimiento válido es cuantitativo, estandarizado y reproducible: censos, padrones, registros de empleo, datos de exposición biofísica, procesados mediante procedimientos explícitos y aplicables con independencia del territorio estudiado.
+La replicabilidad es condición de legitimidad.
+
+Lo que esta tradición resuelve bien —comparación sistemática entre territorios, priorización de recursos en contextos de información limitada, comunicación institucional del riesgo— es precisamente lo que la hace imprescindible para la gobernanza territorial.
+Sus instrumentos producen diagnósticos que pueden discutirse públicamente y verificarse en el tiempo.
+Pero la misma estructura que garantiza esa comparabilidad determina su límite: un índice puede identificar que ciertos territorios concentran más hogares con bajo nivel educativo, personas mayores solas y viviendas en mal estado, pero no puede explicar por qué esas condiciones se concentran ahí ni qué mecanismos las reproducen.
+Cuando opera sin ese complemento, corre el riesgo de tratar como hecho dado lo que es resultado de decisiones históricas y relaciones de poder.
+La pregunta que esta tradición no puede responder —¿por qué?—
+es precisamente la que organiza la tradición que se examina a continuación.
+
+En el mapa de acoplamiento, el acoplamiento entre el área de vulnerabilidad urbana y ciudades y el polo de vulnerabilidad social territorial y reducción del riesgo de desastres —el único par de todo el análisis donde vocabulario y repertorio comparten objeto, método y genealogía de forma reconocible— confirma la coherencia interna de esta tradición.
+Es la más consolidada del corpus y la que ha generado los instrumentos de referencia en el contexto español: el *Atlas de Vulnerabilidad Urbana de España* [@aja2015] y el visor VEUS-CV [@temes2019-veus; @temes2020-veus] siguen su lógica operacional a escala de sección censal.
+
+### Economía política y teoría social del riesgo {#sec-tradicion-estructural}
+
+La pregunta que organiza esta tradición es la que las otras no se hacen.
+No dónde está la vulnerabilidad ni cuánta hay, sino por qué está ahí: qué procesos históricos, qué relaciones de poder, qué decisiones institucionales han producido que ciertos grupos y territorios acumulen condiciones que los hacen sistemáticamente más expuestos al daño.
+La respuesta que la tradición ofrece no es cartográfica sino explicativa, y su instrumento más influyente —el modelo *Pressure and Release* de @blaikie1994— lo expresa con precisión: los desastres no son eventos externos que golpean territorios de manera indiscriminada, sino la culminación visible de procesos previos acumulados que encadenan causas profundas, presiones dinámicas y condiciones inseguras.
+El terremoto, la inundación o la pandemia son la última capa de una secuencia que empieza en estructuras económicas y políticas, pasa por la precarización del empleo o la urbanización desregulada, y termina en viviendas expuestas y barrios sin infraestructuras.
+La amenaza activa la vulnerabilidad; no la produce.
+
+Esta definición tiene una consecuencia metodológica directa: la unidad de análisis no puede ser el territorio administrativo, porque los procesos que producen la vulnerabilidad no respetan fronteras censales.
+La precarización laboral, la segregación residencial, la erosión de redes de cuidado o la discriminación institucional son procesos que se materializan en territorios concretos pero que son propiedades de las relaciones sociales que los atraviesan, no del territorio en sí.
+La escala no viene dada por la disponibilidad de datos administrativos sino por la lógica del proceso que se estudia: un análisis de trayectorias de precariedad laboral opera a escala biográfica; un estudio de desplazamiento residencial opera a escala de barrio; un análisis de marcos regulatorios opera a escala estatal o regional.
+El enfoque de medios de vida de @chambers1992 y @ellis2000 y la teoría de los derechos de acceso de @sen1981 ofrecen lenguajes complementarios para operacionalizar esa lógica: la vulnerabilidad como fragilidad del acceso diferencial a capitales y derechos ante perturbaciones que no distribuyen su impacto de manera uniforme.
+
+El conocimiento válido en esta tradición es explicativo antes que descriptivo, y la explicación adopta la forma de narrativas causales densas que reconstruyen secuencias de decisiones, estructuras y conflictos.
+Los registros estadísticos e indicadores cuantitativos se utilizan para identificar patrones de concentración del daño o la desprotección, pero sobre esos patrones se superponen análisis documentales, reconstrucciones históricas, entrevistas y etnografía urbana.
+La epistemología de fondo es realista crítica: los datos empíricos —tasas de pobreza, daños por desastres, indicadores de exclusión— son puntos de partida, no explicación suficiente.
+El trabajo analítico consiste en discernir, a partir de patrones recurrentes de daño y desprotección, los mecanismos generativos que los producen [@bhaskar1978].
+
+Esta tradición resuelve bien lo que la anterior no puede: la explicación causal, la sensibilidad a la heterogeneidad interna de los grupos y a las trayectorias de acumulación de desventajas, la identificación de los actores e instituciones que reproducen las condiciones de vulnerabilidad y los puntos donde intervenciones estructurales podrían modificarlas.
+Pero su fortaleza explicativa es también su límite operativo.
+La renuencia —a veces por principios— a cuantificar procesos relacionales genera diagnósticos potentes pero difícilmente traducibles en asignación de recursos a escala regional.
+Cuando se aísla de herramientas de medición comparativa, la explicación puede quedar encapsulada en narrativas localmente convincentes pero de alcance limitado para la política pública territorial.
+
+El análisis de acoplamiento confirma algo más: los dos pares con mayor coherencia entre vocabulario y repertorio del corpus completo corresponden a las áreas temáticas más recientes de esta tradición —el vocabulario de la exclusión social y la precariedad que colonizó la literatura en las fases más recientes—, lo que sugiere que su canon todavía no ha sido absorbido por el fondo generalista que disuelve las correspondencias en el resto del mapa.
+En el polo de teoría social —@beck1992, @bourdieu1984, @standing2011, @butler2004— y en el polo de capacidades y economía política —@chambers1992, @ellis2000, @sen1981, @watts1993— conviven sin embargo dos respuestas distintas a la misma pregunta: una que opera con conceptos de estructura social y capital, otra con conceptos de acceso y agencia.
+Esa bifurcación interna, que el corpus registra como dos polos diferenciados dentro de la misma tradición, anticipa la tensión entre diagnóstico estructural e intervención situada que la tradición de desigualdades en salud va a heredar y reformular desde un objeto distinto.
+
+### Desigualdades en salud y exclusión social {#sec-tradicion-salud}
+
+El dato bibliométrico más informativo sobre esta tradición no es su tamaño ni su tasa de crecimiento sino la ausencia que revela el mapa de cocitación: el área temática de mayor expansión del corpus en las fases más recientes —concentra el vocabulario de la pandemia, el envejecimiento, la salud mental, la discapacidad y la exclusión sociosanitaria— no ha generado un polo intelectual propio.
+Se lee desde el polo de teoría social, el mismo que ancla a la tradición de economía política y teoría social del riesgo.
+Eso significa que esta tradición es activa semánticamente, con producción creciente y vocabulario diferenciado, pero intelectualmente dependiente de una tradición más antigua y más amplia.
+No es un defecto: es una descripción de su estado de madurez, y tiene implicaciones directas para cómo construye y valida sus instrumentos.
+
+El problema que organiza su agenda es doble y autorreferente: la vulnerabilidad social produce desigualdades en salud, y las desigualdades en salud producen y profundizan la vulnerabilidad social.
+Esta circularidad no es un problema lógico sino una descripción empírica de cómo operan los determinantes sociales.
+La posición en la estructura social —clase, género, origen, edad, discapacidad— condiciona la exposición a factores de riesgo, el acceso a servicios y la capacidad de recuperación ante crisis; y la situación de salud, a su vez, condiciona la inserción laboral, las redes de apoyo y la acumulación o erosión de capitales.
+Lo que esta tradición hereda de la economía política del riesgo es precisamente esa lectura circular: la vulnerabilidad no se localiza en el cuerpo sino en la relación entre el cuerpo y el contexto estructural que lo produce.
+Una persona mayor con multimorbilidad en un barrio con servicios accesibles y redes de apoyo activas no es equivalente a otra con el mismo perfil clínico en un territorio con servicios degradados y aislamiento social.
+La susceptibilidad individual solo tiene sentido diagnóstico cuando se lee en su contexto.
+
+El régimen de evidencia combina dos lógicas que no siempre dialogan fluidamente.
+El régimen epidemiológico —encuestas de salud, registros de mortalidad y morbilidad, sistemas de vigilancia sanitaria— produce evidencia sobre distribución de enfermedades, factores de riesgo y resultados en salud con criterios de validación estadística y control de variables de confusión.
+El régimen de determinantes sociales incorpora variables estructurales y contextuales que el registro clínico no captura directamente: gradientes socioeconómicos en salud, inequidades en acceso a servicios, salud de poblaciones migrantes o en situación de exclusión.
+Cruzar ambos regímenes exige fuentes de distinta naturaleza, con distintos niveles de agregación y distintas temporalidades, bajo supuestos de causalidad que no siempre son compatibles.
+La tensión es epistemológicamente productiva pero metodológicamente costosa.
+Los instrumentos característicos —índices de privación sociosanitaria como el proyecto MEDEA [@dominguez2008], indicadores de inequidad en salud, mapas de acceso a servicios de atención primaria— son el resultado de ese esfuerzo de traducción entre registros.
+
+Lo que esta tradición resuelve bien es la identificación de grupos poblacionales con mayor carga de riesgo sociosanitario, la evaluación de inequidades en acceso y resultado, y la interfaz con la planificación de servicios sociales y sanitarios.
+Sus instrumentos son los más directamente operativos para la gestión de casos individuales y la programación de recursos asistenciales.
+El límite aparece cuando opera de forma autónoma respecto a la tradición estructural: un índice de privación sociosanitaria puede señalar con precisión qué secciones censales concentran mayor riesgo de hospitalización evitable, pero no puede explicar por qué esas secciones tienen esa configuración ni qué transformaciones reducirían ese riesgo.
+Cuando la explicación no acompaña al diagnóstico, la vulnerabilidad se individualiza —se trata como propiedad de cuerpos y biografías— sin conectarse con los procesos que la producen.
+
+Hay además un problema de escala que esta tradición comparte con las anteriores pero que adquiere aquí una forma específica: la escala epidemiológica no coincide con la escala territorial de la planificación social.
+Los indicadores de salud agregados a nivel municipal pueden esconder heterogeneidades internas decisivas para la intervención, mientras que los perfiles clínicos individuales no son directamente traducibles a diagnósticos territoriales.
+Esa tensión entre escala clínica y escala territorial es una de las fuentes de dificultad de integración con la tradición de vulnerabilidad social territorial y con la de diagnóstico institucional: producen resultados sobre unidades distintas con lógicas de validación distintas, y su combinación en un único instrumento exige decisiones de traducción que raramente se declaran de forma explícita.
+La irrupción de la COVID-19 aceleró esa combinación —índices de vulnerabilidad ante pandemias, cartografías de riesgo sociosanitario combinado— pero no resolvió las incompatibilidades de fondo; las hizo más urgentes y, al mismo tiempo, más visibles.
+
+### Resiliencia y sistemas socioecológicos {#sec-tradicion-ses}
+
+La señal empírica más sorprendente del análisis de acoplamiento concierne a esta tradición.
+El área que concentra el vocabulario canónico de los sistemas socioecológicos —sostenibilidad, servicios ecosistémicos, biodiversidad, gestión de recursos naturales— no se lee desde los textos fundacionales de @holling1973 o @folke2006, sino desde la producción empírica reciente de origen asiático que domina el polo aplicado.
+El vocabulario de la sostenibilidad ecológica ha migrado hacia un uso instrumental que ya no se ancla en el marco teórico que le dio origen: el campo habla en clave sistémica pero ya no siempre cita en clave sistémica.
+Ese desacoplamiento no invalida la tradición; la sitúa en una posición particular respecto a las demás.
+Es la que ha generado el vocabulario más influyente —resiliencia, adaptación, umbral, transformación— pero también la que más ha visto ese vocabulario apropiado por agendas que lo utilizan sin sus supuestos de fondo.
+
+El problema que operacionaliza esta tradición no es quién está en riesgo ni por qué, sino cómo responden los sistemas cuando son perturbados.
+La pregunta es sistémica y dinámica: ¿puede este sistema absorber una perturbación sin perder sus funciones esenciales?
+¿Qué umbral, si se cruza, produce una transición hacia un estado cualitativamente distinto?
+La vulnerabilidad se define aquí como la inversa de la resiliencia, o más precisamente como la condición que determina la probabilidad y la magnitud del daño ante una perturbación de intensidad dada.
+La formalización más influyente es el marco exposición–sensibilidad–capacidad adaptativa, elaborado conceptualmente por @adger2006, @kelly2000 y @fussel2007: la vulnerabilidad no es un atributo fijo del territorio sino una propiedad emergente del sistema que resulta de la interacción entre exposición, sensibilidad y capacidad de anticipación y recuperación.
+Los tres componentes son analíticamente separables pero empíricamente interdependientes, y ninguno determina por sí solo el nivel de vulnerabilidad del sistema.
+
+La tradición de los sistemas socioecológicos amplía este marco hacia la comprensión de las interdependencias entre subsistemas humanos y naturales [@walker2004; @folke2006].
+La vulnerabilidad no se localiza ni en la sociedad ni en el ecosistema sino en el acoplamiento entre ambos: en cómo las decisiones de uso del suelo, los regímenes hídricos, las estructuras de gobernanza y las prácticas productivas se retroalimentan de maneras que pueden estabilizar o desestabilizar el sistema conjunto.
+La unidad de análisis característica es el sistema socioecológico, cuya escala no viene determinada por divisiones administrativas sino por la lógica funcional del sistema: una cuenca hidrográfica, un sistema de regadío, un espacio forestal con comunidades de gestión.
+Esta flexibilidad es metodológicamente coherente con la teoría pero problemática para la comparación: dos sistemas socioecológicos rara vez tienen los mismos límites funcionales, lo que hace difícil establecer equivalencias directas entre indicadores calculados en uno y en otro.
+
+El régimen de evidencia combina modelización sistémica, análisis histórico de trayectorias y trabajo empírico sobre casos específicos.
+La epistemología de fondo es contextualista: el comportamiento de un sistema socioecológico solo puede comprenderse en su trayectoria histórica y en el contexto de las relaciones entre sus componentes.
+La extrapolación entre sistemas con distinta historia y distinta estructura de acoplamientos es siempre provisional.
+Los modelos de simulación —sistemas de ecuaciones diferenciales, modelos basados en agentes— permiten explorar comportamientos bajo distintos escenarios e identificar umbrales y puntos de inflexión; su validez no se mide por la capacidad de predicción exacta sino por la de representar comportamientos plausibles.
+El conocimiento local ocupa un lugar metodológicamente reconocido, especialmente a través de la tradición de adaptación en el Sur Global: las comunidades que gestionan sistemas socioecológicos directamente disponen de información sobre el comportamiento del sistema que los modelos formales no pueden capturar.
+
+Esta tradición resuelve bien lo que las anteriores tienden a subestimar: las interdependencias, los umbrales y las dinámicas no lineales.
+Permite pensar la vulnerabilidad territorial de manera sistémica —no como suma de carencias individuales sino como propiedad de configuraciones de relaciones— y conectarla con procesos ambientales y climáticos que no tienen escala administrativa natural.
+Es también la tradición que mejor integra la dimensión temporal larga: los sistemas socioecológicos acumulan historia, y esa historia importa para entender su estado actual de vulnerabilidad.
+Lo que no puede comparar sin traducción son vulnerabilidades entre sistemas con distinta historia e distintos acoplamientos internos.
+Dos sistemas agrarios en la misma región pueden tener perfiles de vulnerabilidad climática completamente distintos en función de su modelo de tenencia, su acceso al agua y su dependencia de mercados externos, y ningún índice construido con variables estandarizadas puede capturar esas diferencias sin perder precisamente la información sistémica que las explica.
+
+Hay además una tensión política que el lenguaje de la resiliencia tiende a oscurecer.
+Un análisis sistémico puede concluir que el sistema se estabiliza mediante el sacrificio de algunos de sus componentes —comunidades rurales que absorben costes de adaptación que benefician al sistema agroindustrial más amplio— sin que el marco analítico disponga de recursos para señalar eso como un problema distributivo.
+Cuando la resiliencia se despolitiza, el análisis corre el riesgo de naturalizar redistribuciones de riesgo que son, en realidad, decisiones políticas sobre quién soporta los costes de la adaptación.
+Es precisamente esa tensión —entre descripción sistémica y juicio distributivo— la que la tradición de diagnóstico territorial y gobernanza adaptativa hereda sin poder resolverla desde sus propios supuestos.
+
+### Diagnóstico territorial y gobernanza adaptativa {#sec-tradicion-gobernanza}
+
+La distinción que define el estatuto de esta tradición ya quedó establecida en la introducción de la sección: no genera una ontología propia de la vulnerabilidad sino que toma los instrumentos de las otras cuatro y los reencuadra en lógicas de decisión institucional y planificación territorial.
+Lo que merece desarrollarse aquí es la consecuencia más singular de ese estatuto, que las otras tradiciones no reconocen explícitamente: los instrumentos de diagnóstico territorial no solo describen la vulnerabilidad sino que la intervienen.
+Un municipio clasificado como altamente vulnerable en un atlas oficial activa mecanismos de inversión, atención preferente y planificación preventiva; uno que queda fuera del umbral de clasificación puede quedar también fuera de determinados flujos de recursos, con independencia de su situación real.
+La clasificación territorial produce efectos sobre aquello que clasifica.
+Esta dimensión performativa convierte las decisiones de diseño del instrumento —qué variables incluir, qué pesos asignar, qué umbral fijar— en decisiones con consecuencias redistributivas directas, aunque habitualmente se presenten como decisiones técnicas.
+
+El problema que organiza esta tradición es operacional y político al mismo tiempo: cómo producir un diagnóstico de vulnerabilidad territorial que sea comparable entre unidades, accionable para la intervención pública y legítimo ante los actores que lo van a usar.
+La tensión entre esas tres exigencias es constitutiva.
+Para ser comparable y accionable, el diagnóstico debe simplificar; para ser legítimo y útil, debe representar la complejidad de los territorios.
+Los instrumentos de esta tradición oscilan permanentemente entre esos dos polos, y las decisiones sobre dónde situar el punto de equilibrio son siempre normativas, aunque frecuentemente se presenten como técnicas.
+
+La unidad de análisis está determinada por la disponibilidad de datos administrativos y por los requerimientos del sistema de planificación territorial: sección censal, municipio, comarca, área funcional urbana.
+Esta determinación por la geometría institucional de los datos es al mismo tiempo la mayor fortaleza y el límite más estructural de la tradición: produce resultados comparables y reproducibles dentro de un sistema de referencia dado, pero la comparabilidad se rompe en cuanto se cambia ese sistema —diferente censo, diferente nomenclatura estadística, diferente unidad administrativa.
+La elección de escala es además una elección sobre qué variabilidad se quiere ver y cuál se tolera como ruido: un diagnóstico a escala municipal puede esconder concentraciones de vulnerabilidad intramunicipales que son decisivas para la intervención; un diagnóstico a escala de sección censal puede producir artefactos estadísticos cuando las unidades tienen tamaños muy desiguales.
+
+El régimen de evidencia añade un criterio que no tiene equivalente en las otras tradiciones: la validez institucional.
+No basta con que el instrumento sea estadísticamente robusto —válido según la tradición de vulnerabilidad social territorial— ni conceptualmente coherente —válido según la economía política del riesgo—; debe además poder integrarse en los sistemas de información y planificación existentes, encajar con las competencias administrativas disponibles y ser comprensible para los actores que deben usarlo.
+Un instrumento técnicamente impecable que ninguna administración puede operar no cumple su función.
+Este criterio pragmático de validez es el que hace a esta tradición metodológicamente singular y el que explica la centralidad del SIG como dispositivo de integración: no solo como herramienta de visualización sino como infraestructura que conecta fuentes heterogéneas, gestiona escalas y produce cartografías accionables.
+En el contexto español, el *Atlas de Vulnerabilidad Urbana de España* [@aja2015] y el visor VEUS-CV [@temes2019-veus; @temes2020-veus] representan los desarrollos más consolidados de esta lógica; a escala internacional, los marcos de monitoreo del Marco de Sendai y los indicadores de los Objetivos de Desarrollo Sostenible son intentos de extender esa comparabilidad entre sistemas estadísticos muy distintos.
+
+El límite estructural de esta tradición es la consecuencia directa de su estatuto compuesto.
+Cuando combina indicadores de exposición al riesgo, privación socioeconómica, acceso a servicios sanitarios y resiliencia de ecosistemas urbanos en un único índice sintético, hereda implícitamente las ontologías de cada tradición de origen sin necesariamente hacerlas explícitas ni resolver sus incompatibilidades.
+El resultado puede ser un instrumento estadísticamente robusto e institucionalmente útil que, sin embargo, agrega magnitudes que no son conceptualmente conmensurables: trata como sumables componentes que operan en planos causales distintos, con escalas temporales distintas y con supuestos de causalidad que se contradicen entre sí.
+Esa incompatibilidad latente permanece invisible bajo la superficie de precisión técnica del instrumento, y solo emerge cuando los resultados se cuestionan, cuando se intenta combinarlos con los de otro instrumento construido desde una lógica distinta, o cuando el diagnóstico disponible no consigue traducirse en acción coordinada.
+El caso de la Comunitat Valenciana en octubre de 2024 ilustra ese límite desde el ángulo que esta tradición hace visible: la heterogeneidad de supuestos ontológicos de los instrumentos disponibles ---ya documentada en las secciones anteriores--- no emerge en el debate sobre qué índice es más preciso, sino en el momento en que el diagnóstico debe convertirse en acción coordinada entre sistemas con marcos de referencia distintos.
+
+Es en esta tradición, más que en ninguna otra, donde el problema de interoperabilidad deja de ser académico y adquiere consecuencias medibles.
+La sección siguiente examina las arquitecturas ontológicas que subyacen a las cinco tradiciones y explica con mayor precisión por qué esas incompatibilidades no pueden resolverse con más datos ni con mejores índices, sino solo con compromisos metodológicos declarados.
+
+## Arquitecturas ontológicas y epistemológicas de la vulnerabilidad {#sec-ontologias-cap2}
+
+Las cinco tradiciones descritas en la sección anterior comparten un vocabulario —vulnerabilidad, riesgo, exposición, capacidad, resiliencia— pero lo utilizan desde supuestos distintos sobre qué tipo de entidad es la vulnerabilidad, cómo puede conocerse y con qué criterios se valida una afirmación sobre ella.
+Ese mismo resultado mide la consecuencia estadística de esas diferencias: cada área temática se apoya en casi todos los polos intelectuales porque ninguna tradición ha conseguido imponer sus supuestos como estándar del campo.
+Esta sección hace explícitos esos supuestos y argumenta por qué su incompatibilidad no puede resolverse con más datos ni con mejores índices, sino únicamente con compromisos metodológicos declarados. Su función en este capítulo es cartográfica, no prescriptiva: traza el espacio de posiciones disponibles para que el capítulo tercero pueda declarar explícitamente cuál adopta el IVEC y desde qué razones lo hace.
+La sección avanza en tres movimientos: la distinción entre vulnerabilidad como condición constitutiva y como condición diferencial, las cinco posiciones ontológicas operativas que organizan las tradiciones, y los regímenes de evidencia desde las tres dimensiones de divergencia que generan incompatibilidad real entre instrumentos.
+
+```{r tab-ontologias, echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+library(dplyr)
+
+tab_onto <- data.frame(
+  Tradicion = c(
+    "Suelo filosófico (no operativa)",
+    "Vulnerabilidad social territorial\\newline y evaluación del riesgo",
+    "Economía política y teoría\\newline social del riesgo",
+    "Desigualdades en salud\\newline y exclusión social",
+    "Resiliencia y sistemas\\newline socioecológicos",
+    "Diagnóstico territorial\\newline y gobernanza adaptativa"
+  ),
+  Donde = c(
+    "En toda vida humana",
+    "En el territorio observable",
+    "En las relaciones de poder",
+    "En cuerpos y contextos",
+    "En acoplamientos\\newline socioecológicos",
+    "En la clasificación misma"
+  ),
+  Pregunta = c(
+    "¿Qué obligación genera?",
+    "¿Cuánta hay y dónde?",
+    "¿Por qué se produce aquí?",
+    "¿Quién es más susceptible?",
+    "¿Puede el sistema\\newline absorberla?",
+    "¿Cómo se gestiona?"
+  ),
+  stringsAsFactors = FALSE
+)
+
+if (knitr::is_latex_output()) {
+  kbl(tab_onto,
+      caption  = "Posiciones ontológicas de la vulnerabilidad según tradición científica.",
+      booktabs = TRUE, escape = FALSE, align = "lll",
+      col.names = c("Tradición", "Dónde reside la vulnerabilidad", "Pregunta canónica")) %>%
+    kable_styling(latex_options = c("HOLD_position", "scale_down"), font_size = 10) %>%
+    column_spec(1, width = "5.5cm") %>%
+    column_spec(2, width = "4cm") %>%
+    column_spec(3, width = "4cm") %>%
+    row_spec(1, italic = TRUE)
+} else {
+  tesis_tabla_word(tab_onto,
+    col_names = c("Tradición", "Dónde reside la vulnerabilidad", "Pregunta canónica"),
+    caption = "Posiciones ontológicas de la vulnerabilidad según tradición científica.")
+}
+```
+
+\FloatBarrier
+
+La primera fila ---en cursiva--- no constituye una posición operativa sino el suelo filosófico del que las cinco tradiciones se distancian en distinta medida; su función en el análisis es normativa, no técnica.
+
+Las fricciones entre posiciones no son terminológicas sino ontológicas: lo que cada tradición define como el locus de la vulnerabilidad determina qué intervenciones son pertinentes, qué datos son adecuados y qué supuestos de causalidad son aceptables. Un instrumento que agrega dimensiones de tradiciones con localizaciones incompatibles sin declarar cómo resuelve esa diferencia no está siendo incompleto: está siendo incoherente, aunque esa incoherencia permanezca invisible bajo una superficie de robustez estadística.
+
+La Figura \@ref(fig:fig-compatibilidades) representa esas compatibilidades e incompatibilidades de forma sistemática.
+Las dos fricciones estructurales —líneas rojas— implican siempre a la economía política y teoría social del riesgo, y esa regularidad no es casual: es la tradición que cuestiona de manera más radical la naturaleza de los datos que las otras utilizan sin problematizar.
+La primera asume que la vulnerabilidad es observable y mensurable en los datos existentes; la segunda asume que esos datos son precisamente el producto de las relaciones de poder que producen la vulnerabilidad, y que por tanto no pueden usarse sin crítica para describirla.
+Las cinco relaciones que requieren traducción explícita —líneas amarillas— involucran en su mayoría a la tradición de resiliencia y sistemas socioecológicos, cuya escala funcional y cuya lógica no lineal no se alinean directamente con las unidades administrativas y los supuestos de aditividad que dominan los instrumentos de las otras tradiciones.
+Las tres relaciones de compatibilidad directa —líneas verdes— corresponden a los pares que comparten tanto la lógica de medición cuantitativa como la orientación hacia el uso institucional de los resultados.
+
+```{r fig-compatibilidades, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Compatibilidades epistemológicas entre las tradiciones científicas del campo de la vulnerabilidad social. Verde: supuestos compatibles; amarillo: compatibles con traducción explícita; rojo: fricción estructural entre ontologías.\\\\ \\textit{Fuente: elaboración propia.}", fig.scap="Compatibilidades epistemológicas entre tradiciones científicas.", fig.align="center", out.width="100%", fig.width=9, fig.height=9}
+
+library(igraph)
+
+ids <- c("T1","T2","T3","T4","T5")
+
+labels <- c(
+  T1 = "Resiliencia y sistemas\nsocioecológicos",
+  T2 = "Economía política y\nteoría social del riesgo",
+  T3 = "Vulnerabilidad social territorial\ny evaluación del riesgo",
+  T4 = "Desigualdades en salud y\nexclusión social",
+  T5 = "Diagnóstico territorial y\ngobernanza adaptativa"
+)
+
+edges <- data.frame(
+  from = c("T3","T3","T3","T3","T2","T2","T2","T1","T1","T4"),
+  to   = c("T2","T1","T4","T5","T1","T4","T5","T4","T5","T5"),
+  tipo = c(
+    "tension","parcial","parcial","compatible",
+    "parcial","compatible","tension",
+    "parcial","parcial",
+    "compatible"
+  ),
+  stringsAsFactors = FALSE
+)
+
+edge_col <- c(compatible = "#3BA54A", parcial = "#F2B705", tension = "#E53935")
+
+g <- graph_from_data_frame(edges, directed = FALSE,
+                           vertices = data.frame(name = ids))
+
+E(g)$color <- edge_col[edges$tipo]
+E(g)$width <- 3
+V(g)$color      <- "#3E7FB1"
+V(g)$frame.color <- "black"
+V(g)$size       <- 18
+
+order_pent <- c("T1","T2","T5","T4","T3")
+theta      <- seq(pi/2, pi/2 - 2*pi, length.out = 6)[1:5]
+R          <- 1.20
+pent       <- cbind(R*cos(theta), R*sin(theta))
+rownames(pent) <- order_pent
+layout_mat <- pent[ids, , drop = FALSE]
+
+out_dir  <- file.path("outputs", "figures", "cap-2")
+dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
+out_file <- file.path(out_dir, "compatibilidades-tradiciones-pentagono.png")
+
+png(out_file, width = 2600, height = 2200, res = 300)
+par(mar = c(3, 5, 3, 5))
+
+xpad <- 2.10; ypad <- 1.80
+xlim <- range(layout_mat[,1]) * xpad
+ylim <- range(layout_mat[,2]) * ypad
+
+plot(g,
+     layout       = layout_mat,
+     vertex.label = NA,
+     edge.curved  = 0,
+     xlim = xlim,
+     ylim = ylim)
+
+xy     <- layout_mat
+lab_xy <- xy
+lab_xy["T1", 2] <- xy["T1", 2] + 0.45
+lab_xy["T4", 2] <- xy["T4", 2] - 0.55
+lab_xy["T5", 2] <- xy["T5", 2] - 0.55
+lab_xy["T3", 1] <- xy["T3", 1] - 0.75
+lab_xy["T2", 1] <- xy["T2", 1] + 0.75
+lab_xy["T2", 2] <- xy["T2", 2] + 0.05
+lab_xy["T3", 2] <- xy["T3", 2] + 0.05
+
+text(x      = lab_xy[, 1],
+     y      = lab_xy[, 2],
+     labels = unname(labels[rownames(lab_xy)]),
+     cex    = 0.95,
+     family = "serif",
+     adj    = c(0.5, 0.5))
+
+legend("bottomright",
+       legend = c("Compatible", "Requiere traducción", "Fricción estructural"),
+       col    = c("#3BA54A", "#F2B705", "#E53935"),
+       lwd    = 3,
+       bty    = "n",
+       cex    = 0.85)
+
+invisible(dev.off())
+
+knitr::include_graphics(out_file)
+```
+
+\FloatBarrier
+
+### El suelo previo: vulnerabilidad como condición constitutiva {#sec-ontologia-constitutiva}
+
+Antes de examinar las posiciones ontológicas operativas que organizan las cinco tradiciones, es necesario situar la distinción filosófica sobre la que todas ellas se construyen, aunque ninguna la resuelva en el mismo sentido.
+@fineman2008 y @butler2009frames argumentan que toda vida humana es constitutivamente vulnerable: los cuerpos son finitos, dependientes e interdependientes, y esa condición es el fundamento de la obligación de cuidado mutuo y de la responsabilidad institucional.
+Desde esta posición, la vulnerabilidad no es un atributo de ciertos grupos ni una propiedad de ciertos territorios: es la condición compartida que hace posible —y exigible— la organización social de la protección.
+
+Esta posición no es operacionalizable en un instrumento de diagnóstico territorial.
+No tiene sentido cartografiar lo que es igual en todas partes ni priorizar recursos sobre la base de una condición universal.
+Pero su relevancia para el argumento de este capítulo no es instrumental sino fundacional: la posición constitutiva es el suelo ético que justifica por qué la priorización importa.
+Si todos somos vulnerables pero unos lo son más que otros —en el sentido de que las condiciones en que viven hacen más probable que una perturbación produzca daño significativo y difícilmente reversible—, entonces identificar esas diferencias y actuar sobre ellas no es una decisión técnica sino una exigencia de justicia.
+La diferencia entre una política universal de protección social y un instrumento de diagnóstico territorial no es solo de escala: es una diferencia ontológica sobre si la vulnerabilidad es condición compartida o condición diferencial.
+
+Esta investigación adopta la segunda posición porque su pregunta de investigación exige localizar las concentraciones diferenciales de fragilidad ---condición necesaria para cualquier instrumento con vocación de priorización en la planificación preventiva---; que esa posición resulte coherente además con los requisitos de operacionalización que la fuente de datos permite es una confirmación del diseño, no su fundamento ---argumento que el capítulo tercero desarrolla en detalle---. El IVEC mide vulnerabilidad en el sentido diferencial, no universal. Esa elección tiene consecuencias que recorren todo el diseño del instrumento ---qué variables son pertinentes, qué escala es adecuada, qué tipo de comparación es legítima--- y que los requisitos de diseño de la sección de síntesis comienzan a formular.
+
+La posición constitutiva no desaparece del marco: permanece como el horizonte normativo que da sentido a la priorización y que impide que el instrumento se reduzca a una herramienta de clasificación administrativa sin contenido de justicia.
+
+### Posiciones ontológicas operativas {#sec-ontologias-tipos}
+
+Sobre ese suelo filosófico se articulan las posiciones ontológicas que organizan las cinco tradiciones.
+Lo que las diferencia no es solo el vocabulario sino la respuesta a una pregunta previa a cualquier decisión de medición: ¿dónde reside la vulnerabilidad?
+La respuesta determina qué variables son pertinentes, qué escala es adecuada, qué tipo de causalidad se asume y qué intervenciones tienen sentido.
+Cuando esa respuesta permanece implícita —como ocurre en la mayoría de los índices existentes— los supuestos ontológicos operan como restricciones no declaradas que limitan la interpretación de los resultados sin que el usuario lo sepa.
+
+La tradición de vulnerabilidad social territorial localiza la vulnerabilidad en el territorio: en sus características observables, cuantificables y cartografiables antes de que ocurra el evento adverso.
+Su posición es tecnocrática en el sentido preciso del término: asume que la vulnerabilidad es una magnitud objetiva que puede medirse con los datos disponibles y gestionarse con los instrumentos institucionales existentes.
+La intervención pertinente es sobre el territorio: planificación, inversión, ordenación.
+La economía política y teoría social del riesgo localiza la vulnerabilidad en las relaciones sociales que han producido esas características territoriales.
+Su posición es estructural-relacional: la vulnerabilidad no está en el territorio sino en los procesos históricos y relacionales que lo han configurado.
+La intervención pertinente no es sobre el territorio sino sobre las estructuras que lo atraviesan: regulación, redistribución, reconocimiento de derechos.
+Estas dos posiciones son las que el grafo identifica como de fricción estructural, y la razón es precisa: no discrepan sobre qué variables incluir sino sobre si los datos administrativos que la primera usa pueden describir aquello que la segunda quiere explicar.
+
+La tradición de desigualdades en salud y exclusión social localiza la vulnerabilidad en la intersección entre el cuerpo y el contexto: como susceptibilidad diferencial inscrita en biografías concretas pero mediada por el entorno estructural en que esas biografías se desarrollan.
+Su posición disposicional es la que le permite actuar como bisagra en el grafo: puede articularse con la posición estructural-relacional porque comparte la lógica de circularidad entre estructura y condición, y puede articularse con la posición tecnocrática porque sus instrumentos producen cartografías comparables a escala de sección censal.
+Esa doble compatibilidad es precisamente lo que hace de esta tradición un punto de entrada natural para instrumentos integrados, aunque no elimina las fricciones de escala y temporalidad que la traducción entre regímenes exige.
+
+La tradición de resiliencia y sistemas socioecológicos localiza la vulnerabilidad en el acoplamiento entre subsistemas: no en el territorio ni en las relaciones sociales ni en el cuerpo, sino en la interfaz entre el sistema social y el sistema ecológico.
+Su posición funcional-sistémica introduce una complicación que ninguna otra tradición reconoce con igual precisión: la no linealidad.
+En un sistema con dinámicas no lineales, la relación entre indicadores y vulnerabilidad puede invertirse al cruzar un umbral, y un instrumento construido con lógica correlacional puede producir diagnósticos correctos en condiciones ordinarias y completamente erróneos ante una perturbación de gran magnitud.
+Es esta propiedad la que explica por qué todas las relaciones de esta tradición con las demás requieren traducción explícita: no es que sus instrumentos sean incompatibles, sino que sus supuestos sobre la naturaleza de la relación entre variables y vulnerabilidad son suficientemente distintos para que la combinación sin declaración produzca resultados cuya apariencia de precisión oculta una ambigüedad de fondo.
+
+La tradición de diagnóstico territorial y gobernanza adaptativa no genera una posición ontológica propia: toma prestadas las de las otras cuatro y las reencuadra en lógicas de acción institucional.
+Su aportación específica —y es la más relevante para el diseño del IVEC— es la dimensión performativa: el instrumento de diagnóstico no solo describe la vulnerabilidad sino que interviene sobre ella a través de los efectos que produce la clasificación territorial.
+Un municipio clasificado como altamente vulnerable activa mecanismos de inversión y atención preferente; uno que queda fuera del umbral puede quedar también fuera de determinados flujos de recursos.
+Esa dimensión convierte las decisiones de diseño —qué variables incluir, qué pesos asignar, qué umbral fijar— en decisiones con consecuencias redistributivas directas, aunque habitualmente se presenten como decisiones técnicas.
+La compatibilidad directa de esta tradición con la vulnerabilidad social territorial y con las desigualdades en salud no significa que la combinación sea ontológicamente inocua: significa que es técnicamente viable, pero que la viabilidad técnica no resuelve la pregunta sobre qué se está midiendo realmente cuando se combinan sus instrumentos. Para el IVEC, esa dimensión performativa tiene consecuencias directas: la selección de variables, la definición de umbrales y la escala de reporte no son únicamente opciones técnicas sino decisiones con efectos de clasificación sobre territorios reales. Es esa consecuencia la que convierte la trazabilidad metodológica y la justificación explícita de cada decisión de diseño ---requisitos R5 y R7--- no en exigencias de reproducibilidad formal sino en condiciones para que las implicaciones redistributivas del instrumento puedan ser evaluadas y cuestionadas por quienes lo usan.
+
+### Regímenes de evidencia y condiciones de interoperabilidad {#sec-regimenes-evidencia}
+
+Si las posiciones ontológicas divergen sobre dónde reside la vulnerabilidad, los regímenes de evidencia divergen sobre cómo puede conocerse.
+Un régimen de evidencia define qué tipo de dato cuenta como prueba, qué procedimiento de análisis es legítimo y qué criterio de validación determina si una afirmación sobre la vulnerabilidad es aceptable.
+Las cinco tradiciones no comparten régimen: lo que la vulnerabilidad social territorial considera una validación suficiente —replicabilidad estadística, estabilidad del índice ante variaciones de parámetros— la economía política considera insuficiente porque no dice nada sobre los mecanismos que producen los valores observados; lo que la economía política considera una explicación válida —reconstrucción histórica de cadenas causales— la vulnerabilidad territorial considera no generalizable porque no es reproducible con los mismos procedimientos en otros contextos.
+Tres dimensiones de divergencia estructuran las incompatibilidades más frecuentes entre instrumentos de distintas tradiciones.
+
+La primera es la distinción entre causalidad y correlación.
+Las tradiciones de vulnerabilidad territorial, desigualdades en salud y diagnóstico territorial operan con lógica correlacional: identifican qué variables covarían con la vulnerabilidad y las integran en un índice sin pronunciarse sobre si esa covariación refleja una relación causal o una asociación mediada por variables no observadas.
+La economía política exige explicación de mecanismos: no basta con que la tasa de desempleo covarie con la vulnerabilidad; hay que mostrar cómo el desempleo produce vulnerabilidad a través de qué proceso concreto en qué contexto institucional.
+La resiliencia y sistemas socioecológicos añade una complicación que las otras tradiciones no reconocen: en sistemas no lineales, la relación entre variables puede ser causal en un rango y no causal en otro, o la dirección de la causalidad puede invertirse al cruzar un umbral.
+Un instrumento construido con lógica correlacional aplicado a un sistema con dinámicas no lineales puede producir diagnósticos correctos en condiciones ordinarias y completamente erróneos ante una perturbación de gran magnitud.
+La distinción entre correlato y causa no es un detalle técnico: es la diferencia entre un diagnóstico que orienta intervenciones efectivas y uno que orienta intervenciones ineficaces.
+
+La segunda dimensión es la escala y el problema de la unidad espacial modificable.
+Las tradiciones de vulnerabilidad territorial y diagnóstico institucional determinan la escala por la disponibilidad de datos administrativos; la resiliencia y sistemas socioecológicos la determina por la escala funcional del sistema; la economía política y la tradición de salud trabajan con la escala que resulta más iluminadora para el mecanismo que se quiere explicar, sin una escala natural fija.
+Esta divergencia produce el problema conocido en geografía cuantitativa como el problema de la unidad espacial modificable (*Modifiable Areal Unit Problem*, MAUP) [@openshaw1984]: los resultados de un índice calculado a escala municipal no son directamente comparables con los calculados a escala de sección censal o de comarca, incluso si usan las mismas variables, porque la agregación a distintas escalas produce distribuciones estadísticas distintas y puede invertir las conclusiones sobre qué territorios son más o menos vulnerables.
+Cuando se combinan en un mismo instrumento variables calculadas a distintas escalas sin declarar cómo se resuelve esa incompatibilidad, los resultados tienen una apariencia de precisión que oculta una ambigüedad de fondo que no desaparece por el hecho de no nombrarla.
+
+La tercera dimensión es la temporalidad y la ventana de observación.
+Las tradiciones de vulnerabilidad territorial y diagnóstico institucional trabajan típicamente con cortes sincrónicos: el índice describe la situación en un momento dado y se compara con el mismo índice en otro momento para evaluar cambios.
+La economía política requiere series temporales largas para reconstruir trayectorias de acumulación de desventajas: la vulnerabilidad de un barrio hoy no puede entenderse sin saber qué decisiones de urbanización, desinversión o discriminación institucional se tomaron en las décadas anteriores.
+La resiliencia y sistemas socioecológicos trabaja con dinámicas que pueden tener escalas temporales muy distintas a las del dato estadístico: un umbral de resiliencia puede cruzarse en horas o en décadas, y ninguna de esas dos escalas coincide necesariamente con el periodo intercensal que determina la actualización de los indicadores.
+La tradición de desigualdades en salud combina variables con latencias distintas: algunos indicadores reflejan condiciones actuales y otros acumulan exposiciones a lo largo de toda una vida.
+Cuando se integran en un único índice variables con ventanas de observación incompatibles, el resultado puede ser estadísticamente correcto y temporalmente incoherente.
+
+La Figura \@ref(fig:fig-regimenes-evidencia) sintetiza las tres dimensiones para las cinco tradiciones tomando como referencia la vulnerabilidad social territorial, que es el punto de partida más habitual en el diseño de instrumentos institucionales.
+El patrón que emerge no es aleatorio.
+La tradición de diagnóstico territorial y gobernanza adaptativa comparte supuestos con la referencia en las tres dimensiones —correlacional, administrativa, sincrónica—, lo que explica su compatibilidad directa y su función como tradición de aplicación institucional.
+La economía política y teoría social del riesgo presenta fricción estructural en las tres dimensiones: exige explicación causal donde la referencia opera con correlación, trabaja con escala variable donde la referencia necesita unidades administrativas fijas, y requiere series temporales largas donde la referencia trabaja con cortes sincrónicos.
+La resiliencia y sistemas socioecológicos replica ese mismo patrón de fricción por razones distintas: su lógica no lineal, su escala funcional y su temporalidad multiescalar son incompatibles con los tres supuestos de la referencia, aunque la incompatibilidad derive de la complejidad sistémica y no de la crítica política.
+Las desigualdades en salud y exclusión social ocupan en las tres dimensiones una posición intermedia —mixta en causalidad, mixta en escala, con latencias diversas en temporalidad— que confirma su función de bisagra: es la tradición que puede dialogar con todas las demás, pero que requiere traducción explícita en cada caso antes de que esa conversación produzca resultados coherentes.
+
+```{r fig-regimenes-evidencia, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Regímenes de evidencia de las cinco tradiciones científicas según las tres dimensiones de divergencia que generan incompatibilidad entre instrumentos. Referencia: vulnerabilidad social territorial y evaluación del riesgo. Verde: supuestos compatibles; amarillo: compatibles con traducción explícita; rojo: fricción estructural.\\\\ \\textit{Fuente: elaboración propia.}", fig.scap="Regímenes de evidencia por tradición y dimensión de divergencia.", fig.align="center", out.width="95%"}
+
+library(ggplot2)
+library(dplyr)
+
+tradiciones <- c(
+  "Vulnerabilidad social\nterritorial y evaluación\ndel riesgo",
+  "Economía política y\nteoría social del riesgo",
+  "Desigualdades en salud\ny exclusión social",
+  "Resiliencia y sistemas\nsocioecológicos",
+  "Diagnóstico territorial\ny gobernanza adaptativa"
+)
+
+datos <- data.frame(
+  tradicion = factor(rep(tradiciones, 3), levels = rev(tradiciones)),
+  dimension = factor(rep(
+    c("Causalidad", "Escala", "Temporalidad"),
+    each = 5
+  ), levels = c("Causalidad", "Escala", "Temporalidad")),
+  compatibilidad = c(
+    # Causalidad
+    "compatible", "friccion", "traduccion", "friccion", "compatible",
+    # Escala
+    "compatible", "friccion", "traduccion", "friccion", "compatible",
+    # Temporalidad
+    "compatible", "friccion", "traduccion", "friccion", "compatible"
+  ),
+  etiqueta = c(
+    # Causalidad
+    "Correlacional",
+    "Causal-\nmecanismos",
+    "Mixta",
+    "No lineal /\nsistémica",
+    "Correlacional",
+    # Escala
+    "Administrativa\nfija",
+    "Variable según\nproceso",
+    "Mixta clínica-\nterritorial",
+    "Funcional\ndel sistema",
+    "Administrativa\nfija",
+    # Temporalidad
+    "Sincrónica",
+    "Diacrónica\nlarga",
+    "Latencias\ndiversas",
+    "Multiescalar\ntemporal",
+    "Sincrónica"
+  ),
+  stringsAsFactors = FALSE
+)
+
+paleta <- c(
+  "compatible"  = "#3BA54A",
+  "traduccion"  = "#F2B705",
+  "friccion"    = "#E53935"
+)
+
+ggplot(datos, aes(x = dimension, y = tradicion, fill = compatibilidad)) +
+  geom_tile(color = "white", linewidth = 1.4) +
+  geom_text(aes(label = etiqueta),
+            size       = 3.1,
+            family     = "serif",
+            lineheight = 0.85,
+            color      = "black") +
+  scale_fill_manual(
+    values = paleta,
+    labels = c(
+      "compatible"  = "Compatible",
+      "traduccion"  = "Requiere traducción",
+      "friccion"    = "Fricción estructural"
+    ),
+    name = NULL
+  ) +
+  scale_x_discrete(position = "top") +
+  labs(x = NULL, y = NULL) +
+  theme_minimal(base_family = "serif") +
+  theme(
+    legend.position  = "bottom",
+    legend.text      = element_text(size = 10, family = "serif"),
+    panel.grid       = element_blank(),
+    axis.text.x      = element_text(size = 11, face = "bold", color = "black"),
+    axis.text.y      = element_text(size = 9.5, color = "black", hjust = 1),
+    plot.margin      = margin(10, 10, 10, 10)
+  ) +
+  guides(fill = guide_legend(
+    keywidth  = unit(1.2, "cm"),
+    keyheight = unit(0.5, "cm")
+  ))
+```
+
+Estas tres dimensiones de divergencia —causalidad, escala y temporalidad— son las que hacen que la hibridación semántica documentada en el análisis de acoplamiento no se traduzca en interoperabilidad entre instrumentos.
+No son obstáculos que impidan construir un instrumento integrado: son las coordenadas dentro de las cuales cualquier instrumento serio debe posicionarse de forma explícita.
+Declarar desde qué posición ontológica opera un instrumento, a qué escala produce resultados válidos, con qué lógica causal selecciona sus indicadores y con qué ventana temporal los interpreta no es una exigencia burocrática: es la condición mínima para que sus resultados puedan ser evaluados, cuestionados y combinados con los de otros instrumentos de forma informada.
+La sección de síntesis traduce esas condiciones en requisitos de diseño verificables para el IVEC.
+Antes, la sección siguiente identifica las tensiones recurrentes donde esas incompatibilidades se materializan en conflictos concretos de diseño.
+
+## Tensiones constitutivas del campo: metodológicas y normativas {#sec-tensiones-cap2}
+
+Las incompatibilidades entre posiciones ontológicas y regímenes de evidencia no son problemas abstractos: se materializan en decisiones concretas de diseño de instrumentos, en conflictos sobre qué territorios son prioritarios y en desacuerdos sobre qué tipo de intervención es pertinente.
+Las tensiones que siguen no son errores que puedan eliminarse con mayor precisión técnica sino consecuencias necesarias de las divergencias que la sección anterior ha hecho explícitas.
+Su función aquí no es resolverlas sino nombrarlas con precisión diferenciando dos niveles: las tensiones metodológicas, que emergen cuando se intenta operacionalizar en un instrumento supuestos ontológicos incompatibles, y las tensiones normativas, que emergen cuando las decisiones técnicas revelan su carácter político.
+
+### Tensiones metodológicas: cuando los supuestos ontológicos se materializan en diseño {#sec-tensiones-metodologicas-cap2}
+
+La primera tensión metodológica es la escala y el problema de la unidad espacial modificable.
+Los resultados de cualquier índice de vulnerabilidad territorial son sensibles a la unidad espacial de análisis: el mismo conjunto de datos puede producir mapas y rankings diferentes dependiendo de si la unidad es la sección censal, el municipio, la comarca o la comunidad autónoma.
+El *efecto escala* se produce cuando el nivel de agregación cambia: unidades más grandes suavizan la variabilidad interna y pueden ocultar concentraciones de vulnerabilidad decisivas para la intervención.
+El *efecto de zonificación* se produce cuando cambia la forma de las unidades a la misma escala: dos configuraciones distintas de los mismos municipios pueden producir distribuciones de vulnerabilidad diferentes aunque el territorio físico sea idéntico [@openshaw1984].
+El corolario político es incómodo: el mapa que determina qué municipios reciben recursos prioritarios depende parcialmente de decisiones de diseño estadístico sin justificación sustantiva.
+Un municipio puede aparecer como moderadamente vulnerable a escala municipal y como altamente vulnerable a escala de sección censal porque la media municipal esconde una concentración intensa en una zona específica.
+Cuando la unidad de análisis determina la elegibilidad para recursos, la elección de escala es también una elección sobre distribución.
+La respuesta metodológica disponible no elimina el problema sino que lo hace transparente: construir el índice a la escala más desagregada que permiten los datos y testar la estabilidad de los resultados a escalas superiores, documentando en qué medida la agregación modifica las conclusiones.
+
+La segunda tensión metodológica es la compensabilidad en la agregación de dimensiones.
+La mayoría de los índices de vulnerabilidad utilizan alguna forma de media ponderada, lo que implica un supuesto de compensabilidad total: una puntuación alta en una dimensión puede compensar una baja en otra, de modo que el índice final puede ser idéntico para territorios con perfiles de vulnerabilidad completamente distintos.
+Un municipio con alta privación económica y buena situación residencial puede obtener la misma puntuación que otro con privación moderada en ambas dimensiones, aunque su perfil de necesidades y las intervenciones pertinentes sean radicalmente diferentes.
+Este supuesto es ontológicamente cargado: asume que las dimensiones de la vulnerabilidad son sustituibles entre sí, al menos parcialmente.
+Eso puede ser razonable para algunas combinaciones, pero resulta cuestionable cuando la acumulación simultánea de privaciones genera una configuración cualitativamente distinta a la que producen esas mismas privaciones por separado [@atkinson2003].
+Las alternativas técnicas a la compensabilidad total —agregación lexicográfica, índices de mínimos, métodos de análisis multicriterio no compensatorio [@munda2008]— producen resultados más coherentes con la ontología estructural de la vulnerabilidad, pero son menos manejables institucionalmente.
+La tensión entre coherencia conceptual y operatividad política no tiene resolución limpia: cualquier decisión de agregación implica un compromiso que debe ser declarado y justificado, no ocultado bajo una apariencia de neutralidad técnica.
+
+La tercera tensión metodológica es interna al marco conceptual más extendido en el campo: el trinomio exposición–sensibilidad–capacidad adaptativa.
+Los tres componentes están analíticamente definidos con claridad, pero su operacionalización simultánea en un único instrumento genera discontinuidades que rara vez se reconocen.
+La exposición es una propiedad de la relación entre el territorio y la amenaza; la sensibilidad es una propiedad de la población; la capacidad adaptativa es una propiedad del sistema social e institucional.
+Los tres componentes operan en escalas distintas, tienen temporalidades distintas y se miden con fuentes de datos distintas.
+Cuando se integran en un único índice sin controlar esas discontinuidades, el resultado mezcla medidas de estados actuales, condiciones biofísicas y capacidades potenciales que no son directamente comparables.
+Además, la relación entre los tres componentes no es aditiva: una alta capacidad adaptativa no reduce necesariamente la exposición ni la sensibilidad; solo reduce la probabilidad de que la combinación de ambas produzca daño irreversible.
+Tratarlos como componentes sumables introduce una lógica de compensabilidad entre dimensiones que operan en planos causales distintos, lo que reproduce en el interior del marco E-S-CA la misma tensión que la sección anterior identificó entre tradiciones.
+
+### Tensiones normativas: cuando las decisiones técnicas revelan su carácter político {#sec-tensiones-normativas-cap2}
+
+Las tensiones metodológicas son visibles y en principio tratables con procedimientos explícitos.
+Las tensiones normativas son más difíciles de gestionar porque operan en un nivel donde la apariencia de neutralidad técnica es más resistente al cuestionamiento.
+
+La primera tensión normativa es la comparabilidad entre territorios con contextos estructurales distintos.
+Los índices de vulnerabilidad producen rankings que ordenan los territorios y permiten comparar la posición relativa de cualquier unidad con el conjunto.
+Esa comparabilidad es precisamente su utilidad institucional.
+Pero la comparación implica un supuesto raramente examinado: que los indicadores tienen el mismo significado en territorios con contextos estructurales distintos.
+Una tasa de desempleo del 25% en un municipio con estructura productiva diversificada, servicios públicos accesibles y redes de apoyo informal densas no es equivalente a la misma tasa en un municipio monoindustrial con servicios degradados y redes de apoyo erosionadas.
+El número es el mismo; la vulnerabilidad que representa es cualitativamente distinta.
+En el contexto de la Comunitat Valenciana esta tensión es especialmente relevante en la comparación entre municipios rurales de interior, municipios metropolitanos y municipios turísticos del litoral: sus estructuras productivas, sus regímenes de tenencia, sus dinámicas demográficas y sus sistemas de provisión de servicios son suficientemente distintos para que la misma puntuación en un índice remita a configuraciones de riesgo y necesidades de intervención completamente diferentes.
+La solución no es renunciar a la comparabilidad sino complementarla con tipologías que reconozcan la heterogeneidad de contextos y con análisis específicos que interpreten los resultados del índice en el contexto estructural de cada territorio.
+
+La segunda tensión normativa atraviesa todas las anteriores y es la más fundamental.
+Todo índice de vulnerabilidad incorpora decisiones normativas que determinan qué cuenta como vulnerabilidad relevante y cuánto cuenta cada dimensión.
+La selección de variables define qué aspectos de la vida social se consideran relevantes para el diagnóstico; la ponderación define cuánto importa cada uno; los umbrales de clasificación definen quién entra en la categoría de vulnerable y quién queda fuera.
+Ninguna de estas decisiones es técnicamente neutra, aunque todas puedan justificarse con argumentos técnicos.
+
+La elección de incluir indicadores de precariedad laboral y excluir determinadas dimensiones del capital social no es solo una decisión sobre disponibilidad de datos: es también una afirmación sobre qué aspectos de la vulnerabilidad son operacionalizables con cobertura territorial universal y sobre qué mecanismos se consideran más directamente relevantes para el diagnóstico preventivo. Las decisiones concretas de inclusión y exclusión de cada dimensión, su justificación teórica y sus implicaciones para la validez del instrumento se documentan en el capítulo quinto.
+
+La decisión de ponderar igualmente todas las dimensiones refleja un juicio sobre la jerarquía entre formas de vulnerabilidad.
+El umbral que separa los municipios vulnerables de los no vulnerables determina quién accede a recursos y quién no, con consecuencias redistributivas directas.
+Estas decisiones normativas no pueden eliminarse del diseño de un índice, pero sí pueden hacerse explícitas, justificarse con criterios coherentes con la posición ontológica adoptada y someterse a análisis de sensibilidad que evalúen en qué medida los resultados varían bajo ponderaciones alternativas.
+La transparencia normativa no resuelve el carácter político de las decisiones de diseño, pero es la condición mínima para que esas decisiones puedan ser debatidas, cuestionadas y eventualmente modificadas por los actores que usan el instrumento.
+La Figura \@ref(fig:fig-tensiones) sintetiza el nivel de exposición de cada tradición al conjunto de tensiones identificadas, y permite leer los patrones de forma cruzada con la matriz de regímenes de evidencia de la Figura \@ref(fig:fig-regimenes-evidencia).
+
+```{r fig-tensiones, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Exposición de las cinco tradiciones científicas a las tensiones recurrentes en el diseño de instrumentos de diagnóstico de vulnerabilidad territorial. Rojo: exposición alta; amarillo: exposición moderada; verde: exposición baja o no aplicable.\\\\ \\textit{Fuente: elaboración propia.}", fig.scap="Exposición de las tradiciones científicas a las tensiones recurrentes.", fig.align="center", out.width="95%"}
+
+library(ggplot2)
+library(dplyr)
+
+tradiciones <- c(
+  "Vulnerabilidad social\nterritorial y evaluación\ndel riesgo",
+  "Economía política y\nteoría social del riesgo",
+  "Desigualdades en salud\ny exclusión social",
+  "Resiliencia y sistemas\nsocioecológicos",
+  "Diagnóstico territorial\ny gobernanza adaptativa"
+)
+
+tensiones <- c(
+  "Escala / MAUP",
+  "Compensabilidad",
+  "Tríada E-S-CA",
+  "Comparabilidad\ncontextual",
+  "Normatividad\nimplícita"
+)
+
+datos <- data.frame(
+  tradicion = factor(rep(tradiciones, 5), levels = rev(tradiciones)),
+  tension   = factor(rep(tensiones, each = 5),
+                     levels = tensiones),
+  nivel = c(
+    # Escala / MAUP
+    "alta", "moderada", "moderada", "alta", "alta",
+    # Compensabilidad
+    "alta", "baja", "moderada", "moderada", "alta",
+    # Tríada E-S-CA
+    "moderada", "baja", "moderada", "alta", "alta",
+    # Comparabilidad contextual
+    "alta", "moderada", "moderada", "moderada", "alta",
+    # Normatividad implícita
+    "alta", "moderada", "moderada", "moderada", "alta"
+  ),
+  etiqueta = c(
+    # Escala / MAUP
+    "Alta", "Moderada", "Moderada", "Alta", "Alta",
+    # Compensabilidad
+    "Alta", "Baja", "Moderada", "Moderada", "Alta",
+    # Tríada E-S-CA
+    "Moderada", "Baja", "Moderada", "Alta", "Alta",
+    # Comparabilidad contextual
+    "Alta", "Moderada", "Moderada", "Moderada", "Alta",
+    # Normatividad implícita
+    "Alta", "Moderada", "Moderada", "Moderada", "Alta"
+  ),
+  stringsAsFactors = FALSE
+)
+
+paleta <- c(
+  "alta"     = "#E53935",
+  "moderada" = "#F2B705",
+  "baja"     = "#3BA54A"
+)
+
+ggplot(datos, aes(x = tension, y = tradicion, fill = nivel)) +
+  geom_tile(color = "white", linewidth = 1.4) +
+  geom_text(aes(label = etiqueta),
+            size       = 3.1,
+            family     = "serif",
+            lineheight = 0.85,
+            color      = "black") +
+  scale_fill_manual(
+    values = paleta,
+    labels = c(
+      "alta"     = "Exposición alta",
+      "moderada" = "Exposición moderada",
+      "baja"     = "Exposición baja"
+    ),
+    name = NULL
+  ) +
+  scale_x_discrete(position = "top") +
+  labs(x = NULL, y = NULL) +
+  theme_minimal(base_family = "serif") +
+  theme(
+    legend.position  = "bottom",
+    legend.text      = element_text(size = 10, family = "serif"),
+    panel.grid       = element_blank(),
+    axis.text.x      = element_text(size = 9, face = "bold", color = "black", lineheight = 0.9),
+    axis.text.y      = element_text(size = 9.5, color = "black", hjust = 1),
+    plot.margin      = margin(10, 10, 10, 10)
+  ) +
+  guides(fill = guide_legend(
+    keywidth  = unit(1.2, "cm"),
+    keyheight = unit(0.5, "cm")
+  ))
+```
+
+La lectura cruzada de ambas matrices revela una regularidad que el texto ha argumentado por separado pero que las figuras hacen visible de forma simultánea. Las tradiciones con mayor exposición a las tensiones metodológicas y normativas —vulnerabilidad social territorial y diagnóstico territorial y gobernanza adaptativa, con exposición alta en cuatro de las cinco tensiones— son precisamente las que la matriz de regímenes de evidencia identificó como más compatibles entre sí y con la tradición de referencia. No es una paradoja: son las tradiciones que construyen más instrumentos comparativos y que operan en contextos institucionales donde las decisiones de diseño tienen consecuencias redistributivas directas, lo que las expone sistemáticamente a todas las tensiones. La economía política y teoría social del riesgo presenta el patrón inverso: su rechazo a construir índices sintéticos la mantiene al margen de las tensiones de compensabilidad y de la tríada E-S-CA, pero no la protege de la fricción estructural en las tres dimensiones de los regímenes de evidencia. Su menor exposición a las tensiones instrumentales no indica menor sofisticación analítica sino una elección deliberada de no operar en el terreno donde esas tensiones se materializan. La resiliencia y sistemas socioecológicos y las desigualdades en salud ocupan posiciones intermedias coherentes con su función de bisagra: expuestas moderadamente a la mayoría de las tensiones, sin los picos de exposición de las tradiciones más institucionales ni la inmunidad relativa de la tradición más crítica.
+
+El conjunto de estas tensiones —metodológicas y normativas— define el espacio de problemas al que debe responder cualquier instrumento serio de diagnóstico de vulnerabilidad territorial.
+No son obstáculos que impidan construir el IVEC: son las coordenadas dentro de las cuales el instrumento debe posicionarse de forma explícita.
+La sección siguiente formula ese posicionamiento como requisitos de diseño verificables.
+
+## Síntesis: vacíos del campo y requisitos de diseño del IVEC {#sec-sintesis-cap2}
+
+### Alta centralidad, baja integración: el diagnóstico del campo
+
+El recorrido de este capítulo ha producido un diagnóstico que puede formularse con precisión empírica y teórica. Empíricamente: el campo de estudios sobre vulnerabilidad social exhibe alta centralidad —el término actúa como hub sin rival en el corpus, con 952 enlaces y una fuerza de 48.457— pero baja integración interna. Las once áreas temáticas y los diez polos intelectuales coexisten con un NMI de 0,037, lo que significa que conocer el área temática de un artículo reduce en menos de un 4% la incertidumbre sobre qué tradición intelectual lo fundamenta. El campo converge en el vocabulario pero diverge en el repertorio, y esa divergencia no es aleatoria ni transitoria.
+
+Teóricamente, ese resultado tiene una explicación precisa que los tres marcos movilizados en este capítulo ya articularon en el cierre del plano relacional (§\@ref(sec-acoplamiento-cap2)): la estructura débilmente acoplada de @luhmann1984, el repertorio canónico compartido como capital simbólico de @bourdieu1994 y el funcionamiento del término *vulnerabilidad* como objeto frontera de @stargriesemer1989 convergen en una misma lectura del NMI de 0,037. Es esa misma condición de objeto frontera —alta centralidad, baja integración interna— la que determina el tipo de instrumento que el campo necesita y que este capítulo ha argumentado que todavía no existe en la forma requerida. La condición de objeto frontera no se clausura: el campo no necesita un instrumento que imponga una definición operativa única, sino uno que opere desde dentro de esa condición declarando explícitamente su posición ontológica, su régimen de evidencia y la arquitectura mediante la cual gestiona las incompatibilidades entre tradiciones sin ocultarlas. Es esa diferencia —entre clausurar la pluralidad y operar desde ella con transparencia— la que separa al IVEC de los índices sintéticos que el examen crítico de las secciones anteriores ha caracterizado.
+
+Lo que este diagnóstico añade a la literatura existente no es la constatación de que el campo es plural —eso es conocido y a menudo celebrado— sino la demostración de que esa pluralidad tiene una estructura específica con consecuencias específicas. Las cinco tradiciones identificadas no se ignoran mutuamente: comparten vocabulario, citan los mismos referentes canónicos y operan bajo las mismas etiquetas institucionales. Lo que no comparten son los supuestos ontológicos sobre dónde reside la vulnerabilidad, los regímenes de evidencia sobre cómo puede conocerse y las posiciones normativas sobre qué intervenciones son pertinentes. Cuando esos supuestos permanecen implícitos —como ocurre en la mayoría de los instrumentos existentes— la hibridación semántica produce una apariencia de integración que se revela como incoherencia encubierta en el momento en que los resultados se cuestionan, se comparan o se intentan traducir en acción institucional coordinada. Hablar el mismo idioma no es lo mismo que razonar desde los mismos supuestos.
+
+### Vacíos del campo como argumentos para el diseño {#sec-vacios-cap2}
+
+El análisis desarrollado en este capítulo produce conocimiento de dos tipos que conviene distinguir antes de traducirlo en requisitos de diseño. El primero es de orden estructural: el NMI de 0,037 ---documentado en el Apéndice \@ref(app-biblio), §\@ref(integracion-cruzada)--- establece que el campo diverge en repertorios de referencia a pesar de converger en vocabulario, y esa condición explica por qué los vacíos que se enumeran a continuación son recurrentes y no accidentales ---por qué ningún instrumento los ha resuelto de forma duradera. El segundo es de orden instrumental: el examen crítico de las tradiciones y de las tensiones que generan cuando se intenta construir instrumentos comparativos ---documentado en §§\@ref(sec-tensiones-metodologicas-cap2) y \@ref(sec-tensiones-normativas-cap2)--- identifica qué vacíos concretos han producido las soluciones parciales existentes. Los cinco vacíos que siguen son argumentos del segundo tipo: se derivan del examen de los instrumentos, no del NMI. Pero su persistencia estructural solo se comprende a la luz del primero. Cada vacío señala un punto donde los instrumentos existentes han generado problemas nuevos al resolver parcialmente los anteriores, y cada uno se traduce directamente en un requisito de diseño verificable del IVEC. Los cinco vacíos son, sintetizados: la ausencia generalizada de objeto declarado, la escasa atención al problema de la unidad espacial modificable (MAUP) en instrumentos de diagnóstico territorial aplicado, la generalización de la compensabilidad total como supuesto de agregación sin justificación sustantiva, la débil trazabilidad metodológica y la ausencia de una arquitectura analítica que distinga entre las dimensiones individual, contextual y estructural de la vulnerabilidad. Cada uno se desarrolla a continuación.
+
+El primer vacío es la ausencia generalizada de objeto declarado. La mayoría de los índices de vulnerabilidad existentes —el *Atlas de Vulnerabilidad Urbana de España* [@aja2015] es un referente característico— no explicitan qué posición ontológica adoptan sobre la naturaleza de la vulnerabilidad que miden, y funcionan como si la selección de variables fuera una decisión técnica sin implicaciones conceptuales, cuando la matriz de posiciones ontológicas de la Tabla \@ref(tab:tab-ontologias) muestra que esa selección implica siempre una respuesta a la pregunta de dónde reside la vulnerabilidad y qué intervención es pertinente. El SoVI [@cutter2003] ilustra una variante más sutil del mismo vacío: parte de un modelo conceptual declarado ---el modelo *hazards-of-place* de Cutter--- pero deja que la selección de indicadores la fije un procedimiento inductivo, el análisis de componentes principales, que no se deriva de ese modelo. En uno y otro caso el vacío no es de sofisticación estadística sino de transparencia epistemológica, y su consecuencia es que instrumentos construidos sobre supuestos distintos producen diagnósticos incomparables sin que el usuario pueda saber por qué.
+
+El segundo vacío es la escasa atención al MAUP en instrumentos de diagnóstico territorial aplicado. Los estudios metodológicos sobre el problema de la unidad espacial modificable existen en la literatura académica pero rara vez se trasladan a los instrumentos institucionales, que reportan resultados a una escala sin evaluar su estabilidad a otras. La matriz de tensiones de la Figura \@ref(fig:fig-tensiones) muestra que las dos tradiciones que más instrumentos institucionales producen —vulnerabilidad social territorial y diagnóstico territorial— tienen exposición alta a esta tensión. Cuando los resultados de esos instrumentos determinan asignaciones de recursos, la elección de escala tiene consecuencias redistributivas que permanecen invisibles por falta de análisis de sensibilidad.
+
+El tercer vacío es la generalización de la compensabilidad total como supuesto de agregación sin justificación sustantiva. La mayoría de los índices agregan dimensiones heterogéneas mediante medias ponderadas sin examinar si la compensabilidad es plausible entre las dimensiones que combinan. La literatura metodológica ofrece alternativas [@atkinson2003; @munda2008] pero su adopción en instrumentos institucionales es marginal. El resultado son instrumentos que pueden producir diagnósticos idénticos para territorios con perfiles de vulnerabilidad cualitativamente distintos, lo que orienta intervenciones hacia donde el índice señala y no necesariamente hacia donde el problema reside.
+
+El cuarto vacío es la débil trazabilidad metodológica. Pocos índices documentan de forma reproducible el proceso completo de construcción —selección de variables, fuentes, fechas de referencia, método de normalización, regla de ponderación, tratamiento de valores ausentes— de modo que puedan ser replicados, auditados o actualizados por terceros. Esto no es solo un problema de transparencia: es un problema de validez institucional. Un instrumento que no puede auditarse no puede ser cuestionado de forma informada, y un instrumento que no puede cuestionarse de forma informada no puede mejorarse ni adaptarse a contextos distintos del original.
+
+El quinto vacío es la ausencia de una arquitectura analítica que distinga de forma operativa entre las dimensiones individual, contextual y estructural de la vulnerabilidad. La mayoría de los índices mezclan indicadores de las tres dimensiones bajo una misma etiqueta sin distinguir su lógica causal ni sus implicaciones diferenciadas para la intervención. El resultado es que el instrumento puede identificar territorios vulnerables pero no puede decir si su vulnerabilidad responde a condiciones individuales y del hogar —que exigen políticas de protección social directa—, a factores contextuales del entorno —que admiten intervenciones de proximidad— o a las capacidades de adaptación y transformación estructural del municipio (CAD) —que requieren políticas redistributivas de largo plazo. Su relevancia analítica está reconocida en la literatura [@gaillard2010; @kelman2015]; el vacío específico es que raramente se ha trasladado a instrumentos operativos de escala subestatal que reporten las tres dimensiones de forma autónoma antes de cualquier integración sintética. Es una limitación que la revisión sistemática de los instrumentos de referencia del campo ---SoVI y Atlas de Vulnerabilidad Urbana de España--- confirma.
+
+### Requisitos de diseño del IVEC {#sec-requisitos-cap2}
+
+Los cinco vacíos identificados se traducen en los siete requisitos de diseño del Instrumento de Valoración de la Vulnerabilidad Estructural y Contextual para la Comunitat Valenciana. La correspondencia no es uno-a-uno: algunos vacíos requieren más de un requisito para ser cubiertos ---la compensabilidad no justificada exige simultáneamente una regla de agregación explícita y un análisis de sensibilidad, y la débil trazabilidad metodológica exige tanto la justificación causal de cada indicador como la documentación reproducible completa---, y algunos requisitos responden simultáneamente a más de un vacío ---la justificación causal de los indicadores atiende tanto al primer vacío de objeto declarado como al cuarto vacío de trazabilidad---. La nota final de cada requisito explicita la correspondencia con los vacíos a los que responde. Estos requisitos no son aspiraciones metodológicas: son condiciones verificables cuyo cumplimiento o incumplimiento puede evaluarse una vez construido el instrumento, y cuya formulación explícita es la que permite al lector, al decisor político y al investigador evaluar en qué medida los resultados son transferibles a otros contextos y combinables con otros instrumentos. Formulados en términos de condiciones verificables, estos siete requisitos constituyen la proposición de diseño de la investigación y articulan el itinerario de los tres capítulos que siguen: R1 y R2 gobiernan tanto el marco teórico del capítulo tercero como la lectura crítica del marco normativo del capítulo cuarto; R3 a R7 especifican las condiciones metodológicas que el capítulo quinto operacionaliza y cuya satisfacción empírica evalúa de forma sistemática el capítulo sexto.
+
+R1 — Objeto declarado: el IVEC adoptará explícitamente la posición ontológica de la vulnerabilidad como condición diferencial —no universal— inscrita en territorios y poblaciones concretas. Medirá vulnerabilidad en el sentido de condición que hace más probable que una perturbación produzca daño significativo y difícilmente reversible, desde los supuestos de la tradición de vulnerabilidad social territorial y evaluación del riesgo, con incorporación explícita de dimensiones propias de la economía política y la teoría social del riesgo. La declaración del objeto implica además separar analíticamente la vulnerabilidad ---condición social de la población y del territorio--- de la exposición ---relación del territorio con la amenaza física---, de modo que ninguna de las dos quede subsumida en la otra dentro de un mismo indicador; esta separación es la condición que permite que la superposición cartográfica posterior con la peligrosidad produzca un diagnóstico de riesgo compuesto en lugar de una redundancia. Excluirá por diseño la vulnerabilidad como condición universal compartida y la vulnerabilidad como proceso de adaptación sistémica que requiere datos sobre dinámicas temporales. Esta exclusión no es ontológica —no niega que la vulnerabilidad pueda concebirse de ese modo— sino operativa: las fuentes de datos disponibles no permiten capturar trayectorias temporales con la cobertura y granularidad necesarias, y esa limitación se documenta explícitamente como agenda de investigación futura. El uso del Sistema de Información Poblacional como infraestructura informacional del módulo base obedece a su cobertura poblacional universal y a la disponibilidad de microdatos individuales georreferenciables, y no implica adscripción al régimen epistémico de la tradición de desigualdades en salud: la fuente es sanitaria por su origen administrativo, pero el módulo base la moviliza desde la posición ontológica declarada en este requisito y no desde el modelo de determinantes sociales de la salud que organiza esa tradición. *Responde al primer vacío.*
+
+R2 — Arquitectura tridimensional y diferenciación analítica por mecanismo causal: el IVEC distinguirá tres dimensiones analíticamente independientes según el tipo de mecanismo causal que cada una opera: la vulnerabilidad individual modulada por la composición del hogar (Vi + CH), articulada en el IVEC_base como mecanismo de fragilidad individual y compensación intrahogar; la vulnerabilidad contextual modulada por las capacidades sociales del entorno (IVEC_contextual) como mecanismo de amplificación o amortiguación contextual-comunitaria; y la vulnerabilidad estructural modulada por las capacidades de adaptación y transformación estructural del municipio (IVEC_estructural) como mecanismo estructural-institucional de largo plazo. Los tres módulos se construirán, reportarán e interpretarán de forma diferenciada, y su integración operará mediante superposición cartográfica y no mediante agregación en un escalar único. Esta decisión no es una limitación técnica sino una consecuencia teóricamente justificada: los tres mecanismos causales corresponden a niveles de determinación social diferentes que producen efectos no conmutables, y colapsarlos en un índice único requeriría introducir asunciones de equivalencia entre tipos de causación que ni las fuentes ni la teoría autorizan. La lectura simultánea de los tres módulos permite orientar intervenciones según el nivel de determinación que corresponda: políticas de protección social directa para las condiciones individuales y del hogar, intervenciones de proximidad para el entorno contextual, y políticas redistributivas de largo plazo para las capacidades estructurales del territorio. *Responde al quinto vacío.*
+
+R3 — Arquitectura espacial coherente con el mecanismo causal: el IVEC adoptará una arquitectura espacial en la que la unidad de cálculo de cada módulo se elige según el mecanismo causal que el módulo opera, no según la escala administrativa por defecto de las fuentes. Los dos módulos micro ---IVEC_base e IVEC_contextual--- operan a la cuadrícula regular de 1 km² en proyección ETRS89-LAEA (EPSG:3035) porque sus indicadores son agregaciones de propiedades de individuos georreferenciables a coordenadas individuales (módulo base, sobre microdatos del Sistema de Información Poblacional) o de propiedades del territorio físico georreferenciables a punto (módulo contextual, sobre Catastro a parcela, equipamientos sanitarios y de servicios sociales a dirección, asociaciones a sede, paradas de transporte a coordenadas GPS y agregaciones del SIP para la subdimensión demográfico-poblacional del entorno). La cuadrícula regular es la unidad de cálculo coherente con esos mecanismos por tres razones convergentes: la heterogeneidad extrema del tamaño de las secciones censales en el territorio valenciano ---que oscila entre menos de un kilómetro cuadrado en zonas urbanas densas y más de cincuenta en zonas rurales del interior--- introduce un sesgo escalar incontrolado en la interpretación si la sección censal opera como unidad de cálculo; la Estadística Continua de Población restringe la cobertura de variables a sección censal y sitúa la frontera de la información administrativa en el dato puntual georreferenciado; y el SIP permite reconstruir directamente a la celda las variables de composición demográfico-poblacional del entorno con resolución equivalente a la que el Censo restituye únicamente al municipio. El módulo macro ---IVEC_estructural--- opera a escala municipal o comarcal, no por simetría con los anteriores sino porque su objeto medido ---las capacidades fiscales, presupuestarias, organizativas e institucionales del municipio, junto con las estructuras económicas y demográficas históricas que se han constituido a esa escala--- son atributos del ente municipal por construcción y no son sub-disaggregables a unidades infra-municipales sin perder su significado. Su proyección a la cuadrícula de 1 km² para la lectura simultánea con los otros dos módulos es exclusivamente cartográfica y no compositiva: cada celda hereda los valores del municipio en el que se ubica ---el escalar IVEC_estructural y, como variable cualitativa, la etiqueta del clúster PAR al que el municipio pertenece---, lo cual refleja la naturaleza institucional del objeto medido y no introduce una asunción artificial de homogeneidad. Los procedimientos concretos de construcción de cada módulo y de superposición cartográfica entre niveles se desarrollan en el Capítulo \@ref(cap-metodologia). La estabilidad de los resultados ante variaciones de la regla de agregación se documenta en el análisis de sensibilidad; la robustez ante variaciones de la resolución de la cuadrícula (problema de la unidad espacial modificable) queda planteada como desarrollo futuro del instrumento. *Responde al segundo vacío.*
+
+R4 — Regla de agregación justificada y análisis de compensabilidad: la regla de agregación de indicadores dentro de cada módulo será explícita y estará justificada sustantivamente. Dentro del IVEC_base (Vi + CH), se evaluará en qué medida la compensabilidad entre la dimensión individual y la del hogar es plausible y se reportarán los resultados bajo al menos dos reglas de agregación alternativas —incluyendo una con término de acumulación dimensional que identifica las celdas donde la vulnerabilidad es simultáneamente elevada en ambas dimensiones— para evaluar la robustez de las conclusiones. La ausencia de agregación algebraica entre módulos es en sí misma una respuesta al problema de compensabilidad: dado que IVEC_base, IVEC_contextual y IVEC_estructural no se combinan en un escalar único, no se plantea la pregunta de si una vulnerabilidad contextual elevada puede compensar una vulnerabilidad individual baja, lo cual constituye una ventaja metodológica de la arquitectura modular frente a los índices de agregación total. *Responde al tercer vacío.*
+
+R5 — Selección de indicadores guiada por hipótesis causales: la selección de cada indicador incluido en el IVEC estará justificada por una hipótesis sobre el mecanismo causal que relaciona ese indicador con la dimensión de vulnerabilidad que mide, no solo por su disponibilidad estadística o su covariación con criterios de resultado. Para el módulo IVEC_base, construido sobre el Sistema de Información Poblacional, la selección de indicadores está condicionada por la cobertura de esa fuente: el capítulo 3 fundamenta teóricamente por qué los indicadores disponibles —y no otros— son pertinentes para medir la vulnerabilidad individual y la composición del hogar, documentando los indicadores teóricamente relevantes que la fuente no permite incorporar como limitaciones explícitas del módulo base. Para los módulos IVEC_contextual y IVEC_estructural, donde la selección es más abierta, cada indicador tendrá documentada su justificación teórica, su fuente, su fecha de referencia, la dimensión a la que pertenece y su dirección de efecto esperado. *Responde al primer y cuarto vacío.*
+
+R6 — Análisis de sensibilidad y reporte de incertidumbre: el IVEC reportará la estabilidad de sus resultados bajo variaciones en las ponderaciones de dimensiones e indicadores dentro de cada módulo, mediante análisis de sensibilidad con al menos tres esquemas alternativos. Las unidades territoriales cuya clasificación sea inestable bajo distintos esquemas serán identificadas explícitamente como casos de alta incertidumbre diagnóstica, y su distribución espacial se cartografiará para que el usuario pueda evaluar en qué zonas el diagnóstico del instrumento merece mayor cautela interpretativa. *Responde al tercer vacío.*
+
+R7 — Trazabilidad y reproducibilidad completa: todo el proceso de construcción del IVEC —selección de fuentes, descarga de datos, transformación, imputación de valores ausentes, normalización, ponderación, agregación— será documentado en código reproducible y publicado junto con los resultados. Las versiones sucesivas del instrumento documentarán las razones de los cambios metodológicos, de modo que la evolución del instrumento sea auditable y comparable en el tiempo. *Responde al cuarto vacío.*
+
+### Puente hacia los capítulos siguientes
+
+Los siete requisitos formulados no son el resultado de preferencias metodológicas del investigador: son la respuesta directa a los vacíos identificados en el campo y a las tensiones documentadas en las tradiciones científicas que estudian la vulnerabilidad. Su formulación cierra el estado de la cuestión y abre el itinerario de trabajo que los capítulos siguientes desarrollan.
+
+El capítulo 3 formaliza el marco teórico del IVEC a partir de los requisitos R1 y R2. Su tarea es construir, desde los modelos PAR, MOVE y la teoría social del riesgo, el fundamento conceptual que traduce los supuestos ontológicos declarados en R1 en la arquitectura tridimensional operativa que R2 prescribe: cada módulo responde a una pregunta distinta sobre dónde reside la vulnerabilidad, opera con una lógica causal diferente y exige el tipo de intervención que le corresponde. El capítulo no selecciona indicadores —esa es la tarea del capítulo quinto, donde R5 se operacionaliza— sino que establece los criterios sustantivos desde los cuales cualquier indicador puede evaluarse: si identifica un mecanismo de producción de vulnerabilidad, a qué escala opera ese mecanismo y qué tipo de intervención es coherente con él.
+
+El capítulo 4 aplica la misma pregunta que R1 y R2 formulan en el dominio teórico al dominio normativo: si los marcos jurídicos e institucionales vigentes declaran qué concepción de la vulnerabilidad adoptan (R1) y si sus sistemas de acción distinguen entre las dimensiones individual, contextual y estructural que la arquitectura del IVEC separa analíticamente (R2). La respuesta que el capítulo construye es negativa en ambos casos, y de esa doble negación emerge la Brecha Protección Civil / Protección Social como consecuencia estructural —no como fallo de gestión superable mediante instrucciones de coordinación— de que dos sistemas que operan sobre el mismo territorio manejan concepciones tácitas e incompatibles de qué es la vulnerabilidad y a qué escala debe medirse. Esa demostración es la que convierte a los requisitos, y al instrumento que los satisface, en una respuesta con pertinencia directa de gobernanza: el IVEC no llena únicamente un vacío metodológico del campo académico sino un vacío informacional en la arquitectura institucional del territorio.
+
+El capítulo 5 operacionaliza los requisitos R3 a R7 en las decisiones metodológicas concretas del IVEC: la arquitectura espacial coherente con el mecanismo causal que R3 prescribe, la regla de agregación justificada y el análisis de compensabilidad que R4 exige, la selección de indicadores guiada por hipótesis causales que R5 demanda —con documentación explícita de los indicadores teóricamente pertinentes que la cobertura de las fuentes no permite incorporar—, el análisis de sensibilidad que R6 requiere y la trazabilidad reproducible completa que R7 garantiza. Es en ese capítulo donde las decisiones de diseño se justifican empíricamente y se someten a evaluación de robustez; el contraste sistemático de la proposición de diseño sobre los siete requisitos se realiza en el capítulo sexto, cerrando el ciclo que los requisitos formulados aquí abren.

@@ -1,0 +1,38 @@
+```{=latex}
+\begin{titlepage}
+  \thispagestyle{empty}
+
+  \centering
+  \vspace*{0.5cm}
+
+  \includegraphics[width=0.70\textwidth]{plantillas/logo-uv.png}\\[1cm]
+
+  {\Large \textsc{TESIS DOCTORAL}}\\[1cm]
+
+  {\Huge \bfseries
+  La vulnerabilidad social como fenómeno estructural y contextual
+  }\\[0.3cm]
+
+  {\LARGE
+  Diseño del instrumento IVEC para la Comunitat Valenciana}\\[2cm]
+
+  \begin{flushleft}
+    {\large \textbf{Autor:} Juan Antonio Romero Crespo}\\[0.3cm]
+    {\large \textbf{Director:} Dr. Carles X. Simó Noguera}\\[0.3cm]
+    {\large Programa de Doctorado en Ciencias Sociales}\\[0.3cm]
+    {\large Defendida en la Facultat de Ciències Socials, Universitat de València}\\[0.3cm]
+    {\large \textbf{València, a `r format(Sys.Date(), "%d de %B de %Y")`}}\\[0.8cm]
+
+    {\footnotesize
+    Nota: Esta tesis doctoral es el resultado de una investigación financiada por el programa FPU (ref. FPU18/00637) del Ministerio de Ciencia, Innovación y Universidades.
+    }
+  \end{flushleft}
+
+  % --- Logotipo facultad en esquina inferior derecha ---
+  \vfill
+  \hfill\includegraphics[width=0.50\textwidth]{plantillas/logo-doctorado.png}
+
+\end{titlepage}
+
+\cleardoublepage
+```

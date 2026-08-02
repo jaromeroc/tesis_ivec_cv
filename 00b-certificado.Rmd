@@ -1,0 +1,41 @@
+```{=latex}
+
+\cleardoublepage
+\begingroup
+  \newgeometry{top=2.5cm, bottom=2.5cm, left=4cm, right=4cm}
+
+  \thispagestyle{empty}
+
+  \begin{center}
+    \includegraphics[width=\textwidth]{plantillas/logo-doctorado.png}\\[1cm]
+  \end{center}
+
+  \vspace{1.5cm}
+
+  D.\ \textbf{CARLES XAVIER SIMÓ NOGUERA}, Catedrático del Departamento de Sociología   
+  y Antropología Social de la \textbf{Universitat de València},
+
+  \vspace{1cm}
+
+  {\Large \textbf{CERTIFICA:}}
+
+  \vspace{0.75cm}
+
+  Que la presente memoria, titulada «\textit{La vulnerabilidad social como fenómeno estructural y contextual.
+  Diseño del instrumento IVEC para la Comunitat Valenciana}», corresponde
+  al trabajo realizado bajo su dirección por D.\ \textbf{JUAN ANTONIO ROMERO CRESPO} para su presentación como  
+  Tesis Doctoral en el Programa de Doctorado en Ciencias Sociales de la \textbf{Universitat de València}.
+
+  \vspace{0.5cm}
+
+  Y para que conste firma el presente certificado en Valencia, a  
+  `r format(Sys.Date(), "%d de %B de %Y")`.
+
+  \vspace{3cm}
+
+  \noindent\textbf{Fdo.\ CARLES XAVIER SIMÓ NOGUERA}
+
+\endgroup
+\restoregeometry
+\cleardoublepage
+```

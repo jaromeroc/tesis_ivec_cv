@@ -1,0 +1,23 @@
+bookdown::pdf_book:                  # Salida principal en PDF
+  latex_engine: xelatex              # Usa XeLaTeX (fuentes personalizadas)
+  citation_package: default          # Manejo de citas con Pandoc + CSL (APA7 en tu caso)
+  includes:
+    in_header: preamble.tex          # Inserta preámbulo con fuentes, estilos y macros
+  keep_tex: true                     # Conserva el .tex (depuración)
+  keep_md: false                     # Elimina los .md intermedios
+  class_option: ["openright"]        # Capítulos empiezan en página impar (derecha)
+  number_sections: true              # Activa numeración de capítulos/secciones
+  fig_caption: true                  # Numeración de figuras y tablas
+  toc: false                         # Usas índice manual (00h-indice.Rmd)
+  lof: false                         # Evita lista automática de figuras
+  lot: false                         # Evita lista automática de tablas
+  highlight: "tango"                 # Estilo de resaltado para código
+  link-citations: true               # Hipervínculos entre citas y bibliografía
+
+bookdown::word_document2:            # Salida secundaria en Word
+  reference_docx: plantillas/plantilla.docx   # Estilos personalizados (ver nota)
+  number_sections: true              # Mantiene numeración de secciones
+  fig_caption: true                  # Numeración de figuras y tablas
+  toc: true                          # Word genera su propio índice nativo
+  highlight: "tango"                 # Consistente con PDF
+  link-citations: true               # Hipervínculos citas-bibliografía

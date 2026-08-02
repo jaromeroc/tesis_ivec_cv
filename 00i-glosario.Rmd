@@ -1,0 +1,417 @@
+```{=latex}
+\cleardoublepage
+\thispagestyle{empty}
+```
+
+# Glosario {-}
+
+```{=latex}
+\referenceletter{A}{gloss-A}
+```
+
+```{=latex}
+\tesisglossary{Amenaza}{def-amenaza}
+```
+
+- Probabilidad o inminencia de que un peligro se materialice afectando a personas o bienes. En [@undrr2015] se equipara a *peligro*, pero la Ley 17/2015 del Sistema Nacional de Protección Civil la asocia a riesgo inminente [@leyproteccioncivil2015].
+--Ejemplo: crecidas del río Xúquer.
+--Desde un enfoque sociológico, también puede ser construida socialmente [@beck1992; @butler2004].
+
+```{=latex}
+\tesisglossary{Arquitectura modular de resolución variable}{def-arquitectura-modular}
+```
+
+- Diseño de un instrumento de medición compuesto por módulos analíticamente independientes que operan a escalas espaciales distintas y se integran mediante superposición cartográfica en lugar de mediante operadores algebraicos. En el IVEC, los módulos IVEC_base (cuadrícula de 1 km²), IVEC_contextual (cuadrícula de 1 km²) e IVEC_estructural (municipio/comarca) conforman esta arquitectura. Responde al principio de que fenómenos producidos por mecanismos causales operando a escalas distintas no deben colapsar en un escalar único.
+
+```{=latex}
+\referenceletter{C}{gloss-C}
+```
+
+```{=latex}
+\tesisglossary{Capacidades / Resiliencia}{def-capacidades}
+```
+
+- Conjunto de recursos, habilidades, infraestructuras, redes sociales e institucionales que permiten prevenir, afrontar, recuperarse y adaptarse frente a amenazas.
+
+* **CH (Composición del Hogar):** moduladora de la **Vulnerabilidad Individual (Vi)**.
+* **CS (Capacidades Sociales del Entorno):** moduladora de la **Vulnerabilidad Contextual (VC)**.
+* **CAD (Capacidades de Adaptación y Transformación Estructural del Municipio):** moduladoras de la **Vulnerabilidad Estructural (VE)**.
+* **CR (Capacidades de Reacción):** operativas frente a escenarios de riesgo inmediato.
+
+```{=latex}
+\tesisglossary{Catástrofe}{def-catastrofe}
+```
+
+- Evento de gran magnitud que colapsa la capacidad de respuesta local, requiriendo apoyo externo. En España se asocia a "riesgos catastróficos" en el Consorcio de Seguros.
+
+```{=latex}
+\tesisglossary{Causas raíz}{def-causas-raiz}
+```
+
+- En el modelo PAR [@wisner2004], primer nivel de la progresión del daño: estructuras económicas, sistemas políticos e ideologías que producen y reproducen condiciones de inseguridad a escala global y nacional. Actúan a través de *presiones dinámicas* que las transforman en condiciones de inseguridad observables en el territorio. El IVEC_estructural captura estos procesos mediante indicadores de modelo productivo, estructura laboral y capacidades institucionales municipales.
+
+```{=latex}
+\tesisglossary{Clúster espacial}{def-cluster-espacial}
+```
+
+- Agrupación territorial de unidades espaciales con valores similares en una variable, identificada estadísticamente mediante técnicas de autocorrelación espacial (véase *LISA*). Cuando un clúster concentra valores altos rodeados de valores altos se denomina *hot spot*; la situación inversa constituye un *cold spot*.
+
+```{=latex}
+\tesisglossary{Cocitación}{def-cocitacion}
+```
+
+- Técnica bibliométrica que mide la frecuencia con que dos referencias son citadas conjuntamente en los mismos documentos. Una alta cocitación indica que ambas referencias son leídas y movilizadas como parte del mismo marco intelectual. En el capítulo segundo, el análisis de cocitación autor-año identifica los repertorios de referencia que estructuran las principales tradiciones del campo de estudios sobre vulnerabilidad social.
+
+```{=latex}
+\tesisglossary{Compensabilidad}{def-compensabilidad}
+```
+
+- Propiedad de un operador de agregación por la que una puntuación baja en una dimensión puede compensarse con una puntuación alta en otra, produciendo el mismo valor de índice compuesto. La compensabilidad total es el supuesto implícito de la media aritmética y ha sido criticada en la construcción de índices de vulnerabilidad porque trata como equivalentes privaciones de naturaleza heterogénea. El IVEC evita este problema al no agregar algebraicamente sus módulos en un escalar único.
+
+```{=latex}
+\tesisglossary{Condiciones de inseguridad}{def-condiciones-inseguridad}
+```
+
+- En el modelo PAR, tercer nivel de la progresión del daño: formas concretas en que la vulnerabilidad se expresa en el territorio, como vivienda inadecuada, medios de vida precarios, exposición en entornos peligrosos o débil capacidad institucional de protección. Son el resultado observable de causas raíz que operan a través de presiones dinámicas.
+
+```{=latex}
+\tesisglossary{Coocurrencia (de palabras clave)}{def-coocurrencia}
+```
+
+- Coaparición de dos o más términos en el mismo documento bibliográfico. El análisis de coocurrencias de palabras clave permite reconstruir la organización semántica del campo científico: los términos que coocurren con mayor frecuencia forman redes de asociación que revelan áreas temáticas estabilizadas. Véase también *partición temática*.
+
+```{=latex}
+\referenceletter{D}{gloss-D}
+```
+
+```{=latex}
+\tesisglossary{Desastre}{def-desastre}
+```
+
+- Proceso social que ocurre cuando un fenómeno peligroso impacta en condiciones de vulnerabilidad, produciendo daños severos [@cardona2012]. Se concibe como interacción entre peligrosidad, exposición y vulnerabilidad.
+
+```{=latex}
+\tesisglossary{Diferenciación funcional}{def-diferenciacion-funcional}
+```
+
+- Mecanismo de organización social descrito por Luhmann [-@luhmann1984] mediante el cual los sistemas sociales complejos, incluido el sistema científico, resuelven la creciente complejidad especializándose en funciones distintas. En el contexto del campo de estudios sobre vulnerabilidad social, la diferenciación funcional explica la proliferación de enfoques y marcos analíticos como resultado estructural y no como simple fragmentación o falta de rigor: cada especialidad responde a un tipo específico de problema dentro del mismo sistema.
+
+```{=latex}
+\referenceletter{E}{gloss-E}
+```
+
+```{=latex}
+\tesisglossary{Emergencia}{def-emergencia}
+```
+
+- Situación de riesgo colectivo que exige gestión inmediata por parte de autoridades públicas para evitar su escalada a catástrofe.
+
+```{=latex}
+\tesisglossary{Escalabilidad}{def-escalabilidad}
+```
+
+- Propiedad de un instrumento de medición por la que sus resultados pueden adaptarse a distintas resoluciones espaciales (cuadrícula, sección censal, municipio, comarca) sin que el cambio de escala invalide los supuestos del diseño. El IVEC tiene escalabilidad diferenciada por módulos: cada uno opera en la resolución espacial natural de sus fuentes de datos, de modo que la lectura simultánea de los tres módulos constituye en sí misma un análisis multiescalar.
+
+```{=latex}
+\tesisglossary{Escalar único}{def-escalar-unico}
+```
+
+- Valor numérico resumen que sintetiza en una sola dimensión las puntuaciones de múltiples indicadores o dimensiones de un índice compuesto. El escalar único facilita la ordenación territorial de unidades espaciales, pero a costa de introducir supuestos de compensabilidad y de colapsar la varianza multiescalar. El IVEC rechaza deliberadamente esta forma de integración por las razones epistemológicas y metodológicas expuestas en el capítulo quinto.
+
+```{=latex}
+\tesisglossary{Exposición}{def-exposicion}
+```
+
+- Presencia de personas, bienes o ecosistemas en áreas susceptibles de ser afectadas.
+Concepto operativo en planes de protección civil [@proteccioncivil2013-incendiosforestales]. Enfoques críticos lo entienden como resultado de procesos sociales y políticos. El IVEC mantiene una separación analítica explícita entre vulnerabilidad y exposición: los módulos del IVEC miden la condición social de la vulnerabilidad ---el módulo base, la del individuo y el hogar; el contextual, la del entorno; el estructural, la del municipio---; la capa CV05 del *Institut Cartogràfic Valencià* mide la condición físico-ambiental del territorio. La superposición de ambas capas produce el diagnóstico de riesgo compuesto.
+
+```{=latex}
+\referenceletter{G}{gloss-G}
+```
+
+```{=latex}
+\tesisglossary{Georreferenciación}{def-georeferenciacion}
+```
+
+- Proceso de asignación de coordenadas geográficas (latitud/longitud o coordenadas proyectadas como UTM) a un registro individual o una unidad de análisis, permitiendo su localización espacial y su análisis cartográfico. En el SIP, la georreferenciación opera a nivel de hogar mediante las coordenadas ST\_X y ST\_Y de los campos APSIG. El 17,39\% de los registros activos (933.233 de 5.365.233) carece de georreferenciación válida, lo que constituye el dato perdido analizado en el capítulo quinto.
+
+```{=latex}
+\tesisglossary{Gobernanza del riesgo}{def-gobernanza}
+```
+
+- Procesos, normas e instituciones que gestionan el riesgo de manera participativa y multinivel [@undrr2015; @oecd2011]. Debe integrar transparencia e inclusión, aunque en la práctica predominan enfoques tecnocráticos [@tierney2012].
+
+```{=latex}
+\referenceletter{H}{gloss-H}
+```
+
+```{=latex}
+\tesisglossary{Hipótesis causal}{def-hipotesis-causal}
+```
+
+- En la construcción de índices, la hipótesis que establece el mecanismo causal por el que un indicador observable se relaciona con la dimensión latente que pretende medir. El requisito R5 del IVEC exige que cada indicador incluido en cualquiera de los tres módulos tenga documentada su hipótesis causal: no basta con que la variable esté disponible estadísticamente o correlacione empíricamente con el resultado; debe existir un argumento teórico que justifique por qué esa correlación es causal y no espuria.
+
+```{=latex}
+\referenceletter{I}{gloss-I}
+```
+
+```{=latex}
+\tesisglossary{Índice compuesto}{def-indice-compuesto}
+```
+
+- Indicador sintético construido mediante la combinación ponderada de un conjunto de indicadores elementales que representan distintas dimensiones de un constructo multidimensional. Los índices compuestos de vulnerabilidad social han sido ampliamente criticados por su escasa trazabilidad metodológica, sus supuestos implícitos de compensabilidad y la ausencia de declaración explícita del objeto que miden. El IVEC propone una arquitectura que responde a esas críticas mediante requisitos de diseño verificables.
+
+```{=latex}
+\tesisglossary{Interoperabilidad diagnóstica}{def-interoperabilidad}
+```
+
+- Capacidad de dos o más instrumentos de diagnóstico territorial para producir resultados comparables, combinables e interpretables conjuntamente en el marco de un mismo sistema de gobernanza. La interoperabilidad no requiere que los instrumentos sean idénticos en sus supuestos, sino que sus decisiones metodológicas sean suficientemente explícitas como para poder evaluar bajo qué condiciones sus resultados pueden combinarse y bajo cuáles no.
+
+```{=latex}
+\referenceletter{M}{gloss-M}
+```
+
+```{=latex}
+\tesisglossary{Marco de Hyogo (2005–2015)}{def-hyogo}
+```
+
+- Acuerdo internacional sobre reducción del riesgo de desastres adoptado en la Conferencia Mundial sobre la Reducción de Desastres (Kobe, Hyogo, Japón, 2005). Articuló cinco prioridades de acción para fortalecer la resiliencia de las naciones y las comunidades, con énfasis en la gobernanza, el conocimiento del riesgo y los sistemas de alerta temprana. Fue sustituido por el Marco de Sendai (2015–2030).
+
+```{=latex}
+\tesisglossary{Marco de Sendai (2015–2030)}{def-sendai}
+```
+
+- Marco internacional para la reducción del riesgo de desastres aprobado en la Tercera Conferencia Mundial de las Naciones Unidas (Sendai, Japón, 2015) [@undrr2015]. Establece cuatro prioridades: comprensión del riesgo, fortalecimiento de la gobernanza, inversión en reducción del riesgo y preparación para una respuesta eficaz. Su objetivo global es reducir sustancialmente las pérdidas por desastres para 2030.
+
+```{=latex}
+\tesisglossary{MAUP (Problema de la Unidad Espacial Modificable)}{def-maup}
+```
+
+- *Modifiable Areal Unit Problem*: efecto estadístico por el que los resultados de un análisis espacial varían sistemáticamente según el tamaño y la forma de las unidades de agregación elegidas. Tiene dos componentes: el efecto de escala (los resultados cambian al pasar de una resolución fina a una gruesa) y el efecto de zonificación (los resultados cambian con distintas configuraciones de unidades del mismo tamaño). El MAUP es uno de los cinco vacíos identificados en la literatura de índices de vulnerabilidad y constituye una de las justificaciones centrales de la arquitectura modular del IVEC.
+
+```{=latex}
+\tesisglossary{Marco MOVE}{def-move}
+```
+
+- *Methods for the Improvement of Vulnerability Assessment in Europe*: marco conceptual multidimensional para la evaluación de la vulnerabilidad desarrollado en el proyecto europeo homónimo [@birkmann2013]. Distingue tres componentes funcionales analíticamente separados —susceptibilidad, falta de resiliencia y falta de capacidad adaptativa— y seis dimensiones sustantivas: social, económica, física, institucional, cultural y ambiental. Su carácter modular y su vocación de adaptabilidad contextual lo convierten en uno de los tres marcos que fundamentan la arquitectura del IVEC.
+
+```{=latex}
+\tesisglossary{Media móvil (MA3)}{def-media-movil}
+```
+
+- Técnica estadística que suaviza una serie temporal reemplazando cada valor por el promedio de un número fijo de valores consecutivos (en este caso, tres años: el anterior, el actual y el siguiente). La media móvil de tres años (MA3) atenúa las fluctuaciones puntuales y revela tendencias estructurales en el crecimiento del campo científico analizado en el capítulo segundo.
+
+```{=latex}
+\tesisglossary{Microdatos}{def-microdatos}
+```
+
+- Registros estadísticos individuales (uno por persona, hogar o unidad de análisis) en contraposición a los datos agregados o tabulados. El uso de microdatos permite análisis de heterogeneidad interna y espacialización a resoluciones finas que los datos agregados no posibilitan. El IVEC_base se construye sobre los microdatos del SIP, con más de cinco millones de registros individuales georreferenciados.
+
+```{=latex}
+\tesisglossary{Modelo PAR (Presión y Liberación)}{def-par}
+```
+
+- *Pressure and Release model*: marco analítico formulado por @blaikie1994 y desarrollado en @wisner2004 que explica la producción de desastres como el resultado de la coincidencia entre una amenaza física y condiciones de vulnerabilidad generadas por procesos socioeconómicos de largo plazo. El modelo propone una progresión causal de tres niveles: causas raíz → presiones dinámicas → condiciones de inseguridad. El lado opuesto del modelo —la liberación— describe los procesos mediante los cuales la reducción de la vulnerabilidad reduce el riesgo. Es uno de los tres marcos teóricos que fundamentan la arquitectura del IVEC.
+
+```{=latex}
+\tesisglossary{Modularidad}{def-modularidad}
+```
+
+- En el análisis de redes, medida de la calidad de una partición de la red en comunidades o clústeres: expresa en qué grado las conexiones dentro de cada comunidad son más densas que las conexiones entre comunidades. Una modularidad alta indica que la red tiene una estructura comunitaria bien definida; una modularidad baja indica que la red está poco segmentada. En el análisis bibliométrico del capítulo segundo, la modularidad decreciente de la red de coocurrencias de palabras clave indica que el campo de estudios sobre vulnerabilidad social se está volviendo semánticamente más integrado a lo largo del tiempo.
+
+```{=latex}
+\referenceletter{N}{gloss-N}
+```
+
+```{=latex}
+\tesisglossary{NMI (Información Mutua Normalizada)}{def-nmi}
+```
+
+- *Normalized Mutual Information*: medida estadística que cuantifica la correspondencia entre dos particiones de los mismos elementos (en el caso de la tesis, entre la partición temática del corpus basada en coocurrencias de palabras clave y la partición intelectual basada en cocitación). Un NMI de 0 indica que conocer la partición temática de un artículo no reduce en absoluto la incertidumbre sobre su partición intelectual (y viceversa); un NMI de 1 indica correspondencia perfecta. El valor de 0,037 obtenido para el corpus 1980–2024 confirma que el campo habla con vocabularios compartidos pero se lee desde tradiciones bibliográficas diferenciadas.
+
+```{=latex}
+\tesisglossary{Normalización percentílica}{def-normalizacion-percentilica}
+```
+
+- Transformación estadística que asigna a cada valor de una variable su rango percentílico dentro de la distribución de referencia (en el IVEC, la población activa en el SIP de la Comunitat Valenciana). La normalización percentílica produce valores continuos entre 0 y 1 que preservan el ordenamiento relativo de los individuos sin asumir equidistancia entre categorías originales (ventaja frente a la normalización *min-max* cuando las categorías fuente son ordinales). Es la transformación de base aplicada a los campos APSIG del SIP antes de la agregación espacial en celdas de 1 km².
+
+```{=latex}
+\referenceletter{O}{gloss-O}
+```
+
+```{=latex}
+\tesisglossary{Objeto frontera}{def-objeto-frontera}
+```
+
+- Concepto acuñado por @stargriesemer1989 para designar objetos que son simultáneamente suficientemente robustos para mantener una identidad compartida entre distintas comunidades y suficientemente maleables para adaptarse a los usos específicos de cada una. La vulnerabilidad social opera como objeto frontera en la literatura científica: funciona como término coordinador entre tradiciones disciplinares diversas —geografía del riesgo, salud pública, estudios de desastres, adaptación climática— sin que esas tradiciones compartan los mismos supuestos ontológicos o metodológicos sobre lo que el término designa.
+
+```{=latex}
+\referenceletter{P}{gloss-P}
+```
+
+```{=latex}
+\tesisglossary{Partición temática / intelectual}{def-particion}
+```
+
+- En el análisis bibliométrico, división del corpus en grupos homogéneos mediante algoritmos de detección de comunidades aplicados sobre redes de coocurrencias de palabras clave (partición temática) o de cocitación (partición intelectual). La comparación entre ambas particiones mediante el NMI permite evaluar si el campo se organiza de manera coherente —mismos temas, mismas referencias— o si coexisten agendas temáticas que movilizan tradiciones bibliográficas distintas.
+
+```{=latex}
+\tesisglossary{Peligro}{def-peligro}
+```
+
+- Fuente dañina con potencial de causar daño (natural o humano). Se diferencia de *amenaza* porque no implica necesariamente exposición o vulnerabilidad.
+
+```{=latex}
+\tesisglossary{Peligrosidad}{def-peligrosidad}
+```
+
+- Capacidad potencial de un fenómeno de causar daños, definida por magnitud, frecuencia y localización.
+
+```{=latex}
+\tesisglossary{Presiones dinámicas}{def-presiones-dinamicas}
+```
+
+- En el modelo PAR, segundo nivel de la progresión del daño: procesos que traducen las causas raíz en condiciones de inseguridad observables, como la urbanización acelerada sin planificación, la degradación ambiental, la migración forzada o la reducción del gasto público en servicios esenciales. Actúan como correa de transmisión entre las estructuras de largo plazo y la vulnerabilidad concreta de los territorios.
+
+```{=latex}
+\referenceletter{R}{gloss-R}
+```
+
+```{=latex}
+\tesisglossary{Redes comunitarias}{def-redescomunitarias}
+```
+
+- Estructuras de cooperación y apoyo en un territorio o colectivo específico.
+Fortalecen la resiliencia social [@putnam2000; @delgado2016].
+
+```{=latex}
+\tesisglossary{Redes sociales}{def-redessociales}
+```
+
+- Interacciones entre individuos y grupos, presenciales o digitales, con fines de comunicación, activismo o trabajo [@castells2009; @vandijk2020].
+
+```{=latex}
+\tesisglossary{Riesgo}{def-riesgo}
+```
+
+- Probabilidad de daño resultante de la interacción entre peligro, exposición y vulnerabilidad.
+
+--Enfoques principales:
+* **Tradicional**: $R = Peligrosidad \times Vulnerabilidad \times Exposicion$.
+* **IPCC (AR5/AR6)**: $R = f(Amenaza, Exposicion, Vulnerabilidad)$.
+* **SoVI (Cutter)**: riesgo medido desde vulnerabilidad social.
+* **PAR (Blaikie et al.)**: progresión de causas estructurales.
+* **Cardona**: riesgo menos capacidad.
+* **Birkmann**: riesgo como vulnerabilidad multidimensional.
+
+```{=latex}
+\tesisglossary{Riesgo aceptable}{def-riesgoaceptable}
+```
+
+- Nivel de riesgo que se considera tolerable según criterios sociales, políticos y económicos.
+
+```{=latex}
+\tesisglossary{Riesgo compuesto}{def-riesgo-compuesto}
+```
+
+- Configuración territorial en que coinciden alta vulnerabilidad social (medida por el IVEC) y alta peligrosidad físico-ambiental (medida por la capa CV05 del *Institut Cartogràfic Valencià*). El riesgo compuesto no puede identificarse desde ninguno de los dos componentes por separado: emerge únicamente de la lectura simultánea de la vulnerabilidad y la exposición en superposición cartográfica, lo que constituye la principal utilidad diagnóstica de la arquitectura modular del IVEC.
+
+```{=latex}
+\tesisglossary{Riesgo residual}{def-riesgoresidual}
+```
+
+- Riesgo que permanece tras aplicar medidas de mitigación o adaptación.
+
+```{=latex}
+\referenceletter{S}{gloss-S}
+```
+
+```{=latex}
+\tesisglossary{Sección censal}{def-seccion-censal}
+```
+
+- Unidad territorial básica de la organización estadística del INE para la realización del Padrón Municipal y el Censo de Población y Viviendas. Cada sección censal agrupa entre 500 y 2.500 habitantes aproximadamente, siendo la unidad mínima para la que las fuentes estadísticas oficiales producen datos desagregados comparables en todo el territorio. En el diseño del IVEC interviene como unidad de origen desde la que se proyectan al centroide de la cuadrícula de 1 km² aquellos indicadores ---régimen de tenencia (Censo 2021) y nivel educativo del entorno (Censo Anual 2025)--- cuya fuente no permite todavía resolución submunicipal nativa a celda LAEA.
+
+```{=latex}
+\tesisglossary{Segregación socioespacial}{def-segregacion-socioespacial}
+```
+
+- Proceso por el que grupos sociales diferenciados por clase, renta, etnia u otras características se distribuyen de forma desigual en el espacio urbano o territorial, produciendo áreas residenciales de composición social relativamente homogénea y acumulando desventajas o ventajas en territorios específicos. La segregación socioespacial amplifica la coincidencia entre alta vulnerabilidad social y alta exposición al riesgo físico en los territorios que han experimentado urbanización acelerada en zonas de peligrosidad.
+
+```{=latex}
+\tesisglossary{Sistema de gestión del riesgo}{def-sistemariesgo}
+```
+
+- Conjunto organizado de políticas, normas, procesos e instituciones para identificar, prevenir, mitigar, responder y recuperarse de los riesgos. Debe abarcar todas las fases del ciclo y priorizar la reducción de vulnerabilidades estructurales.
+
+```{=latex}
+\tesisglossary{SoVI (Social Vulnerability Index)}{def-sovi}
+```
+
+- Índice de Vulnerabilidad Social desarrollado por @cutter2003 a partir de un análisis de componentes principales sobre indicadores socioeconómicos y demográficos a escala de condado en Estados Unidos. Se apoya en el modelo *hazards-of-place* de Cutter y se convirtió en referente metodológico para la construcción de índices compuestos de vulnerabilidad territorial a escala subnacional por su replicabilidad; ha sido criticado, no obstante, porque la selección de sus indicadores la determina un procedimiento inductivo que no se deriva de ese modelo conceptual, lo que produce diagnósticos que no son comparables entre contextos distintos sin justificación adicional.
+
+```{=latex}
+\tesisglossary{Superposición cartográfica}{def-superposicion-cartografica}
+```
+
+- Técnica de análisis espacial que combina visualmente y analíticamente dos o más capas de información georreferenciadas en el mismo sistema de referencia de coordenadas. En el IVEC, la superposición cartográfica es el mecanismo de integración entre los módulos del índice y entre el índice y la capa de peligrosidad CV05, en lugar de la agregación algebraica. Su ventaja epistemológica reside en que muestra las coincidencias sin afirmar equivalencia entre magnitudes de naturaleza heterogénea.
+
+```{=latex}
+\referenceletter{T}{gloss-T}
+```
+
+```{=latex}
+\tesisglossary{Token / tokenización}{def-tokenizacion}
+```
+
+- En análisis bibliométrico y procesamiento de texto, un *token* es la unidad léxica mínima de análisis: una palabra, un término compuesto o un par autor-año en registros bibliográficos. La *tokenización* es el proceso de identificar y separar esas unidades a partir de texto libre. En el capítulo segundo, la normalización de palabras clave y referencias citadas transforma los campos textuales de los registros bibliográficos en tokens estandarizados que permiten construir redes de coocurrencia y cocitación con regularidades estructurales fiables.
+
+```{=latex}
+\tesisglossary{Trazabilidad metodológica}{def-trazabilidad}
+```
+
+- Propiedad de un instrumento de medición por la que todas sus decisiones —selección de indicadores, fuentes, procedimientos de normalización, reglas de agregación, umbrales de exclusión— están explícitamente documentadas de forma que cualquier investigador con acceso a las mismas fuentes puede reproducir los resultados. El requisito R7 del IVEC establece la trazabilidad completa como condición de diseño, materializada en los apéndices de la tesis y en el repositorio de código.
+
+```{=latex}
+\referenceletter{U}{gloss-U}
+```
+
+```{=latex}
+\tesisglossary{Unidad de convivencia}{def-unidad-convivencia}
+```
+
+- En el SIP, agrupación de individuos registrados en el mismo domicilio que comparten los recursos del hogar a efectos de la evaluación de la capacidad económica y la situación de dependencia. Es la unidad operativa de la dimensión CH (Composición del Hogar) del IVEC_base: la imputación de coordenadas por unidad de convivencia permite asignar georreferenciación a individuos sin coordenadas propias a partir de la localización de otros miembros del mismo hogar.
+
+```{=latex}
+\referenceletter{V}{gloss-V}
+```
+
+```{=latex}
+\tesisglossary{Validez convergente}{def-validez-convergente}
+```
+
+- Tipo de evidencia de validez de constructo que se obtiene cuando dos instrumentos de clasificación construidos de manera independiente y desde tradiciones teóricas distintas identifican como más vulnerables (o con mayor riesgo) los mismos territorios o individuos. En el capítulo sexto, la hipótesis H1 contrasta la validez convergente de los módulos micro del IVEC comparando su distribución espacial con la de los individuos clasificados en las categorías de alta vulnerabilidad del sistema D7 del SIP (criterio endógeno) y, en el caso del módulo contextual, con criterios externos al SIP (la renta del Atlas de Distribución de Renta del INE y el índice de vulnerabilidad urbana del VEUS-CV).
+
+```{=latex}
+\tesisglossary{Validez de constructo}{def-validez-constructo}
+```
+
+- Grado en que un instrumento de medición captura efectivamente el fenómeno teórico que pretende medir y no otro fenómeno correlacionado pero distinto. La validez de constructo se evalúa mediante distintas estrategias: validez de contenido (los indicadores representan todas las dimensiones relevantes del constructo), validez convergente (correlación con otras medidas del mismo constructo) y validez discriminante (ausencia de correlación con medidas de constructos distintos).
+
+```{=latex}
+\tesisglossary{Vulnerabilidad}{def-vulnerabilidad}
+```
+
+- Condición multidimensional de fragilidad frente a amenazas, resultado de desigualdades sociales e institucionales. Clasificación: social, física, económica, ambiental, institucional.
+
+```{=latex}
+\tesisglossary{Grupos vulnerabilizados}{def-vulnerabilizados}
+```
+
+- Colectivos situados en condiciones de fragilidad por procesos sociales, económicos e institucionales históricamente producidos, y no por atributos inherentes a las personas que los integran. El término ---frente a la noción estática de «grupos vulnerables»--- subraya que la vulnerabilidad es el resultado de una vulnerabilización: una acción estructural que sitúa a determinados colectivos en posición de desventaja diferencial ante las perturbaciones y que, por tanto, puede revertirse mediante la transformación de las condiciones que la producen. 
+
+```{=latex}
+\tesisglossary{Grupos vulnerados}{def-vulnerados}
+```
+
+- Colectivos cuyos derechos han sido lesionados por discriminación o violencia [@sen1999].

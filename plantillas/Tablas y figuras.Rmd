@@ -1,0 +1,99 @@
+---
+title: "Recetario de Tablas Académicas con kableExtra"
+author: "Ejemplo"
+date: "`r Sys.Date()`"
+output: bookdown::pdf_book
+---
+
+# Introducción
+
+Este documento recopila ejemplos de **tablas académicas con kableExtra**, con títulos, fuente, notas y formato sobrio (sin colores).  
+
+---
+
+# 1. Tabla básica
+
+```{r tab:basica, results='asis'}
+library(knitr)
+library(kableExtra)
+
+df <- head(mtcars, 5)
+
+kable(df, booktabs = TRUE, caption = "Ejemplo de tabla básica")
+```
+
+
+
+# 2. Tabla con fuente y nota al pie
+```{r}
+df <- data.frame(
+  Variable = c("X1","X2","X3"),
+  Descripcion = c("Índice de vulnerabilidad", 
+                  "Capacidad adaptativa", 
+                  "Resiliencia")
+)
+
+kable(df, booktabs = TRUE, caption = "Indicadores utilizados") %>%
+  footnote(
+    general = "Fuente: Elaboración propia",
+    threeparttable = TRUE
+  )
+
+```
+
+
+# 3. Tabla con notas al pie específicas
+```{r}
+df <- data.frame(
+  Variable = c("X1","X2","X3"),
+  Descripcion = c("Índice de vulnerabilidad", 
+                  "Capacidad adaptativa", 
+                  "Resiliencia")
+)
+
+kable(df, booktabs = TRUE, caption = "Indicadores con notas") %>%
+  footnote(
+    symbol = c("X1 = indicador compuesto", "X2 = indicador base"),
+    general = "Fuente: Elaboración propia",
+    threeparttable = TRUE
+  )
+
+```
+
+
+# 4. Tabla con filas colapsadas
+```{r}
+df <- data.frame(
+  Categoria   = c("A","A","A","B","B"),
+  Variable    = c("X1","X2","X3","X4","X5"),
+  Valor       = c(10,20,30,40,50)
+)
+
+kable(df, booktabs = TRUE, caption = "Tabla con filas colapsadas") %>%
+  collapse_rows(columns = 1, valign = "middle") %>%
+  footnote(
+    general = "Fuente: Elaboración propia",
+    threeparttable = TRUE
+  )
+```
+
+
+# 5. Tabla larga que abarca varias páginas
+```{r}
+df <- data.frame(
+  ID = 1:50,
+  Variable = paste("Indicador", 1:50),
+  Valor = sample(1:100, 50, replace = TRUE)
+)
+
+kable(df, booktabs = TRUE, longtable = TRUE,
+      caption = "Ejemplo de tabla larga en varias páginas") %>%
+  footnote(
+    general = "Fuente: Elaboración propia",
+    threeparttable = TRUE
+  )
+```
+
+```
+
+

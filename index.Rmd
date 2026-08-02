@@ -1,0 +1,57 @@
+---
+title: ""
+author: "Juan Antonio Romero Crespo"
+date: ""
+site: bookdown::bookdown_site
+documentclass: book
+fontsize: 11pt
+
+bibliography: references.bib
+csl: csl/apa.csl
+
+# Permite que kableExtra genere HTML en compilaciones Word/HTML
+# (pandoc lo convierte a tabla Word; sin esto la compilación aborta)
+always_allow_html: true
+
+output: bookdown::pdf_book
+---
+
+```{=latex}
+%------------------------ PORTADA (solo PDF) ------------------------
+\begingroup
+  \selectlanguage{spanish}
+  \pagenumbering{gobble}
+  \pagestyle{empty}
+
+  \begin{titlepage}
+    \centering
+    \vspace*{1cm}
+
+    \includegraphics[width=0.90\textwidth]{plantillas/logo-uv.png}\\[0.5cm]
+    \includegraphics[width=0.75\textwidth]{plantillas/logo-doctorado.png}\\[1.5cm]
+
+    {\Huge\bfseries
+    La vulnerabilidad social como fenómeno estructural y contextual.
+    }\\[0.3cm]
+
+    {\LARGE
+    Diseño del instrumento IVEC para la Comunitat Valenciana
+    }\\[3cm]
+
+    \begin{flushleft}
+      {\large \textbf{Doctorando:} Juan Antonio Romero Crespo}\\[0.3cm]
+      {\large \textbf{Director:} Dr. Carles X. Simó Noguera}\\[0.3cm]
+      {\large \textbf{Fecha:} \today}\\[1cm]
+    \end{flushleft}
+
+    \vfill
+  \end{titlepage}
+\endgroup
+
+%-------------- Páginas preliminares en números romanos -------------
+\cleardoublepage
+\frontmatter
+\setcounter{page}{1}
+\pagestyle{plain}
+```
+

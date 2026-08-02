@@ -1,0 +1,16 @@
+```{=latex}
+\cleardoublepage
+\thispagestyle{empty}
+```
+
+# Agradecimientos {.unnumbered}
+
+Esta tesis no habría sido posible sin la dirección de Carles Xavier Simó Noguera. A Carles le debo una mención especial: le agradezco la confianza con que acogió un proyecto todavía incierto, la exigencia con que ha leído cada página ---devolviendo siempre la pregunta precisa allí donde yo me había conformado con una respuesta aproximada--- y la generosidad de un acompañamiento que ha sido, a la vez, intelectual y humano. Buena parte de lo que este trabajo tiene de rigor se lo debe a su lectura; los errores que persistan son únicamente míos.
+
+Quiero dejar constancia de mi gratitud hacia las instituciones que hicieron materialmente posible el instrumento. De manera muy especial, al departamento de la Conselleria de Sanitat que gestiona el Sistema de Información Poblacional ---el Servicio de Aseguramiento Sanitario y SIP---, por su inestimable colaboración y por facilitar el acceso a los microdatos en el marco de las garantías éticas y de protección de datos que esta investigación se comprometió a respetar. A FISABIO, por los datos de mortalidad que han servido como criterio de validación externa. Y a los organismos que sostienen la estadística pública ---el Portal Estadístic de la Generalitat Valenciana, el Instituto Nacional de Estadística, la Dirección General del Catastro y el Ministerio de Hacienda---, cuyo trabajo, a menudo poco visible, es la condición de posibilidad de cualquier ejercicio como este.
+
+En el terreno académico, y de los afectos que se cruzan con él, gracias a mi amiga y colega Elvira, cuya complicidad, criterio y conversación han acompañado y mejorado esta investigación a lo largo de estos años. Mi reconocimiento, asimismo, a Catherine Mercier, por su acogida durante mi estancia de investigación en Lyon, que hizo posible la mención internacional de este doctorado y enriqueció la mirada comparada de la tesis.
+
+En el plano más personal, gracias a Iván, mi compañero de vida, por sostenerme en lo cotidiano y aceptar con paciencia que esta tesis ocupara más espacio del que era razonable; y a mis tres hermanas, Mariola, Fany e Inma, por su afecto incondicional y por recordarme que había vida más allá de los datos y los mapas.
+
+Por último, mi reconocimiento a todas las personas que, sin saberlo, son cifras en este trabajo: para quienes la vulnerabilidad no es un constructo sino una experiencia, este esfuerzo aspira, modestamente, a ser de alguna utilidad.

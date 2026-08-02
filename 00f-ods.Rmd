@@ -1,0 +1,41 @@
+```{=latex}
+\cleardoublepage
+\thispagestyle{empty}
+```
+
+# Objetivos de Desarrollo Sostenible {-}
+
+La investigación que esta tesis presenta se articula con seis Objetivos de Desarrollo Sostenible de la Agenda 2030 [@un2015], no de manera genérica sino a través de decisiones de diseño específicas del IVEC. La resolución espacial de cuadrícula de 1 km² responde a la exigencia de los ODS 1 y 10 de identificar los territorios y poblaciones que acumulan privación y desigualdad de manera que los indicadores municipales agregados ocultan. La separación operativa entre vulnerabilidad social y exposición físico-ambiental, y su lectura en superposición cartográfica en lugar de agregación escalar, responde a los ODS 11 y 13, que demandan instrumentos territorialmente explícitos para la planificación de ciudades resilientes y la adaptación al cambio climático. La fuente de datos del módulo base ---el Sistema de Información Poblacional, que registra con cobertura universal las condiciones sociosanitarias y la composición del hogar--- ancla el instrumento en las dimensiones de salud y bienestar que el ODS 3 sitúa como condición del desarrollo. Y la vocación de transferencia institucional del IVEC ---anclado en registros de la propia administración autonómica, replicable sin infraestructuras adicionales y orientado a cerrar la Brecha Protección Civil / Protección Social desde dentro de la arquitectura existente--- recoge la exigencia del ODS 16 de fortalecer instituciones inclusivas capaces de orientar la intervención preventiva de manera sistemática. Las secciones siguientes desarrollan cada una de estas vinculaciones.
+
+## 1. Fin de la pobreza y reducción de las desigualdades (ODS-1 y ODS-10) {.unnumbered .unlisted}
+
+El primer objetivo (ODS 1: Fin de la pobreza) y el décimo (ODS 10: Reducción de las desigualdades) se fundamentan en la necesidad de erradicar la pobreza en todas sus formas y de promover la igualdad de oportunidades.
+La vulnerabilidad social se manifiesta, entre otros aspectos, en la distribución desigual de recursos y oportunidades, lo que incrementa la exposición de ciertos grupos a riesgos económicos y sociales [@sen1999].
+En este sentido, esta investigación contribuye a identificar las áreas y colectivos más vulnerables en la Comunitat Valenciana, permitiendo orientar políticas públicas que favorezcan la redistribución equitativa y la inclusión social.
+Al cuantificar los determinantes socioeconómicos ---como la precariedad laboral y los bajos niveles de renta---, este estudio ofrece herramientas analíticas que pueden informar estrategias para mitigar la pobreza y reducir la brecha de desigualdad.
+
+## 2. Salud y bienestar (ODS-3) {.unnumbered .unlisted}
+
+El tercer ODS busca garantizar una vida sana y promover el bienestar para todos a todas las edades.
+La vinculación del IVEC con este objetivo no es periférica: la dimensión de vulnerabilidad individual (Vi) del módulo base se construye sobre los registros del Sistema de Información Poblacional de la *Conselleria de Sanitat*, que aportan, junto a las condiciones socioeconómicas, laborales y administrativas del individuo, su carga de cronicidad y su condición de aseguramiento sanitario. El diagnóstico territorial que el IVEC produce no adopta el modelo de los determinantes sociales de la salud como marco organizador ---el módulo base mide la vulnerabilidad como condición diferencial estructuralmente producida, según se argumenta en la justificación y en el capítulo tercero---, pero su lectura a resolución de cuadrícula de 1 km² ofrece una localización fina de la fragilidad sociosanitaria directamente útil para las políticas de equidad en salud que el ODS 3 promueve. Como ha mostrado la literatura sobre desigualdades en salud [@marmot2005determinants; @kawachi2015social], esas brechas se amplifican en contextos de desigualdad socioeconómica y su reducción requiere diagnósticos territorialmente explícitos: es precisamente el tipo de diagnóstico que el IVEC aporta en la Comunitat Valenciana, con una desagregación espacial que los indicadores municipales agregados no pueden ofrecer.
+
+## 3. Ciudades y comunidades sostenibles (ODS-11) {.unnumbered .unlisted}
+
+El ODS 11 promueve la construcción de ciudades y comunidades inclusivas, seguras, resilientes y sostenibles.
+La vulnerabilidad social se relaciona estrechamente con la planificación urbana y la gestión del riesgo, aspectos que esta tesis aborda mediante la integración de metodologías de análisis espacial y la evaluación de la capacidad de respuesta de infraestructuras y servicios públicos.
+La aplicación de índices que combinan variables geográficas, socioeconómicas y residenciales permite identificar zonas críticas en términos de exposición a fenómenos extremos [@cutter2003; @oppenheimer2014].
+Esta aproximación facilita el diseño de políticas urbanas que fomenten la resiliencia y garanticen el acceso a servicios básicos, aspectos esenciales para alcanzar las metas planteadas en el ODS 11.
+
+## 4. Acción por el clima (ODS-13) {.unnumbered .unlisted}
+
+El cambio climático constituye uno de los desafíos más urgentes a nivel global, y el ODS 13 insta a tomar medidas urgentes para combatir sus efectos.
+La presente investigación reconoce que la vulnerabilidad social no solo responde a condiciones estructurales internas, sino también a la exposición a riesgos ambientales amplificados por el cambio climático, como las inundaciones y sequías.
+La integración de enfoques de las ciencias ambientales y la ingeniería en el análisis ---materializada en el IVEC mediante la superposición de la capa de peligrosidad por inundación del territorio (PATRICOVA)--- permite cuantificar la sensibilidad de comunidades y ecosistemas ante fenómenos meteorológicos extremos [@ipcc2014-ar5wgii].
+De este modo, el estudio contribuye a evidenciar la intersección entre la vulnerabilidad social y el cambio climático, aportando insumos relevantes para la formulación de políticas de adaptación y mitigación que cumplan con el ODS 13.
+
+## 5. Paz, justicia e instituciones sólidas (ODS-16) {.unnumbered .unlisted}
+
+El fortalecimiento de las instituciones y la promoción de sociedades pacíficas son componentes esenciales del ODS 16.
+La investigación destaca la importancia de la gobernanza participativa y de la formulación de políticas públicas integradoras, que permitan reducir las desigualdades y aumentar la resiliencia social.
+La revisión de enfoques disciplinares ---en especial, desde la ciencia política y la sociología--- pone de relieve cómo la debilidad institucional y la falta de mecanismos de protección social potencian la vulnerabilidad [@adger2006; @twigg2004].
+Por lo tanto, los resultados de este estudio ofrecen una base empírica para el diseño de intervenciones que fortalezcan el tejido institucional y promuevan la participación ciudadana.

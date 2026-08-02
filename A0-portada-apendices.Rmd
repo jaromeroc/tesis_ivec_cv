@@ -1,0 +1,8 @@
+```{=latex}
+\cleardoublepage
+\chapter*{Apéndices}
+\thispagestyle{empty}
+\addcontentsline{toc}{chapter}{Apéndices}
+\cleardoublepage
+\startappendiceschapter
+```

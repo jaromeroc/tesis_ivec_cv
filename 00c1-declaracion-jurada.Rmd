@@ -1,0 +1,75 @@
+```{=latex}
+
+\cleardoublepage
+\begingroup
+  \newgeometry{top=2.5cm, bottom=2.5cm, left=4cm, right=4cm}
+
+  \thispagestyle{empty}
+
+  % Marca de agua: sello del Estudi General, centrado en la página.
+  % El * limita el efecto a esta página (no contagia a las siguientes).
+  \AddToShipoutPictureBG*{%
+    \AtPageCenter{%
+      \makebox(0,0){%
+        \includegraphics[width=10cm,keepaspectratio]{plantillas/sello-uv.jpg}%
+      }%
+    }%
+  }
+
+  \begin{center}
+    \includegraphics[width=\textwidth]{plantillas/logo-doctorado.png}\\[0.5cm]
+  \end{center}
+
+  \vspace{0.5cm}
+
+  \begin{center}
+    {\Large \underline{\textbf{DECLARACIÓN JURADA}}}
+  \end{center}
+
+  \vspace{0.75cm}
+
+  Sr.\ \textbf{Juan Antonio Romero Crespo} con NIF: \textbf{29023****}
+
+  \vspace{0.1cm}
+
+  estudiante del programa de Doctorado en: \textbf{Ciencias sociales}
+
+  \vspace{0.75cm}
+
+  {\large \textbf{DECLARO BAJO JURAMENTO O PROMESA:}}
+
+  \vspace{0.5cm}
+
+  Que la Tesis Doctoral con el título
+
+  \vspace{0.1cm}
+
+  \begin{quote}
+    ``\textit{La vulnerabilidad social como fenómeno estructural y contextual.
+    Diseño del instrumento IVEC para la Comunitat Valenciana}'',
+  \end{quote}
+
+  \vspace{0.1cm}
+
+  se trata de un trabajo de investigación original realizado por el abajo
+  firmante durante el periodo de formación para obtener el título de Doctor
+  en Ciencias Sociales, asumiendo con este acto y firma las responsabilidades
+  legales derivadas en caso de que se demuestre la falsedad de los datos aquí
+  reseñados.
+
+  \vspace{0.3cm}
+
+  Y para que así conste, firmo esta declaración.
+
+  \vspace{0.5cm}
+
+  En València a, 25 de mayo de 2026
+
+  \vspace{1.2cm}
+
+  \noindent\textbf{Firmado: Juan Antonio Romero Crespo}
+
+\endgroup
+\restoregeometry
+\cleardoublepage
+```

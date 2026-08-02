@@ -1,0 +1,270 @@
+
+```{=latex}
+\cleardoublepage
+\thispagestyle{empty}
+```
+
+# Abreviaturas y Acrónimos {-}
+
+Este anexo recoge las principales abreviaturas y acrónimos empleados en la tesis.
+
+```{=latex}
+\referenceletter{A}{gloss-A-abr}
+```
+\tesisglossary{AEAT}{abr-aeat}
+Agencia Estatal de Administración Tributaria — organismo que gestiona el sistema tributario estatal en España y produce el modelo estadístico de rentas para pequeñas áreas, fuente del módulo IVEC_contextual.
+
+\tesisglossary{AEMET}{abr-aemet}
+Agencia Estatal de Meteorología — organismo público que elabora predicciones meteorológicas y gestiona el sistema de alertas hidrometeorológicas en España, integrado con los protocolos de protección civil.
+
+\tesisglossary{APSIG}{abr-apsig}
+Análisis Poblacional del Sistema de Información Geográfica — extensión analítica del registro sanitario individual del SIP que incorpora campos sociosanitarios y socioeconómicos codificados (D3\_migr, D5\_aseg\_subgr, D7\_vulner\_apsig, D9\_raf\_renta, ST\_X, ST\_Y, entre otros) para su utilización en planificación territorial. Base de los módulos de la vulnerabilidad individual y composición del hogar del IVEC_base.
+
+\tesisglossary{AR5 / AR6}{abr-ar5-ar6}
+Quinto y Sexto Informe de Evaluación del IPCC (*Fifth / Sixth Assessment Report*) — informes de síntesis científica sobre cambio climático publicados en 2014 y 2022 respectivamente. El AR6 consolida los conceptos de riesgo climático compuesto, pérdidas y daños, adaptación transformativa y límites a la adaptación.
+
+\tesisglossary{AVSRE}{abr-avsre}
+Agència Valenciana de Seguretat i Resposta a les Emergències — organismo de la Generalitat Valenciana responsable de la coordinación de los servicios de emergencia y la gestión operativa de la protección civil autonómica.
+
+```{=latex}
+\referenceletter{B}{gloss-B-abr}
+```
+\tesisglossary{BDEL}{abr-bdel}
+Base de Datos de Entidades Locales — base de datos del Ministerio de Hacienda que recoge los presupuestos liquidados de las administraciones locales españolas; fuente del módulo IVEC_estructural para los indicadores de capacidad fiscal municipal.
+
+```{=latex}
+\referenceletter{C}{gloss-C-abr}
+```
+\tesisglossary{CA / EDC}{abr-edc}
+Enfoque de Capacidades / *Capabilities Approach* — marco teórico desarrollado por @sen1981 y @nussbaum2000 que evalúa el bienestar y la libertad en términos de las capacidades efectivas de los individuos para llevar vidas valiosas. Reconocido en la literatura sobre vulnerabilidad pero excluido del IVEC por requerir datos sobre agencia individual no disponibles en registros administrativos de corte transversal.
+
+\tesisglossary{CAD}{abr-cad}
+Capacidades de Adaptación y Transformación Estructural del Municipio — dimensión del módulo IVEC_estructural que captura la capacidad institucional y socioeconómica del municipio para transformar condiciones estructurales de vulnerabilidad en el horizonte de legislaturas o décadas; en la primera versión operativa se operacionaliza mediante indicadores de capacidad institucional-financiera ---deuda viva, gasto en servicios sociales, inversiones reales y subvenciones, todos per cápita---.
+
+\tesisglossary{CCA}{abr-cca}
+Adaptación al Cambio Climático (*Climate Change Adaptation*) — conjunto de ajustes en sistemas humanos o naturales en respuesta a impactos climáticos actuales o esperados. Tradición académica y política que ha contribuido a la incorporación del lenguaje de vulnerabilidad en marcos internacionales de evaluación del riesgo.
+
+\tesisglossary{CCS}{abr-ccs}
+Consorcio de Compensación de Seguros — entidad pública empresarial adscrita al Ministerio de Economía que gestiona la indemnización de daños causados por fenómenos naturales extraordinarios en España, incluyendo las inundaciones registradas históricamente en la Comunitat Valenciana.
+
+\tesisglossary{CECOPI}{abr-cecopi}
+Centro de Coordinación Operativa Integrada — órgano de coordinación entre administraciones que se activa en situaciones de emergencia que requieren la integración de varios niveles administrativos. Previsto en la legislación de protección civil española para emergencias de interés nacional o de múltiples competencias.
+
+\tesisglossary{CECRE}{abr-cecre}
+Centro Europeo de Coordinación de la Respuesta a Emergencias — plataforma de la Unión Europea para el intercambio de información y la coordinación de la respuesta a grandes emergencias entre los Estados miembros. Integrado en el Mecanismo de Protección Civil de la UE.
+
+\tesisglossary{CH}{abr-ch}
+Composición del Hogar — segunda dimensión del módulo IVEC_base que captura la capacidad interna de redistribución de recursos dentro del núcleo de convivencia (número de miembros, presencia de menores o mayores dependientes, carga de cuidados). Corresponde al nivel microhogar de la taxonomía de Cardona.
+
+\tesisglossary{CMNUCC}{abr-cmnucc}
+Convención Marco de las Naciones Unidas sobre el Cambio Climático — tratado internacional adoptado en 1992 en la Cumbre de Río de Janeiro que establece el marco institucional para las negociaciones globales sobre reducción de emisiones y adaptación al cambio climático. Protocolo de Kioto (1997) y Acuerdo de París (2015) son sus instrumentos derivados más relevantes.
+
+\tesisglossary{CPPY}{abr-cppy}
+*Citations Per Publication Year* — indicador bibliométrico que pondera el número de citas de un documento o conjunto de documentos por el número de años transcurridos desde su publicación, permitiendo comparar el impacto relativo de trabajos de distintas épocas sin el sesgo de antigüedad de la citación simple.
+
+\tesisglossary{CR}{abr-cr}
+Capacidades de Reacción — en la taxonomía de Cardona [-@cardona2001], capacidades que se activan en el momento del impacto y actúan transversalmente sobre la exposición, la vulnerabilidad y el daño. A diferencia de CS y CAD, CR no constituye una dimensión autónoma del diagnóstico preventivo del IVEC.
+
+\tesisglossary{CS}{abr-cs}
+Capacidades Sociales del Entorno — dimensión del módulo IVEC_contextual que captura los recursos colectivos del entorno inmediato disponibles para compensar la fragilidad individual: cohesión social, tejido asociativo, densidad de servicios de proximidad y cobertura de equipamientos educativos de primera infancia.
+
+\tesisglossary{CV05}{abr-cv05}
+Capa cartográfica de peligrosidad de inundación del *Institut Cartogràfic Valencià* (ICV). Identifica las zonas de riesgo de inundación clasificadas por periodo de retorno en la Comunitat Valenciana. El IVEC mantiene separación analítica de esta capa: su superposición con los módulos del IVEC produce el diagnóstico de riesgo compuesto.
+
+\tesisglossary{COVID-19}{abr-covid19}
+*Coronavirus Disease 2019* — enfermedad respiratoria aguda causada por el coronavirus SARS-CoV-2, cuya pandemia global (2020-2023) evidenció que las mismas estructuras que amplifican el daño en desastres naturales determinan la vulnerabilidad diferencial frente a crisis sanitarias, consolidando la desigualdad estructural como eje transversal de la investigación sobre vulnerabilidad.
+
+```{=latex}
+\referenceletter{D}{gloss-D-abr}
+```
+\tesisglossary{D7}{abr-d7}
+Campo APSIG del SIP (*D7\_vulner\_apsig*) que clasifica a cada individuo registrado en el sistema sanitario valenciano en una de ocho categorías de vulnerabilidad sociosanitaria: sin riesgo (0), desempleados (1), extranjeros irregulares beneficiarios (2), sin recursos (3), indefinidos no clasificables (4), extranjeros irregulares (5), indefinidos tutelados (6) y desempleados en riesgo objetivo (7). En la tesis se utiliza exclusivamente como criterio de validación convergente endógeno de los módulos micro del IVEC (hipótesis H1); está excluido de la construcción del índice para preservar la independencia de la validación.
+
+\tesisglossary{DANA}{abr-dana}
+Depresión Aislada en Niveles Altos — fenómeno meteorológico que provoca lluvias intensas y repentinas. Una DANA de intensidad extraordinaria desencadenó las inundaciones del 29 de octubre de 2024 en la provincia de Valencia, que motivaron el reconocimiento institucional de la brecha diagnóstica entre Protección Civil y Protección Social que esta tesis aborda.
+
+\tesisglossary{DGC}{abr-dgc}
+Dirección General del Catastro — organismo del Ministerio de Hacienda que administra el Catastro Inmobiliario en España. El Catastro es fuente del módulo IVEC_contextual para los indicadores de calidad, antigüedad y estado de conservación del parque residencial.
+
+\tesisglossary{DIRCE}{abr-dirce}
+Directorio Central de Empresas — registro estadístico del INE que proporciona información sobre el tejido empresarial español, incluyendo número de empresas, tamaño y actividad económica. Fuente del módulo IVEC_estructural para los indicadores de estructura productiva municipal.
+
+\tesisglossary{DRR}{abr-drr}
+*Disaster Risk Reduction* — Reducción del Riesgo de Desastres: enfoque y agenda política internacional que engloba las medidas orientadas a prevenir nuevos riesgos, reducir los existentes y fortalecer la resiliencia. Marco institucional articulado por los acuerdos de Hyogo (2005-2015) y Sendai (2015-2030).
+
+```{=latex}
+\referenceletter{E}{gloss-E-abr}
+```
+\tesisglossary{ECV}{abr-ecv}
+Encuesta de Condiciones de Vida — encuesta anual del INE que mide la pobreza y la exclusión social en España siguiendo los estándares de EU-SILC. Junto con la Encuesta Nacional de Salud (ENS), constituye una fuente muestral complementaria a los registros administrativos, aunque con diseños probabilísticos que no permiten análisis a la resolución inframunicipal del IVEC_base.
+
+\tesisglossary{ENS}{abr-ens}
+Encuesta Nacional de Salud — encuesta periódica del Ministerio de Sanidad que recoge información sobre el estado de salud, los determinantes de la salud y la utilización de servicios sanitarios de la población española. Fuente de referencia para la caracterización de la morbilidad crónica, aunque a resolución muestral insuficiente para el módulo base del IVEC.
+
+\tesisglossary{ETRS89}{abr-etrs89}
+*European Terrestrial Reference System 1989* — sistema geodésico de referencia oficial para toda Europa, adoptado por la directiva INSPIRE. El IVEC emplea la proyección UTM huso 30 sobre ETRS89 como sistema de referencia de coordenadas para garantizar la interoperabilidad cartográfica con las fuentes institucionales europeas y españolas.
+
+\tesisglossary{EVR}{abr-evr}
+Estadística de Variaciones Residenciales — estadística del INE que registra las altas y bajas en el Padrón Municipal, permitiendo calcular tasas de migración y dinámica demográfica a nivel municipal. Fuente del módulo IVEC_estructural para los indicadores de dinámica demográfica y despoblamiento.
+
+```{=latex}
+\referenceletter{F}{gloss-F-abr}
+```
+\tesisglossary{FAIR}{abr-fair}
+*Findable, Accessible, Interoperable, Reusable* — principios internacionales para la gestión y publicación de datos científicos y código de investigación. El código de construcción del IVEC y la estrategia de validación se publican en repositorio abierto cumpliendo estos estándares, como exige el requisito R7 de trazabilidad completa.
+
+```{=latex}
+\referenceletter{G}{gloss-G-abr}
+```
+\tesisglossary{GHSL}{abr-ghsl}
+*Global Human Settlement Layer* — infraestructura de datos geoespaciales de la Comisión Europea [@schiavina2023] que cartografía la distribución de la población y el tejido construido a escala global. Ofrece cuadrículas de resolución variable (1 km² y 100 m²) en el sistema ETRS89 compatible con la malla del IVEC_base.
+
+\tesisglossary{GVA}{abr-gva}
+Generalitat Valenciana — gobierno autonómico de la Comunitat Valenciana. En la tesis se emplea como referencia a la *Conselleria de Sanitat* (titular del SIP), la *Conselleria de Serveis Socials* (Sistema Público Valenciano de Servicios Sociales) y el *Registro de Asociaciones de la Generalitat Valenciana* (fuente del módulo estructural).
+
+```{=latex}
+\referenceletter{I}{gloss-I-abr}
+```
+\tesisglossary{ICV}{abr-icv}
+*Institut Cartogràfic Valencià* — organismo de la Generalitat Valenciana responsable de la producción y difusión de cartografía oficial en la Comunitat. Elabora la capa de peligrosidad de inundación CV05 utilizada en el análisis de superposición cartográfica del capítulo sexto.
+
+\tesisglossary{IDEA}{abr-idea}
+Indicadores de Riesgo de Desastre y de Gestión del Riesgo — proyecto de investigación de la Comisión Económica para América Latina y el Caribe (CEPAL) y el Banco Interamericano de Desarrollo (BID), coordinado por @cardona2001, en cuyo marco se desarrolló la propuesta de taxonomía de capacidades diferenciadas (CS, CAD, CR) que fundamenta la arquitectura del IVEC.
+
+\tesisglossary{IGN}{abr-ign}
+Instituto Geográfico Nacional — organismo adscrito al Ministerio de Transportes, Movilidad y Agenda Urbana que produce la cartografía de referencia para España, incluyendo la malla censal y la cuadrícula de referencia cuyos centroide XCENTROIDE/YCENTROIDE se emplean en la asignación espacial del IVEC_base.
+
+\tesisglossary{IMD}{abr-imd}
+*Index of Multiple Deprivation* — índice británico de deprivación múltiple que combina indicadores de ingresos, empleo, educación, salud, crimen, barreras a la vivienda y medioambiente en pequeñas áreas geográficas. Una de las referencias metodológicas más influyentes en la construcción de índices de vulnerabilidad territorial.
+
+\tesisglossary{INE}{abr-ine}
+Instituto Nacional de Estadística — organismo público responsable de la producción estadística oficial en España. Es la fuente del Padrón Municipal, el Censo de Población y Viviendas 2021, la Estadística de Variaciones Residenciales, el DIRCE, la Contabilidad Regional y el modelo estadístico de rentas de pequeñas áreas (AEAT/INE) que alimentan los módulos contextual y estructural del IVEC.
+
+\tesisglossary{INSPIRE}{abr-inspire}
+*Infrastructure for Spatial Information in Europe* — directiva europea (2007/2/CE) que establece los estándares para la interoperabilidad de la información geoespacial en la Unión Europea. El código INSPIRE de rejilla europea se utiliza en el IVEC como identificador canónico de las celdas de 1 km² del módulo base.
+
+\tesisglossary{IPCC}{abr-ipcc}
+Panel Intergubernamental sobre Cambio Climático (*Intergovernmental Panel on Climate Change*) — organismo científico-intergubernamental establecido por la ONU en 1988 para evaluar la base científica del cambio climático, sus impactos y las opciones de adaptación y mitigación. Sus informes de evaluación (AR5 y AR6) son referencias centrales del capítulo segundo.
+
+\tesisglossary{IVEC}{abr-ivec}
+Instrumento de Valoración de la Vulnerabilidad Estructural y Contextual — instrumento de medición diseñado y construido en esta tesis para cartografiar la distribución territorial de la vulnerabilidad social a escala submunicipal en la Comunitat Valenciana. Integra tres módulos: IVEC_base (cuadrícula de 1 km²), IVEC_contextual (cuadrícula de 1 km²) e IVEC_estructural (municipio/comarca).
+
+```{=latex}
+\referenceletter{L}{gloss-L-abr}
+```
+\tesisglossary{LISA}{abr-lisa}
+Indicadores Locales de Autocorrelación Espacial (*Local Indicators of Spatial Association*) — estadísticos que identifican agrupaciones locales de valores similares o disimilares en una variable georreferenciada, permitiendo distinguir *hot spots* (concentraciones de valores altos) y *cold spots* (concentraciones de valores bajos) estadísticamente significativos. Empleados en el capítulo sexto para el análisis de la distribución espacial del IVEC_base.
+
+\tesisglossary{LOPDGDD}{abr-lopdgdd}
+Ley Orgánica 3/2018 de Protección de Datos Personales y Garantía de los Derechos Digitales — normativa española que transpone el RGPD y regula el tratamiento de datos personales, incluyendo los datos sanitarios del SIP utilizados en la construcción del IVEC_base.
+
+```{=latex}
+\referenceletter{M}{gloss-M-abr}
+```
+\tesisglossary{MA3}{abr-ma3}
+Media Móvil de tres años — véase la entrada *Media móvil* en el Glosario.
+
+\tesisglossary{MAUP}{abr-maup}
+*Modifiable Areal Unit Problem* — véase la entrada *MAUP* en el Glosario.
+
+\tesisglossary{MEDEA}{abr-medea}
+Mortalidad en España: Desigualdades entre Municipios y Áreas Pequeñas — proyecto de investigación de la Red de Investigación en Servicios de Salud en Enfermedades Crónicas (REDISSEC) que elaboró índices de privación sociosanitaria a escala de sección censal para España [@dominguez2008]. Referente metodológico para el uso de registros administrativos en el análisis de desigualdades en salud a escala territorial fina.
+
+```{=latex}
+\referenceletter{N}{gloss-N-abr}
+```
+\tesisglossary{NMI}{abr-nmi}
+Información Mutua Normalizada (*Normalized Mutual Information*, NMI) — véase la entrada *NMI* en el Glosario.
+
+```{=latex}
+\referenceletter{O}{gloss-O-abr}
+```
+\tesisglossary{OCDE / OECD}{abr-ocde}
+Organización para la Cooperación y el Desarrollo Económicos / *Organisation for Economic Co-operation and Development*.
+
+\tesisglossary{OMS / WHO}{abr-oms}
+Organización Mundial de la Salud / *World Health Organization*.
+
+```{=latex}
+\referenceletter{P}{gloss-P-abr}
+```
+\tesisglossary{PAR}{abr-par}
+Modelo de Presión y Liberación (*Pressure and Release model*) — véase la entrada *Modelo PAR* en el Glosario.
+
+\tesisglossary{PATRICOVA}{abr-patricova}
+Plan de Acción Territorial de carácter sectorial sobre prevención del Riesgo de Inundación de la Comunitat Valenciana — instrumento de ordenación territorial de la Generalitat Valenciana que delimita las zonas inundables y las medidas de reducción del riesgo de inundación. El módulo IVEC_base opera a la misma escala de cuadrícula de 1 km² compatible con la zonificación del PATRICOVA.
+
+\tesisglossary{PNACC}{abr-pnacc}
+Plan Nacional de Adaptación al Cambio Climático — instrumento de planificación del Ministerio para la Transición Ecológica que articula la respuesta de las administraciones públicas españolas a los impactos del cambio climático, incluyendo un grupo de trabajo sobre impactos y adaptación relevante para la gobernanza del riesgo territorial.
+
+\tesisglossary{PNUD}{abr-pnud}
+Programa de las Naciones Unidas para el Desarrollo — organismo de la ONU que elabora el Informe sobre Desarrollo Humano y gestiona el Índice de Desarrollo Humano. Contribuyó a la incorporación del lenguaje de vulnerabilidad en marcos de desarrollo internacional desde los años noventa.
+
+```{=latex}
+\referenceletter{R}{gloss-R-abr}
+```
+\tesisglossary{RAE}{abr-rae}
+Real Academia Española.
+
+\tesisglossary{RGPD}{abr-rgpd}
+Reglamento General de Protección de Datos — Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo, que establece las normas relativas a la protección de las personas físicas en lo que respecta al tratamiento de datos personales. El artículo 89 regula las garantías para el tratamiento de datos con fines de investigación científica, bajo cuyo amparo se gestiona el uso de los microdatos del SIP en el IVEC.
+
+```{=latex}
+\referenceletter{S}{gloss-S-abr}
+```
+\tesisglossary{SES}{abr-ses}
+Sistemas Socioecológicos (*Socio-Ecological Systems*) — marco analítico que estudia las interacciones entre sistemas sociales y ecológicos como sistemas complejos adaptativos. Relacionado con la teoría de la resiliencia de @holling1973 y los trabajos sobre sistemas acoplados humano-ambientales; área temática identificada en el corpus bibliométrico del capítulo segundo.
+
+\tesisglossary{SICD}{abr-sicd}
+Sistema de Información sobre Centros Docentes — base de datos del Ministerio de Educación y Formación Profesional y la Generalitat Valenciana que registra la localización georreferenciada de los centros de educación infantil y primaria. Fuente del módulo IVEC_contextual para el indicador de disponibilidad de servicios de proximidad de la dimensión CS.
+
+\tesisglossary{SIP}{abr-sip}
+Sistema de Información Poblacional — registro administrativo sanitario de la Conselleria de Sanitat de la Generalitat Valenciana, que contiene datos individuales de más de cinco millones de personas con tarjeta sanitaria vigente en la Comunitat Valenciana, con georreferenciación a nivel de hogar mediante las coordenadas APSIG y actualización mensual. Fuente principal del módulo IVEC_base.
+
+\tesisglossary{SoVI}{abr-sovi}
+*Social Vulnerability Index* — véase la entrada *SoVI* en el Glosario.
+
+\tesisglossary{SPVSS}{abr-spvss}
+Sistema Público Valenciano de Servicios Sociales — sistema autonómico de bienestar social de la Generalitat Valenciana regulado por la Ley 3/2019. Uno de los dos sistemas institucionales (junto con la Protección Civil) entre los que la arquitectura normativa valenciana genera la Brecha Protección Civil / Protección Social ---la consecuencia estructural de operar sin posición ontológica declarada sobre qué es la vulnerabilidad--- que el IVEC está diseñado para cerrar desde dentro de la arquitectura existente.
+
+```{=latex}
+\referenceletter{T}{gloss-T-abr}
+```
+\tesisglossary{TGSS}{abr-tgss}
+Tesorería General de la Seguridad Social — organismo de la Seguridad Social que gestiona los recursos económicos del sistema y produce estadísticas de afiliación, desempleo y estacionalidad del empleo. Fuente principal del módulo IVEC_estructural para los indicadores de mercado de trabajo.
+
+```{=latex}
+\referenceletter{U}{gloss-U-abr}
+```
+\tesisglossary{UE}{abr-ue}
+Unión Europea.
+
+\tesisglossary{UNDRR}{abr-undrr}
+Oficina de las Naciones Unidas para la Reducción del Riesgo de Desastres (*United Nations Office for Disaster Risk Reduction*) — organismo de la ONU responsable de promover la implementación del Marco de Sendai. Anteriormente denominada UNISDR.
+
+\tesisglossary{UTM}{abr-utm}
+Proyección Universal Transversa de Mercator (*Universal Transverse Mercator*) — sistema de proyección cartográfica que divide la superficie terrestre en husos de 6° de longitud y proporciona coordenadas planas (X, Y) en metros. El IVEC utiliza UTM huso 30 sobre el sistema de referencia ETRS89 (coordenadas ST\_X, ST\_Y del SIP y coordenadas XCENTROIDE/YCENTROIDE de la malla IGN).
+
+```{=latex}
+\referenceletter{V}{gloss-V-abr}
+```
+\tesisglossary{VAB}{abr-vab}
+Valor Añadido Bruto — magnitud macroeconómica que mide el valor de la producción de una economía descontando el consumo intermedio. A escala comarcal, obtenido de la Contabilidad Regional del INE, es un indicador de la estructura económica territorial incluido en el módulo IVEC_estructural.
+
+\tesisglossary{VC}{abr-vc}
+Vulnerabilidad Contextual — primera dimensión del módulo IVEC_contextual que captura las condiciones del entorno residencial y comunitario, a la resolución de cuadrícula de 1 km² LAEA, que amplifican o atenúan la fragilidad individual: organizada en dos subdimensiones (físico-residencial y demográfico-poblacional) que recogen mecanismos causales analíticamente distintos sobre el mismo entorno inmediato a 1 km².
+
+\tesisglossary{VE}{abr-ve}
+Vulnerabilidad Estructural — primera dimensión del módulo IVEC_estructural que captura los determinantes de largo plazo de la posición territorial del municipio: dinámica demográfica, modelo productivo, estructura del mercado de trabajo y nivel de renta disponible.
+
+\tesisglossary{VEUS}{abr-veus}
+Visor de Espacios Urbanos Sensibles de la Comunitat Valenciana — instrumento de diagnóstico de la vulnerabilidad urbana a escala de sección censal desarrollado por @temes2019-veus y @temes2020-veus para la Generalitat Valenciana. Antecedente directo del IVEC en el ámbito valenciano, con el que comparte el ámbito territorial, la atención a la escala inframunicipal y buena parte de las fuentes.
+
+\tesisglossary{Vi}{abr-vi}
+Vulnerabilidad Individual — primera dimensión del módulo IVEC_base que captura las condiciones de fragilidad del sujeto en sus planos sociosanitario, socioeconómico, migratorio y administrativo a partir de los campos APSIG del SIP.
+
+```{=latex}
+\referenceletter{W}{gloss-W-abr}
+```
+\tesisglossary{WoS}{abr-wos}
+*Web of Science* — base de datos bibliográfica multidisciplinar de Clarivate Analytics, utilizada como fuente para la construcción del corpus bibliométrico de esta tesis.

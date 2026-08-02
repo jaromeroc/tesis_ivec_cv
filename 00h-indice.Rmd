@@ -1,0 +1,25 @@
+```{=latex}
+
+% Índice general
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\contentsname}
+\thispagestyle{empty}
+{\normalsize \tableofcontents}
+
+% Lista de figuras
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\listfigurename}
+\thispagestyle{empty}
+{\normalsize \listoffigures}
+
+% Lista de tablas
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\listtablename}
+\thispagestyle{empty}
+{\normalsize \listoftables}
+
+
+```

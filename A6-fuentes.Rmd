@@ -1,0 +1,734 @@
+# Cuadro definitivo de fuentes e indicadores del IVEC {#app-fuentes}
+
+Este apéndice presenta el inventario completo de fuentes, indicadores operativos y años de referencia del IVEC.
+Su función es doble: actúa como documentación técnica de las decisiones de operacionalización descritas en el capítulo quinto y permite evaluar, indicador por indicador, si el desfase entre la fecha de cada fuente y el extremo más reciente de la ventana de referencia 2021--2025 puede afectar a la interpretación de los resultados.
+La ventana temporal del instrumento y la justificación de la heterogeneidad de fechas se desarrollan en §\@ref(sec-ventana-temporal).
+
+## Diseño completo de indicadores por módulo: modelo teórico y disponibilidad en la primera versión operativa {.unnumbered}
+
+Las tres tablas siguientes presentan el mapa completo de indicadores requeridos por el modelo teórico del IVEC para cada uno de sus módulos.
+Cada indicador figura con su hipótesis causal resumida, la dirección del efecto esperada y su estado de disponibilidad en la primera versión del instrumento.
+La columna «Versión 1» registra el estado de cada indicador en la primera versión operativa: $\checkmark$ = disponible y plenamente operacionalizado; *parcial* = operacionalizado con cobertura parcial de las fuentes; *proyección* = operacionalizado mediante proyección desde la sección censal al centroide de la celda; *Pdte.* = requerido por el diseño y pendiente de incorporación en la segunda versión operativa; — = requerido por el diseño teórico y no operacionalizable en la primera versión, a la espera de la interoperabilidad de fuentes externas.
+La dirección $\uparrow$ indica que un valor más alto del indicador incrementa la vulnerabilidad neta del territorio, $\downarrow$ que la reduce, y $\uparrow/\downarrow$ un efecto bidireccional dependiente del valor de la variable.
+El fundamento teórico de cada hipótesis se desarrolla en el capítulo tercero (§\@ref(sec-sip-indicadores-cap3)) para todos los módulos.
+
+```{r tab-diseno-base, echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+
+tab_base_diseno <- data.frame(
+  Indicador = c(
+    "Edad (f\\_nacim)",
+    "Cronicidad (0--3)",
+    "Situación laboral (D4\\_lab)",
+    "Posición renta proxy (D9\\_raf\\_renta)",
+    "Trayectoria migratoria (D3\\_migr)",
+    "Situación adm. (D5\\_aseg\\_subgr)",
+    "Anclaje padronal (empadronamiento)",
+    "Fragilidad económico-institucional cobertura sanitaria (D1\\_fin\\_cov)",
+    "Dependencia funcional (SAAD/IMSERSO)",
+    "Salud mental diferenciada",
+    "Nivel educativo individual",
+    "Aislamiento social",
+    "Régimen de tenencia",
+    "Cobertura servicios sociales (SIUSS)",
+    "Tipo residencial (D8\\_tipo\\_res)",
+    "Composición hogar (D8\\_comp\\_res)",
+    "Tamaño hogar (D8\\_tam\\_res)",
+    "Ratio dependientes/cuidadores (UCO\\_CODI)",
+    "Vi medio del hogar (UCO\\_CODI)",
+    "Heterogeneidad de Vi en el hogar (UCO\\_CODI)",
+    "Relaciones de parentesco",
+    "Carga de cuidados informales",
+    "Características vivienda (Catastro)",
+    "Red de apoyo informal"
+  ),
+  Hipotesis = c(
+    "Incremento no lineal de fragilidad funcional ante perturbaciones; predictor robusto de susceptibilidad en ausencia de indicadores directos de autonomía",
+    "Dependencia de infraestructuras sanitarias; multiplicador de susceptibilidad ante perturbaciones que afectan el acceso a cuidados y medicación",
+    "Determina disponibilidad de ingresos y acceso a protección social; desempleo e inactividad implican menor margen ante impactos económicos",
+    "Reducción de capacidad de absorción ante impactos económicos; mayor dependencia de servicios públicos en momentos de alta demanda",
+    "Redes de apoyo menos consolidadas por menor tiempo de residencia; menor familiaridad con sistemas institucionales de protección y emergencias",
+    "Restricciones de acceso a derechos y coberturas de protección social; indicador de vulnerabilidad institucional, no de característica inherente del individuo",
+    "Ausencia de inscripción padronal estable produce déficit de acceso a sistemas locales de protección (prestaciones municipales, planes de emergencia, censo electoral local), con independencia de la trayectoria migratoria y del aseguramiento sanitario",
+    "Dependencia de cobertura subsidiada regional o ausencia de aseguramiento indican fragilidad económico-institucional específica que combina insuficiencia de cotización formal con dependencia institucional para el acceso a derechos sanitarios",
+    "Reducción severa de la autonomía personal; predictor directo de demanda de cuidados externos y vulnerabilidad ante disrupciones de apoyo formal",
+    "Susceptibilidad ante perturbaciones que afectan la rutina y el acceso a tratamiento; cronicidad genérica del SIP no discrimina condiciones de salud mental",
+    "Determina acceso al segmento estable del mercado de trabajo y anticipación estratégica ante situaciones de riesgo",
+    "Ausencia de red social efectiva elimina soporte informal ante emergencias; no medible desde registros administrativos",
+    "Tenencia precaria incrementa exposición a disrupciones habitacionales secundarias a catástrofes",
+    "Indicador de vulnerabilidad reconocida institucionalmente y de acceso diferencial a protección formal",
+    "Naturaleza (familiar vs. institucional) de los recursos de apoyo; proxy de formalidad de las redes de cuidado disponibles",
+    "Diversidad de perfiles de Vi en el hogar; mayor diversidad implica mayor margen de redistribución interna de recursos",
+    "Modulador de capacidad de redistribución interna condicionado a composición; sin valor discriminante de manera aislada",
+    "Proxy de la distribución de roles de dependencia y cuidado; alta proporción de dependientes sin cuidadores reduce capacidad adaptativa",
+    "Composición sustantiva de fragilidades en el hogar; Vi medio alto indica acumulación uniforme de fragilidad sin amortiguador disponible para la redistribución intrahogar",
+    "Heterogeneidad de fragilidad entre miembros como recurso compensatorio; varianza alta indica presencia de al menos un miembro menos frágil que puede actuar como recurso de redistribución intrahogar",
+    "Formalidad de obligaciones de cuidado; SIP registra convivencia (UCO\\_CODI) pero no los vínculos entre miembros",
+    "Hogares con alta carga de cuidado no remunerado tienen menor margen de movilización ante situaciones adversas externas",
+    "Estado del parque residencial condiciona exposición a riesgos físicos; requiere interoperabilidad SIP--Catastro",
+    "Capital social de proximidad como amortiguador ante perturbaciones; no capturable desde fuentes administrativas de cobertura universal"
+  ),
+  Dir = c(
+    "$\\uparrow$", "$\\uparrow$", "$\\uparrow/\\downarrow$", "$\\uparrow$", "$\\uparrow$", "$\\uparrow$",
+    "$\\uparrow$", "$\\uparrow$",
+    "$\\uparrow$", "$\\uparrow$", "$\\downarrow$", "$\\uparrow$", "$\\uparrow/\\downarrow$", "$\\uparrow/\\downarrow$",
+    "$\\uparrow/\\downarrow$", "$\\uparrow/\\downarrow$", "$\\uparrow/\\downarrow$", "$\\uparrow$",
+    "$\\downarrow$", "$\\uparrow$",
+    "$\\uparrow/\\downarrow$", "$\\uparrow$", "$\\uparrow$", "$\\downarrow$"
+  ),
+  V1 = c(
+    rep("$\\checkmark$", 8),
+    rep("—", 6),
+    rep("$\\checkmark$", 3),
+    "parcial",
+    rep("$\\checkmark$", 2),
+    rep("—", 4)
+  )
+)
+
+if (knitr::is_latex_output()) {
+  kbl(tab_base_diseno,
+      col.names     = c("Indicador requerido", "Hipótesis causal", "Dir.", "Versión 1"),
+      caption       = "Diseño completo del módulo IVEC\\textsubscript{base}: indicadores requeridos por el modelo teórico con hipótesis causal resumida, dirección del efecto esperada y disponibilidad en la primera versión del instrumento. En la columna Dir., una flecha ascendente indica, en la dimensión de vulnerabilidad individual (Vi), que un valor más alto del indicador incrementa la vulnerabilidad, y, en la dimensión de composición del hogar (CH), que un valor más alto incrementa la capacidad compensatoria del hogar y, por tanto, reduce la vulnerabilidad neta.",
+      caption.short = "Diseño completo del módulo IVEC\\textsubscript{base}.",
+      booktabs = TRUE, longtable = TRUE, escape = FALSE,
+      align = c("l","l","c","c")) %>%
+    kable_styling(latex_options = c("repeat_header", "striped"),
+                  repeat_header_text = "\\textit{(continuación)}",
+                  repeat_header_method = "replace",
+                  font_size = 8) %>%
+    # 1. Agrupamiento de filas primero (Elimina sombras grises en las secciones)
+    pack_rows("Vi — disponibles en la primera versión operativa", 1, 8,   latex_gap_space = "0.3em", bold = TRUE) %>%
+    pack_rows("Vi — requeridos, pendientes de incorporación", 9, 14,  latex_gap_space = "0.3em", bold = TRUE) %>%
+    pack_rows("CH — disponibles en la primera versión operativa", 15, 20, latex_gap_space = "0.3em", bold = TRUE) %>%
+    pack_rows("CH — requeridos, pendientes de incorporación", 21, 24, latex_gap_space = "0.3em", bold = TRUE) %>%
+    # 2. Control dimensional (Espacio optimizado al remover la columna Dim)
+    column_spec(1, width = "3.8cm") %>%
+    column_spec(2, width = "8.8cm") %>%
+    column_spec(3, width = "1.0cm") %>%
+    column_spec(4, width = "0.9cm")
+} else {
+  tesis_tabla_word(tab_base_diseno,
+    col_names = c("Indicador requerido", "Hipótesis causal", "Dir.", "Versión 1"),
+    caption = "Diseño completo del módulo IVEC_base: indicadores requeridos y disponibilidad en la primera versión operativa.")
+}
+```
+
+```{r tab-diseno-contextual, echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+
+tab_ctxt_diseno <- data.frame(
+  Indicador = c(
+    "Antigüedad parque residencial (\\% viviendas pre-1980)",
+    "Superficie media de la vivienda",
+    "Régimen de tenencia (\\% alquiler y cesión)",
+    "Hacinamiento residencial (m\\textsuperscript{2} construidos per cápita)",
+    "Nivel educativo del entorno (\\% adultos sin estudios o primarios)",
+    "Envejecimiento territorial (\\% mayores de 65 años)",
+    "Concentración de inactividad laboral (\\% en categorías D4\\_lab no activo)",
+    "Estructura migratoria del entorno (distribución D3\\_migr)",
+    "Dependencia convivencial intergeneracional (hogares con mayor $\\geq$65 cohabitando con adulto en edad activa)",
+    "Densidad de tejido asociativo (asociaciones por 1.000 hab.)",
+    "Disponibilidad de servicios de cuidado cotidiano (farmacias, centros de día, atención domiciliaria, servicios primera infancia)",
+    "Accesibilidad a transporte público (minutos a pie a parada/estación)",
+    "Accesibilidad sociosanitaria (tiempo a Centros de Salud GVA y a centros de SS.SS. del RECESSO)",
+    "Densidad de nodos cívicos públicos del entorno (centros educativos públicos + bibliotecas + centros cívicos / casas de cultura)"
+  ),
+  Hipotesis = c(
+    "Fragilidad física del entorno construido; menor calidad constructiva amplifica daño sobre los más frágiles ante perturbaciones",
+    "Superficie reducida indica hacinamiento y menor capacidad de aislamiento ante perturbaciones climáticas o de confinamiento",
+    "Alta rotación en alquiler implica menor acumulación de redes vecinales de largo plazo y mayor concentración de hogares sin capacidad de inversión habitacional",
+    "Limitación del espacio habitable per cápita amplifica vulnerabilidad ante perturbaciones térmicas (menor volumen de aire de amortiguación), epidémicas (mayor transmisión por contacto, menor aislamiento intradomiciliario), de salud mental ante confinamiento y de capacidad de reacción ante alertas de evacuación",
+    "Capacidad colectiva del entorno para acceder a información de emergencia, comprender protocolos de protección civil y navegar sistemas de ayuda post-impacto",
+    "Reorientación de la oferta de servicios y dinámicas cotidianas del entorno hacia las necesidades de la población mayor, con déficit relativo para los demás grupos de edad",
+    "Efecto barrio del paro: declive del comercio local, deterioro de espacios comunes, estigma territorial, ruptura de ritmos diarios y reducción de redes informales de información laboral",
+    "Composición migratoria del entorno modifica las condiciones lingüísticas, institucionales y de redes; efectos diferenciados según subgrupo migratorio dominante",
+    "Concentración celular de carga de cuidados intergeneracionales sostenida; efectos diferenciales sobre el adulto-cuidador, el mayor-dependiente y la demanda territorial de servicios sanitarios y sociales",
+    "Capacidad del entorno para movilizar solidaridad horizontal ante necesidad; densidad asociativa predice velocidad de recuperación post-impacto",
+    "Disponibilidad de servicios que compensan la fragilidad cotidiana de los más dependientes mediante apoyo de pequeña escala",
+    "Recurso colectivo que amplifica o reduce la capacidad de cada individuo de aprovechar las capacidades sociales del entorno",
+    "Provisión institucional próxima de servicios sanitarios y sociales que compensa la fragilidad individual; mecanismo de soporte (no de fragilidad material) que amortigua los efectos de la vulnerabilidad sobre los individuos con mayor dependencia",
+    "Red institucional pública con función comunitaria del entorno (socialización intergeneracional, capilaridad institucional, observación comunitaria del bienestar); operacionalización pendiente de cierre del pipeline de geocodificación contra el Catastro"
+  ),
+  Dir = c(
+    "$\\uparrow$", "$\\downarrow$", "$\\uparrow$", "$\\downarrow$",
+    "$\\uparrow$", "$\\uparrow$", "$\\uparrow$", "$\\uparrow/\\downarrow$", "$\\uparrow$",
+    "$\\uparrow$", "$\\uparrow$", "$\\downarrow$", "$\\downarrow$", "$\\uparrow$"
+  ),
+  V1 = c(
+    "$\\checkmark$", "$\\checkmark$", "proyección", "$\\checkmark$",
+    "proyección", "$\\checkmark$", "$\\checkmark$", "$\\checkmark$", "$\\checkmark$",
+    "Pdte.", "parcial", "$\\checkmark$", "$\\checkmark$", "parcial"
+  )
+)
+
+if (knitr::is_latex_output()) {
+  kbl(tab_ctxt_diseno,
+      col.names     = c("Indicador requerido", "Hipótesis causal", "Dir.", "Versión 1"),
+      caption       = "Diseño completo del módulo IVEC\\textsubscript{contextual}: indicadores requeridos por el modelo teórico con hipótesis causal resumida, dirección del efecto esperada y disponibilidad en la primera versión del instrumento. La anotación \\textit{proyección} indica indicador activo en la primera versión operativa disponible a sección censal y proyectado al centroide de cada celda como aproximación documentada; \\textit{pendiente} indica indicador no operacionalizable en la primera versión operativa a la espera de la consolidación de la fuente externa correspondiente. En la columna Dir., una flecha ascendente indica, en la dimensión de vulnerabilidad contextual (VC), que un valor más alto del indicador incrementa la vulnerabilidad, y, en la dimensión de capacidades sociales del entorno (CS), que un valor más alto incrementa la capacidad del entorno y, por tanto, reduce la vulnerabilidad neta del territorio.",
+      caption.short = "Diseño completo del módulo IVEC\\textsubscript{contextual}.",
+      booktabs = TRUE, longtable = TRUE, escape = FALSE,
+      align = c("l","l","c","c")) %>%
+    kable_styling(latex_options = c("repeat_header", "striped"),
+                  repeat_header_text = "\\textit{(continuación)}",
+                  repeat_header_method = "replace",
+                  font_size = 8) %>%
+    # 1. Agrupamiento primero
+    pack_rows("VC subdimensión físico-residencial", 1, 4, latex_gap_space = "0.3em", bold = TRUE) %>%
+    pack_rows("VC subdimensión demográfico-poblacional", 5, 9, latex_gap_space = "0.3em", bold = TRUE) %>%
+    pack_rows("CS — Capacidades sociales del entorno", 10, 14, latex_gap_space = "0.3em", bold = TRUE) %>%
+    # 2. Anchos reajustados para el apéndice completo
+    column_spec(1, width = "3.8cm") %>%
+    column_spec(2, width = "8.8cm") %>%
+    column_spec(3, width = "1.0cm") %>%
+    column_spec(4, width = "1.0cm")
+} else {
+  tesis_tabla_word(tab_ctxt_diseno,
+    col_names = c("Indicador requerido", "Hipótesis causal", "Dir.", "Versión 1"),
+    caption = "Diseño completo del módulo IVEC_contextual: indicadores requeridos y disponibilidad en la primera versión operativa.")
+}
+```
+
+```{r tab-diseno-estructural, echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+
+tab_estr_diseno <- data.frame(
+  Indicador = c(
+    "Especialización sectorial (cociente de localización del sector dominante, TGSS)",
+    "Diversificación sectorial (índice Hirschman-Herfindahl, TGSS)",
+    "Amplitud estacional del empleo (variación máx.--mín. mensual afiliación, TGSS)",
+    "Índice de envejecimiento (\\% $>$64 años / \\% $<$16 años $\\times$ 100, PEGV Indicadores Demográficos Municipales)",
+    "Índice de maternidad (mujeres 0--4 años / mujeres 15--49 años $\\times$ 100, PEGV)",
+    "Índice de tendencia (pob. 0--4 años / pob. 5--9 años $\\times$ 100, PEGV)",
+    "Saldo migratorio interior (tasa neta por mil habitantes, PEGV Estadística de Migraciones)",
+    "Saldo migratorio exterior (tasa neta por mil habitantes, PEGV Estadística de Migraciones)",
+    "Deuda viva municipal per cápita (BDEL Min. Hacienda)",
+    "Gasto liquidado en servicios sociales y dependencia per cápita (BDEL)",
+    "Inversiones reales per cápita (capítulo 6 presupuesto, BDEL)",
+    "Subvenciones concedidas por el municipio per cápita (capítulo 4 gastos, BDEL)",
+    "Valor añadido bruto per cápita comarcal (eje económico-estructural)",
+    "Concentración empresarial (DIRCE, INE)",
+    "Dependencia de transferencias sobre ingresos corrientes / autonomía fiscal (BDEL)",
+    "Capacidad institucional supramunicipal recibida (transferencias de diputaciones, mancomunidades y consorcios, BDEL)",
+    "Capital cívico-asociativo (Registre d'Associacions de la GVA)"
+  ),
+  Hipotesis = c(
+    "Alta dependencia monosectorial produce fragilidad estructural ante perturbaciones que afecten específicamente al sector dominante",
+    "Microempresas monosectoriales y bajo número efectivo de ramas tienen menor capacidad de absorción ante perturbaciones sectoriales que estructuras productivas diversificadas",
+    "Ciclos de empleo intensivo en temporada alta seguidos de desempleo estructural en temporada baja reproducen periódicamente situaciones de precariedad",
+    "Composición demográfica estructural que reproduce alta demanda de cuidados y baja disponibilidad de adultos activos durante décadas; ratio elevado indica déficit estructural de relevo generacional con efectos acumulativos sobre la sostenibilidad de los servicios sociosanitarios",
+    "Intensidad reproductiva actual del municipio sobre la cohorte fértil residente; valores bajos indican baja fecundidad y regresión demográfica reproductiva, predictor de despoblación a medio plazo y de descapitalización demográfica",
+    "Dinámica reciente de relevo generacional infantil; valores bajos indican cohortes infantiles decrecientes (regresión estructural acelerada), valores altos indican cohortes infantiles crecientes (recuperación demográfica)",
+    "Balance neto de movimientos residenciales con otras provincias o comarcas del Estado; saldo persistentemente negativo indica vaciamiento por emigración interior, saldo positivo indica atracción residencial. Efecto bidireccional sobre la vulnerabilidad estructural según signo y composición",
+    "Balance neto de movimientos residenciales con países terceros; saldo positivo combina acogida con presión sobre los servicios de primera adaptación, saldo negativo indica retorno o emigración exterior. Efecto bidireccional dependiente del contexto",
+    "Alta deuda viva reduce el margen presupuestario para movilizar recursos extraordinarios en inversión sostenida en condiciones de vulnerabilidad",
+    "Inversión sostenida en servicios sociales reduce fragilidad individual mediante cuidados, inserción y apoyo; efecto acumulativo de la inversión pasada",
+    "Capacidad municipal de formación bruta de capital sobre obra pública, equipamientos sociales, vivienda pública y rehabilitación; transforma condiciones materiales del territorio",
+    "Activismo redistributivo del ayuntamiento sobre el tejido cívico-asociativo del territorio; construye capacidad institucional-cívica de respuesta sostenida",
+    "Aporta la dimensión de varianza económico-estructural ausente en la primera versión operativa; un valor añadido bruto comarcal bajo indica menor capacidad productiva del territorio y mayor fragilidad estructural",
+    "Concentración del tejido empresarial en pocas unidades productivas; complementa la diversificación de la afiliación TGSS desde el lado de la demografía empresarial",
+    "Alta dependencia de transferencias corrientes de administraciones superiores indica menor autonomía fiscal y menor capacidad estructural de decisión sobre el gasto propio; pendiente de incorporación sin redundancia con la deuda viva",
+    "Transferencias de capital recibidas de diputaciones, mancomunidades y consorcios; capacidad de inversión estructural movilizada por la articulación supramunicipal del territorio",
+    "Densidad del tejido asociativo registrado como capacidad cívica de transformación de largo plazo; pendiente del cierre de la geocodificación del Registre d'Associacions de la GVA"
+  ),
+  Dir = c(
+    "$\\uparrow$", "$\\downarrow$", "$\\uparrow$",
+    "$\\uparrow$", "$\\downarrow$", "$\\downarrow$",
+    "$\\uparrow/\\downarrow$", "$\\uparrow/\\downarrow$",
+    "$\\downarrow$",
+    "$\\uparrow$", "$\\uparrow$", "$\\uparrow$",
+    "$\\downarrow$", "$\\uparrow$",
+    "$\\downarrow$", "$\\uparrow$", "$\\uparrow$"
+  ),
+  V1 = c(
+    rep("$\\checkmark$", 12),
+    rep("Pdte.", 5)
+  )
+)
+
+if (knitr::is_latex_output()) {
+  kbl(tab_estr_diseno,
+      col.names     = c("Indicador requerido", "Hipótesis causal", "Dir.", "Versión 1"),
+      caption       = "Diseño completo del módulo IVEC\\textsubscript{estructural}: indicadores requeridos por el modelo teórico con hipótesis causal resumida, dirección del efecto esperada y disponibilidad en la primera versión del instrumento. Doce indicadores activos en la primera versión operativa (ocho VE en tres ejes histórico-estructurales y cuatro CAD de capacidad institucional financiera) y cinco requeridos, pendientes de incorporación en la segunda versión operativa (dos VE del eje económico-estructural y tres CAD); la anotación \\textit{pendiente} indica indicador no operacionalizable en la primera versión operativa a la espera de la consolidación de la fuente correspondiente. En la columna Dir., una flecha ascendente indica, en la dimensión de vulnerabilidad estructural (VE), que un valor más alto del indicador incrementa la vulnerabilidad, y, en la dimensión de capacidades de adaptación y transformación estructural (CAD), que un valor más alto incrementa la capacidad y, por tanto, reduce la vulnerabilidad neta del municipio.",
+      caption.short = "Diseño completo del módulo IVEC\\textsubscript{estructural}.",
+      booktabs = TRUE, longtable = TRUE, escape = FALSE,
+      align = c("l","l","c","c")) %>%
+    kable_styling(latex_options = c("repeat_header", "striped"),
+                  repeat_header_text = "\\textit{(continuación)}",
+                  repeat_header_method = "replace",
+                  font_size = 8) %>%
+    # 1. Agrupamiento de bloques primero
+    pack_rows("VE — Modelo productivo",          1,  3,  latex_gap_space = "0.3em", bold = TRUE) %>%
+    pack_rows("VE — Envejecimiento demográfico", 4,  6,  latex_gap_space = "0.3em", bold = TRUE) %>%
+    pack_rows("VE — Estructura migratoria",      7,  8,  latex_gap_space = "0.3em", bold = TRUE) %>%
+    pack_rows("CAD — Capacidad institucional",   9, 12,  latex_gap_space = "0.3em", bold = TRUE) %>%
+    pack_rows("VE — requeridos, pendientes de incorporación",  13, 14, latex_gap_space = "0.3em", bold = TRUE) %>%
+    pack_rows("CAD — requeridos, pendientes de incorporación", 15, 17, latex_gap_space = "0.3em", bold = TRUE) %>%
+    # 2. Ajuste dimensional estricto
+    column_spec(1, width = "3.8cm") %>%
+    column_spec(2, width = "8.8cm") %>%
+    column_spec(3, width = "1.0cm") %>%
+    column_spec(4, width = "0.9cm")
+} else {
+  tesis_tabla_word(tab_estr_diseno,
+    col_names = c("Indicador requerido", "Hipótesis causal", "Dir.", "Versión 1"),
+    caption = "Diseño completo del módulo IVEC_estructural: indicadores requeridos y disponibilidad en la primera versión operativa (doce activos y cinco pendientes de incorporación en la segunda versión).")
+}
+```
+
+## F.1 — Módulo I — IVEC_base (cuadrícula 1 km²) {.unnumbered}
+
+La fuente única del módulo base es el Sistema de Información Poblacional (SIP) de la *Conselleria de Sanitat* de la Generalitat Valenciana, con fecha de extracción junio de 2025.
+El acceso a los microdatos se realiza al amparo del artículo 89 del RGPD, en desarrollo de la LOPDGDD y de la legislación sectorial sanitaria valenciana, mediante protocolo formalizado por acuerdo de confidencialidad con la *Conselleria de Sanitat*, con compromiso de uso exclusivo de datos anonimizados agregados a la cuadrícula de 1 km² (cap. 5).
+La referencia espacial de agregación es la cuadrícula LAEA de 1 km² del estándar GEOSTAT/Eurostat [@schiavina2023], en sistema de referencia LAEA (EPSG:3035); cada celda queda identificada mediante un campo \texttt{GRD\_ID} en formato \texttt{CRS3035RES1000mN\{N\}E\{E\}}, que permite la integración directa con otras fuentes cartográficas producidas sobre la misma cuadrícula (GHSL, GHS-POP, capas de peligrosidad hidrológica CV05).
+
+```{r tab-fuentes-base, echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+
+tab_base <- data.frame(
+  Dim = c(rep("Vi", 8), rep("CH", 6), "Validación"),
+  Indicador = c(
+    "Edad (fragilidad funcional)",
+    "Carga de morbilidad crónica",
+    "Posición relativa al umbral de pobreza",
+    "Situación laboral",
+    "Trayectoria migratoria",
+    "Situación administrativa de cobertura",
+    "Anclaje padronal",
+    "Fragilidad económico-institucional de la cobertura",
+    "Tipo residencial (familiar / institucional)",
+    "Composición del hogar",
+    "Tamaño del hogar",
+    "Ratio dependientes / total hogar",
+    "Vi medio del hogar",
+    "Heterogeneidad de Vi en el hogar",
+    "Estratificación institucional de vulnerabilidad"
+  ),
+  Campo = c(
+    "f\\_nacim",
+    "Cronicidad (0--3)",
+    "D9\\_raf\\_renta",
+    "D4\\_lab",
+    "D3\\_migr",
+    "D5\\_aseg\\_subgr",
+    "empadronamiento",
+    "D1\\_fin\\_cov",
+    "D8\\_tipo\\_res",
+    "D8\\_comp\\_res",
+    "D8\\_tam\\_res",
+    "UCO\\_CODI (ratio)",
+    "UCO\\_CODI (media de Vi)",
+    "UCO\\_CODI (sd de Vi)",
+    "D7\\_vulner\\_apsig"
+  ),
+  Fuente = rep("SIP — GVA Sanitat", 15),
+  Escala = rep("Individual / hogar", 15),
+  Anyo = rep("2025", 15)
+)
+
+if (knitr::is_latex_output()) {
+  # Limpieza de columnas redundantes y constantes para ganar espacio masivo
+  tab_base_latex <- tab_base |> dplyr::select(-Dim, -Fuente, -Escala)
+  
+  kbl(tab_base_latex, format = "latex", booktabs = TRUE, longtable = FALSE, escape = FALSE,
+      col.names  = c("Indicador operativo requerido", "Campo técnico en BD (SIP)", "Año ref."),
+      caption    = "Fuentes e indicadores del módulo IVEC\\textsubscript{base} (primera versión operativa): ocho indicadores de vulnerabilidad individual (Vi), seis de composición del hogar (CH) y una variable de validación convergente. La variable D7\\_vulner\\_apsig se incluye exclusivamente como instrumento de validación convergente y queda excluida de la construcción del índice; el campo f\\_nacim, el ratio UCO\\_CODI, el Vi medio del hogar y la heterogeneidad de Vi en el hogar provienen de \\texttt{SIP\\_etiquetado.parquet}.",
+      caption.short = "Indicadores del módulo IVEC\\textsubscript{base}.",
+      align      = c("l","l","c")) %>%
+    kable_styling(latex_options = c("HOLD_position", "striped"),
+                  font_size = 9) %>%
+    # 1. Agrupamiento estructural primero (previene el error de la sombra gris)
+    pack_rows("Indicadores de Vulnerabilidad Individual (Vi)", 1, 8, latex_gap_space = "0.4em", bold = TRUE) %>%
+    pack_rows("Indicadores de Composición del Hogar (CH)", 9, 14, latex_gap_space = "0.4em", bold = TRUE) %>%
+    pack_rows("Variable de Validación Convergente (Excluida del índice)", 15, 15, latex_gap_space = "0.4em", bold = TRUE) %>%
+    # 2. Asignación holgada de anchos (Suma = 13.7cm, respira a la perfección)
+    column_spec(1, width = "7.5cm") %>%  # Espacio de sobra para la descripción del indicador
+    column_spec(2, width = "4.7cm") %>%  # Espacio de sobra para el nombre del campo indexado
+    column_spec(3, width = "1.5cm")      # Año centrado
+} else {
+  tesis_tabla_word(tab_base,
+    col_names = c("Dim.", "Indicador operativo", "Campo SIP", "Fuente", "Escala", "Año ref."),
+    caption   = "Fuentes e indicadores del módulo IVEC_base (primera versión operativa): ocho indicadores Vi, seis CH y una variable de validación convergente.")
+}
+```
+
+## F.2 — Módulo II — IVEC_contextual (cuadrícula 1 km²) {.unnumbered}
+
+El módulo opera nativamente a la cuadrícula regular de 1 km² LAEA, en simetría con el módulo base; la integración con el IVEC_base se realiza por yuxtaposición cartográfica directa de las dos capas sobre la misma unidad espacial, sin proyección desde sección censal salvo en los dos casos documentados (régimen de tenencia y nivel educativo del entorno) donde la fuente no permite todavía la agregación directa a celda.
+
+```{r tab-fuentes-contextual, echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+
+tab_ctx <- data.frame(
+  Subdim = c(
+    rep("Parque residencial", 3),
+    "Presión residencial",
+    "Capital humano del entorno",
+    "Estructura demográfica",
+    "Estructura laboral",
+    "Estructura migratoria",
+    "Dependencia intergeneracional",
+    "Cohesión y tejido cívico",
+    "Servicios de cuidado cotidiano",
+    "Movilidad colectiva",
+    "Provisión institucional próxima",
+    "Nodos cívicos públicos"
+  ),
+  Indicador = c(
+    "Antigüedad del parque residencial (\\% viviendas pre-1980)",
+    "Superficie media de la vivienda (m\\textsuperscript{2} útiles)",
+    "Régimen de tenencia (\\% alquiler y cesión)",
+    "Hacinamiento residencial (m\\textsuperscript{2} construidos per cápita)",
+    "Nivel educativo del entorno (\\% adultos sin estudios o solo primarios)",
+    "Envejecimiento territorial (\\% mayores de 65 años)",
+    "Concentración de inactividad laboral (\\% en categorías D4\\_lab no activas)",
+    "Estructura migratoria del entorno (distribución D3\\_migr)",
+    "Dependencia convivencial intergeneracional (hogares con mayor $\\geq$65 cohabitando con adulto en edad activa, agregada a celda)",
+    "Densidad de tejido asociativo (asociaciones por 1.000 hab.)",
+    "Disponibilidad de servicios de cuidado cotidiano (índice compuesto: farmacias, centros de día, atención domiciliaria, servicios de primera infancia)",
+    "Accesibilidad a transporte público (minutos a pie a parada/estación más próxima)",
+    "Accesibilidad sociosanitaria (tiempo medio a centro de salud y a centro de SS.SS. RECESSO más próximo)",
+    "Densidad de nodos cívicos públicos del entorno (centros educativos + bibliotecas + centros cívicos / casas de cultura)"
+  ),
+  Fuente = c(
+    "Observatori Hàbitat — GVA",
+    "Catastro Inmobiliario (Tipo 15 del CAT filtrado por USO=V, media de superficie útil por PARCELA del SHP, DGC)",
+    "Censo de Población y Viviendas 2021 — INE (`t20\\_2` + `t20\\_3` / `t19\\_1` de `C2021\\_Indicadores.csv`, proyección desde sección censal)",
+    "Catastro Inmobiliario (Tipo 15 del CAT filtrado por USO=V + PARCELA del SHP por REFCAT, DGC) + SIP (residentes por celda)",
+    "Censo Anual de Población 2025 — INE (proyección desde sección censal)",
+    "SIP (`f\\_nacim`, agregación a celda)",
+    "SIP (`D4\\_lab`, agregación a celda)",
+    "SIP (`D3\\_migr`, agregación a celda)",
+    "SIP-UCO + `f\\_nacim` + `D4\\_lab` (agregación a celda)",
+    "Registre d'Associacions — GVA + registros municipales (geocoding contra Catastro; pendiente segunda versión operativa por baja tasa de geocoding)",
+    "Conselleria d'Igualtat — RECESSO (centros de día, `19\\_RECESSO.gpkg`) + Registre de Centres Docents GVA (escuelas infantiles 0-3, filtrado por enseñanzas autorizadas) + atención domiciliaria municipal (parcial) + farmacias (pendientes, baja tasa de geocoding catastral)",
+    "OpenStreetMap — paradas de bus, ferrocarril, tranvía y metro (etiquetas `highway=bus\\_stop`, `railway=station/halt/tram\\_stop`)",
+    "Conselleria de Sanitat (Centros de Salud, `15\\_SistemaValencianoSalud.gpkg`) + Conselleria d'Igualtat (RECESSO, `19\\_RECESSO.gpkg`)",
+    "Registre de Centres Docents GVA + Directorio MCU (bibliotecas, pendientes segunda versión operativa) + GeoJSON DipCas / DipAli / Ajuntament València + OSM"
+  ),
+  Anyo = c(
+    "2024", "2024", "2021",
+    "2024",
+    "2021",
+    "2025", "2025", "2025", "2025",
+    "2024",
+    "2024",
+    "2024",
+    "2024",
+    "2024"
+  ),
+  Fichero = c(
+    "0801\\_GESIEE\\_antiguedad",
+    "CAT + SHP (Catastro)",
+    "C2021\\_Indicadores",
+    "CAT + SHP $\\times$ SIP\\_final",
+    "Censo Anual 2025 (INE)",
+    "SIP\\_etiquetado",
+    "SIP\\_etiquetado",
+    "SIP\\_etiquetado",
+    "SIP\\_etiquetado",
+    "—",
+    "19\\_RECESSO + Educacion\\_\\{ali,cas,val\\}",
+    "OSM paradas\\_transporte",
+    "15\\_SistemaValencianoSalud + 19\\_RECESSO",
+    "Educacion\\_\\{ali,cas,val\\} + GeoJSON\\_\\{DipCas,DipAli,AjVal\\} + OSM"
+  )
+)
+
+if (knitr::is_latex_output()) {
+  # CORRECCIÓN: Asignamos el dataframe limpio directamente sin el select() erróneo
+  tab_ctx_latex <- tab_ctx 
+  
+  col_headers_ctx <- c("Subdimensión", "Indicador operativo", "Fuente y detalles de\noperacionalización", "Año\nref.", "Fichero crudo / Capa")
+
+  kbl(tab_ctx_latex, format = "latex", booktabs = TRUE, longtable = TRUE, escape = FALSE,
+      col.names = kableExtra::linebreak(col_headers_ctx, align = "c", double_escape = FALSE),
+      caption = "Fuentes e indicadores del módulo IVEC\\textsubscript{contextual}: indicadores de las subdimensiones físico-residencial y demográfico-poblacional de la vulnerabilidad contextual (VC) y de las capacidades sociales del entorno (CS), con su fuente, año de referencia y fichero o capa de origen.",
+      caption.short = "Indicadores del módulo IVEC\\textsubscript{contextual}.",
+      align = c("l","l","l","c","l")) %>%
+    kable_styling(latex_options = c("repeat_header", "striped"),
+                  repeat_header_text = "\\textit{(continuación)}",
+                  repeat_header_method = "replace",
+                  font_size = 8) %>%
+    pack_rows("Vulnerabilidad Contextual: Físico-Residencial (VC)", 1, 4, latex_gap_space = "0.4em", bold = TRUE) %>%
+    pack_rows("Vulnerabilidad Contextual: Demográfico-Poblacional (VC)", 5, 9, latex_gap_space = "0.4em", bold = TRUE) %>%
+    pack_rows("Capacidades Sociales del Entorno (CS)", 10, 14, latex_gap_space = "0.4em", bold = TRUE) %>%
+    column_spec(1, width = "2.3cm") %>%  
+    column_spec(2, width = "3.4cm") %>%  
+    column_spec(3, width = "5.2cm") %>%  
+    column_spec(4, width = "0.9cm") %>%  
+    column_spec(5, width = "2.4cm")      
+} else {
+  tesis_tabla_word(tab_ctx,
+    col_names = c("Subdimensión", "Indicador operativo", "Fuente", "Año ref.", "Fichero crudo"),
+    caption   = "Fuentes e indicadores del módulo IVEC_contextual.")
+}
+```
+
+## F.3 — Módulo III — IVEC_estructural (escala municipal) {.unnumbered}
+
+La integración con los módulos anteriores se realiza asignando a cada celda del grid el valor IVEC_estructural del municipio en cuyo territorio se ubica.
+La arquitectura de la primera versión operativa del módulo, fijada en cap. 5 §\@ref(sec-vecad-fundamento), opera íntegramente a resolución municipal sobre los 542 municipios de la Comunitat Valenciana, por lo que no requiere proyección desde comarca; la única discontinuidad metodológica es la heterogeneidad temporal por fuente, documentada en la caption de la tabla.
+
+```{r tab-fuentes-estructural, echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+
+tab_est <- data.frame(
+  Dim = c(
+    rep("VE", 8),
+    rep("CAD", 4)
+  ),
+  Subdim = c(
+    rep("Modelo productivo", 3),
+    rep("Envejecimiento demográfico", 3),
+    rep("Estructura migratoria", 2),
+    rep("Capacidad institucional", 4)
+  ),
+  Indicador = c(
+    "Especialización sectorial (LQ del sector dominante)",
+    "Diversificación sectorial (Hirschman-Herfindahl)",
+    "Amplitud estacional del empleo (variación máx.--mín. mensual)",
+    "Índice de envejecimiento (\\% $>$64 años / \\% $<$16 años $\\times$ 100)",
+    "Índice de maternidad (mujeres 0--4 años / mujeres 15--49 años $\\times$ 100)",
+    "Índice de tendencia (pob. 0--4 años / pob. 5--9 años $\\times$ 100)",
+    "Saldo migratorio interior (tasa neta por mil habitantes)",
+    "Saldo migratorio exterior (tasa neta por mil habitantes)",
+    "Deuda viva municipal per cápita",
+    "Gasto liquidado en servicios sociales per cápita",
+    "Inversiones reales per cápita (cap. 6 presupuesto)",
+    "Subvenciones concedidas por el municipio per cápita (cap. 4 gastos)"
+  ),
+  Fuente = c(
+    "TGSS --- afiliación por municipio y sector",
+    "TGSS --- afiliación por municipio y sector",
+    "TGSS --- afiliación mensual",
+    "PEGV --- Indicadores Demográficos Municipales",
+    "PEGV --- Indicadores Demográficos Municipales",
+    "PEGV --- Indicadores Demográficos Municipales",
+    "PEGV --- Estadística de Migraciones (tasa neta por mil hab.)",
+    "PEGV --- Estadística de Migraciones (tasa neta por mil hab.)",
+    "BDEL --- Min. Hacienda",
+    "BDEL --- Min. Hacienda",
+    "BDEL --- Min. Hacienda",
+    "BDEL --- Min. Hacienda (repositorio \\texttt{gobierto-budgets-data})"
+  ),
+  Escala = c(
+    rep("Municipal", 12)
+  ),
+  Anyo = c(
+    "2015--2024", "2015--2024", "2022--2024",
+    "2015--2025", "2015--2025", "2015--2025",
+    "2021--2024", "2021--2024",
+    "2015--2023", "2015--2023", "2015--2023", "2015--2023"
+  ),
+  Fichero = c(
+    "data/estructural/tgss\\_afiliacion\\_municipio.parquet",
+    "data/estructural/tgss\\_afiliacion\\_municipio.parquet",
+    "data/estructural/tgss\\_afiliacion\\_mensual.parquet",
+    "data/estructural/pegv\\_indicadores\\_demograficos\\_municipales.csv",
+    "data/estructural/pegv\\_indicadores\\_demograficos\\_municipales.csv",
+    "data/estructural/pegv\\_indicadores\\_demograficos\\_municipales.csv",
+    "data/estructural/pegv\\_estadistica\\_migraciones.csv",
+    "data/estructural/pegv\\_estadistica\\_migraciones.csv",
+    "data/estructural/cad\\_bdel\\_2015\\_2023.rds",
+    "data/estructural/cad\\_bdel\\_2015\\_2023.rds",
+    "data/estructural/cad\\_bdel\\_2015\\_2023.rds",
+    "data/estructural/cad\\_gobierto\\_2015\\_2024.rds"
+  )
+)
+
+if (knitr::is_latex_output()) {
+  # Tabla A6 estructural: 5 columnas visibles tras retirar Dim y Fichero (que se
+  # usan respectivamente como agrupador pack_rows y como nota en caption).
+  tab_est_latex <- tab_est |> dplyr::select(-Dim, -Fichero)
+
+  col_headers_est <- c("Subdimensión", "Indicador operativo", "Fuente de datos", "Escala", "Serie\nref.")
+
+  kbl(tab_est_latex, format = "latex", booktabs = TRUE, longtable = TRUE, escape = FALSE,
+      col.names = kableExtra::linebreak(col_headers_est, align = "c", double_escape = FALSE),
+      caption    = "Fuentes e indicadores del módulo IVEC\\textsubscript{estructural}. Doce indicadores municipales sobre los 542 municipios de la Comunitat Valenciana, organizados en tres ejes histórico-estructurales para VE (modelo productivo, envejecimiento demográfico, estructura migratoria) y un eje de capacidad institucional para CAD. La serie de referencia es asimétrica por fuente y, dentro del eje productivo, también asimétrica internamente: el cociente de localización del sector dominante y el HHI sectorial se computan sobre el dato de diciembre de cada año en la serie 2015--2024 (10 puntos anuales), mientras que la amplitud estacional del empleo se computa sobre la serie mensual completa 2022--2024 (los únicos tres años con cobertura mensual completa en el corpus TGSS); 2015--2025 para los tres índices PEGV del eje envejecimiento, 2021--2024 para los dos saldos migratorios del PEGV (operacionalizados como tasas netas por mil habitantes) y 2015--2023 para los cuatro indicadores CAD derivados de la BDEL. La carga financiera anual per cápita (cap.~3 + cap.~9 de gastos del repositorio \\texttt{gobierto-budgets-data}, serie 2015--2024) se conserva como variable auxiliar interpretativa en el panel CAD pero no entra al cálculo de la dimensión. La justificación de la heterogeneidad temporal entre ejes y de la asimetría interna del eje productivo se desarrolla en el capítulo quinto y en el Apéndice D. Los identificadores de \\textit{Fichero crudo} se incluyen exclusivamente en la versión Word de la tabla.",
+      caption.short = "Indicadores del módulo IVEC\\textsubscript{estructural}.",
+      align      = c("l","l","l","l","c")) %>%
+    kable_styling(latex_options = c("repeat_header", "striped"),
+                  repeat_header_text = "\\textit{(continuación)}",
+                  repeat_header_method = "replace",
+                  font_size = 8) %>%
+    pack_rows("Módulo III --- Vulnerabilidad Estructural (VE)", 1, 8, latex_gap_space = "0.4em", bold = TRUE) %>%
+    pack_rows("Módulo III --- Capacidad de Adaptación y Transformación (CAD)", 9, 12, latex_gap_space = "0.4em", bold = TRUE) %>%
+    column_spec(1, width = "2.6cm") %>%
+    column_spec(2, width = "4.0cm") %>%
+    column_spec(3, width = "4.4cm") %>%
+    column_spec(4, width = "1.5cm") %>%
+    column_spec(5, width = "1.4cm")
+} else {
+  tesis_tabla_word(tab_est,
+    col_names = c("Dim.", "Subdimensión", "Indicador operativo", "Fuente", "Escala", "Serie ref.", "Fichero crudo"),
+    caption   = "Fuentes e indicadores del módulo IVEC_estructural (12 indicadores, 542 municipios CV, series 2015–2024 / 2015–2025 / 2021–2024 / 2015–2023 según fuente).")
+}
+```
+
+## F.4 — Variables auxiliares interpretativas del módulo estructural {.unnumbered}
+
+Las variables siguientes acompañan al panel del IVEC_estructural en el parquet final pero no entran al clustering k-means que produce VE\* ni al cálculo de CAD\*.
+Su función es interpretativa: caracterizar cada perfil PAR resultante del clustering en cap. 6 §\@ref(sec-res-estructural) y en cap. 7 mediante una caracterización rica de cada clúster en términos demográficos, residenciales y financieros.
+La distinción entre indicadores activos (doce, tabla anterior) y variables auxiliares (las que se listan a continuación) responde al principio de parsimonia del módulo: solo entran al cálculo del índice los ocho indicadores VE históricamente estructurales y los cuatro indicadores CAD de capacidad institucional financiera; el resto se conserva como apoyo interpretativo.
+
+```{r tab-auxiliares-estructural, echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+
+tab_aux_est <- data.frame(
+  Bloque = c(
+    rep("Demografía municipal (PEGV)", 4),
+    rep("Demografía comarcal (PEGV)", 3),
+    rep("Dinámica municipal", 1),
+    rep("Composición hogar (INE 30877)", 4),
+    rep("Carga financiera (gobierto-budgets-data)", 3)
+  ),
+  Variable = c(
+    "Tasa de dependencia global",
+    "Tasa de dependencia de la población mayor de 64 años",
+    "Índice de longevidad",
+    "Índice de renovación de la población activa",
+    "Tasa bruta de natalidad comarcal (por mil hab.)",
+    "Tasa bruta de mortalidad comarcal (por mil hab.)",
+    "AROPE comarcal (\\% pob. en riesgo de pobreza o exclusión)",
+    "Tasa de crecimiento total municipal (anual)",
+    "Edad media de la población",
+    "\\% hogares unipersonales",
+    "\\% menores de 18 años",
+    "Tamaño medio del hogar",
+    "Intereses (cap. 3 gastos) per cápita",
+    "Amortización de pasivos (cap. 9 gastos) per cápita",
+    "Carga financiera anual per cápita (intereses + amortización)"
+  ),
+  Fuente = c(
+    "PEGV --- Indicadores Demográficos Municipales",
+    "PEGV --- Indicadores Demográficos Municipales",
+    "PEGV --- Indicadores Demográficos Municipales",
+    "PEGV --- Indicadores Demográficos Municipales",
+    "PEGV --- Indicadores Demográficos Subprovinciales",
+    "PEGV --- Indicadores Demográficos Subprovinciales",
+    "PEGV --- AROPE comarcal",
+    "PEGV --- ficheros de población municipal",
+    "INE --- Tabla 30877",
+    "INE --- Tabla 30877",
+    "INE --- Tabla 30877",
+    "INE --- Tabla 30877",
+    "MHFP --- repositorio \\texttt{gobierto-budgets-data}",
+    "MHFP --- repositorio \\texttt{gobierto-budgets-data}",
+    "MHFP --- repositorio \\texttt{gobierto-budgets-data}"
+  ),
+  Escala = c(
+    rep("Municipal", 4),
+    rep("Comarcal", 3),
+    "Municipal",
+    rep("Municipal", 4),
+    rep("Municipal", 3)
+  ),
+  Serie = c(
+    rep("2015--2025", 4),
+    rep("2015--2024", 2),
+    "Última disponible",
+    "2015--2024",
+    rep("2015--2023", 4),
+    rep("2015--2024", 3)
+  )
+)
+
+if (knitr::is_latex_output()) {
+  col_headers_aux <- c("Bloque", "Variable auxiliar", "Fuente", "Escala", "Serie\nref.")
+
+  kbl(tab_aux_est, format = "latex", booktabs = TRUE, longtable = TRUE, escape = FALSE,
+      col.names = kableExtra::linebreak(col_headers_aux, align = "c", double_escape = FALSE),
+      caption    = "Variables auxiliares interpretativas del módulo IVEC\\textsubscript{estructural}: quince variables que acompañan al panel pero no entran al clustering ni al cálculo de CAD; sirven para caracterizar los perfiles PAR del módulo.",
+      caption.short = "Variables auxiliares interpretativas del módulo IVEC\\textsubscript{estructural}.",
+      align      = c("l","l","l","c","c")) %>%
+    kable_styling(latex_options = c("repeat_header", "striped"),
+                  repeat_header_text = "\\textit{(continuación)}",
+                  repeat_header_method = "replace",
+                  font_size = 8) %>%
+    column_spec(1, width = "3.2cm") %>%
+    column_spec(2, width = "4.6cm") %>%
+    column_spec(3, width = "4.0cm") %>%
+    column_spec(4, width = "1.4cm") %>%
+    column_spec(5, width = "1.4cm")
+} else {
+  tesis_tabla_word(tab_aux_est,
+    col_names = c("Bloque", "Variable auxiliar", "Fuente", "Escala", "Serie ref."),
+    caption   = "Variables auxiliares interpretativas del módulo IVEC_estructural (quince variables; caracterización PAR).")
+}
+```
+
+## F.5 — Capas externas: validación y peligrosidad {.unnumbered}
+
+Las fuentes que se documentan a continuación no son indicadores de ningún módulo del IVEC, pero entran al instrumento por dos canales bien diferenciados.
+En primer lugar, las razones de mortalidad estandarizada (RMEs) municipales suavizadas de FISABIO operan como criterio externo del plano 2 de validación del IVEC_estructural (cap. 5 §\@ref(sec-estrategia-validacion)); su construcción mediante suavizado bayesiano sobre el patrón nacional MEDEA permite estabilidad estadística en municipios pequeños y compatibilidad con el resto de la cobertura de la Comunitat Valenciana (537 de 542 municipios). El Visor de Espacios Urbanos Sensibles de la Comunitat Valenciana (VEUS-CV), dirigido por R. Temes para la Generalitat Valenciana, opera como criterio externo convergente del plano 2 de validación del IVEC_contextual (A4 §D.6): su índice de vulnerabilidad urbana a sección censal se proyecta a la malla de 1 km² por centroide y converge positivamente con el módulo contextual (ρ = 0,33; ρ = 0,47 sobre la dimensión VC\*), lo que sitúa la validación del instrumento en diálogo explícito con la cartografía valenciana de referencia en vulnerabilidad urbana.
+En segundo lugar, la cartografía PATRICOVA del Institut Cartogràfic Valencià se incorpora como capa de peligrosidad del análisis de superposición cartográfica del plano 3 (cap. 6 §\@ref(sec-validez-territorial)); su independencia respecto al instrumento garantiza que la coincidencia observada entre alta vulnerabilidad y alta peligrosidad es empírica y no un artefacto de diseño.
+El AROPE comarcal del PEGV y la renta neta media municipal del Atlas INE 31106 se conservan como variables auxiliares interpretativas del módulo IVEC_estructural y se documentan en la tabla `tab-auxiliares-estructural` de este apéndice, no en la tabla de capas externas. El criterio de ordenamiento de los clústeres ---la mediana del índice compuesto de severidad demográfica del clúster--- se documenta, junto con las alternativas consideradas, en A4 §D.19.
+
+```{r tab-fuentes-peligrosidad, echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+
+tab_pel <- data.frame(
+  Capa = c(
+    "RMEs municipales suavizadas (FISABIO/MEDEA)",
+    "Espacios urbanos sensibles (VEUS-CV)",
+    "Peligrosidad de inundación (CV05)"
+  ),
+  Fuente = c(
+    "FISABIO --- proyecto MEDEA, suavizado bayesiano",
+    "R. Temes --- Generalitat Valenciana (GVA)",
+    "PATRICOVA --- Institut Cartogràfic Valencià (ICV)"
+  ),
+  Escala = c(
+    "Municipal (537/542 CV)",
+    "Sección censal (CV completa)",
+    "Polígono de inundación"
+  ),
+  Periodo = c(
+    "2014",
+    "Ed. vigente (2020--)",
+    "Vigente"
+  ),
+  Nota = c(
+    "Criterio externo de validación del módulo estructural.",
+    "Criterio externo de validación convergente del módulo contextual.",
+    "Capa de peligrosidad del análisis de superposición cartográfica."
+  )
+)
+
+if (knitr::is_latex_output()) {
+  kbl(tab_pel,
+      col.names  = c("Fuente / capa", "Organismo", "Escala", "Período", "Uso en el IVEC"),
+      caption    = "Capas externas de validación y peligrosidad: tres fuentes que entran al instrumento como validación externa (RMEs FISABIO del plano 2 estructural; VEUS-CV del plano 2 contextual) o capa de peligrosidad (PATRICOVA). Ninguna forma parte del cálculo de los módulos del IVEC. El AROPE comarcal y la renta neta media municipal, que en versiones previas operaron como criterio de ordenamiento de clústeres, han pasado a variables auxiliares interpretativas del módulo IVEC\\textsubscript{estructural}, recogidas en la tabla de variables auxiliares del módulo estructural de este apéndice.",
+      caption.short = "Capas externas y fuentes auxiliares.",
+      booktabs   = TRUE, longtable = FALSE, escape = FALSE,
+      align      = c("l","l","l","c","l")) %>%
+    kable_styling(latex_options = c("HOLD_position", "striped"),
+                  font_size = 9, full_width = FALSE) %>%
+    column_spec(1, width = "3.0cm") %>%
+    column_spec(2, width = "3.0cm") %>%
+    column_spec(3, width = "2.2cm") %>%
+    column_spec(4, width = "1.4cm") %>%
+    column_spec(5, width = "4.0cm")
+} else {
+  tesis_tabla_word(tab_pel,
+    col_names = c("Fuente / capa", "Organismo", "Escala", "Período", "Uso en el IVEC"),
+    caption   = "Capas externas y fuentes auxiliares (construcción auxiliar, validación externa y peligrosidad).")
+}
+```
+
+## F.6 — Fuente referenciada para agenda de investigación futura {.unnumbered}
+
+El Registro de Servicios de Voluntariado de Protección Civil de la Comunitat Valenciana (AVSRE, Decreto 10/2018) no se incorpora al IVEC como indicador de ningún módulo, dado que la inscripción en el registro no es obligatoria y su cobertura infraestima sistemáticamente la presencia de voluntariado en los municipios más pequeños.
+Se propone como indicador de la capacidad reactiva CR en el IVEC_riesgo de la agenda de investigación futura, cuyo desarrollo se recoge en la sección de líneas de investigación futura del capítulo séptimo.
+
+En la misma línea, la *Estadística de Riesgos Extraordinarios* del Consorcio de Compensación de Seguros (CCS) ---histórico de siniestros e indemnizaciones por inundación en la Comunitat Valenciana--- se referencia como fuente para estimar la capacidad de recuperación material del territorio frente a perturbaciones, componente igualmente de las capacidades de reacción (CR). No se incorpora a la V1 del instrumento ---las capacidades de reacción quedan fuera del IVEC por diseño--- y su explotación a escala de microdato requiere solicitud formal al Consorcio, prevista para el desarrollo posterior del IVEC_riesgo.

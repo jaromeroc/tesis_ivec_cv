@@ -1,0 +1,335 @@
+# Tratamiento de la base APSIG del SIP {#app-sip}
+
+Este apéndice documenta el tratamiento de la base anonimizada del Sistema de Información Poblacional (SIP), en adelante APSIG, a partir del fichero `SIP.txt`.
+El objetivo es transformar los datos en bruto en un conjunto estructurado, limpio y enriquecido, apto para el análisis estadístico y geoespacial de la tesis.
+El proceso se desarrolla en R, con apoyo de tidyverse para la manipulación de datos y arrow para la lectura y escritura eficiente en formato parquet.
+
+El apéndice incorpora tablas y gráficos intermedios que permiten evaluar la calidad del proceso y seguir la lógica de decisiones adoptadas. La documentación detallada garantiza la reproducibilidad completa del procedimiento y facilita la replicación a partir de `SIP.txt`. El resultado es un conjunto de datos único, interpretable y coherente con las variables de la tesis, que sirve de base para la construcción del IVEC en sus distintas escalas. El proceso se organiza en diez etapas encadenadas ---un preprocesamiento inicial y nueve módulos--- que transforman el fichero fuente en el dataset definitivo de referencia (`SIP_final.parquet`).
+
+Con el fin de asegurar la reproducibilidad de todos los resultados, los procesos descritos se ejecutaron fijando una semilla global (`set.seed(1972)`).
+De este modo, cualquier operación con componentes aleatorios mantiene resultados consistentes entre ejecuciones.
+El flujo de procesamiento (*pipeline*) reproducible que comprende los módulos calculados fuera de la compilación del documento ---Módulos 1–5 y 9--- está disponible en el repositorio público del proyecto: \url{https://github.com/jaromeroc/tesis\_ivec\_cv/blob/main/R/apendices/A3\_pipeline\_sip.R}.
+
+<!-- ============================================================
+     PIPELINE REPRODUCIBLE: R/apendices/A3_pipeline_sip.R
+     ============================================================
+     El script standalone recoge el código de todos los módulos
+     con eval=FALSE del Rmd (Módulos 1-5 y 9). Debe ejecutarse
+     ANTES de compilar el Rmd para que los checkpoints .parquet
+     y .rds estén disponibles en data/SIP/.
+
+     Correspondencia Rmd → script:
+       Preprocesamiento externo → FASE 0: 00_preprocesa_SIP.R (llamada)
+       Módulo 1 (carga)         → FASE 1: Carga de SIP_base.parquet
+       Módulo 2 (normalización) → FASE 2: Normalización + coordenadas
+       Módulo 3 (imputación)    → FASE 3: Imputación por UCO_CODI
+       Módulo 4 (ingeniería)    → FASE 4: Feature engineering APSI_46
+       Módulo 5 (etiquetado)    → FASE 5: Etiquetado semántico + df_final_raw
+       Módulo 6 (función)       → (en el Rmd, eval=TRUE: se ejecuta en compilación)
+       Módulo 7 (calidad)       → (en el Rmd, eval=TRUE: tablas kable)
+       Módulo 8 (depuración)    → (en el Rmd, eval=TRUE: figura ggplot2)
+       Módulo 9 (dataset final) → FASE 9: Consolidación df_final + SIP_final.parquet
+
+     Archivos de entrada:  data/SIP/SIP.txt
+     Archivos intermedios: data/SIP/processed_data/SIP_base.parquet
+                           data/SIP/processed_data/SIP_importado.parquet
+                           data/SIP/processed_data/SIP_separadas.parquet
+     Archivos de salida:   data/SIP/results/SIP_etiquetado.parquet
+                           data/SIP/results/SIP_final.parquet
+                           data/SIP/results/df_final_raw.rds
+     ============================================================ -->
+
+## Preprocesamiento inicial (script externo) {.unlisted}
+
+Antes de iniciar el flujo documentado en este apéndice, se ejecuta un script independiente (`00_preprocesa_SIP.R`) que transforma el fichero original `SIP.txt` en un archivo parquet optimizado (`SIP_base.parquet`).
+
+El objetivo de este paso es separar el preprocesamiento técnico de la documentación metodológica. De este modo, el apéndice parte siempre de un archivo limpio y eficiente, evitando sobrecargar la narrativa con operaciones de lectura y depuración básicas.
+
+El script ejecuta siete operaciones en secuencia: define las rutas de entrada y salida; comprueba si `SIP_base.parquet` ya existe y, de ser así, no reprocesa; verifica que `SIP.txt` esté disponible en la ruta indicada; lee el fichero delimitado por `|`, manteniendo todas las columnas como texto y asignando `NA` a valores vacíos o a códigos especiales (`****`); elimina las columnas completamente vacías; crea la carpeta de salida si no existía; y guarda el resultado en formato parquet mediante arrow.
+
+Este preprocesamiento se ejecuta una sola vez o cuando cambie el fichero fuente. A partir de ahí, el flujo de los módulos 1–9 documentados en este apéndice asume la existencia del archivo `SIP_base.parquet`.
+
+## Índice de módulos {.unlisted}
+
+El tratamiento de la base APSIG se organiza en nueve módulos encadenados que siguen una lógica de depuración progresiva. Los tres primeros sientan la base operativa: el Módulo 1 carga `SIP_base.parquet` y verifica la consistencia inicial; el Módulo 2 estandariza identificadores y extrae las coordenadas geográficas a partir de `APSI`; y el Módulo 3 completa los registros sin ubicación válida mediante imputación por unidad de convivencia (`UCO_CODI`). Los módulos 4 y 5 enriquecen el dataset: el Módulo 4 descompone `APSI_46` en variables demográficas, socioeconómicas y territoriales; el Módulo 5 incorpora descripciones legibles desde un diccionario externo y genera pares código–descripción, produciendo el dataset `df_final_raw`. Los módulos 6, 7 y 8 operan como dispositivo de control de calidad: el Módulo 6 define la función de diagnóstico de ausentes; el Módulo 7 la aplica al dataset etiquetado para establecer una línea base de completitud; y el Módulo 8 elimina los registros sin datos útiles en `APSI_46` y reevalúa la calidad resultante, obteniendo `df_final_clean`. El Módulo 9 cierra el flujo seleccionando las columnas definitivas y produciendo `df_final`, el dataset de referencia para todos los análisis estadísticos y geoespaciales de la tesis.
+
+## Resumen del flujo {.unlisted}
+
+Los objetos principales que circulan en memoria a lo largo del flujo son `df_final_raw` (dataset etiquetado inicial), `df_final_clean` (dataset depurado tras la eliminación de registros inválidos en `APSI_46`) y `df_final` (dataset definitivo para el análisis). En disco, el flujo genera dos archivos de salida persistentes: `SIP_etiquetado.parquet`, copia del dataset etiquetado `df_final_raw`, y `SIP_final.parquet`, copia definitiva de `df_final`.
+
+A continuación se describe cada módulo en detalle, siguiendo la secuencia del proceso desde la carga inicial de datos hasta la obtención del dataset final.
+
+<!-- Script: A3_pipeline_sip.R >> FASE 1: Carga de SIP_base.parquet -->
+## Módulo 1: Preparación del entorno y carga de datos {.unlisted}
+
+El flujo comienza con la lectura del fichero optimizado `SIP_base.parquet`, que sustituye al original `SIP.txt` por motivos de eficiencia.
+
+Para ello se define la ruta al archivo con `here` [@here2020], se comprueba que exista en el directorio esperado y, en caso contrario, se interrumpe el proceso indicando la necesidad de ejecutar el preprocesamiento previo.
+
+La lectura se realiza con arrow, lo que permite cargar el dataset en memoria de manera rápida y en formato columnar. De forma opcional, en sesiones interactivas se incluye una verificación de consistencia entre los códigos de asignación y de residencia presentes en `APSI`. Esta comprobación se implementa mediante glue, mostrando el porcentaje de coincidencia encontrado.
+
+El resultado es un objeto `df` en memoria, que servirá de base para la normalización de identificadores y coordenadas en el siguiente módulo.
+
+<!-- Script: A3_pipeline_sip.R >> FASE 2: Normalización e identificadores -->
+## Módulo 2: Normalización y extracción de coordenadas {.unlisted}
+
+En este módulo se estandarizan los identificadores clave y se extraen de forma sistemática las coordenadas contenidas en la variable `APSI`.
+En primer lugar, se normalizan `UCO_CODI` y `N_SIP` rellenando con ceros a la izquierda, de modo que todas las observaciones tengan el mismo formato.
+Posteriormente, se generan subcadenas auxiliares de `APSI` (`APSI_46`, `APSI_72`) que permiten aislar la información codificada en esa variable.
+
+A partir de estas subcadenas se construyen las coordenadas `ST_X` y `ST_Y`, sustituyendo valores nulos o iguales a cero por las coordenadas derivadas de `APSI` cuando están disponibles. Finalmente, se eliminan las variables intermedias utilizadas en el proceso, dejando un conjunto más limpio y homogéneo.
+
+El resultado es el dataset `df_stand`, con identificadores estandarizados y coordenadas geográficas consolidadas, listo para aplicar la imputación espacial en el módulo siguiente.
+
+<!-- Script: A3_pipeline_sip.R >> FASE 3: Imputación por UCO_CODI -->
+## Módulo 3: Imputación de coordenadas geográficas {.unlisted}
+
+En este módulo se completan los registros sin coordenadas válidas mediante un procedimiento de imputación. Para cada código `UCO_CODI` se identifican las primeras coordenadas disponibles y se utilizan como referencia.
+
+Estas se integran con el dataset estandarizado mediante una unión por clave, de modo que las coordenadas faltantes puedan reemplazarse con los valores de referencia.
+
+El resultado es el dataset `df_imputado`, con coordenadas más completas y listo para la ingeniería de características que se desarrolla en el módulo siguiente.
+
+<!-- Script: A3_pipeline_sip.R >> FASE 4: Feature engineering APSI_46 -->
+## Módulo 4: Ingeniería de características desde APSI46 {.unlisted}
+
+Este módulo enriquece la base de datos descomponiendo la cadena `APSI_46` en un conjunto de variables interpretables.
+De este modo se extraen dimensiones demográficas, socioeconómicas, territoriales y de aseguramiento.
+También se construyen variables combinadas para zonas de asignación y residencia, y se define la variable `ASI` que agrupa territorios en categorías predefinidas.
+
+El resultado es el dataset `df_sep`, que conserva las coordenadas imputadas y añade nuevas variables derivadas de `APSI_46`. Este dataset será la base para el etiquetado semántico en el módulo siguiente.
+
+<!-- Script: A3_pipeline_sip.R >> FASE 5: Etiquetado semántico + df_final_raw -->
+## Módulo 5: Etiquetado semántico de variables {.unlisted}
+
+En este módulo se enriquece el dataset con descripciones legibles de las variables codificadas. Para ello se emplea un diccionario externo en formato Excel, que contiene las correspondencias entre códigos y etiquetas.
+
+El proceso incluye la lectura de las hojas del diccionario, la limpieza de los textos, el ajuste de la longitud de las claves y la creación de nuevas columnas descriptivas junto a las originales.
+
+La función `add_etiqueta_dual()` se aplica a todas las variables presentes tanto en el dataset como en el diccionario, generando pares código–descripción.
+El resultado es el dataset `df_final_raw`, una versión etiquetada y más interpretable, que sirve de base para los análisis de calidad (Módulo 7) y la depuración posterior (Módulo 8).
+
+## Módulo 6: Definición de función para evaluación de calidad de los datos {.unlisted}
+
+Este módulo introduce una función auxiliar que permite cuantificar los valores ausentes de cada variable. La función devuelve una tabla con el número absoluto y la proporción de NA, clasificando las variables en cuatro categorías analíticas: claves, códigos, descripciones u otras.
+
+El objetivo es disponer de un diagnóstico reutilizable que se pueda aplicar en diferentes fases del flujo, manteniendo la consistencia de los resultados. El formateo final de las tablas o gráficos se realiza en los módulos siguientes, a partir del resumen generado por esta función.
+
+```{r modulo6-funcion-calidad, eval=TRUE, message=FALSE, warning=FALSE, echo=FALSE}
+
+## MÓDULO 6: FUNCIÓN PARA EVALUACIÓN DE CALIDAD DEL DATO
+
+library(dplyr)
+library(tidyr)
+library(stringr)
+
+evaluar_calidad <- function(df, etapa = c("antes", "despues")) {
+  etapa <- match.arg(etapa)
+  
+  df %>%
+    summarise(across(
+      everything(),
+      list(
+        n_na   = ~sum(is.na(.)),
+        prop_na = ~mean(is.na(.))
+      ),
+      .names = "{.col}_{.fn}"
+    )) %>%
+    pivot_longer(
+      everything(),
+      names_to = c("variable", ".value"),
+      names_pattern = "^(.*)_(n_na|prop_na)$"
+    ) %>%
+    mutate(
+      tipo = case_when(
+        str_detect(variable, "\\(cod\\)$")  ~ "Código",
+        str_detect(variable, "\\(desc\\)$") ~ "Descripción",
+        variable %in% c("UCO_CODI", "N_SIP", "ST_X", "ST_Y") ~ "Clave",
+        TRUE ~ "Otro"
+      ),
+      tipo = factor(tipo, levels = c("Clave", "Descripción", "Código", "Otro")),
+      etapa = etapa   # nuevo campo que etiqueta la fase del análisis
+    ) %>%
+    filter(prop_na > 0) %>%
+    arrange(tipo, desc(prop_na)) %>%
+    mutate(variable = factor(variable, levels = rev(unique(variable))))
+}
+
+# Cargar checkpoint de df_final_raw para compilación rápida
+df_final_raw <- readRDS(here::here("data/SIP/results", "df_final_raw.rds"))
+
+```
+
+## Módulo 7: Análisis de calidad del dato inicial {.unlisted}
+
+Este módulo aplica la función evaluar_y_graficar_calidad() al dataset con etiquetado semántico (`df_final_raw`) antes de realizar depuraciones adicionales.
+
+El objetivo es obtener una primera fotografía de los valores ausentes y establecer una línea base para la comparación con el estado posterior a la limpieza. 
+
+En esta fase se muestra exclusivamente una tabla de resumen (generada con kable), que indica el número y la proporción de NA por variable, clasificadas según su rol analítico.
+
+```{r modulo7-calidad-inicial-prep, echo=FALSE, message=FALSE, warning=FALSE}
+
+## MÓDULO 7: ANÁLISIS DE CALIDAD DEL DATO INICIAL
+
+library(dplyr)
+library(knitr)
+library(kableExtra)
+
+# Evaluación ANTES de la limpieza
+calidad_antes <- evaluar_calidad(df_final_raw, etapa = "antes")
+
+# Separar en dos subconjuntos
+calidad_claves_desc <- calidad_antes %>% filter(tipo %in% c("Clave", "Descripción"))
+calidad_codigos     <- calidad_antes %>% filter(tipo == "Código")
+
+# Definir anchos de columnas
+ancho_columnas <- c("3cm","5cm","3cm","3cm")
+
+# Guardar objetos como .rds para reutilización rápida (no producen salida visible)
+invisible(saveRDS(calidad_claves_desc, here::here("data/SIP/results", "tabla_calidad_claves_desc.rds")))
+invisible(saveRDS(calidad_codigos, here::here("data/SIP/results", "tabla_calidad_codigos.rds")))
+```
+
+```{r modulo7-calidad-claves-desc, echo=FALSE, message=FALSE, warning=FALSE}
+# ── TABLA C.1: Claves y Descripciones ────────────────────────
+if (knitr::is_latex_output()) {
+  knitr::kable(
+    calidad_claves_desc %>% select(tipo, variable, n_na, prop_na),
+    booktabs = TRUE,
+    caption = "Calidad del dato antes de la limpieza (Claves y Descripciones)",
+    align = c("c","l","c","c")
+  ) %>%
+    kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                              font_size = 9, full_width = FALSE, position = "center") %>%
+    kableExtra::column_spec(1, width = ancho_columnas[1]) %>%
+    kableExtra::column_spec(2, width = ancho_columnas[2]) %>%
+    kableExtra::column_spec(3, width = ancho_columnas[3]) %>%
+    kableExtra::column_spec(4, width = ancho_columnas[4]) %>%
+    kableExtra::collapse_rows(columns = 1, valign = "middle") %>%
+    kableExtra::footnote(general = "Fuente: Elaboración propia a partir de SIP.txt",
+                         general_title = "", threeparttable = TRUE, escape = FALSE)
+} else {
+  tesis_tabla_word(calidad_claves_desc %>% select(tipo, variable, n_na, prop_na),
+    caption = "Calidad del dato antes de la limpieza (Claves y Descripciones)")
+}
+```
+
+```{r modulo7-calidad-codigos, echo=FALSE, message=FALSE, warning=FALSE}
+# ── TABLA C.2: Variables codificadas ─────────────────────────
+if (knitr::is_latex_output()) {
+  knitr::kable(
+    calidad_codigos %>% select(tipo, variable, n_na, prop_na),
+    booktabs = TRUE,
+    caption = "Calidad del dato antes de la limpieza (Variables codificadas)",
+    align = c("c","l","c","c")
+  ) %>%
+    kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                              font_size = 9, full_width = FALSE, position = "center") %>%
+    kableExtra::column_spec(1, width = ancho_columnas[1]) %>%
+    kableExtra::column_spec(2, width = ancho_columnas[2]) %>%
+    kableExtra::column_spec(3, width = ancho_columnas[3]) %>%
+    kableExtra::column_spec(4, width = ancho_columnas[4]) %>%
+    kableExtra::collapse_rows(columns = 1, valign = "middle") %>%
+    kableExtra::footnote(general = "Fuente: Elaboración propia a partir de SIP.txt",
+                         general_title = "", threeparttable = TRUE, escape = FALSE)
+} else {
+  tesis_tabla_word(calidad_codigos %>% select(tipo, variable, n_na, prop_na),
+    caption = "Calidad del dato antes de la limpieza (Variables codificadas)")
+}
+```
+
+\FloatBarrier
+
+## Módulo 8: Eliminación de registros sin datos útiles y reevaluación {.unlisted}
+
+En este módulo se depura el dataset eliminando los registros sin información válida en APSI_46. Se contabilizan los registros iniciales, se filtran los casos nulos o con valor "0", y se calcula el número de observaciones eliminadas junto con el porcentaje correspondiente.
+
+Posteriormente se aplica de nuevo la función evaluar_y_graficar_calidad() sobre el dataset depurado para obtener un diagnóstico visual de la calidad.
+
+En esta fase se muestra exclusivamente un gráfico (generado con ggplot2), que representa las variables con más de un 0,5% de valores ausentes tras la limpieza, lo que permite apreciar de forma más intuitiva la mejora respecto a la situación inicial.
+
+```{r modulo8-calidad-final, echo=FALSE, fig.align="center", fig.cap="Variables con más del 0.5% de valores ausentes tras la limpieza de APSI-46. \\newline \\textit{Nota. } Se muestran únicamente las variables con proporción de ausentes significativa. \\newline \\textit{Fuente: } Elaboración propia a partir de SIP.txt (INE, 2025).", fig.pos="H", fig.scap="Variables con >0.5% de ausentes tras limpieza de APSI-46.", message=FALSE, warning=FALSE, out.width="90%"}
+
+## MÓDULO 8: ELIMINACIÓN DE REGISTROS SIN DATOS ÚTILES Y REEVALUACIÓN
+
+library(dplyr)
+library(ggplot2)
+library(scales)
+library(glue)
+library(viridis)
+
+# Crear dataset limpio
+df_final_clean <- df_final_raw %>%
+  filter(!is.na(APSI_46), APSI_46 != "0")
+
+# Evaluación después de la limpieza
+calidad_despues <- evaluar_calidad(df_final_clean, etapa = "despues")
+
+# Figura (después de limpieza)
+na_summary_grafico <- calidad_despues %>%
+  filter(prop_na > 0.005)
+
+if (nrow(na_summary_grafico) == 0) {
+  ggplot() +
+    annotate("text", x = 0.5, y = 0.5,
+             label = "No hay variables con >0.5% de NA",
+             size = 5, color = "darkgreen") +
+    theme_void()
+} else {
+  p <- ggplot(na_summary_grafico, aes(x = variable, y = prop_na, fill = tipo)) +
+    geom_col(width = 0.4) +
+    geom_text(aes(label = if_else(
+      prop_na > 0.005,
+      scales::percent(prop_na, 0.01, decimal.mark = ","), ""
+    )),
+    hjust = -0.1, size = 3) +
+    coord_flip(clip = "off") +
+    scale_y_continuous(
+      labels = scales::label_percent(decimal.mark = ","),
+      expand = expansion(mult = c(0, 0.15))
+    ) +
+    scale_fill_viridis_d(option = "cividis", name = "Tipo de Variable") +
+    labs(x = NULL, y = "Proporción de Ausentes",
+         title = "Variables con >0.5% de Ausentes",
+         subtitle = "Situación tras limpieza de APSI-46") +
+    theme_minimal(base_family = "sans") +
+    theme(
+      legend.position = "bottom",
+      plot.title = element_text(size = 14, face = "bold"),
+      plot.subtitle = element_text(size = 11),
+      axis.text.y = element_text(size = 9)
+    )
+  
+  # Mostrar gráfico
+  print(p)
+  
+  # Guardar gráfico
+  invisible(
+    ggsave(
+      filename = here::here("outputs/figures/app-c", "grafico_calidad_despues.png"),
+      plot = p,
+      width = 8, height = 6, dpi = 300
+    )
+  )
+}
+```
+
+\FloatBarrier
+
+<!-- Script: A3_pipeline_sip.R >> FASE 9: Consolidación df_final + SIP_final.parquet -->
+## Módulo 9: Limpieza final de columnas y dataset para análisis {.unlisted}
+
+En este último módulo se consolida la versión definitiva del dataset. Partiendo de `df_final_clean`, se eliminan las variables auxiliares creadas en pasos intermedios y se conservan las claves de identificación (`UCO_CODI`, `N_SIP`), la fecha de nacimiento (`f_nacim`), las variables codificadas y descriptivas, y las coordenadas consolidadas (`ST_X`, `ST_Y`).
+
+La retención explícita de `f_nacim` en `SIP_final.parquet` responde a un requisito del pipeline del IVEC_base: los indicadores `vi_edad` (fragilidad por edad avanzada) y `ch_ratio_dep` (ratio dependientes/cuidadores reconstruido desde `UCO_CODI`) requieren calcular la edad de cada individuo a la fecha de extracción, operación que necesita la fecha de nacimiento codificada en `APSI_46` (posiciones 4–11). `SIP_final.parquet` es el único archivo fuente del pipeline IVEC_base; todas las variables de análisis se leen directamente de él.
+
+El resultado es el objeto `df_final`, un conjunto de datos estructurado, limpio e interpretable, que constituye la base única de referencia para los análisis estadísticos y geoespaciales de la tesis.
+
+## Cobertura de georreferenciación tras el tratamiento {.unlisted}
+
+El tratamiento descrito en los nueve módulos anteriores produce como resultado cuantificado la cobertura efectiva de georreferenciación del dataset final.
+Tras aplicar la normalización de coordenadas del Módulo 2 y la imputación por unidad de convivencia (`UCO_CODI`) del Módulo 3 ---que asigna las coordenadas de cualquier miembro del hogar con ubicación válida al resto de sus convivientes sin coordenadas propias---, el dataset `df_final` presenta un **17,39% de registros sin coordenadas válidas** en los campos `ST_X` y `ST_Y` (933.233 de 5.365.233 registros).
+Estos individuos residen en unidades de convivencia en las que ningún miembro dispone de dirección postal geocodificable en el registro, de modo que la imputación intrahogar no puede resolverlos.
+
+Este dato no es una estimación: es el resultado directo del análisis de calidad documentado en el Módulo 7 (Tabla C.1) aplicado sobre `df_final`. Su magnitud y la distribución de sus características socioeconómicas y administrativas constituyen el punto de partida empírico del análisis de sesgo de georreferenciación que el capítulo quinto de la tesis diseña como procedimiento metodológico y el capítulo sexto ejecuta e interpreta en el contexto de los resultados del IVEC_base.
