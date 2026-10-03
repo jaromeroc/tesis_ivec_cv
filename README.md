@@ -260,6 +260,8 @@ Este repositorio combina dos tipos de contenido, con licencias diferenciadas:
 
 Depósito original: **25 de mayo de 2026**. Defensa: **31 de julio de 2026**. Esta versión corregida constituye el depósito definitivo posterior a la defensa.
 
+Registro en TESEO (base de datos nacional de tesis): https://aplicaciones.ciencia.gob.es/teseo/#/tesis/330085/detalle
+
 
 ---
 
