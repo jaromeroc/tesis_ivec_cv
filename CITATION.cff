@@ -18,9 +18,8 @@ keywords:
   - "reducción del riesgo de desastres"
 license: CC-BY-NC-ND-4.0
 date-released: "2026-07-31"
-doi: "10.5281/zenodo.21759660"
 repository-code: "https://github.com/jaromeroc/tesis_ivec_cv"
-url: "https://doi.org/10.5281/zenodo.21759660"
+url: "https://hdl.handle.net/10550/128856"
 preferred-citation:
   type: thesis
   title: "La vulnerabilidad social como fenómeno estructural y contextual. Diseño del instrumento IVEC para la Comunitat Valenciana"
@@ -33,3 +32,4 @@ preferred-citation:
   institution:
     name: "Universitat de València"
   thesis-type: "Tesis doctoral"
+  url: "https://hdl.handle.net/10550/128856"
