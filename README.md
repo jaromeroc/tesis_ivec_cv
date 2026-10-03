@@ -1,5 +1,7 @@
 # Tesis doctoral — IVEC: Instrumento de Valoración de la Vulnerabilidad Estructural y Contextual de la Comunitat Valenciana
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21759660.svg)](https://doi.org/10.5281/zenodo.21759660)
+
 
 Repositorio reproducible de la tesis doctoral de Juan Antonio Romero Crespo (Universitat de València). El proyecto construye el **IVEC** (*Instrumento de Valoración de la Vulnerabilidad Estructural y Contextual*), un instrumento de medición de la vulnerabilidad social en la Comunitat Valenciana que puede **cerrar la Brecha Protección Civil / Protección Social desde dentro de la arquitectura existente**, sin exigir la fusión institucional de los dos sistemas.
 
@@ -261,6 +263,8 @@ Este repositorio combina dos tipos de contenido, con licencias diferenciadas:
 Depósito original: **25 de mayo de 2026**. Defensa: **31 de julio de 2026**. Esta versión corregida constituye el depósito definitivo posterior a la defensa.
 
 Registro en TESEO (base de datos nacional de tesis): https://aplicaciones.ciencia.gob.es/teseo/#/tesis/330085/detalle
+
+El repositorio y el código están archivados en Zenodo: https://doi.org/10.5281/zenodo.21759660 (DOI de concepto, apunta a la última versión).
 
 
 ---

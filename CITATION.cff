@@ -22,6 +22,7 @@ identifiers:
   - type: url
     value: "https://aplicaciones.ciencia.gob.es/teseo/#/tesis/330085/detalle"
     description: "Registro en TESEO (base nacional de tesis)"
+doi: "10.5281/zenodo.21759660"
 repository-code: "https://github.com/jaromeroc/tesis_ivec_cv"
 url: "https://hdl.handle.net/10550/128856"
 preferred-citation:
